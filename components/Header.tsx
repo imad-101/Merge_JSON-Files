@@ -7,10 +7,16 @@ const Header = () => {
     <header>
       <nav className="flex justify-between items-center sm:px-24 px-6 my-5  ">
         <div className="right">
-          <Image src={"/logo.png"} alt="Logo" width={200} height={30}></Image>
+          <Link href={"/"}>
+            {" "}
+            <Image src={"/logo.png"} alt="Logo" width={200} height={30}></Image>
+          </Link>
         </div>
         <div className="left flex gap-5 items-center">
-          <Link href=" /" className="text-gray-600 hidden sm:block">
+          <Link
+            href=" /"
+            className="text-gray-600 hidden sm:block hover:text-gray-700"
+          >
             {" "}
             Home
           </Link>
