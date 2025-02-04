@@ -38,8 +38,10 @@ const JsonMerger = () => {
       }
       setMergedContent(JSON.stringify(mergedObject, null, 2));
       setError("");
-    } catch (err) {
-      setError("Error processing files. Ensure all files are valid JSON.");
+    } catch (error) {
+      setError(
+        `Error processing files. Ensure all files are valid JSON ${error} , `
+      );
       setMergedContent("");
     }
   };
