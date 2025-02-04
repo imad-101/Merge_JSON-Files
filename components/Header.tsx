@@ -21,7 +21,7 @@ const Header = () => {
             Home
           </Link>
           <Link href={"/blog"} className="text-gray-600">
-            <Button className="px-5 bg-gray-700 hover:bg-gray-800">Blog</Button>
+            <Button className="px-5 bg-gray-800 hover:bg-gray-700">Blog</Button>
           </Link>
         </div>
       </nav>
