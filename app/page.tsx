@@ -57,8 +57,8 @@ const page = () => {
             </div>
             <h3 className="font-semibold mt-4">Merge Files</h3>
             <p className="text-gray-600 text-sm mt-2">
-              Click the "Merge" button to combine all files into a single JSON
-              output.
+              Click the &quot;Merge&quot; button to combine all files into a
+              single JSON output.
             </p>
           </div>
 
