@@ -72,11 +72,11 @@ const JsonMerger = () => {
   };
 
   return (
-    <div className="container  mx-auto p-3 sm:p-6 max-w-[20rem] sm:max-w-xl md:max-w-6xl bg-gray-800 rounded-xl">
-      <Card className=" mb-4 sm:mb-8">
+    <div className="container mx-auto p-3 sm:p-6 max-w-[20rem] sm:max-w-xl md:max-w-6xl bg-white border rounded-xl">
+      <Card className="mb-4 sm:mb-8 bg-gray-700 text-white">
         <CardHeader>
           <CardTitle>JSON File Merger</CardTitle>
-          <CardDescription>
+          <CardDescription className="text-gray-300">
             Upload multiple JSON files and merge them
           </CardDescription>
         </CardHeader>
@@ -88,11 +88,11 @@ const JsonMerger = () => {
             {({ getRootProps, getInputProps }) => (
               <div
                 {...getRootProps()}
-                className="flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-6 cursor-pointer hover:bg-gray-100 transition"
+                className="flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-6 cursor-pointer bg-gray-800 hover:bg-gray-700 transition"
               >
                 <input {...getInputProps()} />
-                <Upload className="h-8 w-8 mb-2 text-gray-400" />
-                <p className="text-sm text-gray-600">
+                <Upload className="h-8 w-8 mb-2 text-gray-300" />
+                <p className="text-sm text-gray-300">
                   Drag & drop files or click to upload
                 </p>
               </div>
@@ -104,9 +104,9 @@ const JsonMerger = () => {
               {files.map((file, index) => (
                 <div
                   key={index}
-                  className="flex justify-between bg-gray-50 p-2 rounded-md"
+                  className="flex justify-between bg-gray-800 p-2 rounded-md"
                 >
-                  <span className="text-sm text-gray-700">{file.name}</span>
+                  <span className="text-sm text-gray-200">{file.name}</span>
                   <Trash2
                     className="h-5 w-5 text-red-500 cursor-pointer"
                     onClick={() => removeFile(index)}
@@ -126,7 +126,7 @@ const JsonMerger = () => {
             <Button
               onClick={mergeFiles}
               disabled={files.length === 0}
-              className="w-full bg-gray-800"
+              className="w-full bg-gray-800 hover:bg-gray-600"
             >
               Merge Files
             </Button>
@@ -134,7 +134,7 @@ const JsonMerger = () => {
               onClick={downloadMergedFile}
               disabled={!mergedContent}
               variant="outline"
-              className="w-full"
+              className="w-full text-gray-800 border-gray-800 hover:bg-gray-300 "
             >
               Download
             </Button>
@@ -142,12 +142,12 @@ const JsonMerger = () => {
 
           {mergedContent && (
             <div className="mt-4 relative">
-              <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm text-gray-700">
+              <pre className="bg-gray-800 p-4 rounded-lg overflow-x-auto text-sm text-white">
                 {mergedContent}
               </pre>
               <Button
                 size="sm"
-                className="absolute top-2 right-2"
+                className="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600"
                 onClick={copyToClipboard}
               >
                 <Copy className="h-4 w-4" />
@@ -159,7 +159,7 @@ const JsonMerger = () => {
             <div className="flex justify-center mt-4">
               <Button
                 onClick={clearAndRemerge}
-                className="bg-gray-800 hover:bg-gray-900 mt-10"
+                className="bg-gray-700 hover:bg-gray-600 mt-10"
               >
                 Merge Other Files
               </Button>
