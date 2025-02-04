@@ -14,17 +14,17 @@ import {
 import Dropzone from "react-dropzone";
 
 const JsonMerger = () => {
-  const [files, setFiles] = useState([]);
-  const [mergedContent, setMergedContent] = useState(null);
+  const [files, setFiles] = useState<File[]>([]);
+  const [mergedContent, setMergedContent] = useState("");
   const [error, setError] = useState("");
 
-  const handleFileUpload = (acceptedFiles) => {
+  const handleFileUpload = (acceptedFiles: File[]) => {
     setFiles(acceptedFiles);
     setError("");
-    setMergedContent(null);
+    setMergedContent("");
   };
 
-  const removeFile = (index) => {
+  const removeFile = (index: number) => {
     setFiles(files.filter((_, i) => i !== index));
   };
 
@@ -40,13 +40,13 @@ const JsonMerger = () => {
       setError("");
     } catch (err) {
       setError("Error processing files. Ensure all files are valid JSON.");
-      setMergedContent(null);
+      setMergedContent("");
     }
   };
 
   const clearAndRemerge = () => {
     setFiles([]);
-    setMergedContent(null);
+    setMergedContent("");
     setError("");
   };
 
@@ -64,7 +64,9 @@ const JsonMerger = () => {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(mergedContent);
+    if (mergedContent) {
+      navigator.clipboard.writeText(mergedContent);
+    }
   };
 
   return (
