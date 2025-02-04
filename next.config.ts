@@ -1,9 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "standalone",
-  skipMiddlewareUrlNormalize: true,
-  skipTrailingSlashRedirect: true,
+  siteUrl: "https://yourdomain.com",
+  generateRobotsTxt: true,
 };
 
 export default nextConfig;

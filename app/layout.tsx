@@ -9,11 +9,11 @@ import localFont from "next/font/local";
 const myFont = localFont({ src: "./fonts/sansFont.ttf" });
 
 export const metadata: Metadata = {
-  title: "JSON File Merger - Fast & Secure JSON Merging Tool",
+  title: "Merge JSON Files - Fast & Secure JSON Merging Tool",
   description:
     "Easily merge multiple JSON files into one with our fast and secure online tool. No data storage, 100% privacy-focused.",
   keywords:
-    "JSON merger, merge JSON files, online JSON tool, secure JSON processing, combine JSON files",
+    "JSON merger, merge JSON files, online JSON tool, secure JSON processing, combine JSON files , free JASON merge , online JSON merge",
   openGraph: {
     title: "JSON File Merger - Fast & Secure JSON Merging Tool",
     description:
