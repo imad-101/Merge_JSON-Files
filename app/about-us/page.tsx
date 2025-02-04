@@ -6,9 +6,9 @@ const AboutUs = () => {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2">Who We Are</h2>
         <p className="text-gray-700">
-          Welcome to [Your Project Name], a cutting-edge tool designed to
-          simplify JSON file merging. We are dedicated to providing a seamless
-          and efficient experience for developers, data analysts, and anyone who
+          Welcome to Merge JSON Files, a cutting-edge tool designed to simplify
+          JSON file merging. We are dedicated to providing a seamless and
+          efficient experience for developers, data analysts, and anyone who
           works with JSON data.
         </p>
       </section>
