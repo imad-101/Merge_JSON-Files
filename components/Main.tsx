@@ -72,7 +72,7 @@ const JsonMerger = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-6xl bg-gray-800 rounded-xl">
+    <div className="container  mx-auto p-6 max-w-md sm:max-w-xl md:max-w-6xl bg-gray-800 rounded-xl">
       <Card className="mb-8">
         <CardHeader>
           <CardTitle>JSON File Merger</CardTitle>
