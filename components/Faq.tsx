@@ -42,7 +42,7 @@ const FaqSection = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-6xl border rounded-xl my-14">
+    <div className="container mx-auto p-6 max-w-6xl border rounded-xl my-5 sm:my-14">
       <h2 className="text-2xl font-bold text-center mb-6">
         Frequently Asked Questions
       </h2>

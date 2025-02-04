@@ -8,7 +8,7 @@ const page = () => {
       <h1 className="text-center text-5xl my-7 font-bold text-gray-800 ">
         JSON Files Merger
       </h1>
-      <p className="text-gray-600 mb-10 text-center">
+      <p className="text-gray-600 mb-10 text-center px-3">
         Seamlessly merge multiple{" "}
         <span className="font-semibold">JSON files</span> in just a few clicks
         and instantly <span className="font-semibold">download or copy</span>{" "}
@@ -16,13 +16,13 @@ const page = () => {
       </p>
       <JsonMerger />
 
-      <p className="text-gray-600 text-center my-10">
+      <p className="text-gray-600 text-center my-10 px-3">
         No Ads, No sign up. Get Your Files Merged Within A Few Clicks.
       </p>
 
       {/* -------------------------------------------------------------------------------------------------- */}
 
-      <div className="container mx-auto p-6 max-w-6xl border rounded-xl my-10">
+      <div className="container mx-auto p-6 max-w-6xl border rounded-xl my-5 sm:my-10">
         <h2 className="text-2xl font-bold text-center mb-6">
           How to Merge JSON Files?
         </h2>
