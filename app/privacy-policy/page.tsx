@@ -1,7 +1,7 @@
 const PrivacyPolicy = () => {
   return (
-    <div className="container mx-auto p-8 px-6 md:px-24 border my-7 bg-yello-50 rounded-lg w-[22rem] sm:w-2/3">
-      <h1 className="text-4xl font-bold mb-6 text-gray-900 ">
+    <div className="container mx-auto p-8 px-6 md:px-24 border my-7 bg-yellow-50 rounded-lg w-[22rem] sm:w-2/3">
+      <h1 className="text-4xl font-bold mb-6 text-gray-900">
         Privacy Policy for JSON File Merger
       </h1>
 
@@ -18,38 +18,39 @@ const PrivacyPolicy = () => {
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2 text-gray-800">
-          JSON File Processing & Security
+          JSON File Processing &amp; Security
         </h2>
         <ul className="list-disc pl-6 text-gray-600">
           <li>
             <strong>In-Browser Processing:</strong> All JSON merging occurs
-            locally in your browser
+            locally in your browser.
           </li>
           <li>
             <strong>Zero Storage Policy:</strong> We never store your JSON files
-            on any servers
+            on any servers.
           </li>
           <li>
             <strong>Instant Processing:</strong> Files are merged and
-            immediately available for download
+            immediately available for download.
           </li>
           <li>
             <strong>Data Structure Protection:</strong> Your JSON structure
-            remains intact during merging
+            remains intact during merging.
           </li>
         </ul>
       </section>
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2 text-gray-800">
-          Data Collection & Usage
+          Data Collection &amp; Usage
         </h2>
         <ul className="list-disc pl-6 text-gray-600">
           <li>
-            No registration or personal information required to merge JSON files
+            No registration or personal information required to merge JSON
+            files.
           </li>
-          <li>Anonymous usage analytics to improve our JSON merger tool</li>
-          <li>Essential cookies for tool functionality only</li>
+          <li>Anonymous usage analytics to improve our JSON merger tool.</li>
+          <li>Essential cookies for tool functionality only.</li>
         </ul>
       </section>
 
@@ -66,21 +67,21 @@ const PrivacyPolicy = () => {
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2 text-gray-800">
-          User Rights & Control
+          User Rights &amp; Control
         </h2>
         <ul className="list-disc pl-6 text-gray-600">
-          <li>Use our JSON merger tool without creating an account</li>
-          <li>Control browser cookies and analytics preferences</li>
-          <li>Download merged JSON files instantly without registration</li>
+          <li>Use our JSON merger tool without creating an account.</li>
+          <li>Control browser cookies and analytics preferences.</li>
+          <li>Download merged JSON files instantly without registration.</li>
           <li>
-            Contact us about privacy at
+            Contact us about privacy at&nbsp;
             <a
               href="mailto:techemad.web@gmail.com"
               className="text-blue-500 hover:underline"
             >
-              {" "}
               techemad.web@gmail.com
             </a>
+            .
           </li>
         </ul>
       </section>

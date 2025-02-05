@@ -2,7 +2,7 @@ const TermsOfUse = () => {
   return (
     <div className="container p-8 border my-7 w-[22rem] sm:w-2/3 mx-auto rounded-xl">
       <h1 className="text-3xl font-bold mb-4">
-        Terms of Use - JSON File Merger Tool
+        Terms of Use &mdash; JSON File Merger Tool
       </h1>
 
       <section className="mb-8">
@@ -17,7 +17,7 @@ const TermsOfUse = () => {
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2">
-          Service Features & Usage
+          Service Features &amp; Usage
         </h2>
         <ul className="list-disc pl-6 text-gray-700">
           <li>
@@ -33,21 +33,21 @@ const TermsOfUse = () => {
             data structure.
           </li>
           <li>
-            Use our tool for lawful purposes only - no sensitive or copyrighted
-            data.
+            Use our tool for lawful purposes only &mdash; no sensitive or
+            copyrighted data.
           </li>
         </ul>
       </section>
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2">
-          Data Security & Processing
+          Data Security &amp; Processing
         </h2>
         <p className="text-gray-700">
           Our JSON file merger processes your files securely in-browser. We
-          maintain a strict no-storage policy - your JSON files are never saved
-          on our servers. All processing occurs locally for maximum data privacy
-          and security.
+          maintain a strict no-storage policy &mdash; your JSON files are never
+          saved on our servers. All processing occurs locally for maximum data
+          privacy and security.
         </p>
       </section>
 
@@ -62,11 +62,14 @@ const TermsOfUse = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-2">Liability & Warranties</h2>
+        <h2 className="text-2xl font-semibold mb-2">
+          Liability &amp; Warranties
+        </h2>
         <p className="text-gray-700">
-          Our free JSON merger tool is provided "as is" without warranties.
-          Users are responsible for verifying merged JSON file accuracy. We
-          recommend backing up your original JSON files before merging.
+          Our free JSON merger tool is provided &quot;as is&quot; without
+          warranties. Users are responsible for verifying merged JSON file
+          accuracy. We recommend backing up your original JSON files before
+          merging.
         </p>
       </section>
 
@@ -75,8 +78,11 @@ const TermsOfUse = () => {
         <p className="text-gray-700">
           These terms may be updated to reflect improvements to our JSON merging
           tool. Check this page periodically for changes. For questions about
-          merging JSON files using our service, contact us via{" "}
-          <a className="text-blue-500 hover:underline">
+          merging JSON files using our service, contact us via&nbsp;
+          <a
+            className="text-blue-500 hover:underline"
+            href="mailto:techemad.web@gmail.com"
+          >
             techemad.web@gmail.com
           </a>
           .
