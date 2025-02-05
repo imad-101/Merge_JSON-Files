@@ -11,7 +11,7 @@ const myFont = localFont({ src: "./fonts/sansFont.ttf" });
 export const metadata: Metadata = {
   title: "Merge JSON Files Online - Free, Fast & No Signup Required",
   description:
-    "Merge multiple JSON files instantly with our free online tool. No ads, no signup, secure processing, clean UI. Download merged JSON files in seconds with perfect data structure.",
+    "Merge multiple JSON files instantly with our free online tool. No ads, no signup, secure , clean UI. Download merged JSON files in seconds with perfect structure.",
   keywords:
     "merge json files, combine json files, combine json files online , json merger online, merge json files online, free json merger, merge multiple json files, json file combiner, merge json arrays, json merge tool no signup, secure json merger, combine json files python, combine json data, merge json files javascript, merge json files free",
   openGraph: {
