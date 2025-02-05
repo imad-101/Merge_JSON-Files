@@ -39,6 +39,15 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <head>
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-FJPP455G2L"
+          ></script>
+          <script>
+            window.dataLayer = window.dataLayer || []; function gtag()
+            {dataLayer.push(arguments)}
+            gtag('js', new Date()); gtag('config', 'G-FJPP455G2L');
+          </script>
           <meta name="robots" content="index, follow" />
           <meta name="author" content="Merge JSON Files" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
