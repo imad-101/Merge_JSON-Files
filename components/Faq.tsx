@@ -3,34 +3,34 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "How can I merge JSON files online?",
+    question: "How to merge JSON files online quickly?",
     answer:
-      "Merging JSON files is simple and free with our tool. Just upload your JSON files, click 'Merge,' and download the combined JSON file in seconds—no software required.",
+      "To merge JSON files online, simply upload your files to our free JSON file merger tool. Click the 'Merge' button, and instantly download your combined JSON file. Our tool makes merging JSON files effortless with no software installation needed.",
   },
   {
-    question: "Is your JSON merger tool free to use?",
+    question: "What's the best way to merge multiple JSON files?",
     answer:
-      "Yes, our online JSON file merger is completely free to use with no registration required.",
+      "The fastest way to merge multiple JSON files is using our online JSON merger tool. It handles both simple and complex JSON structures, preserves data integrity, and combines files instantly - all through your web browser.",
   },
   {
-    question: "Does this tool support large JSON files?",
+    question: "Can I merge large JSON files online?",
     answer:
-      "Yes, our JSON combiner can handle large JSON files efficiently without performance issues.",
+      "Yes, our JSON file merger efficiently handles large JSON files. The tool is optimized for merging JSON files of any size while maintaining fast processing speeds and data accuracy.",
   },
   {
-    question: "Will my JSON structure remain intact after merging?",
+    question: "Is JSON file merging safe for data structure?",
     answer:
-      "Absolutely! Our tool ensures that the integrity and structure of your JSON data remain unchanged after merging.",
+      "Our JSON file merger tool guarantees data integrity during the merging process. When you merge JSON files using our tool, all nested structures, arrays, and objects remain intact and properly formatted.",
   },
   {
-    question: "Do I need to install any software to merge JSON files?",
+    question: "Do I need special software to merge JSON files?",
     answer:
-      "No, you don’t need any software installation. Our tool works directly in your browser, making JSON merging quick and hassle-free.",
+      "No software installation needed - our online JSON file merger works directly in your browser. Simply visit our website to merge JSON files instantly without downloading any additional tools.",
   },
   {
-    question: "Can I merge multiple JSON arrays into one?",
+    question: "How to combine multiple JSON arrays into one file?",
     answer:
-      "Yes! Our tool allows you to merge multiple JSON arrays seamlessly while preserving data accuracy.",
+      "Our JSON file merger makes combining multiple JSON arrays simple. Upload your files containing JSON arrays, and our tool will merge them while maintaining array structure and data accuracy in the final merged JSON file.",
   },
 ];
 
@@ -42,9 +42,9 @@ const FaqSection = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-6xl border rounded-xl my-5 sm:my-14">
+    <section className="container mx-auto p-6 max-w-6xl border rounded-xl my-5 sm:my-14">
       <h2 className="text-2xl font-bold text-center mb-6 text-gray-700">
-        Frequently Asked Questions
+        Frequently Asked Questions About Merging JSON Files
       </h2>
       <div className="bg-yellow-50 p-6 rounded-xl">
         {faqs.map((faq, index) => (
@@ -62,7 +62,7 @@ const FaqSection = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

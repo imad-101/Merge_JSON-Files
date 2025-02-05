@@ -9,26 +9,26 @@ import localFont from "next/font/local";
 const myFont = localFont({ src: "./fonts/sansFont.ttf" });
 
 export const metadata: Metadata = {
-  title: "Merge JSON Files - Fast & Secure JSON Merging Tool",
+  title: "Merge JSON Files Online - Free, Fast & No Signup Required",
   description:
-    "Easily merge multiple JSON files into one with our fast and secure online tool. No data storage, 100% privacy-focused.",
+    "Merge multiple JSON files instantly with our free online tool. No ads, no signup, secure processing, clean UI. Download merged JSON files in seconds with perfect data structure.",
   keywords:
-    "JSON merger, merge JSON files, online JSON tool, secure JSON processing, combine JSON files , free JASON merge , online JSON merge",
+    "merge json files, combine json files, combine json files online , json merger online, merge json files online, free json merger, merge multiple json files, json file combiner, merge json arrays, json merge tool no signup, secure json merger, combine json files python, combine json data, merge json files javascript, merge json files free",
   openGraph: {
-    title: "JSON File Merger - Fast & Secure JSON Merging Tool",
+    title: "Merge JSON Files Online - Free, Instant & Secure Tool",
     description:
-      "Easily merge multiple JSON files into one with our fast and secure online tool. No data storage, 100% privacy-focused.",
+      "Instantly merge multiple JSON files online. No signup, no ads, clean interface. Process JSON files securely with perfect data structure preservation.",
     url: "https://merge-json-files.com",
-    siteName: "JSON File Merger",
+    siteName: "Merge JSON Files",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "JSON File Merger - Fast & Secure JSON Merging Tool",
+    title: "Merge JSON Files Online - Free, Instant & Secure",
     description:
-      "Easily merge multiple JSON files into one with our fast and secure online tool. No data storage, 100% privacy-focused.",
-    site: "@yourtwitterhandle",
+      "Instantly merge multiple JSON files online. No signup, no ads, clean interface. Process JSON files securely with perfect data structure preservation.",
+    site: "@imaduddin_101",
   },
 };
 
@@ -38,18 +38,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <head>
-          <meta name="robots" content="index, follow" />
-          <meta name="author" content="Merge JSON Files" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="canonical" href="https://merge-json-files.com" />
-
-          <link rel="icon" href="/favicon.png" type="image/png" />
-          <link rel="shortcut icon" href="/favicon.png" />
-          <link rel="apple-touch-icon" href="/favicon.png" />
-        </head>
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Merge JSON Files" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="google-site-verification"
+          content="your-verification-code"
+        />
+        <link rel="canonical" href="https://merge-json-files.com" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
       </head>
-      <body className={`${myFont.className}  antialiased bg-yellow-50`}>
+      <body className={`${myFont.className} antialiased bg-yellow-50`}>
         <Header />
         {children}
         <SpeedInsights />
