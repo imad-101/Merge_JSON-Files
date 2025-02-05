@@ -27,7 +27,8 @@ const AboutUs = () => {
             Clean, ad-free interface focused on merging JSON files efficiently
           </li>
           <li>
-            Secure in-browser processing - no file storage or data collection
+            Secure in-browser processing &mdash; no file storage or data
+            collection
           </li>
           <li>Support for merging multiple JSON files of any size</li>
           <li>Perfect preservation of JSON structure and arrays</li>
@@ -36,17 +37,16 @@ const AboutUs = () => {
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2">
-          Security & Privacy Focus
+          Security &amp; Privacy Focus
         </h2>
         <p className="text-gray-700">
           Our JSON merger processes all files directly in your browser. We never
           store your JSON files on servers, ensuring complete data privacy.
           Review our
           <a href="/privacy-policy" className="text-blue-500 hover:underline">
-            {" "}
-            Privacy Policy
-          </a>{" "}
-          for details about our security measures.
+            &nbsp;Privacy Policy
+          </a>
+          &nbsp;for details about our security measures.
         </p>
       </section>
 
@@ -68,10 +68,9 @@ const AboutUs = () => {
             href="mailto:techemad.web@gmail.com"
             className="text-blue-500 hover:underline"
           >
-            {" "}
-            techemad.web@gmail.com
+            &nbsp;techemad.web@gmail.com
           </a>
-          . We're here to help with your JSON file merging needs.
+          . We&apos;re here to help with your JSON file merging needs.
         </p>
       </section>
     </div>
