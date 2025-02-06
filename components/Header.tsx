@@ -8,8 +8,9 @@ const Header = () => {
       <nav className="flex justify-between items-center sm:px-24 px-6 my-5  ">
         <div className="right">
           <Link href={"/"}>
-            {" "}
-            <Image src={"/logo.png"} alt="Logo" width={200} height={30}></Image>
+            <h1 className="text-2xl font-extrabold">
+              Merge <span className="text-orange-600">JSON</span> Files
+            </h1>
           </Link>
         </div>
         <div className="left flex gap-5 items-center">
