@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Upload, Trash2, Copy } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -23,6 +23,27 @@ const JsonMerger = () => {
     setError("");
     setMergedContent("");
   };
+
+  useEffect(() => {
+    const handleDrop = (event: DragEvent) => {
+      event.preventDefault();
+      if (event.dataTransfer?.files) {
+        handleFileUpload(Array.from(event.dataTransfer.files));
+      }
+    };
+
+    const preventDefaults = (event: Event) => {
+      event.preventDefault();
+    };
+
+    document.addEventListener("dragover", preventDefaults);
+    document.addEventListener("drop", handleDrop);
+
+    return () => {
+      document.removeEventListener("dragover", preventDefaults);
+      document.removeEventListener("drop", handleDrop);
+    };
+  }, []);
 
   const removeFile = (index: number) => {
     setFiles(files.filter((_, i) => i !== index));
@@ -151,17 +172,6 @@ const JsonMerger = () => {
                 onClick={copyToClipboard}
               >
                 <Copy className="h-4 w-4" />
-              </Button>
-            </div>
-          )}
-
-          {mergedContent && (
-            <div className="flex justify-center mt-4">
-              <Button
-                onClick={clearAndRemerge}
-                className="bg-gray-700 hover:bg-gray-600 mt-10"
-              >
-                Merge Other Files
               </Button>
             </div>
           )}
