@@ -19,7 +19,7 @@ const JsonMerger = () => {
   const [error, setError] = useState("");
 
   const handleFileUpload = (acceptedFiles: File[]) => {
-    setFiles(acceptedFiles);
+    setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
     setError("");
     setMergedContent("");
   };
@@ -40,7 +40,7 @@ const JsonMerger = () => {
       setError("");
     } catch (error) {
       setError(
-        `Error processing files. Ensure all files are valid JSON ${error} , `
+        `Error processing files. Ensure all files are valid JSON ${error}`
       );
       setMergedContent("");
     }
