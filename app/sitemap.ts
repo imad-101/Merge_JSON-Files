@@ -20,6 +20,5 @@ export default async function sitemap() {
       url: "https://www.merge-json-files.com/blog",
       lastModified: new Date(),
     },
-    // Add all other pages dynamically
   ];
 }

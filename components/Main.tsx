@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Upload, Trash2 } from "lucide-react";
+import { Upload, Trash2, Copy } from "lucide-react"; // Import the Copy icon
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -42,7 +42,7 @@ const deepMerge = (
 const JsonMerger = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [mergedContent, setMergedContent] = useState("");
-  const [error, setError] = useState(""); // eslint-disable-line @typescript-eslint/no-unused-vars
+  const [error, setError] = useState("");
   const [isDragging, setIsDragging] = useState(false);
 
   const handleFileUpload = (acceptedFiles: File[]) => {
@@ -106,10 +106,12 @@ const JsonMerger = () => {
 
       setMergedContent(JSON.stringify(mergedObject, null, 2));
       setError("");
-    } catch (error: string | any) {
-      setError(
-        `Error processing files. Ensure all files are valid JSON. , ${error.message}`
-      );
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(`Error processing files. Ensure all files are valid JSON.`);
+      } else {
+        setError("An unknown error occurred.");
+      }
       setMergedContent("");
     }
   };
@@ -125,6 +127,13 @@ const JsonMerger = () => {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  };
+
+  const copyToClipboard = () => {
+    if (!mergedContent) return;
+    navigator.clipboard.writeText(mergedContent).then(() => {
+      alert("Merged JSON copied to clipboard!");
+    });
   };
 
   return (
@@ -201,9 +210,15 @@ const JsonMerger = () => {
 
           {mergedContent && (
             <div className="mt-4 bg-gray-800 p-4 rounded-md">
-              <h3 className="text-lg font-semibold text-gray-200">
-                Merged JSON:
-              </h3>
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg font-semibold text-gray-200">
+                  Merged JSON:
+                </h3>
+                <Copy
+                  className="h-5 w-5 text-gray-300 cursor-pointer hover:text-gray-100"
+                  onClick={copyToClipboard}
+                />
+              </div>
               <pre className="text-sm text-gray-300 whitespace-pre-wrap break-words">
                 {mergedContent}
               </pre>
