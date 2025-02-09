@@ -16,7 +16,7 @@ import Dropzone from "react-dropzone";
 const deepMerge = (
   target: Record<string, unknown>,
   source: Record<string, unknown>
-) => {
+): void => {
   for (const key in source) {
     if (
       source[key] &&
