@@ -42,7 +42,7 @@ const deepMerge = (
 const JsonMerger = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [mergedContent, setMergedContent] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(""); // eslint-disable-line @typescript-eslint/no-unused-vars
   const [isDragging, setIsDragging] = useState(false);
 
   const handleFileUpload = (acceptedFiles: File[]) => {
@@ -106,8 +106,10 @@ const JsonMerger = () => {
 
       setMergedContent(JSON.stringify(mergedObject, null, 2));
       setError("");
-    } catch (error) {
-      setError("Error processing files. Ensure all files are valid JSON.");
+    } catch (error: string | any) {
+      setError(
+        `Error processing files. Ensure all files are valid JSON. , ${error.message}`
+      );
       setMergedContent("");
     }
   };

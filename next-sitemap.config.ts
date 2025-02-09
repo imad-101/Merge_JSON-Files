@@ -1,7 +1,4 @@
-/** @type {import('next-sitemap').IConfig} */
-const config = {
+module.exports = {
   siteUrl: "https://merge-json-files.com",
-  generateRobotsTxt: true, // Generates robots.txt file
+  generateRobotsTxt: true,
 };
-
-export default config;
