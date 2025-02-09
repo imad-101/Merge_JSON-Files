@@ -9,26 +9,54 @@ import localFont from "next/font/local";
 const myFont = localFont({ src: "./fonts/sansFont.ttf" });
 
 export const metadata: Metadata = {
-  title: "Merge JSON Files Online - Free, Fast & No Signup Required",
+  title: "Merge JSON Files Online - Free JSON File Merger Tool",
   description:
-    "Merge multiple JSON files instantly with our free online tool. No ads, no signup, secure , clean UI. Download merged JSON files in seconds with perfect structure.",
+    "Merge JSON files online quickly and easily. Free tool to combine multiple JSON files with perfect structure preservation. No signup required.",
   keywords:
-    "merge json files, combine json files, combine json files online , json merger online, merge json files online, free json merger, merge multiple json files, json file combiner, merge json arrays, json merge tool no signup, secure json merger, combine json files python, combine json data, merge json files javascript, merge json files free",
+    "merge json files, merge json files online, merge json files online free, json merger, combine json files, json file combiner, merge json files free , combine json files online",
+  metadataBase: new URL("https://merge-json-files.com"),
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "Merge JSON Files Online - Free, Instant & Secure Tool",
+    title: "Merge JSON Files Online - Free JSON File Combiner",
     description:
-      "Instantly merge multiple JSON files online. No signup, no ads, clean interface. Process JSON files securely with perfect data structure preservation.",
+      "Merge JSON files online quickly and easily. Free tool to combine multiple JSON files with perfect structure preservation. No signup required.",
     url: "https://merge-json-files.com",
-    siteName: "Merge JSON Files",
+    siteName: "Merge JSON Files Online",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Free Online JSON File Merger Tool",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Merge JSON Files Online - Free, Instant & Secure",
+    title: "Merge JSON Files Online - Free JSON File Combiner",
     description:
-      "Instantly merge multiple JSON files online. No signup, no ads, clean interface. Process JSON files securely with perfect data structure preservation.",
+      "Merge JSON files online quickly and easily. Free tool to combine multiple JSON files with perfect structure preservation. No signup required.",
     site: "@imaduddin_101",
+    creator: "@imaduddin_101",
+    images: ["/twitter-image.png"],
+  },
+  verification: {
+    google: "your-verification-code",
   },
 };
 
@@ -38,21 +66,49 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="robots" content="index, follow" />
         <meta name="author" content="Merge JSON Files" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          name="google-site-verification"
-          content="your-verification-code"
+        <meta name="theme-color" content="#fefce8" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              name: "Merge JSON Files Online",
+              headline: "Free Online JSON File Merger",
+              description:
+                "Merge JSON files online for free. Easily combine multiple JSON files with our fast, secure tool.",
+              url: "https://merge-json-files.com",
+              applicationCategory: "DeveloperApplication",
+              operatingSystem: "All",
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "USD",
+              },
+              keywords:
+                "merge json files, merge json files online, merge json files online free",
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": "https://merge-json-files.com",
+              },
+            }),
+          }}
         />
-        <link rel="canonical" href="https://merge-json-files.com" />
-        <link rel="icon" href="/favicon.png" type="image/png" />
-        <link rel="shortcut icon" href="/favicon.png" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
       </head>
-      <body className={`${myFont.className} antialiased bg-yellow-50`}>
+      <body
+        className={`${myFont.className} antialiased bg-yellow-50 min-h-screen flex flex-col`}
+      >
         <Header />
-        {children}
+        <main className="flex-grow">
+          <h1 className="sr-only">Merge JSON Files Online Free</h1>
+          {children}
+        </main>
         <SpeedInsights />
         <Analytics />
         <Footer />
