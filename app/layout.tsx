@@ -55,9 +55,6 @@ export const metadata: Metadata = {
     creator: "@imaduddin_101",
     images: ["/twitter-image.png"],
   },
-  verification: {
-    google: "your-verification-code",
-  },
 };
 
 export default function RootLayout({
