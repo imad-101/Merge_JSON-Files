@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Upload, Trash2, Copy } from "lucide-react";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Upload, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,35 +12,63 @@ import {
 } from "@/components/ui/card";
 import Dropzone from "react-dropzone";
 
+// Deep merge function for JSON objects
+const deepMerge = (target: any, source: any) => {
+  for (const key in source) {
+    if (
+      source[key] &&
+      typeof source[key] === "object" &&
+      !Array.isArray(source[key])
+    ) {
+      if (!target[key]) target[key] = {};
+      deepMerge(target[key], source[key]);
+    } else if (Array.isArray(source[key])) {
+      target[key] = [...(target[key] || []), ...source[key]];
+    } else {
+      target[key] = source[key]; // Overwrite primitive values
+    }
+  }
+};
+
 const JsonMerger = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [mergedContent, setMergedContent] = useState("");
   const [error, setError] = useState("");
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleFileUpload = (acceptedFiles: File[]) => {
     setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
     setError("");
-    setMergedContent("");
   };
 
   useEffect(() => {
+    const handleDragOver = (event: DragEvent) => {
+      event.preventDefault();
+      setIsDragging(true);
+    };
+
     const handleDrop = (event: DragEvent) => {
       event.preventDefault();
+      setIsDragging(false);
       if (event.dataTransfer?.files) {
         handleFileUpload(Array.from(event.dataTransfer.files));
       }
     };
 
-    const preventDefaults = (event: Event) => {
-      event.preventDefault();
+    const handleDragLeave = (event: DragEvent) => {
+      if (event.relatedTarget === null) {
+        setIsDragging(false);
+      }
     };
 
-    document.addEventListener("dragover", preventDefaults);
+    document.addEventListener("dragover", handleDragOver);
     document.addEventListener("drop", handleDrop);
+    document.addEventListener("dragleave", handleDragLeave);
 
     return () => {
-      document.removeEventListener("dragover", preventDefaults);
+      document.removeEventListener("dragover", handleDragOver);
       document.removeEventListener("drop", handleDrop);
+      document.removeEventListener("dragleave", handleDragLeave);
     };
   }, []);
 
@@ -49,28 +76,31 @@ const JsonMerger = () => {
     setFiles(files.filter((_, i) => i !== index));
   };
 
-  const mergeFiles = async () => {
-    try {
-      const mergedObject = {};
-      for (const file of files) {
-        const text = await file.text();
-        const json = JSON.parse(text);
-        Object.assign(mergedObject, json);
-      }
-      setMergedContent(JSON.stringify(mergedObject, null, 2));
-      setError("");
-    } catch (error) {
-      setError(
-        `Error processing files. Ensure all files are valid JSON ${error}`
-      );
-      setMergedContent("");
-    }
-  };
-
-  const clearAndRemerge = () => {
+  const resetFiles = () => {
     setFiles([]);
     setMergedContent("");
     setError("");
+  };
+
+  const mergeFiles = async () => {
+    try {
+      if (files.length === 0) {
+        setError("No files selected.");
+        return;
+      }
+
+      const fileContents = await Promise.all(files.map((file) => file.text()));
+      const jsonObjects = fileContents.map((content) => JSON.parse(content));
+
+      const mergedObject = {};
+      jsonObjects.forEach((obj) => deepMerge(mergedObject, obj));
+
+      setMergedContent(JSON.stringify(mergedObject, null, 2));
+      setError("");
+    } catch (error) {
+      setError("Error processing files. Ensure all files are valid JSON.");
+      setMergedContent("");
+    }
   };
 
   const downloadMergedFile = () => {
@@ -86,14 +116,17 @@ const JsonMerger = () => {
     URL.revokeObjectURL(url);
   };
 
-  const copyToClipboard = () => {
-    if (mergedContent) {
-      navigator.clipboard.writeText(mergedContent);
-    }
-  };
-
   return (
-    <div className="container mx-auto p-3 sm:p-6 max-w-[20rem] sm:max-w-xl md:max-w-6xl  rounded-xl">
+    <div
+      className={`container mx-auto p-3 sm:p-6 max-w-[20rem] sm:max-w-xl md:max-w-6xl rounded-xl relative ${
+        isDragging ? "backdrop-blur-md bg-gray-900/50" : ""
+      }`}
+    >
+      {isDragging && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-900/70 text-white text-lg font-semibold rounded-xl">
+          Drop your files here
+        </div>
+      )}
       <Card className="mb-4 sm:mb-8 bg-gray-900 text-white">
         <CardHeader>
           <CardTitle>JSON File Merger</CardTitle>
@@ -137,12 +170,6 @@ const JsonMerger = () => {
             </div>
           )}
 
-          {error && (
-            <Alert variant="destructive" className="mt-4">
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-
           <div className="flex gap-4 mt-4">
             <Button
               onClick={mergeFiles}
@@ -155,24 +182,34 @@ const JsonMerger = () => {
               onClick={downloadMergedFile}
               disabled={!mergedContent}
               variant="outline"
-              className="w-full  text-gray-800 border-gray-800 hover:bg-gray-300 "
+              className="w-full text-gray-800 border-gray-800 hover:bg-gray-300"
             >
               Download
             </Button>
           </div>
 
           {mergedContent && (
-            <div className="mt-4 relative">
-              <pre className="bg-gray-800 p-4 rounded-lg overflow-x-auto text-sm text-white">
+            <div className="mt-4 bg-gray-800 p-4 rounded-md">
+              <h3 className="text-lg font-semibold text-gray-200">
+                Merged JSON:
+              </h3>
+              <pre className="text-sm text-gray-300 whitespace-pre-wrap break-words">
                 {mergedContent}
               </pre>
+              {/* Reset button appears only when merged content exists */}
               <Button
-                size="sm"
-                className="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600"
-                onClick={copyToClipboard}
+                onClick={resetFiles}
+                variant="outline"
+                className="mt-4 w-full text-red-600 border-red-500 border-dotted hover:bg-red-300 hover:text-white"
               >
-                <Copy className="h-4 w-4" />
+                Reset
               </Button>
+            </div>
+          )}
+
+          {error && (
+            <div className="mt-4 bg-red-500 p-3 rounded-md text-white">
+              {error}
             </div>
           )}
         </CardContent>
