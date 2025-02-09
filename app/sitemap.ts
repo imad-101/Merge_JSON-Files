@@ -17,7 +17,7 @@ export default async function sitemap() {
       lastModified: new Date(),
     },
     {
-      url: "https://www.merge-json-files.com/blog",
+      url: "https://www.merge-json-files.com/tools",
       lastModified: new Date(),
     },
   ];

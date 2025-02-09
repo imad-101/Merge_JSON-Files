@@ -138,7 +138,7 @@ const JsonMerger = () => {
 
   return (
     <div
-      className={`container mx-auto p-3 sm:p-6 max-w-[20rem] sm:max-w-xl md:max-w-6xl rounded-xl relative ${
+      className={`container mx-auto p-3 sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl relative ${
         isDragging ? "backdrop-blur-md bg-gray-900/50" : ""
       }`}
     >

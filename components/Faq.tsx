@@ -1,5 +1,10 @@
-"use client";
-import { useState } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Card, CardContent } from "@/components/ui/card";
 
 const faqs = [
   {
@@ -35,34 +40,27 @@ const faqs = [
 ];
 
 const FaqSection = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <section className="container mx-auto p-6 max-w-6xl border rounded-xl my-5 sm:my-14">
-      <h2 className="text-2xl font-bold text-center mb-6 text-gray-700">
-        Frequently Asked Questions About Merging JSON Files
-      </h2>
-      <div className="bg-yellow-50 p-6 rounded-xl">
-        {faqs.map((faq, index) => (
-          <div key={index} className="border-b">
-            <button
-              className="w-full text-left py-4 text-gray-700 font-semibold flex justify-between"
-              onClick={() => toggleFAQ(index)}
-            >
-              {faq.question}
-              <span>{openIndex === index ? "▲" : "▼"}</span>
-            </button>
-            {openIndex === index && (
-              <p className="text-gray-600 pb-4">{faq.answer}</p>
-            )}
-          </div>
-        ))}
-      </div>
-    </section>
+    <Card className=" mx-auto max-w-6xl border rounded-xl my-5 sm:my-14 px-9 bg-yellow-50">
+      <CardContent>
+        <h2 className="mt-10 text-2xl font-bold text-center mb-10 text-gray-700">
+          Frequently Asked Questions About Merging JSON Files
+        </h2>
+
+        <Accordion type="single" collapsible className="w-full">
+          {faqs.map((faq, index) => (
+            <AccordionItem key={index} value={`value , ${index}`}>
+              <AccordionTrigger className="text-left  text-lg hover:no-underline text-gray-700">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-gray-700">
+                {faq.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -92,7 +92,7 @@ export default function RootLayout({
                 priceCurrency: "USD",
               },
               keywords:
-                "merge json files, merge json files online, merge json files online free",
+                "merge json files, merge json files online, merge json files online free, json merger, combine json files, json file combiner, merge json files free , combine json files online",
               mainEntityOfPage: {
                 "@type": "WebPage",
                 "@id": "https://merge-json-files.com",

@@ -8,9 +8,9 @@ const Header = () => {
       <nav className="flex justify-between items-center sm:px-24 px-6 my-5  ">
         <div className="right">
           <Link href={"/"}>
-            <h1 className="text-2xl font-extrabold">
-              Merge <span className="text-orange-600">JSON</span> Files
-            </h1>
+            <p className="text-2xl font-extrabold text-gray-700">
+              Merge <span className="text-orange-700">JSON</span> Files
+            </p>
           </Link>
         </div>
         <div className="left flex gap-5 items-center">
