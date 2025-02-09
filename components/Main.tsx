@@ -14,8 +14,8 @@ import Dropzone from "react-dropzone";
 
 // Deep merge function for JSON objects
 const deepMerge = (
-  target: Record<string, any>,
-  source: Record<string, any>
+  target: Record<string, unknown>,
+  source: Record<string, unknown>
 ) => {
   for (const key in source) {
     if (
@@ -24,11 +24,17 @@ const deepMerge = (
       !Array.isArray(source[key])
     ) {
       if (!target[key]) target[key] = {};
-      deepMerge(target[key], source[key]);
+      deepMerge(
+        target[key] as Record<string, unknown>,
+        source[key] as Record<string, unknown>
+      );
     } else if (Array.isArray(source[key])) {
-      target[key] = [...(target[key] || []), ...source[key]];
+      target[key] = [
+        ...((target[key] as unknown[]) || []),
+        ...(source[key] as unknown[]),
+      ];
     } else {
-      target[key] = source[key]; // Overwrite primitive values
+      target[key] = source[key];
     }
   }
 };
@@ -100,7 +106,7 @@ const JsonMerger = () => {
 
       setMergedContent(JSON.stringify(mergedObject, null, 2));
       setError("");
-    } catch {
+    } catch (error) {
       setError("Error processing files. Ensure all files are valid JSON.");
       setMergedContent("");
     }
