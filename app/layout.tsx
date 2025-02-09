@@ -102,10 +102,7 @@ export default function RootLayout({
         className={`${myFont.className} antialiased bg-yellow-50 min-h-screen flex flex-col`}
       >
         <Header />
-        <main className="flex-grow">
-          <h1 className="sr-only">Merge JSON Files Online Free</h1>
-          {children}
-        </main>
+        <main className="flex-grow">{children}</main>
         <SpeedInsights />
         <Analytics />
         <Footer />
