@@ -13,7 +13,10 @@ import {
 import Dropzone from "react-dropzone";
 
 // Deep merge function for JSON objects
-const deepMerge = (target: any, source: any) => {
+const deepMerge = (
+  target: Record<string, any>,
+  source: Record<string, any>
+) => {
   for (const key in source) {
     if (
       source[key] &&
@@ -97,7 +100,7 @@ const JsonMerger = () => {
 
       setMergedContent(JSON.stringify(mergedObject, null, 2));
       setError("");
-    } catch (error) {
+    } catch {
       setError("Error processing files. Ensure all files are valid JSON.");
       setMergedContent("");
     }
