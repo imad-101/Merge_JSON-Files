@@ -21,7 +21,7 @@ const Header = () => {
             {" "}
             Home
           </Link>
-          <Link href={"/blog"} className="text-gray-600">
+          <Link href={"/"} className="text-gray-600">
             <Button className="px-5 bg-gray-800 hover:bg-gray-700">Blog</Button>
           </Link>
         </div>
