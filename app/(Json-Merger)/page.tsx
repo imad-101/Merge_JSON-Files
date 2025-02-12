@@ -34,19 +34,19 @@ const allTools = [
     name: "JSON File Merger",
     description: "Merge Multiple JSON file with ease",
     icon: FileJson,
-    href: "/",
+    href: "https://www.merge-json-files.com",
   },
   {
     name: "JSON File Splitter",
     description: "Split any JSON file into multiple files",
     icon: FileJson2,
-    href: "/json-file-splitter",
+    href: "https://www.merge-json-files.com/json-file-splitter",
   },
   {
     name: "JSON Flattener",
     description: "Flatten any JSON file with ease",
     icon: FileJson,
-    href: "/json-flattener",
+    href: "https://www.merge-json-files.com/json-flattener",
   },
 ];
 

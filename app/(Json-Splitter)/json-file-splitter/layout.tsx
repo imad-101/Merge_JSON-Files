@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react";
 import "../../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import localFont from "next/font/local";
-
-const myFont = localFont({ src: "../../fonts/sansFont.ttf" });
 
 export const metadata: Metadata = {
   title: "JSON File Splitter Online - Free JSON Splitter Tool",
@@ -61,52 +56,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <head>
-        <meta name="author" content="JSON Splitter" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#fefce8" />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/favicon.png" sizes="any" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              name: "JSON File Splitter Online",
-              headline: "Free Online JSON File Splitter",
-              description:
-                "Split large JSON files online for free. Easily divide JSON files into smaller parts with our fast, secure tool.",
-              url: "https://json-splitter.com",
-              applicationCategory: "DeveloperApplication",
-              operatingSystem: "All",
-              offers: {
-                "@type": "Offer",
-                price: "0",
-                priceCurrency: "USD",
-              },
-              keywords:
-                "JSON Splitter, JSON File Splitter, Split JSON Files, JSON Splitter Online, JSON Splitter Free, Split JSON, JSON File Splitter Online, JSON Splitter Tool",
-              mainEntityOfPage: {
-                "@type": "WebPage",
-                "@id": "https://json-splitter.com",
-              },
-            }),
-          }}
-        />
-      </head>
-      <body
-        className={`${myFont.className} antialiased bg-yellow-50 min-h-screen flex flex-col`}
-      >
-        <Header first="JSON" second="Splitter" third="Online" />
-        <main className="flex-grow">{children}</main>
-        <SpeedInsights />
-        <Analytics />
-        <Footer name="JSON Splitter" />
-      </body>
-    </html>
+    <>
+      <Header first="JSON" second="Splitter" third="Online" />
+      <main className="flex-grow">{children}</main>
+      <Footer name="JSON Splitter" />
+    </>
   );
 }
