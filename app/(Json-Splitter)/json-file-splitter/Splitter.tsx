@@ -205,7 +205,7 @@ export default function Home() {
             </div>
 
             {/* Buttons */}
-            <div className="flex space-x-10">
+            <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
               <Button
                 onClick={splitJson}
                 className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700"
