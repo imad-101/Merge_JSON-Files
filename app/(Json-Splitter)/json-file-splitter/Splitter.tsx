@@ -149,7 +149,7 @@ export default function Home() {
   };
 
   return (
-    <div className="mx-auto p-3 sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl">
+    <div className="container mx-auto p-3 sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl relative">
       <Card className="bg-gray-800">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-gray-200">

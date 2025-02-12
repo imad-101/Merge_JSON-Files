@@ -98,7 +98,7 @@ const howItWorks = [
 
 const page = () => {
   return (
-    <div className="">
+    <div>
       <h1 className="text-center text-5xl my-7 font-bold text-gray-800 ">
         JSON Files Splitter
       </h1>
