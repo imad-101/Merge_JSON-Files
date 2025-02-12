@@ -94,7 +94,7 @@ const howItWorks = [
 const page = () => {
   return (
     <div className="">
-      <h1 className="text-center text-5xl my-7 font-bold text-gray-800 ">
+      <h1 className="text-center text-5xl my-7 mx-2 font-bold text-gray-800 ">
         JSON Flattener Online
       </h1>
       <p className="text-gray-600 mb-10 text-center px-3">
