@@ -2,7 +2,7 @@ import JsonMerger from "./Main";
 import HowItWorks from "@/components/HowItWorks";
 import FaqSection from "@/components/Faq";
 import ToolsGrid from "@/components/ToolsGrid";
-import { FileJson, FileJson2, Calculator } from "lucide-react";
+import { FileJson, FileJson2 } from "lucide-react";
 import { Upload, FilePlus, Settings, Download } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 const howItWorks = [

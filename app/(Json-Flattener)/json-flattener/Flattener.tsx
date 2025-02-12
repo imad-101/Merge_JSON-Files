@@ -14,12 +14,9 @@ import { Input } from "@/components/ui/input";
 import { Copy, Download, Trash2, UploadCloud } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-type FlattenedObject = { [key: string]: any };
-
-interface DragEvent extends Event {
-  dataTransfer?: DataTransfer;
-  preventDefault(): void;
-}
+type FlattenedObject = {
+  [key: string]: string | number | boolean | null | FlattenedObject;
+};
 
 export default function JSONFlattener() {
   const [inputJSON, setInputJSON] = useState<string>("");
@@ -31,7 +28,7 @@ export default function JSONFlattener() {
 
   const flattenJSON = useCallback(
     (
-      obj: any,
+      obj: Record<string, unknown> | unknown[],
       parentKey: string = "",
       result: FlattenedObject = {}
     ): FlattenedObject => {
@@ -42,13 +39,21 @@ export default function JSONFlattener() {
 
       if (Array.isArray(obj)) {
         for (let i = 0; i < obj.length; i++) {
-          flattenJSON(obj[i], `${parentKey}[${i}]`, result);
+          flattenJSON(
+            obj[i] as unknown[] | Record<string, unknown>,
+            `${parentKey}[${i}]`,
+            result
+          );
         }
       } else {
-        for (let key in obj) {
+        for (const key in obj) {
           if (obj.hasOwnProperty(key)) {
             const newKey = parentKey ? `${parentKey}${delimiter}${key}` : key;
-            flattenJSON(obj[key], newKey, result);
+            flattenJSON(
+              obj[key] as unknown[] | Record<string, unknown>,
+              newKey,
+              result
+            );
           }
         }
       }
@@ -110,7 +115,7 @@ export default function JSONFlattener() {
             description: "File uploaded successfully!",
             variant: "default",
           });
-        } catch (err) {
+        } catch {
           setError("Invalid JSON file. Please upload a valid JSON file.");
           toast({
             title: "Error",

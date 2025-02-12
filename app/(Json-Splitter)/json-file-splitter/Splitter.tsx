@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 
-type Chunk = Array<any> | Record<string, any>;
+type Chunk = Array<unknown> | Record<string, unknown>;
 
 export default function Home() {
   const [jsonInput, setJsonInput] = useState<string>("");
@@ -31,7 +31,7 @@ export default function Home() {
         const fileContent = event.target?.result as string;
         setJsonInput(fileContent);
         setError("");
-      } catch (err) {
+      } catch {
         setError("Error reading file. Please ensure it is a valid JSON file.");
       }
     };
@@ -66,7 +66,7 @@ export default function Home() {
         throw new Error("Input must be a JSON array or object.");
       }
 
-      let result: Chunk[] = [];
+      const result: Chunk[] = [];
 
       if (Array.isArray(parsedData)) {
         // Split the array into chunks
@@ -78,7 +78,7 @@ export default function Home() {
         const keys = Object.keys(parsedData);
         for (let i = 0; i < keys.length; i += chunkSize) {
           const chunkKeys = keys.slice(i, i + chunkSize);
-          const chunk: Record<string, any> = {};
+          const chunk: Record<string, unknown> = {};
           chunkKeys.forEach((key) => {
             chunk[key] = parsedData[key];
           });

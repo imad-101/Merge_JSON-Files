@@ -1,9 +1,9 @@
+import { LucideIcon } from "lucide-react";
 import React from "react";
-import { Upload, FilePlus, Settings, Download } from "lucide-react";
 
 interface HowItWorksProps {
   title: string;
-  icon: any;
+  icon: LucideIcon;
   description: string;
 }
 const HowItWorks = ({ title, icon: Icon, description }: HowItWorksProps) => {

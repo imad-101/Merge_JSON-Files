@@ -16,9 +16,5 @@ export default async function sitemap() {
       url: "https://www.merge-json-files.com/privacy-policy",
       lastModified: new Date(),
     },
-    {
-      url: "https://www.merge-json-files.com/tools",
-      lastModified: new Date(),
-    },
   ];
 }
