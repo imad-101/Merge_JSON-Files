@@ -28,11 +28,7 @@ const Header = ({ first, second, third }: HeaderProps) => {
             {" "}
             Home
           </Link>
-<<<<<<< HEAD
-          <Link href={"/blogs"} className="text-gray-600">
-=======
           <Link href={"/"} className="text-gray-600">
->>>>>>> origin/main
             <Button className="px-5 bg-gray-800 hover:bg-gray-700">Blog</Button>
           </Link>
         </div>
