@@ -2,14 +2,21 @@ import React from "react";
 
 import Link from "next/link";
 import { Button } from "./ui/button";
-const Header = () => {
+
+interface HeaderProps {
+  first: string;
+  second: string;
+  third: string;
+}
+
+const Header = ({ first, second, third }: HeaderProps) => {
   return (
     <header>
       <nav className="flex justify-between items-center sm:px-24 px-6 my-5  ">
         <div className="right">
           <Link href={"/"}>
             <p className="text-2xl font-extrabold text-gray-700">
-              Merge <span className="text-orange-700">JSON</span> Files
+              {first} <span className="text-orange-700">{second}</span> {third}
             </p>
           </Link>
         </div>
@@ -21,7 +28,7 @@ const Header = () => {
             {" "}
             Home
           </Link>
-          <Link href={"/blog"} className="text-gray-600">
+          <Link href={"/blogs"} className="text-gray-600">
             <Button className="px-5 bg-gray-800 hover:bg-gray-700">Blog</Button>
           </Link>
         </div>
