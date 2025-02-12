@@ -25,7 +25,6 @@ const Header = ({ first, second, third }: HeaderProps) => {
             href=" /"
             className="text-gray-600 hidden sm:block hover:text-gray-700"
           >
-            {" "}
             Home
           </Link>
           <Link href={"/"} className="text-gray-600">
