@@ -28,13 +28,13 @@ export const metadata: Metadata = {
     title: "JSON File Splitter Online - Free JSON Splitter Tool",
     description:
       "Split large JSON files online quickly and easily. Free tool to divide JSON files into smaller parts with perfect structure preservation. No signup required.",
-    url: "https://json-splitter.com",
+    url: "https://merge-json.com/json-file-splitter",
     siteName: "JSON File Splitter Online",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "/og-image-splitter.png",
+        url: "/splitter.png",
         width: 1200,
         height: 630,
         alt: "Free Online JSON File Splitter Tool",
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
     title: "JSON File Splitter Online - Free JSON Splitter Tool",
     description:
       "Split large JSON files online quickly and easily. Free tool to divide JSON files into smaller parts with perfect structure preservation. No signup required.",
-    site: "@imaduddin_101",
+    site: "https://merge-json.com/json-file-splitter",
     creator: "@imaduddin_101",
-    images: ["/twitter-image-splitter.png"],
+    images: ["/splitter.png"],
   },
 };
 

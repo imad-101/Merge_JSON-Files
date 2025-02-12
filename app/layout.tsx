@@ -11,7 +11,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head />
+      <head>
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
+      </head>
       <body
         className={`${myFont.className} antialiased bg-yellow-50 min-h-screen flex flex-col`}
       >

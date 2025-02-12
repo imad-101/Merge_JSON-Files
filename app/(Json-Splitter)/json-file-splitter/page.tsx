@@ -37,7 +37,7 @@ const faqs = [
   {
     question: "What are the different ways to split JSON files online?",
     answer:
-      "Our JSON splitter tool allows you to split JSON files by file size, key-based division, or array element distribution. These options let you customize the splitting process to match your data processing requirements.",
+      "Our JSON splitter tool allows you to split JSON files by file size, chunk size, or array element distribution. These options let you customize the splitting process to match your data processing requirements.",
   },
   {
     question: "Is your JSON splitter tool free to use?",
@@ -105,8 +105,8 @@ const page = () => {
       <p className="text-gray-600 mb-10 text-center px-3">
         Seamlessly Split any <span className="font-semibold">JSON file</span> in
         just a few clicks and instantly{" "}
-        <span className="font-semibold">download or copy</span> the Splitted
-        Chunks.
+        <span className="font-semibold">download or copy</span> the splitted
+        chunks.
       </p>
       <JsonSplitter />
 

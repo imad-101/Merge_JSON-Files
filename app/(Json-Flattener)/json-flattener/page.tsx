@@ -101,7 +101,7 @@ const page = () => {
         Seamlessly flatten any type of{" "}
         <span className="font-semibold">JSON file</span> in just a few clicks
         and instantly <span className="font-semibold">download or copy</span>{" "}
-        the Flattened JSON data.
+        the flattened JSON data.
       </p>
       <JSONFlattener />
 

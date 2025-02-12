@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-
 import "../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Merge JSON files online quickly and easily. Free tool to combine multiple JSON files with perfect structure preservation. No signup required.",
   keywords:
-    "merge json files, merge json files online, merge json files online free, json merger, combine json files, json file combiner, merge json files free , combine json files online",
+    "merge JSON files, merge JSON files online, merge JSON files online free, JSON merger, combine JSON files, JSON file combiner, merge JSON files free , combine JSON files online",
   metadataBase: new URL("https://merge-json-files.com"),
   alternates: {
     canonical: "/",
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/og-image.png",
+        url: "/merge.png",
         width: 1200,
         height: 630,
         alt: "Free Online JSON File Merger Tool",
@@ -47,9 +46,9 @@ export const metadata: Metadata = {
     title: "Merge JSON Files Online - Free JSON File Combiner",
     description:
       "Merge JSON files online quickly and easily. Free tool to combine multiple JSON files with perfect structure preservation. No signup required.",
-    site: "@imaduddin_101",
+    site: "https://merge-json-files.com",
     creator: "@imaduddin_101",
-    images: ["/twitter-image.png"],
+    images: ["/merge.png"],
   },
 };
 

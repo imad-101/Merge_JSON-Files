@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Flatten nested JSON files online quickly and easily. Free tool to convert complex JSON structures into flat key-value pairs. No signup required.",
   keywords:
     "JSON Flattener, JSON Flattener Online, Flattening JSON Files, Flattening JSON, JSON Flattener Free, JSON File Flattener, Flatten JSON Online",
-  metadataBase: new URL("https://json-flattener.com"),
+  metadataBase: new URL("https://merge-json-files.com/json-flattener"),
   alternates: {
     canonical: "/",
   },
@@ -29,13 +29,13 @@ export const metadata: Metadata = {
     title: "JSON Flattener Online - Free JSON Flattener Tool",
     description:
       "Flatten nested JSON files online quickly and easily. Free tool to convert complex JSON structures into flat key-value pairs. No signup required.",
-    url: "https://json-flattener.com",
-    siteName: "JSON Flattener Online",
+    url: "https://merge-json-files.com/json-flattener",
+    siteName: "JSON Flattener Tool",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "/og-image-flattener.png",
+        url: "/flattener.png",
         width: 1200,
         height: 630,
         alt: "Free Online JSON Flattener Tool",
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
     title: "JSON Flattener Online - Free JSON Flattener Tool",
     description:
       "Flatten nested JSON files online quickly and easily. Free tool to convert complex JSON structures into flat key-value pairs. No signup required.",
-    site: "@imaduddin_101",
+    site: "https://merge-json-files.com/json-flattener",
     creator: "@imaduddin_101",
-    images: ["/twitter-image-flattener.png"],
+    images: ["/flattener.png"],
   },
 };
 
