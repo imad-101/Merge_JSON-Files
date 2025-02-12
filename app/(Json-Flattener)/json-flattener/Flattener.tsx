@@ -243,139 +243,124 @@ export default function JSONFlattener() {
   };
 
   return (
-    <div className="min-h-screen p-6 bg-yellow-50">
-      <Head>
-        <title>JSON Flattener Tool - Flatten JSON Online</title>
-        <meta
-          name="description"
-          content="Flatten your JSON objects easily with our free online JSON flattener tool. Supports nested objects and arrays. Fast, user-friendly, and SEO optimized."
-        />
-        <meta
-          name="keywords"
-          content="JSON flattener, flatten JSON, JSON tool, online JSON tool"
-        />
-        <meta name="author" content="Your Name" />
-      </Head>
-
-      <div className="container mx-auto p-3 sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl relative">
-        <Card className="bg-gray-800 border-gray-200 shadow-sm">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold ml-1 text-gray-200">
-              JSON Flattener Tool
-            </CardTitle>
-            <CardDescription className="ml-1 text-gray-300">
-              Flatten your JSON objects easily with our free online tool.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {/* Drag and Drop Area */}
-            <div
-              className="border-2 border-dashed border-gray-300 hover:border-gray-400 rounded-lg p-6 text-center bg-gray-800 mb-6"
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
-            >
-              <UploadCloud className="w-8 h-8 mx-auto mb-4 text-gray-400" />
-              <p className="mb-4 text-gray-400">
-                Drag and drop a JSON file here or click to upload
-              </p>
-              <Input
-                type="file"
-                accept=".json"
-                onChange={(e) => handleFileUpload(e.target.files?.[0])}
-                className="hidden"
-                id="fileInput"
-              />
-              <label
-                htmlFor="fileInput"
-                className="inline-flex items-center justify-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg cursor-pointer hover:bg-gray-300"
-              >
-                Upload JSON File
-              </label>
-              {fileName && (
-                <p className="mt-4 text-sm text-gray-600">
-                  Uploaded file: {fileName}
-                </p>
-              )}
-            </div>
-
-            <div className="delimeter flex gap-6 my-6">
-              <p className="text-2xl text-gray-200">Delimiter</p>
-              <Input
-                type="text"
-                value={delimiter}
-                onChange={handleDelimiterChange}
-                placeholder="Delimiter"
-                className="w-52 border-gray-300 text-gray-200 placeholder:text-gray-400"
-              />
-            </div>
-
-            <Textarea
-              rows={10}
-              placeholder="Or paste your JSON here..."
-              value={inputJSON}
-              onChange={(e) => setInputJSON(e.target.value)}
-              className="mb-6 border-gray-300 text-gray-200 placeholder:text-gray-400"
+    <div className="container mx-auto p-3 sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl relative">
+      <Card className="bg-gray-800 border-gray-200 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold ml-1 text-gray-200">
+            JSON Flattener Tool
+          </CardTitle>
+          <CardDescription className="ml-1 text-gray-300">
+            Flatten your JSON objects easily with our free online tool.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {/* Drag and Drop Area */}
+          <div
+            className="border-2 border-dashed border-gray-300 hover:border-gray-400 rounded-lg p-6 text-center bg-gray-800 mb-6"
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+          >
+            <UploadCloud className="w-8 h-8 mx-auto mb-4 text-gray-400" />
+            <p className="mb-4 text-gray-400">
+              Drag and drop a JSON file here or click to upload
+            </p>
+            <Input
+              type="file"
+              accept=".json"
+              onChange={(e) => handleFileUpload(e.target.files?.[0])}
+              className="hidden"
+              id="fileInput"
             />
+            <label
+              htmlFor="fileInput"
+              className="inline-flex items-center justify-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg cursor-pointer hover:bg-gray-300"
+            >
+              Upload JSON File
+            </label>
+            {fileName && (
+              <p className="mt-4 text-sm text-gray-600">
+                Uploaded file: {fileName}
+              </p>
+            )}
+          </div>
 
-            <div className="flex flex-col sm:flex-row gap-2 mb-6">
-              <div className="flex-1 flex gap-2">
-                <Button
-                  onClick={handleFlatten}
-                  className="flex-1 bg-gray-200 text-gray-700 hover:bg-gray-300"
-                >
-                  Flatten JSON
-                </Button>
-              </div>
+          <div className="delimeter flex-col  my-6">
+            <p className="text-2xl text-gray-200">Delimiter</p>
+            <Input
+              type="text"
+              value={delimiter}
+              onChange={handleDelimiterChange}
+              placeholder="Delimiter"
+              className="w-52 border-gray-300 text-gray-200 placeholder:text-gray-400"
+            />
+          </div>
+
+          <Textarea
+            rows={10}
+            placeholder="Or paste your JSON here..."
+            value={inputJSON}
+            onChange={(e) => setInputJSON(e.target.value)}
+            className="mb-6 border-gray-300 text-gray-200 placeholder:text-gray-400"
+          />
+
+          <div className="flex flex-col sm:flex-row gap-2 mb-6">
+            <div className="flex-1 flex gap-2">
               <Button
-                onClick={loadSampleJSON}
-                variant="secondary"
+                onClick={handleFlatten}
                 className="flex-1 bg-gray-200 text-gray-700 hover:bg-gray-300"
               >
-                Load Sample
-              </Button>
-              <Button
-                onClick={handleClear}
-                variant="destructive"
-                className="flex-1 bg-red-50 text-red-700 hover:bg-red-100"
-              >
-                <Trash2 className="mr-2 h-4 w-4" /> Clear
+                Flatten JSON
               </Button>
             </div>
+            <Button
+              onClick={loadSampleJSON}
+              variant="secondary"
+              className="flex-1 bg-gray-200 text-gray-700 hover:bg-gray-300"
+            >
+              Load Sample
+            </Button>
+            <Button
+              onClick={handleClear}
+              variant="destructive"
+              className="flex-1 bg-red-50 text-red-700 hover:bg-red-100"
+            >
+              <Trash2 className="mr-2 h-4 w-4" /> Clear
+            </Button>
+          </div>
 
-            {error && <p className="text-red-500 mb-6">{error}</p>}
+          {error && <p className="text-red-500 mb-6">{error}</p>}
 
-            {flattenedJSON && (
-              <div className="mt-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-semibold text-gray-200">
-                    Flattened JSON:
-                  </h2>
-                  <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      onClick={handleCopy}
-                      className="bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    >
-                      <Copy className="mr-2 h-4 w-4" /> Copy
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="secondary"
-                      onClick={handleDownload}
-                      className="bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    >
-                      <Download className="mr-2 h-4 w-4" /> Download
-                    </Button>
-                  </div>
+          {flattenedJSON && (
+            <div className="mt-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold text-gray-200 hidden sm:block">
+                  Flattened JSON:
+                </h2>
+                <div className="flex gap-2">
+                  <Button
+                    size="sm"
+                    onClick={handleCopy}
+                    className="bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  >
+                    <Copy className="mr-2 h-4 w-4" /> Copy
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="secondary"
+                    onClick={handleDownload}
+                    className="bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  >
+                    <Download className="mr-2 h-4 w-4" /> Download
+                  </Button>
                 </div>
-                <pre className="bg-gray-200 p-4 rounded-lg overflow-x-auto text-gray-900 border border-gray-200">
-                  {flattenedJSON}
-                </pre>
               </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
+              <pre className="bg-gray-200 p-4 rounded-lg overflow-x-auto text-gray-900 border border-gray-200">
+                {flattenedJSON}
+              </pre>
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }
