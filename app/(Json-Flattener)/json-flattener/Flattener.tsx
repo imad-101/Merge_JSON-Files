@@ -1,6 +1,6 @@
 "use client";
 import { useState, useCallback, useEffect } from "react";
-import Head from "next/head";
+
 import {
   Card,
   CardHeader,
