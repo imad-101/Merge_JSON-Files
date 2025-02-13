@@ -4,9 +4,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Merge JSON Files Online - Professional JSON Merger Tool",
+  title: "Merge JSON Files Online - Free JSON Merger Tool",
   description:
-    "Merge JSON files online with our professional tool. Upload and merge JSON files instantly while preserving structure. Fast, secure, and no signup needed.",
+    "Merge JSON files online with our Free tool. Upload and merge JSON files instantly while preserving structure. Fast, secure, and no signup needed.",
   keywords:
     "merge JSON files, merge JSON files online , merge JSON files free , combine JSON files , combine JSON files online , JSON merger tool",
   metadataBase: new URL("https://merge-json-files.com"),
