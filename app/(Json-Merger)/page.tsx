@@ -54,37 +54,37 @@ const faqs = [
   {
     question: "How do I merge JSON files online?",
     answer:
-      "To merge JSON files online, simply upload your files to our tool and click 'Merge'. Our online tool makes it easy to merge JSON files while maintaining data structure—no software installation required.",
+      "To merge JSON files online, simply upload your JSON files to our tool using the drag-and-drop feature or file selection option. Once uploaded, click 'Merge', and our tool will instantly merge the JSON files into a single structured JSON output while preserving data integrity. This online JSON merger requires no software installation, making it a fast and efficient solution.",
   },
   {
     question: "What is the best way to merge JSON files?",
     answer:
-      "The easiest way to merge JSON files is through our online tool. Upload your JSON files, and our tool will merge them instantly while preserving all data structures and relationships.",
+      "The best way to merge JSON files is by using an online JSON file merger like ours. Instead of manually writing scripts or using complex software, you can simply upload multiple JSON files and let our tool handle the merging process. It ensures that all data structures, including nested objects and arrays, are properly merged without any loss of information.",
   },
   {
     question: "Can I merge JSON files online without signing up?",
     answer:
-      "Yes, our tool allows you to merge JSON files online instantly without any registration. Simply upload your files and merge them right away.",
+      "Yes, our tool allows you to merge JSON files online instantly without requiring registration or login. You can start merging JSON files right away by uploading your data. Our platform is designed for ease of use, making it the perfect choice for quick and hassle-free JSON file merging.",
   },
   {
     question: "How does your online JSON file merger work?",
     answer:
-      "Our tool makes it simple to merge JSON files online. Upload your JSON data, and the tool will automatically merge your files while maintaining all nested structures and data integrity.",
+      "Our online JSON file merger is built to combine multiple JSON files into one seamlessly. When you upload your files, our system automatically processes and merges them while maintaining their original structure. This means all key-value pairs, arrays, and nested elements remain intact, ensuring an accurate and well-formatted output.",
   },
   {
     question: "Can I merge large JSON files online?",
     answer:
-      "Yes, our tool is optimized to merge JSON files online regardless of size. The system efficiently processes complex JSON files while ensuring accurate results.",
+      "Yes, our tool is optimized to merge large JSON files online efficiently. Whether you're dealing with small data sets or extensive JSON files, our system processes them smoothly. The tool ensures quick merging without lag, making it a reliable solution for developers and data analysts working with JSON.",
   },
   {
     question: "What happens to nested structures when merging JSON files?",
     answer:
-      "When you merge JSON files online, our tool preserves all nested structures. The merger ensures your JSON files are combined properly while maintaining the original data hierarchy.",
+      "When you merge JSON files online, our tool ensures that all nested structures, including objects and arrays, are preserved. The merging process intelligently combines data without breaking the original format, ensuring a properly structured JSON output that retains all hierarchical relationships.",
   },
   {
     question: "Is it safe to merge JSON files online?",
     answer:
-      "Yes, it's completely safe to merge JSON files online with our tool. We ensure data integrity throughout the process of merging your JSON files.",
+      "Yes, it is completely safe to merge JSON files online using our tool. We process the files directly in your browser, meaning your data is never stored or uploaded to external servers. This guarantees privacy and security while ensuring a seamless JSON file merging experience.",
   },
 ];
 
