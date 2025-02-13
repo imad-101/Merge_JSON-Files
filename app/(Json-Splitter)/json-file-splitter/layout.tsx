@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Split large JSON files online quickly and easily. Free tool to divide JSON files into smaller parts with perfect structure preservation. No signup required.",
   keywords:
     "JSON Splitter, JSON File Splitter, Split JSON Files, JSON Splitter Online, JSON Splitter Free, Split JSON, JSON File Splitter Online, JSON Splitter Tool",
-  metadataBase: new URL("https://json-splitter.com"),
+  metadataBase: new URL("https://merge-json-files.com/json-file-splitter"),
   alternates: {
     canonical: "/",
   },
