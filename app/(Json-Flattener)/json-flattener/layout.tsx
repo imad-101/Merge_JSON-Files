@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "../../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "JSON Flattener Online - Free JSON Flattener Tool",
@@ -61,6 +62,7 @@ export default function RootLayout({
       <Header first="JSON" second="Flattener" third="Online" />
       <main className="flex-grow">{children}</main>
       <Footer name="JSON Flattener" />
+      <Toaster />
     </>
   );
 }

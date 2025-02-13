@@ -139,7 +139,7 @@ const JsonMerger = () => {
   return (
     <div
       className={`container mx-auto p-3 sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl relative ${
-        isDragging ? "backdrop-blur-md bg-gray-900/50" : ""
+        isDragging ? "backdrop-blur-md bg-gray-900" : ""
       }`}
     >
       {isDragging && (
@@ -162,7 +162,7 @@ const JsonMerger = () => {
             {({ getRootProps, getInputProps }) => (
               <div
                 {...getRootProps()}
-                className="flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-6 cursor-pointer bg-gray-800 hover:bg-gray-700 transition"
+                className="flex flex-col items-center justify-center border-2 border-dashed border-gray-400 rounded-lg p-6 cursor-pointer bg-gray-900 hover:border-gray-100 transition"
               >
                 <input {...getInputProps()} />
                 <Upload className="h-8 w-8 mb-2 text-gray-300" />
@@ -194,7 +194,7 @@ const JsonMerger = () => {
             <Button
               onClick={mergeFiles}
               disabled={files.length === 0}
-              className="w-full bg-gray-800 hover:bg-gray-600"
+              className="w-full bg-gray-300 text-gray-900 disabled:bg-gray-300  disabled:text-black hover:bg-gray-100"
             >
               Merge Files
             </Button>
@@ -202,7 +202,7 @@ const JsonMerger = () => {
               onClick={downloadMergedFile}
               disabled={!mergedContent}
               variant="outline"
-              className="w-full text-gray-800 border-gray-800 hover:bg-gray-300"
+              className="w-full text-gray-900 border-gray-800 disabled:text-black bg-gray-300 hover:bg-gray-100"
             >
               Download
             </Button>
@@ -226,7 +226,7 @@ const JsonMerger = () => {
               <Button
                 onClick={resetFiles}
                 variant="outline"
-                className="mt-4 w-full text-red-600 border-red-500 border-dotted hover:bg-red-300 hover:text-white"
+                className="mt-4 w-full text-red-600  hover:bg-red-100 "
               >
                 Reset
               </Button>

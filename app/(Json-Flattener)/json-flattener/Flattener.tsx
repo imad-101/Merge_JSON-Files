@@ -22,7 +22,7 @@ export default function JSONFlattener() {
   const [inputJSON, setInputJSON] = useState<string>("");
   const [flattenedJSON, setFlattenedJSON] = useState<string>("");
   const [fileName, setFileName] = useState<string>("");
-  const [error, setError] = useState<string>(""); // Fixed typo in state name
+
   const [delimiter, setDelimiter] = useState<string>(".");
   const { toast } = useToast();
 
@@ -87,9 +87,6 @@ export default function JSONFlattener() {
         variant: "default",
       });
     } catch (err) {
-      setError(
-        `Error: ${err instanceof Error ? err.message : "Invalid JSON input"}`
-      );
       setFlattenedJSON("");
       toast({
         title: "Error",
@@ -109,14 +106,13 @@ export default function JSONFlattener() {
           const content = JSON.parse(e.target?.result as string);
           setInputJSON(JSON.stringify(content, null, 2));
           setFileName(file.name);
-          setError("");
+
           toast({
             title: "Success",
             description: "File uploaded successfully!",
             variant: "default",
           });
         } catch {
-          setError("Invalid JSON file. Please upload a valid JSON file.");
           toast({
             title: "Error",
             description: "Invalid JSON file.",
@@ -140,7 +136,6 @@ export default function JSONFlattener() {
       if (file && file.type === "application/json") {
         handleFileUpload(file);
       } else {
-        setError("Please upload a valid JSON file.");
         toast({
           title: "Error",
           description: "Invalid file type.",
@@ -213,7 +208,7 @@ export default function JSONFlattener() {
     setInputJSON("");
     setFlattenedJSON("");
     setFileName("");
-    setError("");
+
     toast({
       title: "Success",
       description: "Cleared input and output!",
@@ -244,7 +239,7 @@ export default function JSONFlattener() {
 
   return (
     <div className="container mx-auto p-3 sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl relative">
-      <Card className="bg-gray-800 border-gray-200 shadow-sm">
+      <Card className="bg-gray-900 border-gray-200 shadow-sm">
         <CardHeader>
           <CardTitle className="text-2xl font-bold ml-1 text-gray-200">
             JSON Flattener Tool
@@ -256,9 +251,10 @@ export default function JSONFlattener() {
         <CardContent>
           {/* Drag and Drop Area */}
           <div
-            className="border-2 border-dashed border-gray-300 hover:border-gray-400 rounded-lg p-6 text-center bg-gray-800 mb-6"
+            className="border-2 border-dashed border-gray-400 hover:border-gray-100 rounded-lg p-6 text-center bg-gray-900 mb-6 cursor-pointer"
             onDragOver={handleDragOver}
             onDrop={handleDrop}
+            onClick={() => document.getElementById("fileInput")?.click()}
           >
             <UploadCloud className="w-8 h-8 mx-auto mb-4 text-gray-400" />
             <p className="mb-4 text-gray-400">
@@ -271,12 +267,6 @@ export default function JSONFlattener() {
               className="hidden"
               id="fileInput"
             />
-            <label
-              htmlFor="fileInput"
-              className="inline-flex items-center justify-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg cursor-pointer hover:bg-gray-300"
-            >
-              Upload JSON File
-            </label>
             {fileName && (
               <p className="mt-4 text-sm text-gray-600">
                 Uploaded file: {fileName}
@@ -284,14 +274,14 @@ export default function JSONFlattener() {
             )}
           </div>
 
-          <div className="delimeter flex-col  my-6">
+          <div className="delimeter flex flex-col sm:flex-row sm:gap-4 gap-2 my-6">
             <p className="text-2xl text-gray-200">Delimiter</p>
             <Input
               type="text"
               value={delimiter}
               onChange={handleDelimiterChange}
               placeholder="Delimiter"
-              className="w-52 border-gray-300 text-gray-200 placeholder:text-gray-400"
+              className="w-52 border-gray-400 text-gray-200 placeholder:text-gray-400"
             />
           </div>
 
@@ -300,7 +290,7 @@ export default function JSONFlattener() {
             placeholder="Or paste your JSON here..."
             value={inputJSON}
             onChange={(e) => setInputJSON(e.target.value)}
-            className="mb-6 border-gray-300 text-gray-200 placeholder:text-gray-400"
+            className="mb-6 border-gray-400 text-gray-200 placeholder:text-gray-400"
           />
 
           <div className="flex flex-col sm:flex-row gap-2 mb-6">
@@ -322,13 +312,11 @@ export default function JSONFlattener() {
             <Button
               onClick={handleClear}
               variant="destructive"
-              className="flex-1 bg-red-50 text-red-700 hover:bg-red-100"
+              className="flex-1 bg-gray-200 text-red-700 hover:bg-red-100"
             >
               <Trash2 className="mr-2 h-4 w-4" /> Clear
             </Button>
           </div>
-
-          {error && <p className="text-red-500 mb-6">{error}</p>}
 
           {flattenedJSON && (
             <div className="mt-6">

@@ -4,6 +4,7 @@ import { useDropzone, FileWithPath } from "react-dropzone";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { UploadCloud } from "lucide-react";
 import {
   Card,
   CardHeader,
@@ -150,7 +151,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-3 sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl relative">
-      <Card className="bg-gray-800">
+      <Card className="bg-gray-900">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-gray-200">
             JSON Splitter Tool
@@ -164,9 +165,10 @@ export default function Home() {
             {/* Drag-and-drop file upload */}
             <div
               {...getRootProps()}
-              className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-gray-400"
+              className="border-2 border-dashed border-gray-400 rounded-lg p-6 text-center cursor-pointer hover:border-gray-100"
             >
               <input {...getInputProps()} />
+              <UploadCloud size={32} className="text-gray-400 mx-auto mb-3" />
               <p className="text-gray-400">
                 Drag & drop a JSON file here, or click to upload
               </p>
@@ -183,7 +185,7 @@ export default function Home() {
                 onChange={(e) => setJsonInput(e.target.value)}
                 rows={10}
                 placeholder="Enter JSON array or object here..."
-                className="mt-2 placeholder:text-gray-400 text-gray-200"
+                className="mt-2 border-gray-400 placeholder:text-gray-400 text-gray-200"
               />
             </div>
 
@@ -200,7 +202,7 @@ export default function Home() {
                   setChunkSize(Math.max(1, Number(e.target.value)))
                 }
                 min="1"
-                className="mt-2 text-gray-200"
+                className="mt-2 text-gray-200 border-gray-400"
               />
             </div>
 
