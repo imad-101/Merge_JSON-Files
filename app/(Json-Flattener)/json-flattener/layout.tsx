@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "JSON Flattener Online - JSON Flattener Tool",
+  title: "JSON Flattener Online - Free JSON Flattener Tool",
   description:
     "Flatten nested JSON files online quickly and easily. Free tool to convert complex JSON structures into flat key-value pairs. No signup required.",
   keywords:
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "JSON Flattener Online - JSON Flattener Tool",
+    title: "JSON Flattener Online - Free JSON Flattener Tool",
     description:
       "Flatten nested JSON files online quickly and easily. Free tool to convert complex JSON structures into flat key-value pairs. No signup required.",
     url: "https://merge-json-files.com/json-flattener",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "JSON Flattener Online - JSON Flattener Tool",
+    title: "JSON Flattener Online - Free JSON Flattener Tool",
     description:
       "Flatten nested JSON files online quickly and easily. Free tool to convert complex JSON structures into flat key-value pairs. No signup required.",
     site: "https://merge-json-files.com/json-flattener",

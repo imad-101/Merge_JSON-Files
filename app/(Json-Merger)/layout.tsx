@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Merge JSON files online with our Free tool. Upload and merge JSON files instantly while preserving structure. Fast, secure, and no signup needed.",
   keywords:
-    "merge JSON files, merge JSON files online , merge JSON files free , combine JSON files , combine JSON files online , JSON merger tool, how to merge JSON files",
+    "merge JSON files, merge JSON files online , merge JSON files free , combine JSON files , combine JSON files online , JSON merger tool, how to merge json files",
   metadataBase: new URL("https://merge-json-files.com"),
   alternates: {
     canonical: "https://merge-json-files.com/",
