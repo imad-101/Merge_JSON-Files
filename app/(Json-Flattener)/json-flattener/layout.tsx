@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "JSON Flattener, JSON Flattener Online, Flattening JSON Files, Flattening JSON, JSON Flattener Free, JSON File Flattener, Flatten JSON Online",
   metadataBase: new URL("https://merge-json-files.com/json-flattener"),
   alternates: {
-    canonical: "/",
+    canonical: "https://merge-json-files.com/json-flattener",
   },
   robots: {
     index: true,
