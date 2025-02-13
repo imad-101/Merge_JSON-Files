@@ -1,5 +1,3 @@
-import Head from "next/head";
-
 const AboutUs = () => {
   return (
     <div className="container p-8 border my-7 rounded-xl mx-auto w-[22rem] sm:w-2/3">
@@ -89,7 +87,7 @@ const AboutUs = () => {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2">Secure JSON Processing</h2>
         <p className="text-gray-700">
-          Whether you're <strong>merging JSON files online</strong>,
+          Whether you&apos;re <strong>merging JSON files online</strong>,
           <strong> splitting JSON datasets</strong>, or
           <strong> flattening JSON structures</strong>, all operations occur
           directly in your browser. Our strict no-server-processing policy

@@ -1,3 +1,4 @@
+import Link from "next/link";
 const TermsOfUse = () => {
   return (
     <div className="container p-8 border my-7 w-[22rem] sm:w-2/3 mx-auto rounded-xl">
@@ -16,10 +17,10 @@ const TermsOfUse = () => {
           <strong> split large JSON datasets</strong>, and
           <strong> flatten complex JSON structures</strong>. These terms govern
           use of all our JSON utilities, with primary focus on our core
-          <a href="/" className="text-blue-500 hover:underline">
+          <Link href="/" className="text-blue-500 hover:underline">
             {" "}
             JSON merger tool
-          </a>
+          </Link>
           .
         </p>
       </section>

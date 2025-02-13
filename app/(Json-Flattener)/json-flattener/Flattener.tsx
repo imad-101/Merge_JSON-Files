@@ -86,7 +86,7 @@ export default function JSONFlattener() {
         description: "JSON flattened successfully!",
         variant: "default",
       });
-    } catch (err) {
+    } catch {
       setFlattenedJSON("");
       toast({
         title: "Error",
