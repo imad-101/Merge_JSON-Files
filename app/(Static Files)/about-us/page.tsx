@@ -1,8 +1,9 @@
+import Link from "next/link";
 const AboutUs = () => {
   return (
     <div className="container p-8 border my-7 rounded-xl mx-auto w-[22rem] sm:w-2/3">
       <h1 className="text-3xl font-bold mb-4">
-        Merge JSON Files Online & Transform JSON Data
+        Merge JSON Files Online &amp; Transform JSON Data
       </h1>
 
       <section className="mb-8">
@@ -15,22 +16,23 @@ const AboutUs = () => {
           instantly. Our core <strong>merge JSON files online </strong>
           tool remains the most refined solution for developers needing to
           <strong> combine JSON files </strong> while preserving data structure
-          integrity. We've expanded to offer complementary tools including a
-          <a
+          integrity. We&apos;ve expanded to offer complementary tools including
+          a
+          <Link
             href="https://merge-json-files.com/json-file-splitter"
             className="text-blue-500 hover:underline"
           >
             {" "}
             JSON splitter online
-          </a>{" "}
+          </Link>{" "}
           and
-          <a
+          <Link
             href="https://merge-json-files.com/json-flattener"
             className="text-blue-500 hover-underline"
           >
             {" "}
             JSON flattener online
-          </a>
+          </Link>
           .
         </p>
       </section>
@@ -112,7 +114,19 @@ const AboutUs = () => {
         </p>
       </section>
 
-      {/* Keep existing contact section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-2">Contact Us</h2>
+        <p className="text-gray-700">
+          Questions about JSON merging or our other tools? Reach us at
+          <Link
+            href="mailto:techemad.web@gmail.com"
+            className="text-blue-500 hover:underline"
+          >
+            &nbsp;techemad.web@gmail.com
+          </Link>
+          . We welcome feedback on all our JSON utilities.
+        </p>
+      </section>
     </div>
   );
 };
