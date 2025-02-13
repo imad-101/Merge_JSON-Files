@@ -2,87 +2,83 @@ const PrivacyPolicy = () => {
   return (
     <div className="container mx-auto p-8 px-6 md:px-24 border my-7 bg-yellow-50 rounded-lg w-[22rem] sm:w-2/3">
       <h1 className="text-4xl font-bold mb-6 text-gray-900">
-        Privacy Policy for JSON File Merger
+        Privacy Policy: Merge, Split & Flatten JSON Files
       </h1>
+      <p className="text-lg mb-6 text-gray-600">
+        Secure Processing for JSON Merger, Splitter, and Flattener Tools
+      </p>
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2 text-gray-800">
-          Our Privacy Commitment
+          Data Protection Commitment
         </h2>
         <p className="text-gray-600">
-          When you merge JSON files using our free online tool, your privacy is
-          our priority. This policy explains how our JSON merger handles your
-          data during the file combination process.
+          Whether <strong>merging JSON files online</strong>,
+          <strong> splitting large JSON datasets</strong>, or
+          <strong> flattening JSON structures</strong>, we enforce strict
+          privacy measures across all tools.
         </p>
       </section>
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2 text-gray-800">
-          JSON File Processing &amp; Security
+          JSON File Security Protocol
         </h2>
         <ul className="list-disc pl-6 text-gray-600">
           <li>
-            <strong>In-Browser Processing:</strong> All JSON merging occurs
-            locally in your browser.
+            <strong>Local Processing:</strong> All <strong>JSON merging</strong>
+            , splitting, and flattening occurs in your browser
           </li>
           <li>
-            <strong>Zero Storage Policy:</strong> We never store your JSON files
-            on any servers.
+            <strong>Zero Data Retention:</strong> Applies to merged JSON files,
+            split segments, and flattened output
           </li>
           <li>
-            <strong>Instant Processing:</strong> Files are merged and
-            immediately available for download.
-          </li>
-          <li>
-            <strong>Data Structure Protection:</strong> Your JSON structure
-            remains intact during merging.
+            <strong>Encrypted Transfers:</strong> SSL protection for all tool
+            interactions
           </li>
         </ul>
       </section>
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2 text-gray-800">
-          Data Collection &amp; Usage
+          Data Collection Practices
         </h2>
         <ul className="list-disc pl-6 text-gray-600">
           <li>
-            No registration or personal information required to merge JSON
-            files.
+            No personal data required to <strong>combine JSON files </strong>
+            or use other tools
           </li>
-          <li>Anonymous usage analytics to improve our JSON merger tool.</li>
-          <li>Essential cookies for tool functionality only.</li>
+          <li>Anonymous usage metrics collected across JSON utilities</li>
+          <li>Session cookies only for tool functionality</li>
         </ul>
       </section>
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2 text-gray-800">
-          Security Measures
+          Security Infrastructure
         </h2>
         <p className="text-gray-600">
-          Our JSON file merger employs client-side processing technology,
-          ensuring your data never leaves your browser. We use HTTPS encryption
-          and implement security best practices for safe JSON file merging.
+          Our <strong>JSON file merger</strong> and companion tools employ:
         </p>
+        <ul className="list-disc pl-6 mt-2 text-gray-600">
+          <li>256-bit SSL encryption</li>
+          <li>Regular vulnerability assessments</li>
+          <li>Isolated processing environments</li>
+        </ul>
       </section>
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-2 text-gray-800">
-          User Rights &amp; Control
+          User Controls & Rights
         </h2>
         <ul className="list-disc pl-6 text-gray-600">
-          <li>Use our JSON merger tool without creating an account.</li>
-          <li>Control browser cookies and analytics preferences.</li>
-          <li>Download merged JSON files instantly without registration.</li>
           <li>
-            Contact us about privacy at&nbsp;
-            <a
-              href="mailto:techemad.web@gmail.com"
-              className="text-blue-500 hover:underline"
-            >
-              techemad.web@gmail.com
-            </a>
-            .
+            Full control over <strong>JSON merging parameters</strong> and other
+            tool operations
           </li>
+          <li>Option to disable non-essential cookies</li>
+          <li>Immediate data purge after processing</li>
         </ul>
       </section>
 
@@ -91,9 +87,9 @@ const PrivacyPolicy = () => {
           Policy Updates
         </h2>
         <p className="text-gray-600">
-          We may update this privacy policy to reflect improvements in our JSON
-          merging tool. Check this page periodically for changes in how we
-          handle your data during JSON file processing.
+          Changes will reflect enhancements to our{" "}
+          <strong>JSON merger tool </strong>
+          and additional utilities. Last updated: 2/14/2025
         </p>
       </section>
     </div>
