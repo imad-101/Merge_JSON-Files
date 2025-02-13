@@ -52,39 +52,39 @@ const allTools = [
 
 const faqs = [
   {
-    question: "What is JSON merging and how does it work online?",
+    question: "How do I merge JSON files online?",
     answer:
-      "JSON merging is the process of combining multiple JSON files into a single structured file. Our online JSON merger tool allows you to merge JSON files easily while maintaining nested structures and data integrity—no software installation required.",
+      "To merge JSON files online, simply upload your files to our tool and click 'Merge'. Our online tool makes it easy to merge JSON files while maintaining data structure—no software installation required.",
   },
   {
-    question: "How to merge multiple JSON files into one online?",
+    question: "What is the best way to merge JSON files?",
     answer:
-      "To merge multiple JSON files online, simply upload your JSON data into our free JSON file merger tool. Click 'Merge' to instantly combine JSON files into a single structured output. No coding or software is needed.",
+      "The easiest way to merge JSON files is through our online tool. Upload your JSON files, and our tool will merge them instantly while preserving all data structures and relationships.",
   },
   {
-    question: "Why should I merge JSON files?",
+    question: "Can I merge JSON files online without signing up?",
     answer:
-      "Merging JSON files simplifies data management, makes API responses easier to process, and helps consolidate structured data. Our JSON file merger tool efficiently combines multiple JSON datasets while preserving all key-value relationships.",
+      "Yes, our tool allows you to merge JSON files online instantly without any registration. Simply upload your files and merge them right away.",
   },
   {
-    question: "Can your online JSON merger handle large JSON files?",
+    question: "How does your online JSON file merger work?",
     answer:
-      "Yes, our JSON merger tool is optimized to handle large JSON files of any size. It efficiently processes complex structures and ensures quick merging without compromising data accuracy.",
+      "Our tool makes it simple to merge JSON files online. Upload your JSON data, and the tool will automatically merge your files while maintaining all nested structures and data integrity.",
+  },
+  {
+    question: "Can I merge large JSON files online?",
+    answer:
+      "Yes, our tool is optimized to merge JSON files online regardless of size. The system efficiently processes complex JSON files while ensuring accurate results.",
   },
   {
     question: "What happens to nested structures when merging JSON files?",
     answer:
-      "Our JSON file merger ensures that all nested structures, arrays, and objects are properly combined. The tool intelligently integrates JSON files without data loss, keeping the original hierarchy intact.",
+      "When you merge JSON files online, our tool preserves all nested structures. The merger ensures your JSON files are combined properly while maintaining the original data hierarchy.",
   },
   {
-    question: "Is your JSON merger tool free to use?",
+    question: "Is it safe to merge JSON files online?",
     answer:
-      "Yes, our JSON merger tool is completely free to use online. You can merge JSON files instantly without downloading any software or signing up.",
-  },
-  {
-    question: "Does merging JSON files affect the original data format?",
-    answer:
-      "No, our online JSON merger preserves the original data format. Whether merging structured objects or combining JSON arrays, the tool ensures all data remains properly formatted and accessible.",
+      "Yes, it's completely safe to merge JSON files online with our tool. We ensure data integrity throughout the process of merging your JSON files.",
   },
 ];
 
