@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "JSON Splitter, JSON File Splitter, Split JSON Files, JSON Splitter Online, JSON Splitter Free, Split JSON, JSON File Splitter Online, JSON Splitter Tool",
   metadataBase: new URL("https://merge-json-files.com/json-file-splitter"),
   alternates: {
-    canonical: "https://merge-json-files.com/json-splitter",
+    canonical: "https://merge-json-files.com/json-file-splitter",
   },
   robots: {
     index: true,
