@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Upload, Trash2, Copy } from "lucide-react"; // Import the Copy icon
+import { Upload, Trash2, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
 import Dropzone from "react-dropzone";
 
 // Deep merge function for JSON objects
@@ -42,12 +43,15 @@ const deepMerge = (
 const JsonMerger = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [mergedContent, setMergedContent] = useState("");
-  const [error, setError] = useState("");
   const [isDragging, setIsDragging] = useState(false);
+  const { toast } = useToast();
 
   const handleFileUpload = (acceptedFiles: File[]) => {
     setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
-    setError("");
+    toast({
+      title: "Files Added",
+      description: `Successfully added ${acceptedFiles.length} file(s).`,
+    });
   };
 
   useEffect(() => {
@@ -82,19 +86,31 @@ const JsonMerger = () => {
   }, []);
 
   const removeFile = (index: number) => {
+    const fileName = files[index].name;
     setFiles(files.filter((_, i) => i !== index));
+    toast({
+      title: "File Removed",
+      description: `Removed ${fileName} from the list.`,
+    });
   };
 
   const resetFiles = () => {
     setFiles([]);
     setMergedContent("");
-    setError("");
+    toast({
+      title: "Reset Complete",
+      description: "All files and merged content have been cleared.",
+    });
   };
 
   const mergeFiles = async () => {
     try {
       if (files.length === 0) {
-        setError("No files selected.");
+        toast({
+          variant: "destructive",
+          title: "No Files Selected",
+          description: "Please upload at least one JSON file to merge.",
+        });
         return;
       }
 
@@ -105,35 +121,60 @@ const JsonMerger = () => {
       jsonObjects.forEach((obj) => deepMerge(mergedObject, obj));
 
       setMergedContent(JSON.stringify(mergedObject, null, 2));
-      setError("");
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(`Error processing files. Ensure all files are valid JSON.`);
-      } else {
-        setError("An unknown error occurred.");
-      }
+      toast({
+        title: "Merge Successful",
+        description: `Successfully merged ${files.length} JSON file(s).`,
+      });
+    } catch {
+      toast({
+        variant: "destructive",
+        title: "Merge Failed",
+        description: "Error processing files. Ensure all files are valid JSON.",
+      });
       setMergedContent("");
     }
   };
 
   const downloadMergedFile = () => {
     if (!mergedContent) return;
-    const blob = new Blob([mergedContent], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "merged.json";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    try {
+      const blob = new Blob([mergedContent], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "merged.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      toast({
+        title: "Download Started",
+        description: "Your merged JSON file is being downloaded.",
+      });
+    } catch {
+      toast({
+        variant: "destructive",
+        title: "Download Failed",
+        description: "Failed to download the merged JSON file.",
+      });
+    }
   };
 
-  const copyToClipboard = () => {
+  const copyToClipboard = async () => {
     if (!mergedContent) return;
-    navigator.clipboard.writeText(mergedContent).then(() => {
-      alert("Merged JSON copied to clipboard!");
-    });
+    try {
+      await navigator.clipboard.writeText(mergedContent);
+      toast({
+        title: "Copied to Clipboard",
+        description: "Merged JSON content has been copied to your clipboard.",
+      });
+    } catch {
+      toast({
+        variant: "destructive",
+        title: "Copy Failed",
+        description: "Failed to copy content to clipboard.",
+      });
+    }
   };
 
   return (
@@ -194,7 +235,7 @@ const JsonMerger = () => {
             <Button
               onClick={mergeFiles}
               disabled={files.length === 0}
-              className="w-full bg-gray-300 text-gray-900 disabled:bg-gray-300  disabled:text-black hover:bg-gray-100"
+              className="w-full bg-gray-300 text-gray-900 disabled:bg-gray-300 disabled:text-black hover:bg-gray-100"
             >
               Merge Files
             </Button>
@@ -222,20 +263,13 @@ const JsonMerger = () => {
               <pre className="text-sm text-gray-300 whitespace-pre-wrap break-words">
                 {mergedContent}
               </pre>
-              {/* Reset button appears only when merged content exists */}
               <Button
                 onClick={resetFiles}
                 variant="outline"
-                className="mt-4 w-full text-red-600  hover:bg-red-100 "
+                className="mt-4 w-full text-red-600 hover:bg-red-100"
               >
                 Reset
               </Button>
-            </div>
-          )}
-
-          {error && (
-            <div className="mt-4 bg-red-500 p-3 rounded-md text-white">
-              {error}
             </div>
           )}
         </CardContent>

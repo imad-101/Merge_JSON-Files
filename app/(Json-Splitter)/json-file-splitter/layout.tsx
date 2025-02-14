@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "../../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "JSON File Splitter Online - Free Online JSON Splitter Tool",
@@ -59,6 +60,7 @@ export default function RootLayout({
     <>
       <Header first="JSON" second="Splitter" third="Online" />
       <main className="flex-grow">{children}</main>
+      <Toaster />
       <Footer name="JSON Splitter" />
     </>
   );

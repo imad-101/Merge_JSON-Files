@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Merge JSON Files Online - Free JSON Merger Tool",
@@ -59,6 +60,7 @@ export default function RootLayout({
     <>
       <Header first="Merge" second="JSON" third="Files" />
       <main className="flex-grow">{children}</main>
+      <Toaster />
       <Footer name="Merge JSON Files" />
     </>
   );
