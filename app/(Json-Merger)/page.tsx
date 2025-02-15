@@ -5,6 +5,7 @@ import ToolsGrid from "@/components/ToolsGrid";
 import { FileJson, FileJson2 } from "lucide-react";
 import { Upload, FilePlus, Settings, Download } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import MergeBlog from "./MergeBlog";
 const howItWorks = [
   {
     title: "Select Your JSON Files",
@@ -129,6 +130,10 @@ const page = () => {
       </Card>
 
       {/* ------------------------------------------------------------------------------- */}
+
+      <MergeBlog />
+
+      {/* --------------------------------------------------------------------------- */}
       <div className="my-16">
         <p className="text-center text-3xl text-gray-700 font-bold mb-12">
           Browse More JSON Related Tools

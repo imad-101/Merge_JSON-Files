@@ -2,6 +2,7 @@ import React from "react";
 import JSONFlattener from "./Flattener";
 import HowItWorks from "../../../components/HowItWorks";
 import { Card, CardContent } from "@/components/ui/card";
+import JSONFlattenerBlog from "./FlattenerBlog";
 import {
   CheckCircle,
   FilePlus,
@@ -133,6 +134,7 @@ const page = () => {
 
       {/* --------------------------------------------------------------------------------------------- */}
 
+      <JSONFlattenerBlog />
       <div className="my-16">
         <p className="text-center text-3xl text-gray-700 font-bold mb-12">
           Browse More JSON Related Tools

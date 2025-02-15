@@ -27,8 +27,10 @@ const Header = ({ first, second, third }: HeaderProps) => {
           >
             Home
           </Link>
-          <Link href={"/"} className="text-gray-600">
-            <Button className="px-5 bg-gray-800 hover:bg-gray-700">Blog</Button>
+          <Link href={"#tutorial"} className="text-gray-600">
+            <Button className="px-5 bg-gray-800 hover:bg-gray-700 ">
+              Tutorial
+            </Button>
           </Link>
         </div>
       </nav>

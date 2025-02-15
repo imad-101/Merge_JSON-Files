@@ -4,6 +4,7 @@ import HowItWorks from "../../../components/HowItWorks";
 import ToolsGrid from "@/components/ToolsGrid";
 import { Card, CardContent } from "@/components/ui/card";
 import FaqSection from "@/components/Faq";
+import JSONSplitterBlog from "./SplitterBlog";
 import {
   CheckCircle,
   FilePlus,
@@ -135,6 +136,8 @@ const page = () => {
         </CardContent>
       </Card>
       {/* ---------------------------------------------------------------------------- */}
+
+      <JSONSplitterBlog />
 
       <div className="my-16">
         <p className="text-center text-3xl text-gray-700 font-bold mb-12">

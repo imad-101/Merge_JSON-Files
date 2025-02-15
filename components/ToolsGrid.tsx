@@ -15,7 +15,7 @@ export default function ToolsGrid({
   href,
 }: ToolsGridProps) {
   return (
-    <div className="bg-amber-100  rounded-md p-6 transition-all hover:shadow-md ">
+    <div className="bg-[#fdf7dd]  rounded-md p-6 transition-all hover:shadow-md ">
       <div className="flex items-center mb-4">
         <Icon className="w-6 h-6 text-amber-900 mr-2" aria-hidden="true" />
         <h3 className="text-xl font-light text-gray-700">{name}</h3>
