@@ -63,13 +63,13 @@ const MergeBlog = () => {
             additionally it&apos;s completely free to and does not require any
             signup. <br />
             If you need more information about JSON files you can check out the{" "}
-            <Link
+            <a
               href="https://www.json.org/json-en.html"
               target="_blank"
               className="text-blue-600"
             >
               official JSON documentation
-            </Link>
+            </a>
             .
           </p>
           <h2 className="text-2xl font-semibold mt-6 mb-2">
@@ -82,7 +82,7 @@ const MergeBlog = () => {
           <h3 className="text-xl font-medium my-5">
             Merge JSON Files In Python
           </h3>
-          <pre className="bg-gray-900 text-white p-3 rounded-md overflow-x-auto">
+          <pre className="bg-gray-900 text-white p-7 rounded-md overflow-x-autov ">
             {`import json
 
 files = ['file1.json', 'file2.json']
@@ -104,7 +104,7 @@ with open('merged.json', 'w') as f:
           <h3 className="text-xl font-medium my-5">
             Merge JSON Files In JavaScript
           </h3>
-          <pre className="bg-gray-900 text-white p-3 rounded-md overflow-x-auto">
+          <pre className="bg-gray-900 text-white p-7 rounded-md overflow-x-auto">
             {`const fs = require('fs');
 
 const files = ['file1.json', 'file2.json'];
@@ -125,7 +125,7 @@ fs.writeFileSync('merged.json', JSON.stringify(mergedData, null, 2));`}
           <h3 className="text-xl font-medium my-5">
             Bash (Using jq) Merge JSON Files
           </h3>
-          <pre className="bg-gray-900 text-white p-3 rounded-md overflow-x-auto">
+          <pre className="bg-gray-900 text-white p-7 rounded-md overflow-x-auto">
             {`jq -s 'add' file1.json file2.json > merged.json`}
           </pre>
           <p className="my-3">

@@ -70,7 +70,7 @@ const JSONSplitterBlog = () => {
           <p>
             For a deeper understanding of JSON file structures and syntax, you
             can visit
-            <Link
+            <a
               href="https://www.json.org/json-en.html"
               target="_blank"
               rel="noopener noreferrer"
@@ -78,7 +78,7 @@ const JSONSplitterBlog = () => {
             >
               {" "}
               JSON.org
-            </Link>
+            </a>
             .
           </p>
           <h2 className="text-2xl font-semibold mt-6 mb-2">
@@ -92,7 +92,7 @@ const JSONSplitterBlog = () => {
           <h3 className="text-xl font-medium my-5">
             Split JSON Files In JavaScript
           </h3>
-          <pre className="bg-gray-900 text-white p-3 rounded-md overflow-x-auto">
+          <pre className="bg-gray-900 text-white p-7 rounded-md overflow-x-auto">
             {`const fs = require('fs');
 
 function splitJSON(filePath, chunkSize) {
@@ -108,7 +108,7 @@ function splitJSON(filePath, chunkSize) {
 }`}
           </pre>
           <h3 className="text-xl font-medium my-5">Split JSON Files In Java</h3>
-          <pre className="bg-gray-900 text-white p-3 rounded-md overflow-x-auto">
+          <pre className="bg-gray-900 text-white p-7 rounded-md overflow-x-auto">
             {`import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.FileWriter;
@@ -134,7 +134,7 @@ public class JSONSplitter {
           <h3 className="text-xl font-medium my-5">
             Split JSON Files In Python
           </h3>
-          <pre className="bg-gray-900 text-white p-3 rounded-md overflow-x-auto">
+          <pre className="bg-gray-900 text-white p-7 rounded-md overflow-x-auto">
             {`import json
 
 def split_json(file_path, chunk_size):
@@ -158,10 +158,38 @@ def split_json(file_path, chunk_size):
               className="text-blue-600"
             >
               {" "}
-              Python&apos;s official JSON documentation
+              Python's official JSON documentation
             </a>
             .
           </p>
+          <h2 className="text-2xl font-semibold mt-6 mb-2">
+            Additional Features Of Our JSON Splitter Tool
+          </h2>
+          <ul className="list-disc pl-6">
+            <li>
+              <strong>Handles Large JSON Files:</strong> Our tool is optimized
+              to efficiently process even very large JSON files.
+            </li>
+            <li>
+              <strong>Maintains Data Integrity:</strong> We ensure that your
+              data is Splitted accurately and without any loss of information.
+            </li>
+            <li>
+              <strong>Free and Accessible:</strong> Our JSON Flattener is
+              completely free to use and accessible online from any device and
+              require no signup.
+            </li>
+            <li>
+              <strong>Advance Splitting Options:</strong> Our JSON Splitter tool
+              lets you choose your splitting method. ie : Chunk Size , File
+              Size.
+            </li>
+            <li>
+              <strong>Process Both JSON Arrays and Objects:</strong> Our online
+              tool can split any kind of JSON file , be it a JSON object or a
+              JSON array.
+            </li>
+          </ul>
           <h2 className="text-2xl font-semibold mt-6 mb-2">Related Tools</h2>
           <p>
             We offer other helpful JSON tools as well. If you also need to{" "}

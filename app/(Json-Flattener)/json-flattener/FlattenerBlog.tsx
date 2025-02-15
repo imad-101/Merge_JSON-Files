@@ -53,7 +53,10 @@ const JSONFlattenerBlog = () => {
           <p>
             The quickest and most convenient way to{" "}
             <strong>flatten JSON online</strong> is by using our free{" "}
-            <Link href="https://merge-json-files.com/json-flattener">
+            <Link
+              href="https://merge-json-files.com/json-flattener"
+              className="text-blue-600"
+            >
               JSON Flattener Tool
             </Link>
             . Our tool simplifies the process: simply paste your JSON data or
@@ -69,7 +72,7 @@ const JSONFlattenerBlog = () => {
             into applications. Here are examples in popular languages:
           </p>
           <h3 className="text-xl font-medium my-5">Flatten JSON In Python</h3>
-          <pre className="bg-gray-900 text-white p-3 rounded-md overflow-x-auto">
+          <pre className="bg-gray-900 text-white p-7 rounded-md overflow-x-auto">
             {`import json
 from flatten_json import flatten
 
@@ -81,7 +84,7 @@ json.dump(flat_data, open('flat.json', 'w'), indent=4)`}
           <h3 className="text-xl font-medium my-5">
             Flatten JSON In JavaScript
           </h3>
-          <pre className="bg-gray-900 text-white p-3 rounded-md overflow-x-auto">
+          <pre className="bg-gray-900 text-white p-7 rounded-md overflow-x-auto">
             {`const flatten = (obj, prefix = '', res = {}) => {
   for (let key in obj) {
     const newKey = prefix ? \`\${prefix}.\${key}\` : key;
@@ -97,7 +100,7 @@ json.dump(flat_data, open('flat.json', 'w'), indent=4)`}
 console.log(flatten({ nested: { key: "value" } }));`}
           </pre>
           <h3 className="text-xl font-medium my-5">Flatten JSON In Java</h3>
-          <pre className="bg-gray-900 text-white p-3 rounded-md overflow-x-auto">
+          <pre className="bg-gray-900 text-white p-7 rounded-md overflow-x-auto">
             {`import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
@@ -125,7 +128,7 @@ public class JSONFlattener {
 }`}
           </pre>
           <h2 className="text-2xl font-semibold mt-6 mb-2">
-            Additional Features of Our Online Tool
+            Additional Features of Our JSON Flattener Tool
           </h2>
           <ul className="list-disc pl-6">
             <li>

@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Upload, Trash2, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,7 +12,6 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import Dropzone from "react-dropzone";
 
-// Deep merge function for JSON objects
 const deepMerge = (
   target: Record<string, unknown>,
   source: Record<string, unknown>
@@ -46,13 +44,16 @@ const JsonMerger = () => {
   const [isDragging, setIsDragging] = useState(false);
   const { toast } = useToast();
 
-  const handleFileUpload = (acceptedFiles: File[]) => {
-    setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
-    toast({
-      title: "Files Added",
-      description: `Successfully added ${acceptedFiles.length} file(s).`,
-    });
-  };
+  const handleFileUpload = useCallback(
+    (acceptedFiles: File[]) => {
+      setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
+      toast({
+        title: "Files Added",
+        description: `Successfully added ${acceptedFiles.length} file(s).`,
+      });
+    },
+    [toast]
+  );
 
   useEffect(() => {
     const handleDragOver = (event: DragEvent) => {
@@ -83,7 +84,7 @@ const JsonMerger = () => {
       document.removeEventListener("drop", handleDrop);
       document.removeEventListener("dragleave", handleDragLeave);
     };
-  }, []);
+  }, [handleFileUpload]);
 
   const removeFile = (index: number) => {
     const fileName = files[index].name;
@@ -99,7 +100,7 @@ const JsonMerger = () => {
     setMergedContent("");
     toast({
       title: "Reset Complete",
-      description: "All files and merged content have been cleared.",
+      description: "All fields have been reset to default values.",
     });
   };
 

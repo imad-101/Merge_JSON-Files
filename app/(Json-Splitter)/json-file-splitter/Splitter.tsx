@@ -1,10 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useDropzone, FileWithPath } from "react-dropzone";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { UploadCloud } from "lucide-react";
+import { UploadCloud, Loader2, Info } from "lucide-react";
 import {
   Card,
   CardHeader,
@@ -16,123 +16,232 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
 type Chunk = Array<unknown> | Record<string, unknown>;
+type SplitMethod = "item" | "size";
 
 export default function Home() {
   const [jsonInput, setJsonInput] = useState<string>("");
   const [chunkSize, setChunkSize] = useState<number>(2);
+  const [maxSizeMB, setMaxSizeMB] = useState<number>(1);
+  const [splitMethod, setSplitMethod] = useState<SplitMethod>("item");
+  const [targetPath, setTargetPath] = useState<string>("");
   const [chunks, setChunks] = useState<Chunk[]>([]);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [fileName, setFileName] = useState("");
   const { toast } = useToast();
 
-  const onDrop = (acceptedFiles: FileWithPath[]) => {
-    const file = acceptedFiles[0];
-    const reader = new FileReader();
+  const onDrop = useCallback(
+    (acceptedFiles: FileWithPath[]) => {
+      const file = acceptedFiles[0];
+      const reader = new FileReader();
+      setFileName(file.name);
 
-    reader.onload = (event: ProgressEvent<FileReader>) => {
-      const fileContent = event.target?.result as string;
-      setJsonInput(fileContent);
-      toast({
-        title: "File loaded successfully",
-        description:
-          "Your JSON file has been loaded and is ready to be processed.",
-      });
-    };
+      reader.onload = (event: ProgressEvent<FileReader>) => {
+        try {
+          const fileContent = event.target?.result as string;
+          const parsedJson = JSON.parse(fileContent);
+          setJsonInput(JSON.stringify(parsedJson, null, 2));
+          toast({
+            title: "File loaded successfully",
+            description: "JSON is valid and ready to process.",
+          });
+        } catch {
+          toast({
+            variant: "destructive",
+            title: "Invalid JSON File",
+            description: "The uploaded file contains invalid JSON.",
+          });
+          setFileName("");
+        }
+      };
 
-    reader.onerror = () => {
-      toast({
-        variant: "destructive",
-        title: "Error loading file",
-        description: "Please ensure it is a valid JSON file.",
-      });
-    };
+      reader.onerror = () => {
+        toast({
+          variant: "destructive",
+          title: "Error loading file",
+          description: "Could not read the file contents.",
+        });
+        setFileName("");
+      };
 
-    reader.readAsText(file);
-  };
+      reader.readAsText(file);
+    },
+    [toast]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { "application/json": [".json"] },
+    multiple: false,
+    maxSize: 5 * 1024 * 1024,
   });
 
   const validateInput = () => {
-    if (!jsonInput.trim()) {
-      throw new Error("Input field is empty. Please provide a JSON input.");
+    if (!jsonInput.trim()) throw new Error("Please provide JSON input.");
+
+    try {
+      JSON.parse(jsonInput);
+    } catch {
+      throw new Error("Invalid JSON format in input.");
     }
 
-    if (!Number.isInteger(chunkSize) || chunkSize <= 0) {
-      throw new Error("Chunk size must be a positive integer.");
+    if (splitMethod === "item") {
+      if (!Number.isInteger(chunkSize) || chunkSize <= 0) {
+        throw new Error("Item count must be ≥1");
+      }
+    } else {
+      if (isNaN(maxSizeMB)) throw new Error("Invalid size value");
+      if (maxSizeMB < 0.1 || maxSizeMB > 10) {
+        throw new Error("Size must be between 0.1MB and 10MB");
+      }
     }
   };
 
-  const splitJson = () => {
+  const getNestedValue = (obj: any, path: string) => {
+    return path.split(".").reduce((acc, part) => {
+      const arrayMatch = part.match(/(\w+)\[(\d+)\]/);
+      if (arrayMatch) {
+        const arrName = arrayMatch[1];
+        const index = parseInt(arrayMatch[2], 10);
+        return acc?.[arrName]?.[index];
+      }
+      return acc?.[part];
+    }, obj);
+  };
+
+  const splitArray = (arr: any[], method: SplitMethod, size: number) => {
+    const result = [];
+    if (method === "item") {
+      for (let i = 0; i < arr.length; i += size) {
+        result.push(arr.slice(i, i + size));
+      }
+    } else {
+      const maxBytes = size * 1024 * 1024;
+      let currentChunk: any[] = [];
+      let currentSize = 0;
+
+      for (const item of arr) {
+        const itemSize = new Blob([JSON.stringify(item)]).size;
+        if (currentSize + itemSize > maxBytes && currentChunk.length > 0) {
+          result.push(currentChunk);
+          currentChunk = [];
+          currentSize = 0;
+        }
+        currentChunk.push(item);
+        currentSize += itemSize;
+      }
+      if (currentChunk.length > 0) result.push(currentChunk);
+    }
+    return result;
+  };
+
+  const splitJson = async () => {
+    setIsProcessing(true);
     try {
       validateInput();
       const parsedData = JSON.parse(jsonInput);
+      let targetArray = parsedData;
 
-      if (!Array.isArray(parsedData) && typeof parsedData !== "object") {
-        throw new Error("Input must be a JSON array or object.");
+      if (targetPath) {
+        targetArray = getNestedValue(parsedData, targetPath);
+        if (!Array.isArray(targetArray)) {
+          throw new Error(`Path '${targetPath}' does not point to an array`);
+        }
+      } else if (!Array.isArray(parsedData)) {
+        throw new Error(
+          "Root element must be an array when no path is specified"
+        );
       }
 
-      const result: Chunk[] = [];
-
-      if (Array.isArray(parsedData)) {
-        for (let i = 0; i < parsedData.length; i += chunkSize) {
-          result.push(parsedData.slice(i, i + chunkSize));
-        }
-      } else {
-        const keys = Object.keys(parsedData);
-        for (let i = 0; i < keys.length; i += chunkSize) {
-          result.push(
-            Object.fromEntries(
-              keys.slice(i, i + chunkSize).map((key) => [key, parsedData[key]])
-            )
-          );
-        }
-      }
+      const result = splitArray(
+        targetArray,
+        splitMethod,
+        splitMethod === "item" ? chunkSize : maxSizeMB
+      );
 
       setChunks(result);
       toast({
-        title: "JSON Split Successfully",
-        description: `Created ${result.length} chunks from your JSON data.`,
+        title: `Created ${result.length} chunks`,
+        description: `Split ${targetPath || "root array"} using ${
+          splitMethod === "item"
+            ? `${chunkSize} items/chunk`
+            : `${maxSizeMB}MB limit`
+        }`,
       });
     } catch (err) {
       toast({
         variant: "destructive",
-        title: "Error splitting JSON",
-        description: err instanceof Error ? err.message : "Invalid JSON input",
+        title: "Processing Error",
+        description: err instanceof Error ? err.message : "Invalid operation",
       });
       setChunks([]);
+    } finally {
+      setIsProcessing(false);
     }
   };
 
-  const loadSampleData = (type: "array" | "object" = "object") => {
-    const sampleData = {
-      array: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      object: {
-        name: "John Doe",
-        age: 30,
-        city: "New York",
-        country: "USA",
-        occupation: "Developer",
-        hobbies: ["reading", "coding", "gaming"],
-      },
-    };
+  const loadArraySample = () => {
+    const sampleData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    setJsonInput(JSON.stringify(sampleData, null, 2));
+    setFileName("sample-array.json");
+    setTargetPath("");
+    setChunkSize(3);
+    setChunks([]);
+    toast({
+      title: "Array Sample Loaded",
+      description: "Loaded sample array data",
+    });
+  };
 
-    setJsonInput(JSON.stringify(sampleData[type], null, 2));
+  const loadObjectSample = () => {
+    const sampleData = {
+      users: [
+        { id: 1, name: "Alice" },
+        { id: 2, name: "Bob" },
+        { id: 3, name: "Charlie" },
+      ],
+    };
+    setJsonInput(JSON.stringify(sampleData, null, 2));
+    setFileName("sample-object.json");
+    setTargetPath("users");
     setChunkSize(2);
     setChunks([]);
     toast({
-      title: "Sample Data Loaded",
-      description: `Loaded sample ${type} data into the editor.`,
+      title: "Object Sample Loaded",
+      description: "Loaded sample object with nested array",
+    });
+  };
+
+  const loadComplexSample = () => {
+    const sampleData = {
+      result: [
+        "repeat(1,2)",
+        {
+          nestedArray: Array.from({ length: 10 }, (_, i) => ({ id: i + 1 })),
+        },
+      ],
+    };
+    setJsonInput(JSON.stringify(sampleData, null, 2));
+    setFileName("sample-complex.json");
+    setTargetPath("result.1.nestedArray");
+    setChunkSize(3);
+    setChunks([]);
+    toast({
+      title: "Complex Sample Loaded",
+      description: "Loaded complex nested sample data",
     });
   };
 
   const resetState = () => {
     setJsonInput("");
+    setFileName("");
     setChunkSize(2);
+    setMaxSizeMB(1);
+    setSplitMethod("item");
+    setTargetPath("");
     setChunks([]);
     toast({
       title: "Reset Complete",
-      description: "All fields have been reset to their default values.",
+      description: "All fields have been reset to default values.",
     });
   };
 
@@ -141,13 +250,13 @@ export default function Home() {
       await navigator.clipboard.writeText(text);
       toast({
         title: "Copied to Clipboard",
-        description: "The JSON chunk has been copied to your clipboard.",
+        description: "JSON chunk copied successfully.",
       });
     } catch {
       toast({
         variant: "destructive",
         title: "Copy Failed",
-        description: "Failed to copy JSON chunk to clipboard.",
+        description: "Failed to copy to clipboard.",
       });
     }
   };
@@ -165,13 +274,13 @@ export default function Home() {
       URL.revokeObjectURL(url);
       toast({
         title: "Download Started",
-        description: `Chunk ${index + 1} is being downloaded as JSON file.`,
+        description: `Chunk ${index + 1} downloaded successfully.`,
       });
     } catch {
       toast({
         variant: "destructive",
         title: "Download Failed",
-        description: "Failed to download the JSON chunk.",
+        description: "Failed to download chunk.",
       });
     }
   };
@@ -181,10 +290,10 @@ export default function Home() {
       <Card className="bg-gray-900">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-gray-200">
-            JSON Splitter Tool
+            Universal JSON Splitter
           </CardTitle>
           <CardDescription className="text-gray-300">
-            Split Any JSON File Into Smaller Chunks
+            Split any JSON structure including deep nested arrays
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -213,7 +322,7 @@ export default function Home() {
 
             <div>
               <Label htmlFor="jsonInput" className="text-gray-200">
-                JSON Input (Array or Object):
+                JSON Input {fileName && `(${fileName})`}
               </Label>
               <Textarea
                 id="jsonInput"
@@ -221,56 +330,134 @@ export default function Home() {
                 onChange={(e) => setJsonInput(e.target.value)}
                 rows={10}
                 placeholder="Enter JSON array or object here..."
-                className="mt-2 border-gray-400 placeholder:text-gray-400 text-gray-200"
+                className="mt-2 border-gray-400 placeholder:text-gray-400 text-gray-200 font-mono text-sm"
               />
             </div>
 
-            <div>
-              <Label htmlFor="chunkSize" className="text-gray-200">
-                Chunk Size:
-              </Label>
-              <Input
-                id="chunkSize"
-                type="number"
-                value={chunkSize}
-                onChange={(e) => {
-                  const value = parseInt(e.target.value, 10);
-                  setChunkSize(Math.max(1, isNaN(value) ? 1 : value));
-                }}
-                min="1"
-                className="mt-2 text-gray-200 border-gray-400"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-4">
+              <div>
+                <Label htmlFor="splitMethod" className="text-gray-200 mb-1">
+                  Split Method:
+                </Label>
+                <select
+                  id="splitMethod"
+                  value={splitMethod}
+                  onChange={(e) =>
+                    setSplitMethod(e.target.value as SplitMethod)
+                  }
+                  className=" border-gray-400 text-gray-200 bg-gray-800 rounded p-2 w-full "
+                >
+                  <option value="item">By Item Count</option>
+                  <option value="size">By File Size (MB)</option>
+                </select>
+              </div>
+
+              <div>
+                <Label
+                  htmlFor="targetPath"
+                  className="text-gray-200 flex items-center gap-1"
+                >
+                  Target Path (Optional , only for very complex JSON files)
+                  <span
+                    className="cursor-help "
+                    title="Use dot notation for nested arrays. Example: 'users[0].contacts'. Array indexes supported with [n] syntax."
+                  >
+                    <Info size={16} />
+                  </span>
+                </Label>
+                <Input
+                  id="targetPath"
+                  value={targetPath}
+                  onChange={(e) => setTargetPath(e.target.value)}
+                  placeholder="path.to.array"
+                  className="  text-gray-200 bg-gray-800 rounded mt-2 border-none"
+                />
+              </div>
             </div>
 
-            <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-              <Button
-                onClick={splitJson}
-                className="w-full bg-gray-200 hover:bg-gray-100 text-gray-700"
-              >
-                Split JSON
-              </Button>
-              <Button
-                onClick={() => loadSampleData("object")}
-                variant="outline"
-                className="w-full bg-gray-300 hover:bg-gray-100 text-gray-700"
-              >
-                Load Object Sample
-              </Button>
-              <Button
-                onClick={() => loadSampleData("array")}
-                variant="outline"
-                className="w-full bg-gray-300 hover:bg-gray-100 text-gray-700"
-              >
-                Load Array Sample
-              </Button>
-              <Button
-                onClick={resetState}
-                variant="outline"
-                className="w-full bg-gray-300 hover:bg-red-50 text-red-700"
-              >
-                Reset
-              </Button>
-            </div>
+            {splitMethod === "item" ? (
+              <div>
+                <Label htmlFor="chunkSize" className="text-gray-200">
+                  Items per Chunk:
+                </Label>
+                <Input
+                  id="chunkSize"
+                  type="number"
+                  value={chunkSize}
+                  onChange={(e) => {
+                    const value = parseInt(e.target.value, 10);
+                    setChunkSize(Math.max(1, isNaN(value) ? 1 : value));
+                  }}
+                  min="1"
+                  className="mt-2 text-gray-200 border-none bg-gray-800"
+                />
+              </div>
+            ) : (
+              <div>
+                <Label htmlFor="maxSizeMB" className="text-gray-200">
+                  Max Chunk Size (MB):
+                </Label>
+                <Input
+                  id="maxSizeMB"
+                  type="number"
+                  value={maxSizeMB}
+                  onChange={(e) => {
+                    const value = parseFloat(e.target.value);
+                    setMaxSizeMB(Math.max(0.1, isNaN(value) ? 1 : value));
+                  }}
+                  min="0.1"
+                  step="0.1"
+                  className="mt-2 text-gray-200 border-gray-400"
+                />
+              </div>
+            )}
+
+            {!jsonInput ? (
+              <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+                <Button
+                  onClick={loadArraySample}
+                  variant="outline"
+                  className="w-full bg-gray-300 hover:bg-gray-100 text-gray-700"
+                >
+                  Load Array Sample
+                </Button>
+                <Button
+                  onClick={loadObjectSample}
+                  variant="outline"
+                  className="w-full bg-gray-300 hover:bg-gray-100 text-gray-700"
+                >
+                  Load Object Sample
+                </Button>
+                <Button
+                  onClick={loadComplexSample}
+                  variant="outline"
+                  className="w-full bg-gray-300 hover:bg-gray-100 text-gray-700"
+                >
+                  Load Complex Sample
+                </Button>
+              </div>
+            ) : (
+              <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+                <Button
+                  onClick={splitJson}
+                  disabled={isProcessing}
+                  className="w-full bg-gray-200 hover:bg-gray-100 text-gray-700"
+                >
+                  {isProcessing ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  ) : (
+                    "Split JSON"
+                  )}
+                </Button>
+                <Button
+                  onClick={resetState}
+                  variant="outline"
+                  className="w-full bg-gray-300 hover:bg-red-50 text-red-700"
+                >
+                  Reset
+                </Button>
+              </div>
+            )}
 
             {chunks.length > 0 && (
               <div className="space-y-4">

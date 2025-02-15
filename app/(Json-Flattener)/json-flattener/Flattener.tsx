@@ -281,7 +281,7 @@ export default function JSONFlattener() {
               value={delimiter}
               onChange={handleDelimiterChange}
               placeholder="Delimiter"
-              className="w-52 border-gray-400 text-gray-200 placeholder:text-gray-400"
+              className="w-52 border-none bg-gray-800 text-gray-200 placeholder:text-gray-400"
             />
           </div>
 
