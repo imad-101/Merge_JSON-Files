@@ -11,7 +11,7 @@ const JSONSplitterBlog = () => {
       </h1>
       <Separator className="mb-8" />
       <Card className="bg-[#fdf7dd]">
-        <CardContent className="p-20 text-gray-700">
+        <CardContent className="p-3 sm:p-20 text-gray-700">
           <p>
             Working with large JSON files can be a real challenge. They can be
             slow to load, difficult to process, and consume significant memory.

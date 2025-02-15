@@ -13,7 +13,7 @@ const JSONFlattenerBlog = () => {
       </h1>
       <Separator className="mb-4" />
       <Card className="bg-[#fdf7dd]">
-        <CardContent className="p-20 text-gray-700">
+        <CardContent className="p-3 sm:p-20 text-gray-700">
           <p>
             Working with nested JSON structures can be a common challenge for
             developers. A <strong>JSON Flattener</strong> is a valuable tool

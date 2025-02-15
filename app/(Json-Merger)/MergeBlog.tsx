@@ -13,7 +13,7 @@ const MergeBlog = () => {
       </h1>
       <Separator className="mb-8" />
       <Card className="bg-[#fdf7dd]">
-        <CardContent className="p-20 text-gray-700">
+        <CardContent className="p-3 sm:p-20 text-gray-700">
           <p>
             If you work with JSON data, you may often need to{" "}
             <strong>merge JSON files</strong> into a single file. This is useful
