@@ -82,7 +82,7 @@ const MergeBlog = () => {
           <h3 className="text-xl font-medium my-5">
             Merge JSON Files In Python
           </h3>
-          <pre className="bg-gray-900 text-white p-7 rounded-md overflow-x-autov ">
+          <pre className="bg-gray-900 text-white p-7 rounded-md overflow-x-auto ">
             {`import json
 
 files = ['file1.json', 'file2.json']
