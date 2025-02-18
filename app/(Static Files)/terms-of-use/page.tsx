@@ -14,10 +14,15 @@ const TermsOfUse = () => {
           Welcome to <span className="font-semibold">merge-json-files.com</span>
           , providing specialized tools to{" "}
           <strong>merge JSON files online</strong>,
-          <strong> split large JSON datasets</strong>, and
-          <strong> flatten complex JSON structures</strong>. These terms govern
-          use of all our JSON utilities, with primary focus on our core
-          <Link href="/" className="text-blue-500 hover:underline">
+          <strong> split large JSON datasets</strong>,
+          <strong> flatten complex JSON structures</strong>,
+          <strong> convert JSON to JSONL</strong>, and
+          <strong> convert JSONL to JSON</strong>. These terms govern use of all
+          our JSON utilities, with primary focus on our core
+          <Link
+            href="https://merge-json-files.com"
+            className="text-blue-500 hover:underline"
+          >
             {" "}
             JSON merger tool
           </Link>
@@ -31,12 +36,14 @@ const TermsOfUse = () => {
         <ul className="list-disc pl-6 text-gray-700">
           <li>
             Free access to <strong>merge JSON files</strong>,
-            <strong> split JSON files online</strong>, and
-            <strong> flatten JSON structures</strong>
+            <strong> split JSON files online</strong>,
+            <strong> flatten JSON structures</strong>,
+            <strong> convert JSON to JSONL</strong>, and
+            <strong> convert JSONL to JSON</strong>
           </li>
           <li>
             Browser-based processing for all JSON operations (merging,
-            splitting, flattening)
+            splitting, flattening, converting)
           </li>
           <li>Supports complex JSON file combinations and transformations</li>
           <li>
@@ -51,8 +58,10 @@ const TermsOfUse = () => {
         </h2>
         <p className="text-gray-700">
           All tools including our <strong>JSON file merger</strong>,
-          <strong> splitter</strong>, and <strong>flattener</strong> operate
-          with client-side processing. Our zero-storage policy ensures:
+          <strong> splitter</strong>, <strong>flattener</strong>,
+          <strong> JSON to JSONL converter</strong>, and
+          <strong> JSONL to JSON converter</strong> operate with client-side
+          processing. Our zero-storage policy ensures:
         </p>
         <ul className="list-disc pl-6 mt-2 text-gray-700">
           <li>No server-side data retention for any JSON operations</li>
@@ -71,7 +80,10 @@ const TermsOfUse = () => {
         </p>
         <ul className="list-disc pl-6 mt-2 text-gray-700">
           <li>Download processed JSON files immediately</li>
-          <li>Verify merged/split/flattened JSON structure post-processing</li>
+          <li>
+            Verify merged/split/flattened/converted JSON structure
+            post-processing
+          </li>
           <li>Keep original JSON file backups</li>
         </ul>
       </section>
@@ -79,8 +91,10 @@ const TermsOfUse = () => {
         <h2 className="text-2xl font-semibold mb-2">User Responsibilities</h2>
         <p className="text-gray-700">
           When using our tools to <strong>combine JSON files</strong>,
-          <strong> split JSON datasets</strong>, or
-          <strong> flatten nested JSON</strong>, you agree to:
+          <strong> split JSON datasets</strong>,
+          <strong> flatten nested JSON</strong>,
+          <strong> convert JSON to JSONL</strong>, or
+          <strong> convert JSONL to JSON</strong>, you agree to:
         </p>
         <ul className="list-disc pl-6 mt-2 text-gray-700">
           <li>Comply with all applicable data regulations</li>
@@ -98,9 +112,9 @@ const TermsOfUse = () => {
           tools, contact us at&nbsp;
           <a
             className="text-blue-500 hover:underline"
-            href="mailto:techemad.web@gmail.com"
+            href="mailto:jsontools.web@gmail.com"
           >
-            techemad.web@gmail.com
+            jsontools.web@gmail.com
           </a>
           .
         </p>

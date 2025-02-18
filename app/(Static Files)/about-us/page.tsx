@@ -25,13 +25,29 @@ const AboutUs = () => {
             {" "}
             JSON splitter online
           </Link>{" "}
-          and
+          ,
           <Link
             href="https://merge-json-files.com/json-flattener"
             className="text-blue-500 hover-underline"
           >
             {" "}
             JSON flattener online
+          </Link>
+          ,
+          <Link
+            href="https://merge-json-files.com/json-to-jsonl"
+            className="text-blue-500 hover-underline"
+          >
+            {" "}
+            JSON to JSONL converter
+          </Link>
+          , and
+          <Link
+            href="https://merge-json-files.com/jsonl-to-json"
+            className="text-blue-500 hover-underline"
+          >
+            {" "}
+            JSONL to JSON converter
           </Link>
           .
         </p>
@@ -52,6 +68,13 @@ const AboutUs = () => {
           </li>
           <li>
             <strong>Flatten JSON files</strong> to simplify complex hierarchies
+          </li>
+          <li>
+            <strong>Convert JSON to JSONL</strong> for structured data streaming
+          </li>
+          <li>
+            <strong>Convert JSONL to JSON</strong> for easier hierarchical data
+            handling
           </li>
           <li>Zero data storage - all processing in your browser</li>
           <li>No registration required for any JSON operations</li>
@@ -83,6 +106,18 @@ const AboutUs = () => {
             Simplify nested JSON structures into flat key-value pairs for easier
             data processing and analysis.
           </p>
+
+          <h3 className="text-lg font-semibold mt-3">Convert JSON to JSONL</h3>
+          <p>
+            Transform standard JSON data into JSONL format for efficient
+            processing in machine learning pipelines.
+          </p>
+
+          <h3 className="text-lg font-semibold mt-3">Convert JSONL to JSON</h3>
+          <p>
+            Convert JSONL files back into standard JSON for better readability
+            and compatibility with traditional JSON parsers.
+          </p>
         </div>
       </section>
 
@@ -90,11 +125,15 @@ const AboutUs = () => {
         <h2 className="text-2xl font-semibold mb-2">Secure JSON Processing</h2>
         <p className="text-gray-700">
           Whether you&apos;re <strong>merging JSON files online</strong>,
-          <strong> splitting JSON datasets</strong>, or
-          <strong> flattening JSON structures</strong>, all operations occur
-          directly in your browser. Our strict no-server-processing policy
-          ensures complete data privacy as outlined in our
-          <a href="/privacy-policy" className="text-blue-500 hover:underline">
+          <strong> splitting JSON datasets</strong>,
+          <strong> flattening JSON structures</strong>, or converting between
+          JSON and JSONL formats, all operations occur directly in your browser.
+          Our strict no-server-processing policy ensures complete data privacy
+          as outlined in our
+          <a
+            href="https://merge-json-files.com/privacy-policy"
+            className="text-blue-500 hover:underline"
+          >
             &nbsp;Privacy Policy
           </a>
           .
@@ -108,9 +147,11 @@ const AboutUs = () => {
         <p className="text-gray-700">
           Our tools are designed to work together -
           <strong>merge JSON files</strong> from multiple sources,
-          <strong>split large JSON outputs</strong> for system compatibility, or{" "}
-          <strong>flatten nested JSON</strong> for simplified parsing. Bookmark
-          our growing collection of JSON utilities for your development needs.
+          <strong>split large JSON outputs</strong> for system compatibility,
+          <strong>flatten nested JSON</strong> for simplified parsing, or
+          <strong>convert between JSON and JSONL</strong> for modern data
+          applications. Bookmark our growing collection of JSON utilities for
+          your development needs.
         </p>
       </section>
 
@@ -119,10 +160,10 @@ const AboutUs = () => {
         <p className="text-gray-700">
           Questions about JSON merging or our other tools? Reach us at
           <Link
-            href="mailto:techemad.web@gmail.com"
+            href="mailto:jsontools.web@gmail.com"
             className="text-blue-500 hover:underline"
           >
-            &nbsp;techemad.web@gmail.com
+            &nbsp;jsontools.web@gmail.com
           </Link>
           . We welcome feedback on all our JSON utilities.
         </p>

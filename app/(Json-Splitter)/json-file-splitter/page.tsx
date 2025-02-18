@@ -5,14 +5,7 @@ import ToolsGrid from "@/components/ToolsGrid";
 import { Card, CardContent } from "@/components/ui/card";
 import FaqSection from "@/components/Faq";
 import JSONSplitterBlog from "./SplitterBlog";
-import {
-  CheckCircle,
-  FilePlus,
-  Settings,
-  Download,
-  FileJson,
-  FileJson2,
-} from "lucide-react";
+import { CheckCircle, FilePlus, Settings, Download } from "lucide-react";
 
 const faqs = [
   {
@@ -52,26 +45,6 @@ const faqs = [
   },
 ];
 
-const allTools = [
-  {
-    name: "JSON File Merger",
-    description: "Merge Multiple JSON file with ease",
-    icon: FileJson,
-    href: "/",
-  },
-  {
-    name: "JSON File Splitter",
-    description: "Split any JSON file into multiple files",
-    icon: FileJson2,
-    href: "/json-file-splitter",
-  },
-  {
-    name: "JSON Flattener",
-    description: "Flatten any JSON file with ease",
-    icon: FileJson,
-    href: "/json-flattener",
-  },
-];
 const howItWorks = [
   {
     title: "Upload / Paste JSON File",
@@ -139,16 +112,7 @@ const page = () => {
 
       <JSONSplitterBlog />
 
-      <div className="my-16">
-        <p className="text-center text-3xl text-gray-700 font-bold mb-12">
-          Browse More JSON Related Tools
-        </p>
-        <div className="max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-6 sm:px-3 justify-center mx-auto gap-7">
-          {allTools.map((tool, index) => (
-            <ToolsGrid key={index} {...tool} />
-          ))}
-        </div>
-      </div>
+      <ToolsGrid />
     </div>
   );
 };

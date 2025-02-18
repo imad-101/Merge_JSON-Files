@@ -144,29 +144,51 @@ fs.writeFileSync('merged.json', JSON.stringify(mergedData, null, 2));`}
           <h2 className="text-2xl font-semibold mt-6 mb-2">
             More JSON Related Tools
           </h2>
-          <p>
+          <p className="mb-3">
             While our <strong>JSON Merger</strong> is one of the easiest ways to{" "}
             <strong>merge JSON files online</strong>, you can also explore other
-            tools like
-            <Link
-              href="https://merge-json-files.com/json-flattener"
-              target="_blank"
-              className="text-blue-600"
-            >
-              JSON Flattener
-            </Link>{" "}
-            or{" "}
-            <Link
-              href="https://merge-json-files.com/json-file-splitter"
-              target="_blank"
-              className="text-blue-600"
-            >
-              JSON Splitter
-            </Link>{" "}
-            for additional features. These tools offer varying functionalities
-            such as flattening JSON data or splitting large JSON files into
-            smaller ones. They complement the JSON Merger
+            tools like :
           </p>
+
+          <ul className="list-disc pl-6">
+            <li>
+              <Link
+                href="https://merge-json-files.com/json-flattener"
+                className="text-blue-600"
+              >
+                JSON Flattener
+              </Link>{" "}
+              - Flatten nested JSON structures
+            </li>
+            <li>
+              <Link
+                href="https://merge-json-files.com/json-file-splitter"
+                className="text-blue-600"
+              >
+                JSON Splitter
+              </Link>{" "}
+              - Split large JSON files into smaller ones
+            </li>
+            <li>
+              <Link
+                href="https://merge-json-files.com/json-to-jsonl"
+                className="text-blue-600"
+              >
+                JSON to JSONL
+              </Link>{" "}
+              - Convert any JSON file into JSONL file format
+            </li>
+            <li>
+              <Link
+                href="https://merge-json-files.com/json-file-splitter"
+                className="text-blue-600"
+              >
+                JSONL to JSON
+              </Link>{" "}
+              - Convert any JSONL file into JSON file
+            </li>
+          </ul>
+
           <h2 className="text-2xl font-semibold mt-6 mb-2">Conclusion</h2>
           <p>
             Merging JSON files is essential for efficient data handling. Our{" "}

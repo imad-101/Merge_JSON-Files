@@ -25,5 +25,13 @@ export default async function sitemap() {
       url: "https://www.merge-json-files.com/json-flattener",
       lastModified: new Date(),
     },
+    {
+      url: "https://www.merge-json-files.com/json-to-jsonl",
+      lastModified: new Date(),
+    },
+    {
+      url: "https://www.merge-json-files.com/jsonl-to-json",
+      lastModified: new Date(),
+    },
   ];
 }

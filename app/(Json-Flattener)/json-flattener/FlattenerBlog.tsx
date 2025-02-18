@@ -142,21 +142,52 @@ public class JSONFlattener {
               completely free to use and accessible online from any device.
             </li>
           </ul>
-          <h2 className="text-2xl font-semibold mt-6 mb-2">Related Tools</h2>
+          <h2 className="text-2xl font-semibold mt-6 mb-2">
+            Additional JSON Tools
+          </h2>
           <p>
-            If you also need to{" "}
-            <Link href="http://merge-json-files.com/" className="text-blue-600">
-              merge JSON files
-            </Link>{" "}
-            or{" "}
-            <Link
-              href="https://www.merge-json-files.com/json-file-splitter"
-              className="text-blue-600"
-            >
-              split JSON files
-            </Link>
-            , we offer other tools to streamline your JSON workflow.
+            While our <strong>JSON Flattener</strong> helps you flatten your
+            JSON files, you might also find these tools useful:
           </p>
+          <ul className="list-disc pl-6">
+            <li>
+              <Link
+                href="https://merge-json-files.com/json-to-jsonl"
+                className="text-blue-600"
+              >
+                JSON to JSONL
+              </Link>{" "}
+              - Convert JSON to JSONL
+            </li>
+            <li>
+              <Link
+                href="https://merge-json-files.com/json-file-splitter"
+                className="text-blue-600"
+              >
+                JSON Splitter
+              </Link>{" "}
+              - Split large JSON files into smaller ones
+            </li>
+            <li>
+              <Link
+                href="https://merge-json-files.com/"
+                className="text-blue-600"
+              >
+                JSON Merger
+              </Link>{" "}
+              - Merge multiple JSON files togather
+            </li>
+            <li>
+              <Link
+                href="https://merge-json-files.com/json-file-splitter"
+                className="text-blue-600"
+              >
+                JSONL to JSON
+              </Link>{" "}
+              - Convert any JSONL file into JSON file
+            </li>
+          </ul>
+
           <h2 className="text-2xl font-semibold mt-6 mb-2">
             External Resources
           </h2>

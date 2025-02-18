@@ -2,7 +2,7 @@ import JsonMerger from "./Main";
 import HowItWorks from "@/components/HowItWorks";
 import FaqSection from "@/components/Faq";
 import ToolsGrid from "@/components/ToolsGrid";
-import { FileJson, FileJson2 } from "lucide-react";
+
 import { Upload, FilePlus, Settings, Download } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import MergeBlog from "./MergeBlog";
@@ -28,26 +28,6 @@ const howItWorks = [
     title: "Download Merged JSON",
     description: "Save the merged JSON file to your device for further use.",
     icon: Download,
-  },
-];
-const allTools = [
-  {
-    name: "JSON File Merger",
-    description: "Merge Multiple JSON file with ease",
-    icon: FileJson,
-    href: "https://www.merge-json-files.com",
-  },
-  {
-    name: "JSON File Splitter",
-    description: "Split any JSON file into multiple files",
-    icon: FileJson2,
-    href: "https://www.merge-json-files.com/json-file-splitter",
-  },
-  {
-    name: "JSON Flattener",
-    description: "Flatten any JSON file with ease",
-    icon: FileJson,
-    href: "https://www.merge-json-files.com/json-flattener",
   },
 ];
 
@@ -134,16 +114,7 @@ const page = () => {
       <MergeBlog />
 
       {/* --------------------------------------------------------------------------- */}
-      <div className="my-16">
-        <p className="text-center text-3xl text-gray-700 font-bold mb-12">
-          Browse More JSON Related Tools
-        </p>
-        <div className="max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-6 sm:px-3 justify-center mx-auto gap-7">
-          {allTools.map((tool, index) => (
-            <ToolsGrid key={index} {...tool} />
-          ))}
-        </div>
-      </div>
+      <ToolsGrid />
     </div>
   );
 };

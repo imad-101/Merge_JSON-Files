@@ -59,7 +59,10 @@ const JSONSplitterBlog = () => {
           <p>
             The quickest and easiest way to <strong>split JSON online</strong>{" "}
             is by using our free{" "}
-            <Link href="https://www.merge-json-files.com/json-file-splitter">
+            <Link
+              href="https://www.merge-json-files.com/json-file-splitter"
+              className="text-blue-600"
+            >
               JSON Splitter Tool
             </Link>
             . Simply upload your file, specify your desired chunk sizes (e.g.,
@@ -190,21 +193,52 @@ def split_json(file_path, chunk_size):
               JSON array.
             </li>
           </ul>
-          <h2 className="text-2xl font-semibold mt-6 mb-2">Related Tools</h2>
+          <h2 className="text-2xl font-semibold mt-6 mb-2">
+            Additional JSON Tools
+          </h2>
           <p>
-            We offer other helpful JSON tools as well. If you also need to{" "}
-            <Link href="http://merge-json-files.com/" className="text-blue-600">
-              merge JSON files
-            </Link>{" "}
-            or{" "}
-            <Link
-              href="https://www.merge-json-files.com/json-flattener"
-              className="text-blue-600"
-            >
-              flatten JSON files
-            </Link>
-            , check out our other tools to simplify your workflow.
+            While our <strong>JSON Splitter</strong> helps you split your JSON
+            files, you might also find these tools useful:
           </p>
+          <ul className="list-disc pl-6">
+            <li>
+              <Link
+                href="https://merge-json-files.com/json-flattener"
+                className="text-blue-600"
+              >
+                JSON Flattener
+              </Link>{" "}
+              - Flatten nested JSON structures
+            </li>
+            <li>
+              <Link
+                href="https://merge-json-files.com/json-to-jsonl"
+                className="text-blue-600"
+              >
+                JSON to JSONL
+              </Link>{" "}
+              - Convert any JSON into JSONL
+            </li>
+            <li>
+              <Link
+                href="https://merge-json-files.com/"
+                className="text-blue-600"
+              >
+                JSON Merger
+              </Link>{" "}
+              - Merge multiple JSON files togather
+            </li>
+            <li>
+              <Link
+                href="https://merge-json-files.com/json-file-splitter"
+                className="text-blue-600"
+              >
+                JSONL to JSON
+              </Link>{" "}
+              - Convert any JSONL file into JSON file
+            </li>
+          </ul>
+
           <h2 className="text-2xl font-semibold mt-6 mb-2">Conclusion</h2>
           <p>
             Splitting JSON files is a crucial technique for handling large
