@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const PrivacyPolicy = () => {
   return (
     <div className="container p-8 border my-7 w-[22rem] sm:w-2/3 mx-auto rounded-xl">

@@ -6,13 +6,26 @@ import { Upload, Copy, Download, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
-const SAMPLE_DATA = `{"id": 1, "name": "John Doe", "email": "john@example.com"}
-{"id": 2, "name": "Jane Smith", "email": "jane@example.com"}
-{"id": 3, "name": "Bob Wilson", "email": "bob@example.com"}`;
+const SAMPLE_JSON = JSON.stringify(
+  [
+    { id: 1, name: "John Doe", email: "john@example.com" },
+    { id: 2, name: "Jane Smith", email: "jane@example.com" },
+    { id: 3, name: "Bob Wilson", email: "bob@example.com" },
+  ],
+  null,
+  2
+);
+
+const SAMPLE_JSONL = [
+  JSON.stringify({ id: 1, name: "John Doe", email: "john@example.com" }),
+  JSON.stringify({ id: 2, name: "Jane Smith", email: "jane@example.com" }),
+  JSON.stringify({ id: 3, name: "Bob Wilson", email: "bob@example.com" }),
+].join("\n");
 
 export default function Converter() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [isJsonToJsonl, setIsJsonToJsonl] = useState(true);
   const { toast } = useToast();
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -29,34 +42,46 @@ export default function Converter() {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: { "application/jsonl": [".jsonl", ".ndjson"] },
+    accept: isJsonToJsonl
+      ? { "application/json": [".json"] }
+      : { "text/plain": [".jsonl"] },
   });
 
   const convert = () => {
     try {
-      const jsonArray = input
-        .split("\n")
-        .filter((line) => line.trim() !== "")
-        .map((line) => JSON.parse(line));
-
-      const jsonOutput = JSON.stringify(jsonArray, null, 2);
-      setOutput(jsonOutput);
-      toast({
-        title: "Conversion successful",
-        description: "Converted to JSON format",
-      });
-    } catch (error) {
-      console.error("Conversion error:", error);
+      if (isJsonToJsonl) {
+        const jsonObj = JSON.parse(input);
+        const jsonl = Array.isArray(jsonObj)
+          ? jsonObj.map((item) => JSON.stringify(item)).join("\n")
+          : JSON.stringify(jsonObj);
+        setOutput(jsonl);
+        toast({
+          title: "Conversion successful",
+          description: "Converted to JSONL format",
+        });
+      } else {
+        const lines = input.split("\n").filter((line) => line.trim() !== "");
+        const jsonArray = lines.map((line) => JSON.parse(line));
+        const json = JSON.stringify(jsonArray, null, 2);
+        setOutput(json);
+        toast({
+          title: "Conversion successful",
+          description: "Converted to JSON format",
+        });
+      }
+    } catch {
       toast({
         title: "Conversion failed",
-        description: "Invalid JSONL format",
+        description: isJsonToJsonl
+          ? "Invalid JSON format"
+          : "Invalid JSONL format",
         variant: "destructive",
       });
     }
   };
 
   const loadSample = () => {
-    setInput(SAMPLE_DATA);
+    setInput(isJsonToJsonl ? SAMPLE_JSON : SAMPLE_JSONL);
     setOutput("");
   };
 
@@ -69,14 +94,18 @@ export default function Converter() {
   };
 
   const downloadFile = () => {
-    const blob = new Blob([output], { type: "application/json" });
+    const extension = isJsonToJsonl ? "jsonl" : "json";
+    const filename = `output.${extension}`;
+    const blob = new Blob([output], {
+      type: isJsonToJsonl ? "text/plain" : "application/json",
+    });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = "output.json";
+    link.download = filename;
     link.click();
     toast({
       title: "Download Started",
-      description: "The file is being downloaded as output.json",
+      description: `The file is being downloaded as ${filename}`,
     });
   };
 
@@ -89,11 +118,38 @@ export default function Converter() {
     <div className="mx-5">
       <div className="max-w-6xl bg-gray-900 text-gray-200 mx-auto py-8 rounded-xl">
         <div className="mx-auto px-7 space-y-6">
+          <div className="flex gap-2">
+            <Button
+              className={`${
+                isJsonToJsonl
+                  ? "bg-gray-700 hover:bg-gray-700"
+                  : "bg-gray-900 hover:bg-gray-900"
+              } `}
+              onClick={() => setIsJsonToJsonl(true)}
+            >
+              JSON to JSONL
+            </Button>
+            <Button
+              className={`${
+                !isJsonToJsonl
+                  ? "bg-gray-700 hover:bg-gray-700"
+                  : "bg-gray-900 hover:bg-gray-900"
+              } `}
+              onClick={() => setIsJsonToJsonl(false)}
+            >
+              JSONL to JSON
+            </Button>
+          </div>
+
           <h1 className="text-2xl font-bold text-gray-200">
-            JSONL to JSON Converter
+            {isJsonToJsonl
+              ? "JSON to JSONL Converter"
+              : "JSONL to JSON Converter"}
           </h1>
           <p className="text-gray-300">
-            Convert JSONL format to JSON array easily.
+            {isJsonToJsonl
+              ? "Convert JSON arrays to JSONL format easily."
+              : "Convert JSONL format to JSON arrays easily."}
           </p>
 
           <div
@@ -105,7 +161,9 @@ export default function Converter() {
             <p className="text-gray-400">
               {isDragActive
                 ? "Drop your file here..."
-                : "Drag & drop a JSONL file here, or click to upload"}
+                : `Drag & drop a ${
+                    isJsonToJsonl ? "JSON" : "JSONL"
+                  } file here, or click to upload`}
             </p>
           </div>
 
@@ -113,7 +171,9 @@ export default function Converter() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="w-full h-64 rounded-lg bg-gray-900 border border-gray-500 p-4 font-mono text-sm resize-none focus:outline-none"
-            placeholder="Enter JSONL here..."
+            placeholder={
+              isJsonToJsonl ? "Enter JSON here..." : "Enter JSONL here..."
+            }
           />
 
           <div className="buttons flex flex-col gap-3 sm:flex-row ">
@@ -121,7 +181,7 @@ export default function Converter() {
               onClick={loadSample}
               className="bg-gray-300 hover:bg-gray-100 text-gray-700 flex-1"
             >
-              Load Sample JSONL
+              Load Sample {isJsonToJsonl ? "JSON" : "JSONL"}
             </Button>
             <Button
               onClick={convert}
