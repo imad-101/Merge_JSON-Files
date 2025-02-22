@@ -193,51 +193,6 @@ def split_json(file_path, chunk_size):
               JSON array.
             </li>
           </ul>
-          <h2 className="text-2xl font-semibold mt-6 mb-2">
-            Additional JSON Tools
-          </h2>
-          <p>
-            While our <strong>JSON Splitter</strong> helps you split your JSON
-            files, you might also find these tools useful:
-          </p>
-          <ul className="list-disc pl-6">
-            <li>
-              <Link
-                href="https://merge-json-files.com/json-flattener"
-                className="text-blue-600"
-              >
-                JSON Flattener
-              </Link>{" "}
-              - Flatten nested JSON structures
-            </li>
-            <li>
-              <Link
-                href="https://merge-json-files.com/json-to-jsonl"
-                className="text-blue-600"
-              >
-                JSON to JSONL
-              </Link>{" "}
-              - Convert any JSON into JSONL
-            </li>
-            <li>
-              <Link
-                href="https://merge-json-files.com/"
-                className="text-blue-600"
-              >
-                JSON Merger
-              </Link>{" "}
-              - Merge multiple JSON files togather
-            </li>
-            <li>
-              <Link
-                href="https://merge-json-files.com/json-file-splitter"
-                className="text-blue-600"
-              >
-                JSONL to JSON
-              </Link>{" "}
-              - Convert any JSONL file into JSON file
-            </li>
-          </ul>
 
           <h2 className="text-2xl font-semibold mt-6 mb-2">Conclusion</h2>
           <p>
