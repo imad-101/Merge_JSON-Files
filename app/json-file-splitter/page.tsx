@@ -1,10 +1,10 @@
 import React from "react";
 import JsonSplitter from "./Splitter";
-import HowItWorks from "../../../components/HowItWorks";
+import HowItWorks from "../../components/HowItWorks";
 import ToolsGrid from "@/components/ToolsGrid";
 import { Card, CardContent } from "@/components/ui/card";
 import FaqSection from "@/components/Faq";
-import JSONSplitterBlog from "./SplitterBlog";
+
 import { CheckCircle, FilePlus, Settings, Download } from "lucide-react";
 
 const faqs = [
@@ -74,7 +74,7 @@ const page = () => {
   return (
     <div>
       <h1 className="text-center text-5xl my-7 font-bold text-gray-800 ">
-        JSON Files Splitter
+        Online JSON Splitter
       </h1>
       <p className="text-gray-600 mb-10 text-center px-3">
         Seamlessly Split any <span className="font-semibold">JSON file</span> in
@@ -85,7 +85,7 @@ const page = () => {
       <JsonSplitter />
 
       <p className="text-gray-600 text-center my-10 px-3">
-        No Ads, No sign up. Get Your File Splitted Within A Few Clicks.
+        No Ads, No sign up. Split Your Files Within A Few Clicks.
       </p>
 
       {/* -------------------------------------------------------------------------------------------------- */}
@@ -98,6 +98,14 @@ const page = () => {
             <HowItWorks key={index} {...work} />
           ))}
         </div>
+        <p className="text-gray-600 text-center my-10 px-3">
+          {" "}
+          Easily split large JSON files online into smaller, manageable chunks
+          with our online JSON splitter tool. Perfect for developers and data
+          analysts, our free tool efficiently breaks down complex JSON data
+          while preserving its structure, making it simple to organize and
+          integrate your data seamlessly.
+        </p>
       </div>
       {/* ---------------------------------------------------------------------------------- */}
       <Card className=" mx-auto max-w-6xl border rounded-xl my-5 sm:my-14 px-9 bg-yellow-50">
@@ -109,8 +117,6 @@ const page = () => {
         </CardContent>
       </Card>
       {/* ---------------------------------------------------------------------------- */}
-
-      <JSONSplitterBlog />
 
       <ToolsGrid />
     </div>

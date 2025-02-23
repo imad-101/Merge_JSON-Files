@@ -21,10 +21,7 @@ export default async function sitemap() {
       url: "https://www.merge-json-files.com/json-file-splitter",
       lastModified: new Date(),
     },
-    {
-      url: "https://www.merge-json-files.com/json-flattener",
-      lastModified: new Date(),
-    },
+
     {
       url: "https://www.merge-json-files.com/json-jsonl-converter",
       lastModified: new Date(),

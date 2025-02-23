@@ -5,9 +5,9 @@ import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "JSON ↔ JSONL Converter - Bidirectional Online Conversion Tool",
+  title: "Free Online JSON/JSONL Converter",
   description:
-    "Free online tool to convert JSON to JSONL and JSONL to JSON format. Transform JSON Lines to regular JSON and back instantly. No installation required, easy to use.",
+    "Free online JSON to JSONL and JSONL to JSON converter. Easily convert between JSON and JSONL formats for data processing and storage. Fast and reliable.",
   keywords:
     "json to jsonl, jsonl to json, convert json to jsonl, convert jsonl to json, json jsonl converter, json to jsonl online, jsonl to json online, bidirectional json converter, json lines converter",
   metadataBase: new URL("https://merge-json-files.com"),
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "JSON ↔ JSONL Converter Online - Bidirectional Conversion Tool",
+    title: "Free Online JSON/JSONL Converter",
     description:
-      "Convert between JSON and JSONL formats instantly. Handle both JSON to JSONL conversions for big data and JSONL to JSON transformations for structured data analysis. Free, secure, and no installation required.",
+      "Free online JSON to JSONL and JSONL to JSON converter. Easily convert between JSON and JSONL formats for data processing and storage. Fast and reliable.",
     url: "https://merge-json-files.com/json-jsonl-converter",
     siteName: "JSON ↔ JSONL Converter",
     type: "website",
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "JSON ↔ JSONL Converter - Free Online Conversion Tool",
+    title: "Free Online JSON/JSONL Converter",
     description:
-      "Convert JSON to JSONL and back with our professional tool. Handle both conversion directions with perfect data preservation. Works directly in your browser - no signup needed!",
-    site: "https://merge-json-files.com/json-to-jsonl",
+      "Free online JSON to JSONL and JSONL to JSON converter. Easily convert between JSON and JSONL formats for data processing and storage. Fast and reliable.",
+    site: "https://merge-json-files.com/json-jsonl-converter",
     creator: "@imaduddin_101",
     images: ["/json-jsonl.png"],
   },
@@ -58,10 +58,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <Header first="JSON" second="↔" third="JSONL Converter" />
+      <Header first="JSON" second="/" third="JSONL Converter" />
       <main className="flex-grow">{children}</main>
       <Toaster />
-      <Footer name="JSON ↔ JSONL Converter" />
+      <Footer name="JSON/JSONL Converter" />
     </>
   );
 }

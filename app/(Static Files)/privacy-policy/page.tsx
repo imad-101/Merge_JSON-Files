@@ -12,8 +12,8 @@ const PrivacyPolicy = () => {
         <p className="text-gray-700">
           At merge-json-files.com, we take your privacy seriously. This Privacy
           Policy explains how we handle any information when you use our JSON
-          processing tools, including our JSON merger, flattener, splitter, and
-          format converters. We believe in complete transparency about our data
+          processing tools, including our JSON merger, splitter, and format
+          converters. We believe in complete transparency about our data
           practices.
         </p>
       </section>
@@ -29,7 +29,7 @@ const PrivacyPolicy = () => {
               All JSON file processing occurs entirely within your browser. Your
               files are never uploaded to our servers or stored anywhere outside
               your local device. This includes all operations such as merging,
-              flattening, splitting, and format conversions.
+              splitting, and format conversions.
             </p>
           </div>
 

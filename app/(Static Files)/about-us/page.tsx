@@ -26,14 +26,6 @@ const AboutUs = () => {
           </div>
 
           <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="text-xl font-semibold mb-2">JSON Flattener</h3>
-            <p className="text-gray-700">
-              Transform complex, nested JSON structures into flat, easily
-              manageable formats for simpler data processing and analysis.
-            </p>
-          </div>
-
-          <div className="bg-gray-50 p-4 rounded-lg">
             <h3 className="text-xl font-semibold mb-2">JSON Splitter</h3>
             <p className="text-gray-700">
               Break down large JSON files into smaller, more manageable

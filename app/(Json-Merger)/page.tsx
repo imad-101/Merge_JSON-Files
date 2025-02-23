@@ -5,7 +5,7 @@ import ToolsGrid from "@/components/ToolsGrid";
 
 import { Upload, FilePlus, Settings, Download } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import MergeBlog from "./MergeBlog";
+
 const howItWorks = [
   {
     title: "Select Your JSON Files",
@@ -97,6 +97,12 @@ const page = () => {
             <HowItWorks key={index} {...work} />
           ))}
         </div>
+        <p className="mt-6 text-gray-600 text-center px-3">
+          Merge your JSON files online quickly with our free JSON merger tool.
+          It combines multiple JSON files into a single, well-structured output
+          while preserving every detail—ideal for developers and data analysts
+          seeking a fast, secure solution.
+        </p>
       </div>
       {/* ---------------------------------------------------------------------------------- */}
 
@@ -110,8 +116,6 @@ const page = () => {
       </Card>
 
       {/* ------------------------------------------------------------------------------- */}
-
-      <MergeBlog />
 
       {/* --------------------------------------------------------------------------- */}
       <ToolsGrid />

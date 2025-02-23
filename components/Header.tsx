@@ -27,9 +27,9 @@ const Header = ({ first, second, third }: HeaderProps) => {
           >
             Home
           </Link>
-          <Link href={"#tutorial"} className="text-gray-600">
+          <Link href={"#tools"} className="text-gray-600">
             <Button className="px-5 bg-gray-800 hover:bg-gray-700 ">
-              Tutorial
+              More Tools
             </Button>
           </Link>
         </div>

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import "../../globals.css";
+import "../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "JSON File Splitter Online - Free Online JSON Splitter Tool",
+  title: "Free Online JSON Splitter Tool",
   description:
     "Split large JSON files online quickly and easily. Free tool to divide JSON files into smaller parts with perfect structure preservation. No signup required.",
   keywords:
