@@ -17,7 +17,7 @@ const allTools = [
 
   {
     name: "JSON / JSONL Converter",
-    description: "Convert between JSON and JSONL format instantly",
+    description: "Convert between JSON and JSONL",
 
     href: "https://www.merge-json-files.com/json-to-jsonl",
   },
