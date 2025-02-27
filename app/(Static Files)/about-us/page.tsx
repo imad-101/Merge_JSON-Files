@@ -14,37 +14,6 @@ const AboutUs = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Our Tools</h2>
-        <div className="space-y-4">
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="text-xl font-semibold mb-2">JSON Merger</h3>
-            <p className="text-gray-700">
-              Our flagship tool allows you to effortlessly combine multiple JSON
-              files into a single cohesive document, maintaining data structure
-              and integrity.
-            </p>
-          </div>
-
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="text-xl font-semibold mb-2">JSON Splitter</h3>
-            <p className="text-gray-700">
-              Break down large JSON files into smaller, more manageable
-              components while preserving data relationships and structure.
-            </p>
-          </div>
-
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="text-xl font-semibold mb-2">Format Converters</h3>
-            <p className="text-gray-700">
-              Switch seamlessly between JSON and JSONL formats with our
-              specialized converters, facilitating data interchange between
-              different systems and applications.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">Why Choose Us?</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-gray-50 p-4 rounded-lg">

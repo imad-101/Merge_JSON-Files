@@ -10,33 +10,10 @@ const TermsOfUse = () => {
         <p className="text-gray-700">
           By accessing and using{" "}
           <span className="font-semibold">merge-json-files.com</span>, including
-          its JSON processing tools (JSON merger, JSON splitter, JSON to JSONL
-          converter, and JSONL to JSON converter), you agree to be bound by
-          these Terms of Use. If you do not agree to these terms, please do not
-          use the Website.
+          its JSON processing tools (JSON merger and JSON splitter), you agree
+          to be bound by these Terms of Use. If you do not agree to these terms,
+          please do not use the Website.
         </p>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-2">2. Services Description</h2>
-        <p className="text-gray-700">
-          We provide the following free tools for JSON file processing:
-        </p>
-        <ul className="list-disc pl-6 text-gray-700 mt-2">
-          <li>
-            JSON Merger: Combines multiple JSON files into a single JSON file
-          </li>
-
-          <li>
-            JSON Splitter: Divides large JSON files into smaller components
-          </li>
-          <li>
-            JSON to JSONL Converter: Converts JSON files to JSON Lines format
-          </li>
-          <li>
-            JSONL to JSON Converter: Converts JSON Lines files to JSON format
-          </li>
-        </ul>
       </section>
 
       <section className="mb-8">
