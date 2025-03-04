@@ -7,14 +7,15 @@ interface HeaderProps {
   first: string;
   second: string;
   third: string;
+  href: string;
 }
 
-const Header = ({ first, second, third }: HeaderProps) => {
+const Header = ({ first, second, third, href }: HeaderProps) => {
   return (
     <header>
       <nav className="flex justify-between items-center sm:px-24 px-6 my-5  ">
         <div className="right">
-          <Link href={"/"}>
+          <Link href={href}>
             <p className="text-2xl font-extrabold text-gray-700">
               {first} <span className="text-orange-700">{second}</span> {third}
             </p>

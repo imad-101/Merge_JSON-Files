@@ -58,7 +58,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <Header first="JSON" second="Splitter" third="Online" />
+      <Header
+        first="JSON"
+        second="Splitter"
+        third="Online"
+        href="/json-file-splitter"
+      />
       <main className="flex-grow">{children}</main>
       <Toaster />
       <Footer name="JSON Splitter" />

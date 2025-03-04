@@ -58,7 +58,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <Header first="Merge" second="JSON" third="Files" />
+      <Header first="Merge" second="JSON" third="Files" href="/" />
       <main className="flex-grow">{children}</main>
       <Toaster />
       <Footer name="Merge JSON Files" />
