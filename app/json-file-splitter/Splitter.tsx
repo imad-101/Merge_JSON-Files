@@ -39,7 +39,7 @@ export default function JSONSplitter() {
   const [progress, setProgress] = useState(0);
   const [currentStep, setCurrentStep] = useState<number>(1);
   const { toast } = useToast();
-  const workerRef = useRef<Worker>();
+  const workerRef = useRef<Worker | null>(null);
 
   useEffect(() => {
     workerRef.current = new Worker("./split-worker.js");
