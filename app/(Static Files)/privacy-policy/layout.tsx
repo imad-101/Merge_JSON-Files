@@ -19,7 +19,7 @@ const PrivacyPolicyLayout: React.FC<PrivacyPolicyLayoutProps> = ({
 }) => {
   return (
     <div>
-      <Header first="Merge" second="JSON" third="Files" />
+      <Header first="Merge" second="JSON" third="Files" href="/" />
       <main>{children}</main>
       <Footer name="Merge JSON Files" />
     </div>
