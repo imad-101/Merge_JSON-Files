@@ -510,7 +510,7 @@ const JsonMerger: React.FC = () => {
             </Select>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2 space-x-2">
             <Label className="text-gray-300">
               Allow merging different root types
             </Label>
