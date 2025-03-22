@@ -635,7 +635,7 @@ const JsonMerger: React.FC = () => {
               </div>
               <pre className="text-sm text-gray-300 whitespace-pre-wrap break-words max-h-96 overflow-auto">
                 {mergedContent.length > 1e6
-                  ? "Content too large to display safely"
+                  ? "Content too large to display safely , You can download merged file"
                   : mergedContent}
               </pre>
             </div>
