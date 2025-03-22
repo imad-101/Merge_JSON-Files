@@ -18,11 +18,6 @@ import { Progress } from "@/components/ui/progress";
 
 type Chunk = Array<unknown> | Record<string, unknown>;
 type SplitMethod = "item" | "chunkCount" | "size";
-type WorkerMessage = {
-  chunks?: Chunk[];
-  error?: string;
-  progress?: number;
-};
 
 export default function JSONSplitter() {
   const [jsonInput, setJsonInput] = useState<string>("");
