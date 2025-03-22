@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "public/split-worker.js"
-  ],
+, "next.config.js"  ],
   "exclude": ["node_modules"]
 }

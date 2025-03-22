@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import { Upload, Trash2, Copy, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,12 +20,16 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { Input } from "@/components/ui/input";
 
 type MergeOptions = {
-  arrayStrategy: "concat" | "overwrite" | "merge";
+  arrayStrategy: "concat" | "overwrite" | "merge" | "mergeByKey";
   conflictResolution: "merge" | "overwrite";
   numericHandling: "sum" | "keep";
+  stringHandling: "keep" | "concatenate";
+  mergeKey: string;
   depth: number;
+  allowMixedRoots: boolean;
 };
 
 const JsonMerger: React.FC = () => {
@@ -38,23 +42,13 @@ const JsonMerger: React.FC = () => {
     arrayStrategy: "concat",
     conflictResolution: "merge",
     numericHandling: "keep",
+    stringHandling: "keep",
+    mergeKey: "id",
     depth: -1,
+    allowMixedRoots: false,
   });
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const { toast } = useToast();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [dummy, setDummy] = useState(0);
-
-  useEffect(() => {
-    let interval: number;
-    if (isMerging) {
-      interval = window.setInterval(() => {
-        setDummy((prev) => prev + 1);
-      }, 100);
-    }
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [isMerging]);
 
   const handleFileUpload = useCallback(
     (acceptedFiles: File[]) => {
@@ -88,7 +82,7 @@ const JsonMerger: React.FC = () => {
 
   const readFileInChunks = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
-      const chunkSize = 4 * 1024 * 1024;
+      const chunkSize = 4 * 1024 * 1024; // 4MB chunks
       const fileSize = file.size;
       let offset = 0;
       let result = "";
@@ -109,7 +103,7 @@ const JsonMerger: React.FC = () => {
 
           if (offset >= fileSize) {
             try {
-              JSON.parse(result);
+              JSON.parse(result); // Validate JSON
               resolve(result);
             } catch (err) {
               reject(
@@ -147,79 +141,94 @@ const JsonMerger: React.FC = () => {
           array: {
             concat: (a, b) => a.concat(b),
             overwrite: (a, b) => b,
-            merge: (a, b) => [...new Set([...a, ...b])]
+            merge: (a, b) => [...new Set([...a, ...b])],
+            mergeByKey: (a, b, key) => {
+              const map = new Map();
+              [...a, ...b].forEach(item => {
+                if (typeof item === 'object' && item !== null && key in item) {
+                  map.set(item[key], { ...map.get(item[key]) || {}, ...item });
+                } else {
+                  map.set(Symbol(), item);
+                }
+              });
+              return Array.from(map.values());
+            }
           },
           numeric: {
             sum: (a, b) => Number(a) + Number(b),
+            keep: (a, b) => b
+          },
+          string: {
+            concatenate: (a, b) => String(a) + String(b),
             keep: (a, b) => b
           }
         };
 
         function handleRootValue(target, source, options) {
-          try {
-            if (Array.isArray(source)) {
-              if (!Array.isArray(target)) target = [];
-              return mergeStrategies.array[options.arrayStrategy](target, source);
-            }
-            if (typeof source === 'object' && source !== null) {
-              return deepMerge(target, source, options);
-            }
-            return source;
-          } catch (err) {
-            throw new Error('Root value handling failed: ' + err.message);
+          if (Array.isArray(source)) {
+            if (!Array.isArray(target)) target = [];
+            return options.arrayStrategy === 'mergeByKey' 
+              ? mergeStrategies.array.mergeByKey(target, source, options.mergeKey)
+              : mergeStrategies.array[options.arrayStrategy](target, source);
           }
+          if (typeof source === 'object' && source !== null) {
+            return deepMerge(target, source, options);
+          }
+          return source;
         }
 
         function deepMerge(target, source, options, currentDepth = 0) {
           if (options.depth !== -1 && currentDepth > options.depth) return target;
+          if (Array.isArray(source)) {
+            if (!Array.isArray(target)) target = [];
+            return options.arrayStrategy === 'mergeByKey' 
+              ? mergeStrategies.array.mergeByKey(target, source, options.mergeKey)
+              : mergeStrategies.array[options.arrayStrategy](target, source);
+          }
 
-          try {
-            if (Array.isArray(source)) {
-              if (!Array.isArray(target)) target = [];
-              return mergeStrategies.array[options.arrayStrategy](target, source);
-            }
+          for (const key in source) {
+            const sourceVal = source[key];
+            const targetVal = target[key];
 
-            for (const key in source) {
-              const sourceVal = source[key];
-              const targetVal = target[key];
-
-              if (typeof sourceVal === 'object' && sourceVal !== null) {
-                if (Array.isArray(sourceVal)) {
-                  target[key] = mergeStrategies.array[options.arrayStrategy](
-                    targetVal || [],
+            if (typeof sourceVal === 'object' && sourceVal !== null) {
+              if (Array.isArray(sourceVal)) {
+                target[key] = options.arrayStrategy === 'mergeByKey'
+                  ? mergeStrategies.array.mergeByKey(targetVal || [], sourceVal, options.mergeKey)
+                  : mergeStrategies.array[options.arrayStrategy](targetVal || [], sourceVal);
+              } else {
+                target[key] = deepMerge(
+                  targetVal || {},
+                  sourceVal,
+                  options,
+                  currentDepth + 1
+                );
+              }
+            } else {
+              if (targetVal !== undefined && options.conflictResolution === 'merge') {
+                if (typeof targetVal === 'number' && typeof sourceVal === 'number') {
+                  target[key] = mergeStrategies.numeric[options.numericHandling](
+                    targetVal,
+                    sourceVal
+                  );
+                } else if (typeof targetVal === 'string' && typeof sourceVal === 'string') {
+                  target[key] = mergeStrategies.string[options.stringHandling](
+                    targetVal,
                     sourceVal
                   );
                 } else {
-                  target[key] = deepMerge(
-                    targetVal || {},
-                    sourceVal,
-                    options,
-                    currentDepth + 1
-                  );
-                }
-              } else {
-                if (targetVal !== undefined && options.conflictResolution === 'merge') {
-                  if (typeof targetVal === 'number' && typeof sourceVal === 'number') {
-                    target[key] = mergeStrategies.numeric[options.numericHandling](
-                      targetVal,
-                      sourceVal
-                    );
-                  } else {
-                    target[key] = sourceVal;
-                  }
-                } else {
                   target[key] = sourceVal;
                 }
+              } else {
+                target[key] = sourceVal;
               }
             }
-            return target;
-          } catch (err) {
-            throw new Error(\`Deep merge failed at depth \${currentDepth}: \${err.message}\`);
           }
+          return target;
         }
 
         let mergedResult = null;
         let filesProcessed = 0;
+        let rootTypes = new Set();
 
         self.onmessage = async (e) => {
           const { action, data, totalFiles, options, fileName } = e.data;
@@ -228,21 +237,34 @@ const JsonMerger: React.FC = () => {
             try {
               if (!data) throw new Error('Empty file content');
               const json = JSON.parse(data);
-              
-              if (mergedResult === null) {
-                mergedResult = json;
+
+              const currentType = Array.isArray(json) ? 'array' : 
+                (typeof json === 'object' && json !== null) ? 'object' : 'primitive';
+              rootTypes.add(currentType);
+
+              if (options.allowMixedRoots || rootTypes.size === 1) {
+                if (options.allowMixedRoots) {
+                  if (mergedResult === null) mergedResult = {};
+                  mergedResult["file" + (filesProcessed + 1)] = json;
+                } else {
+                  if (mergedResult === null) {
+                    mergedResult = json;
+                  } else {
+                    mergedResult = handleRootValue(mergedResult, json, options);
+                  }
+                }
               } else {
-                mergedResult = handleRootValue(mergedResult, json, options);
+                self.postMessage({ type: 'rootTypeMismatch' });
+                return;
               }
 
               filesProcessed++;
               const progress = Math.round((filesProcessed / totalFiles) * 90);
               self.postMessage({ type: 'progress', progress });
             } catch (err) {
-              const errorMessage = \`Error processing \${fileName || 'unknown file'}: \${err.message}\`;
               self.postMessage({ 
                 type: 'error',
-                message: errorMessage
+                message: \`Error processing \${fileName || 'unknown file'}: \${err.message}\`
               });
             }
           }
@@ -254,10 +276,17 @@ const JsonMerger: React.FC = () => {
               self.postMessage({ type: 'progress', progress: 100 });
               self.postMessage({ type: 'complete', result });
             } catch (err) {
-              self.postMessage({
-                type: 'error',
-                message: 'Error creating final JSON: ' + err.message
-              });
+              if (err.message.includes('string length')) {
+                self.postMessage({
+                  type: 'error',
+                  message: 'The merged JSON is too large to process. Try merging fewer files or reducing the size of the input files.'
+                });
+              } else {
+                self.postMessage({
+                  type: 'error',
+                  message: 'Error creating final JSON: ' + err.message
+                });
+              }
             }
           }
         };
@@ -289,6 +318,11 @@ const JsonMerger: React.FC = () => {
               title: "Merge Error",
               description: e.data.message,
             });
+            setIsMerging(false);
+            worker.terminate();
+            break;
+          case "rootTypeMismatch":
+            setShowConfirmDialog(true);
             setIsMerging(false);
             worker.terminate();
             break;
@@ -328,6 +362,21 @@ const JsonMerger: React.FC = () => {
     }
   };
 
+  const confirmMergeAnyway = () => {
+    setOptions((prev) => ({ ...prev, allowMixedRoots: true }));
+    setShowConfirmDialog(false);
+    mergeFiles(); // Retry merge with allowMixedRoots enabled
+  };
+
+  const cancelMerge = () => {
+    setShowConfirmDialog(false);
+    toast({
+      variant: "destructive",
+      title: "Merge Canceled",
+      description: "Merge operation was canceled due to root type mismatch.",
+    });
+  };
+
   const downloadMergedFile = () => {
     if (!mergedContent) return;
     const blob = new Blob([mergedContent], { type: "application/json" });
@@ -363,7 +412,7 @@ const JsonMerger: React.FC = () => {
   const renderOptions = () => (
     <div className="mt-4 space-y-4 p-4 bg-gray-800 rounded-lg">
       <div className="flex items-center justify-between">
-        <Label className="text-gray-300">Merge Options ( Optional )</Label>
+        <Label className="text-gray-300">Merge Options (Optional)</Label>
         <Switch
           checked={showOptions}
           onCheckedChange={setShowOptions}
@@ -377,9 +426,9 @@ const JsonMerger: React.FC = () => {
             <Label className="text-gray-300">Array Handling</Label>
             <Select
               value={options.arrayStrategy}
-              onValueChange={(v: "concat" | "overwrite" | "merge") =>
-                setOptions((prev) => ({ ...prev, arrayStrategy: v }))
-              }
+              onValueChange={(
+                v: "concat" | "overwrite" | "merge" | "mergeByKey"
+              ) => setOptions((prev) => ({ ...prev, arrayStrategy: v }))}
             >
               <SelectTrigger className="bg-gray-700 border-gray-600 text-gray-200">
                 <SelectValue placeholder="Array Strategy" />
@@ -388,9 +437,24 @@ const JsonMerger: React.FC = () => {
                 <SelectItem value="concat">Concatenate</SelectItem>
                 <SelectItem value="overwrite">Overwrite</SelectItem>
                 <SelectItem value="merge">Merge Unique</SelectItem>
+                <SelectItem value="mergeByKey">Merge by Key</SelectItem>
               </SelectContent>
             </Select>
           </div>
+
+          {options.arrayStrategy === "mergeByKey" && (
+            <div className="space-y-2">
+              <Label className="text-gray-300">Merge Key</Label>
+              <Input
+                value={options.mergeKey}
+                onChange={(e) =>
+                  setOptions((prev) => ({ ...prev, mergeKey: e.target.value }))
+                }
+                placeholder="e.g., id"
+                className="bg-gray-700 border-gray-600 text-gray-200"
+              />
+            </div>
+          )}
 
           <div className="space-y-2">
             <Label className="text-gray-300">Conflict Resolution</Label>
@@ -426,6 +490,42 @@ const JsonMerger: React.FC = () => {
                 <SelectItem value="keep">Keep Latest</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label className="text-gray-300">String Handling</Label>
+            <Select
+              value={options.stringHandling}
+              onValueChange={(v: "keep" | "concatenate") =>
+                setOptions((prev) => ({ ...prev, stringHandling: v }))
+              }
+            >
+              <SelectTrigger className="bg-gray-700 border-gray-600 text-gray-200">
+                <SelectValue placeholder="String Strategy" />
+              </SelectTrigger>
+              <SelectContent className="bg-gray-800 text-gray-200">
+                <SelectItem value="keep">Keep Latest</SelectItem>
+                <SelectItem value="concatenate">Concatenate</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label className="text-gray-300">
+              Allow merging different root types
+            </Label>
+            <Switch
+              checked={options.allowMixedRoots}
+              onCheckedChange={(checked) =>
+                setOptions((prev) => ({ ...prev, allowMixedRoots: checked }))
+              }
+              className="data-[state=checked]:bg-green-500"
+            />
+            <p className="text-sm text-gray-400">
+              When enabled, each file's content will be placed under a unique
+              key (e.g., "file1", "file2") in an object, allowing different root
+              types to be merged.
+            </p>
           </div>
         </div>
       )}
@@ -538,6 +638,36 @@ const JsonMerger: React.FC = () => {
                   ? "Content too large to display safely"
                   : mergedContent}
               </pre>
+            </div>
+          )}
+
+          {showConfirmDialog && (
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+              <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
+                <h3 className="text-lg font-semibold text-gray-200 mb-4">
+                  Root Type Mismatch
+                </h3>
+                <p className="text-gray-300 mb-4">
+                  The uploaded JSON files have different root types (e.g., some
+                  are arrays, some are objects). Do you want to merge them
+                  anyway? Each file’s content will be placed under a unique key
+                  (e.g., "file1", "file2") in an object.
+                </p>
+                <div className="flex justify-end gap-2">
+                  <Button
+                    onClick={confirmMergeAnyway}
+                    className="bg-green-500 text-white hover:bg-green-600"
+                  >
+                    Merge Anyway
+                  </Button>
+                  <Button
+                    onClick={cancelMerge}
+                    className="bg-red-500 text-white hover:bg-red-600"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </div>
             </div>
           )}
         </CardContent>
