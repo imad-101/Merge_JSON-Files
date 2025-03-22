@@ -1,10 +1,8 @@
-// app/page.tsx
 "use client";
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useDropzone, FileWithPath } from "react-dropzone";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 import { UploadCloud, Loader2, Info, Trash2, ChevronRight } from "lucide-react";
 import {
   Card,
@@ -42,8 +40,105 @@ export default function JSONSplitter() {
   const workerRef = useRef<Worker | null>(null);
 
   useEffect(() => {
-    workerRef.current = new Worker("./split-worker.js");
-    workerRef.current.onmessage = (event: MessageEvent<WorkerMessage>) => {
+    const workerCode = `
+      self.onmessage = (event) => {
+        const { jsonInput, splitMethod, chunkSize, maxSizeValue, sizeUnit, targetPath } = event.data;
+        try {
+          const json = JSON.parse(jsonInput);
+          let target = json;
+          if (targetPath) {
+            const pathParts = targetPath.split('.');
+            for (const part of pathParts) {
+              if (part.includes('[')) {
+                const [key, indexStr] = part.split('[');
+                const index = parseInt(indexStr.replace(']', ''), 10);
+                if (!target[key] || !Array.isArray(target[key]) || isNaN(index)) {
+                  throw new Error('Invalid target path');
+                }
+                target = target[key][index];
+              } else {
+                if (!target[part]) {
+                  throw new Error('Invalid target path');
+                }
+                target = target[part];
+              }
+            }
+          }
+          if (!Array.isArray(target)) {
+            throw new Error('Target path does not point to an array');
+          }
+          const array = target;
+
+          if (splitMethod === 'size') {
+            const maxSize = maxSizeValue * (sizeUnit === 'KB' ? 1024 : sizeUnit === 'MB' ? 1024 * 1024 : 1);
+            const maxItemSize = array.reduce((max, item) => Math.max(max, JSON.stringify(item).length), 0);
+            if (maxItemSize > maxSize) {
+              throw new Error('Some items exceed the maximum chunk size');
+            }
+          }
+
+          let chunks;
+          if (splitMethod === 'item') {
+            chunks = splitByItems(array, chunkSize);
+          } else if (splitMethod === 'chunkCount') {
+            chunks = splitByChunkCount(array, chunkSize);
+          } else if (splitMethod === 'size') {
+            const maxSize = maxSizeValue * (sizeUnit === 'KB' ? 1024 : sizeUnit === 'MB' ? 1024 * 1024 : 1);
+            chunks = splitBySize(array, maxSize);
+          }
+
+          self.postMessage({ chunks });
+        } catch (error) {
+          self.postMessage({ error: error.message });
+        }
+      };
+
+      function splitByItems(array, itemsPerChunk) {
+        const chunks = [];
+        for (let i = 0; i < array.length; i += itemsPerChunk) {
+          chunks.push(array.slice(i, i + itemsPerChunk));
+          self.postMessage({ progress: (i / array.length) * 100 });
+        }
+        return chunks;
+      }
+
+      function splitByChunkCount(array, chunkCount) {
+        const itemsPerChunk = Math.ceil(array.length / chunkCount);
+        return splitByItems(array, itemsPerChunk);
+      }
+
+      function splitBySize(array, maxSize) {
+        const chunks = [];
+        let currentChunk = [];
+        let currentSize = 2; // Account for []
+
+        let processed = 0;
+        for (const item of array) {
+          const itemSize = JSON.stringify(item).length + 1; // +1 for comma
+          if (currentSize + itemSize > maxSize && currentChunk.length > 0) {
+            chunks.push(currentChunk);
+            currentChunk = [item];
+            currentSize = 2 + JSON.stringify(item).length;
+          } else {
+            currentChunk.push(item);
+            currentSize += itemSize;
+          }
+          processed++;
+          self.postMessage({ progress: (processed / array.length) * 100 });
+        }
+        if (currentChunk.length > 0) {
+          chunks.push(currentChunk);
+        }
+        return chunks;
+      }
+    `;
+
+    const worker = new Worker(
+      URL.createObjectURL(
+        new Blob([workerCode], { type: "application/javascript" })
+      )
+    );
+    worker.onmessage = (event) => {
       if (event.data.error) {
         toast({
           variant: "destructive",
@@ -60,8 +155,8 @@ export default function JSONSplitter() {
         setProgress(event.data.progress);
       }
     };
-
-    return () => workerRef.current?.terminate();
+    workerRef.current = worker;
+    return () => worker.terminate();
   }, [toast]);
 
   const onDrop = useCallback(
@@ -72,7 +167,7 @@ export default function JSONSplitter() {
       reader.onload = (event) => {
         try {
           const content = event.target?.result as string;
-          JSON.parse(content);
+          JSON.parse(content); // Validate JSON
           setJsonInput(content);
           setFileName(file.name);
           setCurrentStep(2);
@@ -97,34 +192,40 @@ export default function JSONSplitter() {
     onDrop,
     accept: { "application/json": [".json"] },
     multiple: false,
-    maxSize: 500 * 1024 * 1024,
+    maxSize: 500 * 1024 * 1024, // 500MB
   });
 
   const validateInput = useCallback(() => {
-    if (!jsonInput.trim())
-      throw new Error("Please upload or paste JSON content");
-    if (!JSON.parse(jsonInput)) throw new Error("Invalid JSON format");
-
-    if (
-      splitMethod === "chunkCount" &&
-      (chunkSize < 1 || !Number.isInteger(chunkSize))
-    ) {
-      throw new Error("Number of chunks must be a whole number ≥ 1");
+    if (!jsonInput.trim()) {
+      throw new Error("Please upload a JSON file");
+    }
+    try {
+      JSON.parse(jsonInput);
+    } catch {
+      throw new Error("Invalid JSON format");
     }
 
-    if (
-      splitMethod === "item" &&
-      (chunkSize < 1 || !Number.isInteger(chunkSize))
-    ) {
-      throw new Error("Items per chunk must be a whole number ≥ 1");
+    if (splitMethod === "chunkCount") {
+      if (chunkSize < 1 || !Number.isInteger(chunkSize)) {
+        throw new Error("Number of chunks must be a whole number ≥ 1");
+      }
     }
 
-    if (splitMethod === "size" && maxSizeValue <= 0) {
-      throw new Error("Size must be greater than 0");
+    if (splitMethod === "item") {
+      if (chunkSize < 1 || !Number.isInteger(chunkSize)) {
+        throw new Error("Items per chunk must be a whole number ≥ 1");
+      }
+    }
+
+    if (splitMethod === "size") {
+      if (maxSizeValue <= 0) {
+        throw new Error("Maximum size must be greater than 0");
+      }
     }
   }, [jsonInput, splitMethod, chunkSize, maxSizeValue]);
 
   const splitJson = useCallback(() => {
+    if (isProcessing) return; // Prevent multiple splits
     setIsProcessing(true);
     setProgress(0);
     try {
@@ -137,7 +238,6 @@ export default function JSONSplitter() {
         sizeUnit,
         targetPath,
       });
-      setCurrentStep(3);
     } catch (err: any) {
       setIsProcessing(false);
       toast({
@@ -155,6 +255,7 @@ export default function JSONSplitter() {
     targetPath,
     validateInput,
     toast,
+    isProcessing,
   ]);
 
   const resetState = () => {
@@ -163,6 +264,7 @@ export default function JSONSplitter() {
     setChunks([]);
     setProgress(0);
     setCurrentStep(1);
+    setIsProcessing(false);
     toast({ title: "Reset complete" });
   };
 
@@ -207,7 +309,7 @@ export default function JSONSplitter() {
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
                 a.href = url;
-                a.download = `chunk_${index + 1}.json`;
+                a.download = `${fileName}_chunk_${index + 1}.json`;
                 a.click();
                 URL.revokeObjectURL(url);
                 toast({ title: `Downloaded chunk ${index + 1}` });
@@ -221,7 +323,8 @@ export default function JSONSplitter() {
       </CardHeader>
       <CardContent>
         <pre className="bg-gray-900 p-4 rounded-lg overflow-x-auto text-gray-200 text-sm max-h-[200px]">
-          {JSON.stringify(chunk, null, 2)}
+          {JSON.stringify(chunk, null, 2).slice(0, 1000)}
+          {JSON.stringify(chunk, null, 2).length > 1000 && "..."}
         </pre>
       </CardContent>
     </Card>
@@ -245,8 +348,8 @@ export default function JSONSplitter() {
         </CardHeader>
 
         <CardContent>
-          <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
-            {/* Left Side - Controls */}
+          <div className="grid grid-cols-1 gap-6">
+            {/* Controls */}
             <div className="space-y-6">
               {/* Step 1: Upload */}
               {currentStep === 1 && (
@@ -330,7 +433,9 @@ export default function JSONSplitter() {
                               <select
                                 value={sizeUnit}
                                 onChange={(e) =>
-                                  setSizeUnit(e.target.value as any)
+                                  setSizeUnit(
+                                    e.target.value as "B" | "KB" | "MB"
+                                  )
                                 }
                                 className="bg-gray-800 border-gray-700 text-gray-300 rounded-lg px-4"
                               >
@@ -356,6 +461,7 @@ export default function JSONSplitter() {
                             }
                             className="bg-gray-800 border-gray-700 text-gray-300"
                             min="1"
+                            step="1"
                           />
                         </div>
                       )}
@@ -401,7 +507,7 @@ export default function JSONSplitter() {
                     <Button
                       onClick={resetState}
                       variant="outline"
-                      className="text-black border-gray-700 hover:bg-gray-200"
+                      className="text-gray-300 border-gray-700 hover:bg-gray-700"
                     >
                       <Trash2 className="mr-2" size={16} />
                       Reset All
@@ -411,7 +517,7 @@ export default function JSONSplitter() {
               )}
             </div>
 
-            {/* Right Side - Preview/Results */}
+            {/* Preview/Results */}
             <div className="bg-gray-800 rounded-xl p-4 h-[600px] relative">
               {currentStep === 1 && (
                 <div className="h-full flex flex-col items-center justify-center text-center p-8">
