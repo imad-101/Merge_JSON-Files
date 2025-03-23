@@ -49,6 +49,7 @@ const JsonMerger: React.FC = () => {
   });
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const { toast } = useToast();
+  const MAX_SAFE_SIZE = 1e6; // 1 million characters
 
   const handleFileUpload = useCallback(
     (acceptedFiles: File[]) => {
@@ -394,6 +395,15 @@ const JsonMerger: React.FC = () => {
 
   const copyToClipboard = async () => {
     if (!mergedContent) return;
+    if (mergedContent.length > MAX_SAFE_SIZE) {
+      toast({
+        variant: "destructive",
+        title: "Cannot Copy",
+        description:
+          "Content is too large to be copied. Please download instead.",
+      });
+      return;
+    }
     try {
       await navigator.clipboard.writeText(mergedContent);
       toast({
@@ -615,7 +625,7 @@ const JsonMerger: React.FC = () => {
               <div className="flex justify-between items-center mb-3">
                 <h3 className="text-lg font-semibold text-gray-200">
                   Merged Result{" "}
-                  {mergedContent.length > 1e6 &&
+                  {mergedContent.length > MAX_SAFE_SIZE &&
                     "(Large file - rendering optimized)"}
                 </h3>
                 <div className="flex gap-2">
@@ -627,15 +637,22 @@ const JsonMerger: React.FC = () => {
                   >
                     Reset
                   </Button>
-                  <Copy
-                    className="h-7 w-7 text-gray-300 cursor-pointer hover:text-gray-100"
-                    onClick={copyToClipboard}
-                  />
+                  {mergedContent.length > MAX_SAFE_SIZE ? (
+                    <p className="text-sm text-gray-400">
+                      Content is too large to be copied. Please download
+                      instead.
+                    </p>
+                  ) : (
+                    <Copy
+                      className="h-7 w-7 text-gray-300 cursor-pointer hover:text-gray-100"
+                      onClick={copyToClipboard}
+                    />
+                  )}
                 </div>
               </div>
               <pre className="text-sm text-gray-300 whitespace-pre-wrap break-words max-h-96 overflow-auto">
-                {mergedContent.length > 1e6
-                  ? "Content too large to display safely , You can download merged file"
+                {mergedContent.length > MAX_SAFE_SIZE
+                  ? "Content too large to display safely. You can download merged file"
                   : mergedContent}
               </pre>
             </div>
