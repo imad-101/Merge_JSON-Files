@@ -14,6 +14,12 @@ const allTools = [
 
     href: "https://www.merge-json-files.com/json-file-splitter",
   },
+  {
+    name: "JSON - JSONL Converter",
+    description: "Easily convert between JSON and JSONL",
+
+    href: "https://www.merge-json-files.com/json-to-jsonl",
+  },
 ];
 
 export default function ToolsGrid() {

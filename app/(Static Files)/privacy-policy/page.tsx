@@ -12,8 +12,8 @@ const PrivacyPolicy = () => {
         <p className="text-gray-700">
           At merge-json-files.com, we take your privacy seriously. This Privacy
           Policy explains how we handle any information when you use our JSON
-          processing tools, including our JSON merger, and splitter. We believe
-          in complete transparency about our data practices.
+          processing tools. We believe in complete transparency about our data
+          practices.
         </p>
       </section>
 

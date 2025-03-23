@@ -73,7 +73,7 @@ const page = () => {
   return (
     <div className="">
       <h1 className="text-center text-5xl my-7 font-bold text-gray-800 ">
-        Merge JSON Files
+        Merge JSON Files Online
       </h1>
       <p className="text-gray-600 mb-10 text-center px-3">
         Seamlessly merge multiple{" "}

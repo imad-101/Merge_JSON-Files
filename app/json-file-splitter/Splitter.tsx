@@ -502,7 +502,7 @@ export default function JSONSplitter() {
                     <Button
                       onClick={resetState}
                       variant="outline"
-                      className="text-gray-300 border-gray-700 hover:bg-gray-700"
+                      className="text-gray-700 border-gray-700 bg-gray-200 hover:bg-gray-300"
                     >
                       <Trash2 className="mr-2" size={16} />
                       Reset All

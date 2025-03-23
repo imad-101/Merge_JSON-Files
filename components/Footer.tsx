@@ -10,22 +10,13 @@ const Footer = ({ name }: FooterProps) => {
           © {new Date().getFullYear()} {name}. All rights reserved.
         </p>
         <nav className="mb-2 space-x-4 my-1">
-          <a
-            href="https://merge-json-files.com/privacy-policy"
-            className="hover:underline"
-          >
+          <a href="/privacy-policy" className="hover:underline">
             Privacy Policy
           </a>
-          <a
-            href="https://merge-json-files.com/terms-of-use"
-            className="hover:underline"
-          >
+          <a href="/terms-of-use" className="hover:underline">
             Terms of Use
           </a>
-          <a
-            href="https://merge-json-files.com/about-us"
-            className="hover:underline"
-          >
+          <a href="/about-us" className="hover:underline">
             About Us
           </a>
         </nav>

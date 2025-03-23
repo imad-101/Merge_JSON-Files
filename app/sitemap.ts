@@ -5,20 +5,11 @@ export default async function sitemap() {
       lastModified: new Date(),
     },
     {
-      url: "https://www.merge-json-files.com/about-us",
-      lastModified: new Date(),
-    },
-    {
-      url: "https://www.merge-json-files.com/terms-of-use",
-      lastModified: new Date(),
-    },
-    {
-      url: "https://www.merge-json-files.com/privacy-policy",
-      lastModified: new Date(),
-    },
-
-    {
       url: "https://www.merge-json-files.com/json-file-splitter",
+      lastModified: new Date(),
+    },
+    {
+      url: "https://www.merge-json-files.com/json-to-jsonl",
       lastModified: new Date(),
     },
   ];

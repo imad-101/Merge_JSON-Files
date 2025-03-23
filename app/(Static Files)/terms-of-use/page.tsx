@@ -10,9 +10,9 @@ const TermsOfUse = () => {
         <p className="text-gray-700">
           By accessing and using{" "}
           <span className="font-semibold">merge-json-files.com</span>, including
-          its JSON processing tools (JSON merger and JSON splitter), you agree
-          to be bound by these Terms of Use. If you do not agree to these terms,
-          please do not use the Website.
+          its JSON processing tools , you agree to be bound by these Terms of
+          Use. If you do not agree to these terms, please do not use the
+          Website.
         </p>
       </section>
 
