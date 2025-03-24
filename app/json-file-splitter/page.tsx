@@ -4,6 +4,7 @@ import HowItWorks from "../../components/HowItWorks";
 import ToolsGrid from "@/components/ToolsGrid";
 import { Card, CardContent } from "@/components/ui/card";
 import FaqSection from "@/components/Faq";
+import SplitterBlog from "./SplitterBlog";
 
 import { CheckCircle, FilePlus, Settings, Download } from "lucide-react";
 const faqs = [
@@ -116,7 +117,7 @@ const page = () => {
         </CardContent>
       </Card>
       {/* ---------------------------------------------------------------------------- */}
-
+      <SplitterBlog />
       <ToolsGrid />
     </div>
   );

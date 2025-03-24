@@ -2,6 +2,7 @@
 import React, { useState, useCallback } from "react";
 import { Upload, Trash2, Copy, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 import {
   Card,
   CardContent,
@@ -543,7 +544,10 @@ const JsonMerger: React.FC = () => {
   );
 
   return (
-    <div className="container mx-auto p-3 sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl relative">
+    <div
+      className="container mx-auto p-3 sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl relative"
+      id="merge"
+    >
       <Card className="mb-4 sm:mb-8 bg-gray-900 text-white">
         <CardHeader>
           <CardTitle>JSON File Merger</CardTitle>

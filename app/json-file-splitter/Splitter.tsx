@@ -326,7 +326,7 @@ export default function JSONSplitter() {
   );
 
   return (
-    <div className="container mx-auto p-3 sm:p-6 max-w-7xl">
+    <div className="container mx-auto p-3 sm:p-6 max-w-7xl" id="split">
       <Card className="bg-gray-900 border-gray-800">
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-gray-100 flex items-center gap-3">
@@ -353,7 +353,7 @@ export default function JSONSplitter() {
                   className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-colors ${
                     isDragActive
                       ? "border-gray-400 bg-gray-400/20"
-                      : "border-gray-700 hover:border-gray-400"
+                      : "border-gray-600 hover:border-gray-400"
                   }`}
                 >
                   <input {...getInputProps()} />
@@ -513,12 +513,18 @@ export default function JSONSplitter() {
             </div>
 
             {/* Preview/Results */}
-            <div className="bg-gray-800 rounded-xl p-4 h-[600px] relative">
+            <div
+              className={`bg-gray-800 rounded-xl p-4 ${
+                currentStep >= 2 ? "h-[600px]" : ""
+              } relative`}
+            >
               {currentStep === 1 && (
-                <div className="h-full flex flex-col items-center justify-center text-center p-8">
-                  <Info className="text-gray-500 mb-4" size={40} />
-                  <h3 className="text-gray-400 mb-2">No file selected</h3>
-                  <p className="text-gray-500">
+                <div className="flex flex-col items-center justify-center text-center p-4">
+                  <Info className="text-gray-500 mb-2" size={24} />
+                  <h3 className="text-gray-400 text-base mb-1">
+                    No file selected
+                  </h3>
+                  <p className="text-gray-500 text-sm">
                     Upload a JSON file to get started
                   </p>
                 </div>
