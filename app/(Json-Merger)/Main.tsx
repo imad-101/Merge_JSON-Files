@@ -545,7 +545,7 @@ const JsonMerger: React.FC = () => {
 
   return (
     <div
-      className="container mx-auto sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl relative"
+      className="container mx-auto sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-7xl rounded-lg relative"
       id="merge"
     >
       <Card className=" sm:mb-2 bg-gray-950 text-white">
