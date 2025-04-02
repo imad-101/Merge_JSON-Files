@@ -71,10 +71,10 @@ const faqs = [
 const Page = () => {
   return (
     <div className="bg-white min-h-screen">
-      <div className="max-w-6xl mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-4 py-6">
         {/* Hero Section */}
         <div className="text-center mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-white bg-gray-950 px-3 sm:px-7 py-4 rounded-md mb-6 inline-block">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 px-3 sm:px-7 py-4 rounded-md mb-6 inline-block">
             JSON Merger Online
           </h1>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-6">
@@ -201,7 +201,7 @@ const Page = () => {
         </div>
 
         {/* Tools Grid */}
-        <div className="border-2 rounded-lg p-2 sm:p-4">
+        <div className="border-2 rounded-lg p-2 sm:px-6">
           <ToolsGrid />
         </div>
       </div>

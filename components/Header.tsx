@@ -71,7 +71,7 @@ const Header = ({ first, second, third, href }: HeaderProps) => {
               <nav className="flex flex-col space-y-6 mt-10">
                 <SheetClose asChild>
                   <Link
-                    href="/"
+                    href={href}
                     className="text-gray-700 hover:text-black transition-colors px-2 py-1"
                   >
                     Home
@@ -87,7 +87,7 @@ const Header = ({ first, second, third, href }: HeaderProps) => {
                 </SheetClose>
                 <SheetClose asChild>
                   <Link
-                    href="/tools"
+                    href="/#tools"
                     className="text-gray-700 hover:text-black transition-colors px-2 py-1"
                   >
                     More Tools

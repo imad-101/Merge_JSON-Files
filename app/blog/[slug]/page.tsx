@@ -56,7 +56,7 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header first="Merge " second="JSON " third="Files" href="/" />
+      <Header first="Merge" second="JSON " third="Files" href="/" />
 
       {/* Shadcn UI Breadcrumb */}
       <div className="mt-6 max-w-4xl mx-auto hidden sm:block text-xl">
