@@ -10,9 +10,8 @@ interface TermsLayoutProps {
 export const metadata: Metadata = {
   title: "Terms Of Use - Merge JSON Files",
   description:
-    "Read the terms of use of Merge JSON Files. Learn how you can use our JSON merger , flattener , splitter , and other tools to combine multiple JSON files into one.",
-  keywords:
-    "Terms Of Use, merge json files, json merger tool, json files, json files online",
+    "Read the terms of use of Merge JSON Files. Learn how you can use our tools to simplify your workflow.",
+  keywords: "Terms Of Use, merge json files ",
 };
 const TermsLayout: React.FC<TermsLayoutProps> = ({ children }) => {
   return (

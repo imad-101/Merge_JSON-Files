@@ -1,8 +1,7 @@
-import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 
-const myFont = localFont({ src: "./fonts/sansFont.ttf" });
+import "./globals.css";
 
 export default function RootLayout({
   children,
@@ -14,9 +13,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
       </head>
-      <body
-        className={`${myFont.className} antialiased bg-yellow-50 min-h-screen flex flex-col`}
-      >
+      <body className={` antialiasedmin-h-screen flex flex-col`}>
         <main>{children}</main>
         <SpeedInsights />
         <Analytics />

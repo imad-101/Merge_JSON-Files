@@ -421,7 +421,7 @@ const JsonMerger: React.FC = () => {
   };
 
   const renderOptions = () => (
-    <div className="mt-4 space-y-4 p-4 bg-gray-800 rounded-lg">
+    <div className="mt-4 space-y-4 p-4 bg-gray-800 rounded-sm">
       <div className="flex items-center justify-between">
         <Label className="text-gray-300">Merge Options (Optional)</Label>
         <Switch
@@ -545,13 +545,13 @@ const JsonMerger: React.FC = () => {
 
   return (
     <div
-      className="container mx-auto p-3 sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl relative"
+      className="container mx-auto sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-6xl rounded-xl relative"
       id="merge"
     >
-      <Card className="mb-4 sm:mb-8 bg-gray-900 text-white">
+      <Card className=" sm:mb-2 bg-gray-950 text-white">
         <CardHeader>
           <CardTitle>JSON File Merger</CardTitle>
-          <CardDescription className="text-gray-300">
+          <CardDescription className="text-gray-100">
             Advanced JSON merging with large file support
           </CardDescription>
         </CardHeader>
@@ -563,16 +563,16 @@ const JsonMerger: React.FC = () => {
             {({ getRootProps, getInputProps, isDragActive }) => (
               <div
                 {...getRootProps()}
-                className="relative flex flex-col items-center justify-center border-2 border-dashed border-gray-400 rounded-lg p-6 cursor-pointer bg-gray-900 hover:border-gray-100 transition"
+                className="relative flex flex-col items-center justify-center border-2 border-dashed border-gray-400 rounded-lg p-6 cursor-pointer bg-gray-950 hover:border-gray-100 transition"
               >
                 <input {...getInputProps()} />
                 {isDragActive && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gray-900/70 text-white text-lg font-semibold rounded-lg">
+                  <div className="absolute inset-0 flex items-center justify-center bg-gray-900 text-white text-lg font-semibold rounded-lg">
                     Drop files here
                   </div>
                 )}
-                <Upload className="h-8 w-8 mb-2 text-gray-300" />
-                <p className="text-sm text-gray-300">
+                <Upload className="h-8 w-8 mb-2 text-gray-100" />
+                <p className="text-sm text-gray-100">
                   Drag & drop files or click to upload
                 </p>
               </div>

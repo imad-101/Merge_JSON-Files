@@ -1,7 +1,13 @@
-import React from "react";
-
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetTitle,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "./ui/sheet";
 
 interface HeaderProps {
   first: string;
@@ -12,30 +18,94 @@ interface HeaderProps {
 
 const Header = ({ first, second, third, href }: HeaderProps) => {
   return (
-    <header>
-      <nav className="flex justify-between items-center sm:px-24 px-6 my-5  ">
-        <div className="right">
-          <Link href={href}>
-            <p className="text-2xl font-extrabold text-gray-700">
-              {first} <span className="text-orange-700">{second}</span> {third}
-            </p>
+    <header className="bg-white border-b border-gray-100">
+      <div className="max-w-5xl mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link href={href} className="flex items-center space-x-1">
+            <span className="text-black font-bold text-xl">{first}</span>
+            <span className="text-black font-medium text-xl">{second}</span>
+            <span className="text-gray-500 font-normal text-xl">{third}</span>
           </Link>
-        </div>
-        <div className="left flex gap-5 items-center">
-          <Link
-            href=" /"
-            className="text-gray-600 hidden sm:block hover:text-gray-700"
-          >
-            Home
-          </Link>
-          <Link href={"#tools"} className="text-gray-600">
-            <Button className="px-5 bg-gray-800 hover:bg-gray-700 ">
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link
+              href={href}
+              className="text-gray-700 hover:text-black transition-colors"
+            >
+              Home
+            </Link>
+            <Link
+              href="/blog"
+              className="text-gray-700 hover:text-black transition-colors"
+            >
+              Blog
+            </Link>
+            <Link
+              href="/#tools"
+              className="text-gray-700 hover:text-black transition-colors"
+            >
               More Tools
-            </Button>
-          </Link>
+            </Link>
+            <Link href={"/contact"}>
+              <Button
+                variant="outline"
+                className="border-gray-200 hover:bg-gray-50 text-black hover:text-black"
+              >
+                Contact
+              </Button>
+            </Link>
+          </nav>
+
+          {/* Mobile Menu */}
+          <Sheet>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon" className="h-9 w-9">
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-64">
+              <SheetTitle className="sr-only">Menu</SheetTitle>
+              <nav className="flex flex-col space-y-6 mt-10">
+                <SheetClose asChild>
+                  <Link
+                    href="/"
+                    className="text-gray-700 hover:text-black transition-colors px-2 py-1"
+                  >
+                    Home
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    href="/blog"
+                    className="text-gray-700 hover:text-black transition-colors px-2 py-1"
+                  >
+                    Blog
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    href="/tools"
+                    className="text-gray-700 hover:text-black transition-colors px-2 py-1"
+                  >
+                    More Tools
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Button
+                    variant="outline"
+                    className="border-gray-200 hover:bg-gray-50 text-black hover:text-black mt-4 w-full"
+                  >
+                    Contact
+                  </Button>
+                </SheetClose>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
-      </nav>
-      <hr />
+      </div>
     </header>
   );
 };

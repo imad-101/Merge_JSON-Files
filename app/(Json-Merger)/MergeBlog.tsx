@@ -2,14 +2,14 @@ import React from "react";
 
 const MergerBlog = () => {
   return (
-    <div className="bg-yellow-50 text-gray-800 py-10">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="bg-white text-gray-700 py-10 border-2 p-2 rounded-md">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <header className="mb-10">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-gray-600">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-center">
             Merging JSON Files Online: A Comprehensive Guide
           </h2>
-          <p className="mt-7 text-lg text-center">
+          <p className="mt-7 text-md sm:text-lg text-center">
             Learn how to <strong>merge JSON files</strong> effectively, use our
             powerful <strong>Online JSON merger</strong> tool, and discover best
             practices for seamless data integration.
@@ -18,54 +18,47 @@ const MergerBlog = () => {
 
         {/* Table of Contents */}
         <section className="mb-10">
-          <h3 className="text-2xl font-bold border-b-2 border-gray-600 pb-2">
+          <h3 className="text-2xl font-bold border-b-2 border-gray-300 pb-2">
             Table of Contents
           </h3>
           <ul className="list-disc ml-5 mt-4 space-y-1">
             <li>
-              <a className="text-gray-600 hover:underline" href="#introduction">
+              <a className="hover:underline" href="#introduction">
                 Introduction to JSON and Its Importance
               </a>
             </li>
             <li>
-              <a className="text-gray-600 hover:underline" href="#why-merge">
+              <a className="hover:underline" href="#why-merge">
                 Why Merge JSON Files?
               </a>
             </li>
             <li>
-              <a className="text-gray-600 hover:underline" href="#benefits">
+              <a className="hover:underline" href="#benefits">
                 Benefits of Using an Online JSON Merger Tool
               </a>
             </li>
             <li>
-              <a className="text-gray-600 hover:underline" href="#step-by-step">
+              <a className="hover:underline" href="#step-by-step">
                 Step-by-Step Guide: How to Merge Multiple JSON Files
               </a>
             </li>
             <li>
-              <a
-                className="text-gray-600 hover:underline"
-                href="#best-practices"
-              >
+              <a className="hover:underline" href="#best-practices">
                 Best Practices and Tips for Merging JSON Files
               </a>
             </li>
             <li>
-              <a
-                className="text-gray-600 hover:underline"
-                href="#advanced-techniques"
-              >
+              <a className="hover:underline" href="#advanced-techniques">
                 Advanced Techniques for Handling Complex JSON Structures
               </a>
             </li>
-
             <li>
-              <a className="text-gray-600 hover:underline" href="#integration">
+              <a className="hover:underline" href="#integration">
                 Integrating JSON Merging Into Your Workflow
               </a>
             </li>
             <li>
-              <a className="text-gray-600 hover:underline" href="#conclusion">
+              <a className="hover:underline" href="#conclusion">
                 Conclusion
               </a>
             </li>
@@ -74,7 +67,7 @@ const MergerBlog = () => {
 
         {/* Introduction Section */}
         <section id="introduction" className="mb-10">
-          <h3 className="text-3xl font-bold text-gray-600 mb-4">
+          <h3 className="text-3xl font-bold mb-4">
             Introduction to JSON and Its Importance
           </h3>
           <p className="mb-4">
@@ -93,7 +86,7 @@ const MergerBlog = () => {
           </p>
           <p className="mb-4">
             In this guide, we’ll explore every facet of merging JSON files
-            online using our advanced tool, while offering best practices,and
+            online using our advanced tool, while offering best practices and
             troubleshooting tips. Our goal is to provide a comprehensive
             resource that is both informative and actionable.
           </p>
@@ -101,9 +94,7 @@ const MergerBlog = () => {
 
         {/* Why Merge JSON Files Section */}
         <section id="why-merge" className="mb-10">
-          <h3 className="text-3xl font-bold text-gray-600 mb-4">
-            Why Merge JSON Files?
-          </h3>
+          <h3 className="text-3xl font-bold mb-4">Why Merge JSON Files?</h3>
           <p className="mb-4">
             Merging JSON files is a common requirement in many development
             projects. Here are some of the primary reasons you might need to{" "}
@@ -138,7 +129,7 @@ const MergerBlog = () => {
 
         {/* Benefits Section */}
         <section id="benefits" className="mb-10">
-          <h3 className="text-3xl font-bold text-gray-600 mb-4">
+          <h3 className="text-3xl font-bold mb-4">
             Benefits of Using an Online JSON Merger Tool
           </h3>
           <p className="mb-4">
@@ -177,16 +168,16 @@ const MergerBlog = () => {
 
         {/* Step-by-Step Guide Section */}
         <section id="step-by-step" className="mb-10">
-          <h3 className="text-3xl font-bold text-gray-600 mb-4">
+          <h3 className="text-3xl font-bold mb-4">
             Step-by-Step Guide: How to Merge Multiple JSON Files
           </h3>
           <p className="mb-4">
             In this section, we break down the process of merging JSON files
             into clear, manageable steps.
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Step 1: Prepare Your JSON Files
-          </h3>
+          </h4>
           <p className="mb-4">
             Start by ensuring that all your JSON files are properly formatted.
             Use online validators or IDE extensions to confirm that each file
@@ -197,25 +188,25 @@ const MergerBlog = () => {
             <li>Ensure consistent key and value structures across files.</li>
             <li>Remove unnecessary or redundant data.</li>
           </ul>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Step 2: Choose Your JSON Merger Tool
-          </h3>
+          </h4>
           <p className="mb-4">
             Select a tool that offers a clean interface and robust performance.
             Our <strong>Online JSON Merger</strong> tool is designed with
             simplicity and efficiency in mind.
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Step 3: Upload Your Files
-          </h3>
+          </h4>
           <p className="mb-4">
             Navigate to our platform and upload your JSON files using the
             drag-and-drop interface. This intuitive design allows you to easily
             select the files you wish to merge.
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Step 4: Customize Your Merge Settings
-          </h3>
+          </h4>
           <p className="mb-4">
             Configure your merge settings to meet your specific needs. Options
             include combining files into a single JSON object, merging arrays,
@@ -228,17 +219,17 @@ const MergerBlog = () => {
               Customize advanced settings for handling nested data structures.
             </li>
           </ul>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Step 5: Execute the Merge
-          </h3>
+          </h4>
           <p className="mb-4">
             After adjusting your settings, click the “Merge” button to execute
             the process. The tool will process your files and generate a preview
             of the merged JSON data.
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Step 6: Download and Use the Merged File
-          </h3>
+          </h4>
           <p className="mb-4">
             Once satisfied with the results, download the merged JSON file to
             your device. The file is now ready for integration into your
@@ -249,56 +240,56 @@ const MergerBlog = () => {
 
         {/* Best Practices Section */}
         <section id="best-practices" className="mb-10">
-          <h3 className="text-3xl font-bold text-gray-600 mb-4">
+          <h3 className="text-3xl font-bold mb-4">
             Best Practices and Tips for Merging JSON Files
           </h3>
           <p className="mb-4">
             To ensure optimal results when merging JSON files, keep these best
             practices in mind:
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Maintain Consistent Structure
-          </h3>
+          </h4>
           <p className="mb-4">
             Consistency is key. Ensure that all JSON files follow the same
             structural conventions so that merging is seamless and errors are
             minimized.
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Backup Your Files
-          </h3>
+          </h4>
           <p className="mb-4">
             Always back up your original JSON files before merging. This allows
             you to recover your data if something goes awry during the merge
             process.
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Test the Merged File
-          </h3>
+          </h4>
           <p className="mb-4">
             Validate the merged file using JSON validators or by integrating it
             into a test environment. This helps ensure that the file functions
             as expected.
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Optimize for Readability
-          </h3>
+          </h4>
           <p className="mb-4">
             If you plan to share the merged file with your team or include it in
             documentation, format it for easy reading. Tools like Prettier can
             help format JSON data.
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Version Control
-          </h3>
+          </h4>
           <p className="mb-4">
             Use version control systems like Git to track changes. This practice
             not only preserves your data history but also simplifies
             collaboration.
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Plan for Error Handling
-          </h3>
+          </h4>
           <p className="mb-4">
             Implement error handling strategies to catch and resolve issues that
             may arise from inconsistent formats or duplicate keys. A robust plan
@@ -308,32 +299,32 @@ const MergerBlog = () => {
 
         {/* Advanced Techniques Section */}
         <section id="advanced-techniques" className="mb-10">
-          <h3 className="text-3xl font-bold text-gray-600 mb-4">
+          <h3 className="text-3xl font-bold mb-4">
             Advanced Techniques for Handling Complex JSON Structures
           </h3>
           <p className="mb-4">
             When working with deeply nested or complex JSON files, advanced
             merging techniques can help you preserve the integrity of your data.
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Recursive Merging
-          </h3>
+          </h4>
           <p className="mb-4">
             Recursive merging techniques allow you to merge JSON objects at
             multiple levels. This is particularly useful when your files contain
             nested arrays and objects.
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Conditional Merging
-          </h3>
+          </h4>
           <p className="mb-4">
             In some scenarios, you may only want to merge certain files based on
             predefined conditions. Conditional merging enables you to set rules
             and filters so that only the relevant data is combined.
           </p>
-          <h3 className="text-2xl font-semibold text-gray-500 mb-2">
+          <h4 className="text-2xl font-semibold text-gray-500 mb-2">
             Merge Strategies
-          </h3>
+          </h4>
           <p className="mb-4">
             Choose from various merge strategies depending on your needs:
           </p>
@@ -355,7 +346,7 @@ const MergerBlog = () => {
 
         {/* Integration Section */}
         <section id="integration" className="mb-10">
-          <h3 className="text-3xl font-bold text-gray-600 mb-4">
+          <h3 className="text-3xl font-bold mb-4">
             Integrating JSON Merging Into Your Workflow
           </h3>
           <p className="mb-4">
@@ -389,7 +380,7 @@ const MergerBlog = () => {
 
         {/* Conclusion Section */}
         <section id="conclusion" className="mb-10">
-          <h3 className="text-3xl font-bold text-gray-600 mb-4">Conclusion</h3>
+          <h3 className="text-3xl font-bold mb-4">Conclusion</h3>
           <p className="mb-4">
             In today’s data-centric world, mastering the art of merging JSON
             files is indispensable. Our comprehensive guide has taken you
@@ -420,16 +411,14 @@ const MergerBlog = () => {
 
         {/* Final Call-to-Action */}
         <section className="mt-12 text-center">
-          <h3 className="text-2xl font-bold text-gray-600 mb-4">
-            Get Started Today!
-          </h3>
+          <h3 className="text-2xl font-bold mb-4">Get Started Today!</h3>
           <p className="mb-6">
             Ready to <strong>merge JSON files online</strong> and simplify your
             data workflow? Try our tool now and experience the difference.
           </p>
           <a
             href="#merge"
-            className="inline-block bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-700 transition duration-300"
+            className="inline-block bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-950 transition duration-300"
           >
             Start Merging
           </a>

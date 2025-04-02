@@ -1,24 +1,35 @@
+import Link from "next/link";
+
 interface FooterProps {
   name: string;
 }
+
 const Footer = ({ name }: FooterProps) => {
   return (
-    <footer className="bg-yellow-50 text-gray-600 text-center py-4">
-      <hr className="mb-3" />
-      <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between sm:px-24">
-        <p className="text-sm my-4">
+    <footer className="bg-white border-t border-gray-100">
+      <div className="max-w-5xl mx-auto px-4 py-10 flex gap-4 flex-col sm:flex-row items-center justify-between">
+        <p className="text-gray-700 text-sm">
           © {new Date().getFullYear()} {name}. All rights reserved.
         </p>
-        <nav className="mb-2 space-x-4 my-1">
-          <a href="/privacy-policy" className="hover:underline">
+        <nav className="space-x-6">
+          <Link
+            href="/privacy-policy"
+            className="text-gray-700 hover:text-black transition-colors text-sm"
+          >
             Privacy Policy
-          </a>
-          <a href="/terms-of-use" className="hover:underline">
+          </Link>
+          <Link
+            href="/terms-of-use"
+            className="text-gray-700 hover:text-black transition-colors text-sm"
+          >
             Terms of Use
-          </a>
-          <a href="/about-us" className="hover:underline">
+          </Link>
+          <Link
+            href="/about-us"
+            className="text-gray-700 hover:text-black transition-colors text-sm"
+          >
             About Us
-          </a>
+          </Link>
         </nav>
       </div>
     </footer>

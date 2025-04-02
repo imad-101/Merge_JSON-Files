@@ -326,13 +326,13 @@ export default function JSONSplitter() {
   );
 
   return (
-    <div className="container mx-auto p-3 sm:p-6 max-w-7xl" id="split">
-      <Card className="bg-gray-900 border-gray-800">
+    <div className="container mx-auto sm:p-6 max-w-7xl" id="split">
+      <Card className="bg-gray-950 border-gray-800">
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-gray-100 flex items-center gap-3">
-            <UploadCloud className="text-gray-400" />
+            <UploadCloud className="text-gray-400 hidden sm:block" />
             JSON Splitter Online
-            <span className="text-sm font-normal text-gray-400 ml-2">
+            <span className="text-sm font-normal text-gray-400 ml-2 hidden sm:block">
               Step {currentStep} of 3
             </span>
           </CardTitle>
