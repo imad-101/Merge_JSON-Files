@@ -13,7 +13,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
       </head>
-      <body className={` antialiasedmin-h-screen flex flex-col`}>
+      <body className={` antialiasedmin-h-screen flex flex-col `}>
         <main>{children}</main>
         <SpeedInsights />
         <Analytics />

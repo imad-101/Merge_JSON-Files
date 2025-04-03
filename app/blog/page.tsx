@@ -16,14 +16,14 @@ import {
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Articles & Helpful Guides | FreeToolNow",
+  title: "Articles & Helpful Guides | Merge JSON Files",
   description:
-    "Discover articles and helpful guides about various tools, their uses, and tips to boost your productivity.",
+    "Discover articles and helpful guides about our JSON tools and their uses, discover helpful content about JSON Files.",
   openGraph: {
-    title: "Articles & Helpful Guides | FreeToolNow",
+    title: "Articles & Helpful Guides | Merge JSON Files",
     description:
-      "Discover articles and helpful guides about various tools, their uses, and tips to boost your productivity.",
-    url: "https://freetoolnow.com/blog",
+      "Discover articles and helpful guides about Our JSON tools and their uses, discover helpful content about JSON Files.",
+    url: "https://merge-json-files.com/blog",
   },
   robots: {
     index: true,
@@ -56,7 +56,7 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header first="Merge " second="JSON " third="Files" href="/" />
+      <Header first="Merge" second="JSON" third="Files" href="/" />
 
       {/* Shadcn UI Breadcrumb */}
       <div className="mt-6 max-w-4xl mx-auto hidden sm:block text-xl">
@@ -81,8 +81,8 @@ export default function BlogPage() {
                 Articles and Helpful Guides
               </h1>
               <p className="mt-4 text-xl text-gray-600">
-                Discover articles and helpful guides about various tools, their
-                uses, and tips to boost your productivity.
+                Discover articles and helpful guides about JSON tools and JSON
+                Files in general
               </p>
             </div>
           </div>
