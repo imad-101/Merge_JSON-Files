@@ -40,7 +40,7 @@ JSON and CSV are like two languages spoken in the world of data. JSON (JavaScrip
 - **Data Types**: CSV treats everything as text, losing JSON’s number/boolean types.
 - **Metadata**: JSON’s key descriptions don’t translate to CSV.
 
-> **Example**: Imagine converting a JSON API response containing user profiles with nested addresses. Flattening this into CSV might split `address.city` and `address.zipcode` into separate columns, which works—but if the data has multiple addresses per user, CSV struggles.
+> **Example**: Imagine converting a JSON API response containing user profiles with nested addresses. Flattening this into CSV might split **address.city** and **address.zipcode** into separate columns, which works—but if the data has multiple addresses per user, CSV struggles.
 
 ---
 
@@ -111,7 +111,7 @@ data = pd.read_json('data.json')
 data.to_csv('output.csv', index=False)
 ```
 
-For nested data (e.g., arrays inside objects), use `json_normalize`
+For nested data (e.g., arrays inside objects), use json_normalize
 
 ```python
 from pandas import json_normalize
@@ -136,7 +136,7 @@ Los Angeles,10,Bakery
 **Common Errors & Fixes**:
 
 - **KeyError**: Ensure JSON keys are consistent across all entries.
-- **Data Truncation**: Use `max_level` in `json_normalize` for deeply nested data.
+- **Data Truncation**: Use max_level in json_normalize for deeply nested data.
 
 **Pros**: Automatable, handles complex data.  
 **Cons**: Requires Python setup.
@@ -170,17 +170,17 @@ For small, simple JSON files, Notepad++ works surprisingly well.
 #### Step 1: Install the JSON Viewer Plugin
 
 1. Open Notepad++.
-2. Go to `Plugins > Plugins Admin`
+2. Go to **Plugins > Plugins Admin**
 3. Search for “JSON Viewer” and install it.
 
 #### Step 2: Format and Clean the JSON
 
 1. Open your JSON file.
-2. Press `Ctrl+Alt+Shift+M` to format the JSON.
+2. Press Ctrl+Alt+Shift+M to format the JSON.
 3. Remove brackets and commas manually:
-   - Replace `[{` with an empty string.
-   - Replace `},` with `\n` (new line).
-   - Delete `}]` at the end.
+   - Replace **[{** with an empty string.
+   - Replace **}**, with **\n** (new line).
+   - Delete **}]** at the end.
 
 #### Step 3: Add CSV Headers
 
@@ -201,7 +201,7 @@ Bakery,Los Angeles,10
 
 #### **Excel (Windows/Mac)**
 
-1. Go to `Data > Get Data > From File > From JSON`
+1. Go to **Data > Get Data > From File > From JSON**
 2. Use Power Query to flatten nested columns:
    - Right-click nested columns → Expand.
 3. Load the data and save as CSV.
@@ -209,9 +209,9 @@ Bakery,Los Angeles,10
 #### **Google Sheets**
 
 1. Install the “JSON to Sheets” add-on.
-2. Go to `Add-ons > JSON to Sheets > Import JSON`
+2. Go to **Add-ons > JSON to Sheets > Import JSON**
 3. Paste your JSON URL or file.
-4. Export via `File > Download > CSV`
+4. Export via **File > Download > CSV**
 
 **Pros**: Familiar interface.  
 **Cons**: Struggles with highly nested JSON.
@@ -266,7 +266,7 @@ You can’t—they’re fundamentally different formats. However, Excel’s Powe
 
 #### **Q3: Why does my CSV show “[Object Object]” in cells?**
 
-This happens when nested JSON isn’t flattened. Use `json_normalize` in Python or “Expand” in Excel’s Power Query.
+This happens when nested JSON isn’t flattened. Use json_normalize in Python or “Expand” in Excel’s Power Query.
 
 #### **Q4: How to handle large JSON files (>1GB)?**
 
@@ -286,11 +286,11 @@ This happens when nested JSON isn’t flattened. Use `json_normalize` in Python 
 
 ## Troubleshooting Common Errors
 
-| Error                    | Cause                              | Fix                                       |
-| ------------------------ | ---------------------------------- | ----------------------------------------- |
-| **“KeyError” in Python** | Missing keys in some JSON entries. | Standardize keys or use `errors='ignore'` |
-| **CSV columns merged**   | Commas in JSON values.             | Wrap CSV fields in quotes.                |
-| **Truncated data**       | Nested arrays not expanded.        | Use `json_normalize` with `max_level`     |
+| Error                    | Cause                              | Fix                                         |
+| ------------------------ | ---------------------------------- | ------------------------------------------- |
+| **“KeyError” in Python** | Missing keys in some JSON entries. | Standardize keys or use **errors='ignore'** |
+| **CSV columns merged**   | Commas in JSON values.             | Wrap CSV fields in quotes.                  |
+| **Truncated data**       | Nested arrays not expanded.        | Use **json_normalize** with **max_level**   |
 
 ---
 
