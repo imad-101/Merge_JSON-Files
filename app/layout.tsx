@@ -13,12 +13,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
       </head>
-      <script
-        src="https://kulroakonsu.net/88/tag.min.js"
-        data-zone="140976"
-        async
-        data-cfasync="false"
-      ></script>
+
       <body className={` antialiasedmin-h-screen flex flex-col `}>
         <main>{children}</main>
         <SpeedInsights />
