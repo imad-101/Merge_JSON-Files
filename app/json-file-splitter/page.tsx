@@ -1,12 +1,12 @@
 import React from "react";
 import JsonSplitter from "./Splitter";
-import HowItWorks from "../../components/HowItWorks";
-import ToolsGrid from "@/components/ToolsGrid";
-import { Card, CardContent } from "@/components/ui/card";
-import FaqSection from "@/components/Faq";
 import SplitterBlog from "./SplitterBlog";
-
-import { CheckCircle, FilePlus, Settings, Download } from "lucide-react";
+import ToolsGrid from "@/components/ToolsGrid";
+import FaqSection from "@/components/Faq";
+import HowItWorks from "@/components/HowItWorks";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { FilePlus, Settings, Download, CheckCircle, Merge } from "lucide-react";
 
 const faqs = [
   {
@@ -48,71 +48,98 @@ const faqs = [
 
 const howItWorks = [
   {
-    title: "Upload / Paste JSON File",
-    description: "Choose or drag & drop the JSON file you want to split.",
+    title: "Upload JSON",
+    description: "Drag & drop or paste your file",
     icon: FilePlus,
   },
   {
-    title: "Select Chunk Size",
-    description:
-      "Choose the number of records or size per chunk to split your JSON file accordingly.",
-    icon: CheckCircle,
-  },
-  {
-    title: "Split JSON",
-    description:
-      "Click the 'Split' button to divide your JSON file into multiple smaller JSON files.",
+    title: "Set Parameters",
+    description: "Choose chunk size or criteria",
     icon: Settings,
   },
   {
-    title: "Download Split JSON Files",
-    description: "Save the split JSON files to your device for further use.",
+    title: "Process Data",
+    description: "Instant structure-preserving split",
     icon: Download,
+  },
+  {
+    title: "Download Results",
+    description: "Get organized JSON chunks",
+    icon: CheckCircle,
   },
 ];
 
 const Page = () => {
   return (
-    <div className="bg-white min-h-screen">
-      <div className="max-w-6xl mx-auto px-4 py-6 ">
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
-        <div className="text-center mb-10">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900  px-3 sm:px-7 py-4 rounded-md mb-6 inline-block">
-            JSON Splitter Online
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            JSON Splitter
           </h1>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-6">
-            Seamlessly split any{" "}
-            <span className="font-semibold">JSON file</span> into smaller chunks
-            and easily download them.
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Split large JSON files into organized, manageable chunks with
+            precision
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <span className="inline-flex items-center px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">
-              <span className="w-2 h-2 mr-2 bg-gray-600 rounded-full"></span>
-              No Ads
+          <div className="mt-6 flex justify-center gap-3">
+            <span className="px-4 py-2 bg-blue-100 text-gray-700 rounded-md text-sm hidden sm:block">
+              No installation required
             </span>
-            <span className="inline-flex items-center px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">
-              <span className="w-2 h-2 mr-2 bg-gray-600 rounded-full"></span>
-              Browser-based
+            <span className="px-4 py-2 bg-blue-100 text-gray-700 rounded-md text-sm hidden sm:block">
+              Completely Free
             </span>
-            <span className="inline-flex items-center px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">
-              <span className="w-2 h-2 mr-2 bg-gray-600 rounded-full"></span>
-              100% Free
+            <span className="px-4 py-2 bg-blue-100 text-gray-700 rounded-md text-sm hidden sm:block">
+              No signup needed
             </span>
           </div>
         </div>
 
-        {/* Main Tool */}
-        <div className="rounded-lg mb-24 overflow-hidden">
+        {/* Main Tool Section */}
+        <div className="mb-20 border rounded-lg">
           <JsonSplitter />
+
+          <div className="p-8 bg-gray-50">
+            <h3 className="text-lg font-medium text-gray-700 mb-6">
+              Next Steps
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Link href="/">
+                <div className="p-4 bg-white border rounded-md hover:border-gray-400">
+                  <div className="flex items-center">
+                    <Merge className="w-5 h-5 text-gray-600 mr-3" />
+                    <div>
+                      <p className="font-medium text-gray-800">Merge JSON</p>
+                      <p className="text-sm text-gray-500">
+                        Combine multiple files
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+              <Link href="/json-flattener">
+                <div className="p-4 bg-white border rounded-md hover:border-gray-400">
+                  <div className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-gray-600 mr-3" />
+                    <div>
+                      <p className="font-medium text-gray-800">Flatten JSON</p>
+                      <p className="text-sm text-gray-500">
+                        Simplify nested structures
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </div>
         </div>
 
-        {/* How It Works Section */}
-        <div className="mb-24">
-          <h2 className="text-2xl font-bold text-black text-center mb-12">
+        {/* How It Works */}
+        <div className="mb-20">
+          <h2 className="text-2xl font-semibold text-center text-gray-800 mb-12">
             How It Works
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 relative">
-            {/* Connection lines (visible on desktop only) */}
             <div className="hidden md:block absolute top-8 left-[25%] right-[25%] h-px bg-gray-200"></div>
             {howItWorks.map((step, index) => (
               <div key={index} className="relative">
@@ -130,81 +157,71 @@ const Page = () => {
         </div>
 
         {/* FAQ Section */}
-        <div className="mb-24">
-          <h2 className="text-2xl font-bold text-white bg-gray-950 rounded-md px-5 py-3 text-center mb-12">
-            Frequently Asked Questions
-          </h2>
-          <Card className="border border-gray-100">
-            <CardContent className="p-6">
-              <FaqSection faqs={faqs} />
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Features Section */}
-        <div className="mb-24">
-          <h2 className="text-2xl font-bold text-white bg-gray-950 px-5 py-3 rounded-md text-center mb-12">
-            Why Use Our Tool
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="border border-gray-100 hover:shadow-md transition-shadow duration-300">
-              <CardContent className="p-6">
-                <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-                  <span className="text-black font-bold">1</span>
-                </div>
-                <h3 className="font-medium text-lg mb-2">
-                  Effortless Splitting
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Split large JSON files into manageable parts with ease.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border border-gray-100 hover:shadow-md transition-shadow duration-300">
-              <CardContent className="p-6">
-                <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-                  <span className="text-black font-bold">2</span>
-                </div>
-                <h3 className="font-medium text-lg mb-2">Data Privacy</h3>
-                <p className="text-gray-500 text-sm">
-                  All processing is done in your browser, ensuring your data
-                  remains private.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border border-gray-100 hover:shadow-md transition-shadow duration-300">
-              <CardContent className="p-6">
-                <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-                  <span className="text-black font-bold">3</span>
-                </div>
-                <h3 className="font-medium text-lg mb-2">
-                  Structure Preservation
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Ensures your JSON structure is maintained without any data
-                  loss.
-                </p>
-              </CardContent>
-            </Card>
+        <div className="mb-20 border rounded-md">
+          <div className="p-8 border-b">
+            <h2 className="text-xl font-semibold text-center text-gray-800">
+              Frequently Asked Questions
+            </h2>
+          </div>
+          <div className="p-8">
+            <FaqSection faqs={faqs} />
           </div>
         </div>
 
-        {/* Brief Description */}
-        <div className="mb-24 text-center">
-          <p className="text-gray-500 max-w-2xl mx-auto">
-            Our JSON splitter breaks down complex JSON files into smaller, more
-            manageable chunks while preserving the original structure. Perfect
-            for developers and data professionals.
-          </p>
+        {/* Features Section */}
+        <div className="mb-20">
+          <h2 className="text-2xl font-semibold text-center text-gray-800 mb-12">
+            Key Features
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="p-6 border rounded-md bg-white">
+              <div className="w-10 h-10 bg-gray-100 rounded-md mb-4 flex items-center justify-center">
+                <CheckCircle className="w-5 h-5 text-gray-600" />
+              </div>
+              <h3 className="font-medium text-gray-800 mb-2">Data Integrity</h3>
+              <p className="text-gray-600 text-sm">
+                Preserve original structure
+              </p>
+            </div>
+            <div className="p-6 border rounded-md bg-white">
+              <div className="w-10 h-10 bg-gray-100 rounded-md mb-4 flex items-center justify-center">
+                <Settings className="w-5 h-5 text-gray-600" />
+              </div>
+              <h3 className="font-medium text-gray-800 mb-2">
+                Flexible Options
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Multiple splitting criteria
+              </p>
+            </div>
+            <div className="p-6 border rounded-md bg-white">
+              <div className="w-10 h-10 bg-gray-100 rounded-md mb-4 flex items-center justify-center">
+                <Download className="w-5 h-5 text-gray-600" />
+              </div>
+              <h3 className="font-medium text-gray-800 mb-2">
+                Instant Processing
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Fast browser-based results
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Blog Section */}
-        <div className="mb-24">
+        <div className="mb-20 border rounded-md p-8 bg-white">
           <SplitterBlog />
+          <div className="mt-8 text-center">
+            <Button variant="outline" className="border-gray-300">
+              <Link href="/blog/json-tips" className="text-gray-700">
+                Read JSON Guides
+              </Link>
+            </Button>
+          </div>
         </div>
 
         {/* Tools Grid */}
-        <div className="border-2 rounded-lg p-2 sm:px-6">
+        <div className="border rounded-md p-8 bg-white">
           <ToolsGrid />
         </div>
       </div>

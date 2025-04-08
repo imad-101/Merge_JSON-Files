@@ -1,9 +1,9 @@
-import JsonMerger from "./Main";
-import MergerBlog from "./MergeBlog";
+import JsonFlattener from "./Main";
+import FlattenerBlog from "./FlattenerBlog";
 import ToolsGrid from "@/components/ToolsGrid";
 import FaqSection from "@/components/Faq";
 import HowItWorks from "@/components/HowItWorks";
-import { Button } from "@/components/ui/button";
+
 import Link from "next/link";
 import {
   Upload,
@@ -17,62 +17,61 @@ import {
 
 const howItWorks = [
   {
-    title: "Select Files",
-    description: "Choose or drag & drop JSON files you want to combine.",
+    title: "Select File",
+    description: "Choose or drag & drop a JSON file you want to flatten.",
     icon: FilePlus,
   },
   {
     title: "Upload",
-    description: "Upload your selected files for automatic validation.",
+    description: "Upload your selected file for automatic validation.",
     icon: Upload,
   },
   {
-    title: "Merge",
-    description: "One click to combine all files into a single structure.",
+    title: "Flatten",
+    description: "One click to convert nested JSON into a flat structure.",
     icon: Settings,
   },
   {
     title: "Download",
-    description: "Save or copy your merged JSON data instantly.",
+    description: "Save or copy your flattened JSON data instantly.",
     icon: Download,
   },
 ];
-
 const faqs = [
   {
-    question: "How do I merge JSON files online?",
+    question: "How do I flatten JSON files online?",
     answer:
-      "To merge JSON files online, simply upload your JSON files to our tool using the drag-and-drop feature or file selection option. Once uploaded, click 'Merge', and our tool will instantly merge the JSON files into a single structured JSON output while preserving data integrity. This online JSON merger requires no software installation, making it a fast and efficient solution.",
+      "To flatten JSON files online, simply upload your JSON file to our easy-to-use tool using the drag-and-drop feature or file selection option. Once uploaded, click the 'Flatten' button, and our advanced JSON flattener will instantly convert complex nested JSON structures into a simpler, flat format for easier processing and analysis.",
   },
   {
-    question: "What is the best way to merge JSON files?",
+    question: "What is the best way to flatten JSON files?",
     answer:
-      "The best way to merge JSON files is by using an online JSON file merger like ours. Instead of manually writing scripts or using complex software, you can simply upload multiple JSON files and let our tool handle the merging process. It ensures that all data structures, including nested objects and arrays, are properly merged without any loss of information.",
+      "The best way to flatten JSON files is by using a reliable online tool like ours. Instead of spending hours writing custom code to iterate over deeply nested objects, you can upload your JSON file to our platform and let our automated JSON flattener handle the entire process efficiently and accurately.",
   },
   {
-    question: "Can I merge JSON files online without signing up?",
+    question: "Can I flatten JSON files online without signing up?",
     answer:
-      "Yes, our tool allows you to merge JSON files online instantly without requiring registration or login. You can start merging JSON files right away by uploading your data. Our platform is designed for ease of use, making it the perfect choice for quick and hassle-free JSON file merging.",
+      "Yes, you can flatten JSON files online instantly without the need for registration or login. Our free JSON flattener tool allows you to upload your data, flatten it with a single click, and download the results seamlessly, all without any signup requirements.",
   },
   {
-    question: "How does your online JSON file merger work?",
+    question: "How does your online JSON flattener work?",
     answer:
-      "Our online JSON file merger is built to combine multiple JSON files into one seamlessly. When you upload your files, our system automatically processes and merges them while maintaining their original structure. This means all key-value pairs, arrays, and nested elements remain intact, ensuring an accurate and well-formatted output.",
+      "Our online JSON flattener processes your uploaded JSON file directly in your browser, ensuring maximum security and privacy. It converts nested keys into a flat key-value structure, making even deeply nested data accessible and easier to work with. This browser-based approach ensures fast and efficient processing.",
   },
   {
-    question: "Can I merge large JSON files online?",
+    question: "Can I flatten large JSON files online?",
     answer:
-      "Yes, our tool is optimized to merge large JSON files online efficiently. Whether you're dealing with small data sets or extensive JSON files, our system processes them smoothly. The tool ensures quick merging without lag, making it a reliable solution for developers and data analysts working with JSON.",
+      "Yes, our tool is optimized to handle and flatten large JSON files efficiently. Whether you have a small JSON file or a massive dataset, our advanced JSON flattener processes it quickly while maintaining high performance and accuracy, making it ideal for large-scale data processing tasks.",
   },
   {
-    question: "What happens to nested structures when merging JSON files?",
+    question: "What happens to nested structures when flattening JSON files?",
     answer:
-      "When you merge JSON files online, our tool ensures that all nested structures, including objects and arrays, are preserved. The merging process intelligently combines data without breaking the original format, ensuring a properly structured JSON output that retains all hierarchical relationships.",
+      "When flattening JSON files, our tool intelligently converts nested objects and arrays into a flat key-value format. The process generates keys that represent the nested paths, ensuring no data is lost while making the structure more accessible and easier to analyze for various use cases.",
   },
   {
-    question: "Is it safe to merge JSON files online?",
+    question: "Is it safe to flatten JSON files online?",
     answer:
-      "Yes, it is completely safe to merge JSON files online using our tool. We process the files directly in your browser, meaning your data is never stored or uploaded to external servers. This guarantees privacy and security while ensuring a seamless JSON file merging experience.",
+      "Absolutely. Our JSON flattener tool processes your data directly in your browser, meaning your file is never uploaded to external servers. This guarantees complete security and privacy, making it a safe and reliable solution for flattening JSON files online.",
   },
 ];
 
@@ -82,9 +81,12 @@ const Page = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">JSON Merger</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            JSON Flattener
+          </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Combine multiple JSON files into a single structured output
+            Convert nested JSON files into a flat structure for easier
+            processing
           </p>
           <div className="mt-6 flex justify-center gap-3">
             <span className="px-4 py-2 bg-blue-100 text-gray-700 rounded-md text-sm hidden sm:block">
@@ -102,10 +104,10 @@ const Page = () => {
         {/* Main Tool Section */}
         <div className="mb-20 border rounded-lg">
           <div className="sm:p-8 border-b ">
-            <JsonMerger />
+            <JsonFlattener />
           </div>
 
-          {/* Post-Merge CTAs */}
+          {/* Post-Flatten CTAs */}
           <div className="p-8 bg-gray-50">
             <h3 className="text-lg font-medium text-gray-700 mb-6">
               Next Steps
@@ -126,14 +128,14 @@ const Page = () => {
                   </div>
                 </div>
               </Link>
-              <Link href="/json-file-splitter">
+              <Link href="/">
                 <div className="p-4 bg-white border rounded-md hover:border-gray-400">
                   <div className="flex items-center">
                     <SquareStack className="w-5 h-5 text-gray-600 mr-3" />
                     <div>
-                      <p className="font-medium text-gray-800">Split JSON</p>
+                      <p className="font-medium text-gray-800">Merge JSON</p>
                       <p className="text-sm text-gray-500">
-                        Split your JSON files into chunks
+                        Combine multiple files
                       </p>
                     </div>
                   </div>
@@ -168,7 +170,7 @@ const Page = () => {
         {/* FAQ Section */}
         <div className="mb-20 border rounded-md">
           <div className="p-8 border-b">
-            <h2 className="text-xl font-semibold text-center  px-5 py-4  text-gray-800">
+            <h2 className="text-xl font-semibold text-center px-5 py-4  text-gray-800">
               Frequently Asked Questions
             </h2>
           </div>
@@ -187,9 +189,11 @@ const Page = () => {
               <div className="w-10 h-10 bg-gray-100 rounded-md mb-4 flex items-center justify-center">
                 <Settings className="w-5 h-5 text-gray-600" />
               </div>
-              <h3 className="font-medium text-gray-800 mb-2">Smart Merging</h3>
+              <h3 className="font-medium text-gray-800 mb-2">
+                Smart Flattening
+              </h3>
               <p className="text-gray-600 text-sm">
-                Automatic conflict resolution
+                Converts nested JSON into flat, key-based structures
               </p>
             </div>
             <div className="p-6 border rounded-md bg-white">
@@ -200,7 +204,7 @@ const Page = () => {
                 Instant Processing
               </h3>
               <p className="text-gray-600 text-sm">
-                Fast browser-based results
+                Fast browser-based flattening for improved performance
               </p>
             </div>
             <div className="p-6 border rounded-md bg-white">
@@ -211,7 +215,7 @@ const Page = () => {
                 Full Integration
               </h3>
               <p className="text-gray-600 text-sm">
-                Works with other JSON tools
+                Easily combine with other JSON tools for complete workflows
               </p>
             </div>
           </div>
@@ -219,14 +223,7 @@ const Page = () => {
 
         {/* Blog Section */}
         <div className="mb-20 border rounded-md p-8 bg-white">
-          <MergerBlog />
-          <div className="mt-8 text-center">
-            <Button variant="outline" className="border-gray-300">
-              <Link href="/blog/json-best-practices" className="text-gray-700">
-                Read JSON Guides
-              </Link>
-            </Button>
-          </div>
+          <FlattenerBlog />
         </div>
 
         {/* Tools Grid */}

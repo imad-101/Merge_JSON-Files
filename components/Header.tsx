@@ -18,7 +18,7 @@ interface HeaderProps {
 
 const Header = ({ first, second, third, href }: HeaderProps) => {
   return (
-    <header className="bg-white border-b border-gray-100">
+    <header className="bg-gray-50 border-b border-gray-300">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}

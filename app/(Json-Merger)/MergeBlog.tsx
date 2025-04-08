@@ -2,7 +2,7 @@ import React from "react";
 
 const MergerBlog = () => {
   return (
-    <div className="bg-white text-gray-700 py-10 border-2 p-2 rounded-md">
+    <div className="bg-white text-gray-700 py-10  p-2 rounded-md">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <header className="mb-10">
