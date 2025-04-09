@@ -11,73 +11,51 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import {
-  ChevronLeft,
-  Calendar,
-  Clock,
-  Hash,
-  CornerDownRight,
-} from "lucide-react";
+import { ChevronLeft, Calendar, Clock, Tag } from "lucide-react";
+import { ShareFooter } from "./ShareFooter";
 
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+export async function generateMetadata(context: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const { slug } = context.params;
+  let post: PostData;
+  try {
+    post = await getPostData(slug);
+  } catch {
+    return {
+      title: "Not Found",
+      description: "This page does not exist",
+    };
+  }
+
+  return {
+    title: `${post.title} | Merge JSON Files`,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: `https://merge-json-files.com/blog/${slug}`,
+      type: "article",
+      publishedTime: new Date(post.date).toISOString(),
+      images: [
+        {
+          url: post.thumbnail || "/og-default.jpg",
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+      authors: [post.authorName],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [post.thumbnail || "/og-default.jpg"],
+      creator: `@${post.authorName.replace(/\s+/g, "")}`,
+    },
+  };
 }
-
-function getHeadings(
-  content: string
-): { level: number; text: string; id: string }[] {
-  const lines = content.split("\n");
-  const headings = lines
-    .filter((line) => /^#{2,3}\s/.test(line))
-    .map((line) => {
-      const match = /^(#{2,3})\s+(.*)/.exec(line);
-      if (!match) return null;
-      const level = match[1].length;
-      const text = match[2].trim();
-      return { level, text, id: slugify(text) };
-    })
-    .filter(Boolean) as { level: number; text: string; id: string }[];
-  return headings;
-}
-
-const TableOfContents = ({ content }: { content: string }) => {
-  const headings = getHeadings(content);
-  if (headings.length === 0) return null;
-  return (
-    <aside className="hidden lg:block sticky top-24 w-72 self-start p-4 border-l bg-gray-50 py-3 px-7 rounded-lg">
-      <div className="space-y-4">
-        <h2 className="text-lg font-medium uppercase tracking-wide text-muted-foreground flex items-center gap-2">
-          <Hash className="h-6 w-6" />
-          Table of Contents
-        </h2>
-        <ul className="space-y-3 text-gray-700">
-          {headings.map((heading) => (
-            <li
-              key={heading.id}
-              className={`transition-colors ${
-                heading.level === 2 ? "ml-0 font-medium" : "ml-4 text-sm"
-              }`}
-            >
-              <a
-                href={`#${heading.id}`}
-                className="text-muted-foreground hover:text-primary flex items-start gap-2 toc-link"
-                data-id={heading.id}
-              >
-                {heading.level === 3 && (
-                  <CornerDownRight className="h-4 w-4 mt-1 flex-shrink-0" />
-                )}
-                <span className="leading-snug">{heading.text}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </aside>
-  );
-};
 
 const EnhancedCodeBlock = ({
   inline,
@@ -90,7 +68,7 @@ const EnhancedCodeBlock = ({
   if (inline) {
     return (
       <code
-        className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
+        className="bg-blue-50 text-blue-800 px-2 py-1 rounded-md font-mono text-sm border border-blue-100"
         {...props}
       >
         {children}
@@ -98,14 +76,17 @@ const EnhancedCodeBlock = ({
     );
   }
   return (
-    <div className="my-4 overflow-x-auto rounded-lg border shadow-sm bg-gray-900 text-white">
-      <div className="flex items-center gap-2 bg-gray-800 px-3 py-1">
-        <span className="h-3 w-3 rounded-full bg-red-600" />
-        <span className="h-3 w-3 rounded-full bg-yellow-500" />
-        <span className="h-3 w-3 rounded-full bg-green-600" />
+    <div className="my-8 overflow-x-auto rounded-xl bg-gray-900 text-gray-100 shadow-2xl">
+      <div className="flex items-center justify-between bg-gray-800 px-4 py-3">
+        <div className="flex items-center gap-2">
+          <span className="h-3 w-3 rounded-full bg-red-500" />
+          <span className="h-3 w-3 rounded-full bg-yellow-500" />
+          <span className="h-3 w-3 rounded-full bg-green-500" />
+        </div>
+        <span className="text-sm font-mono text-gray-400">Code Snippet</span>
       </div>
       <pre className="p-4">
-        <code className="font-mono text-sm" {...props}>
+        <code className="font-mono text-sm leading-relaxed" {...props}>
           {children}
         </code>
       </pre>
@@ -113,37 +94,12 @@ const EnhancedCodeBlock = ({
   );
 };
 
-export async function generateMetadata(context: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const params = await context.params;
-  const { slug } = params;
-  const post = await getPostData(slug);
-  return {
-    title: post.title,
-    description: post.description,
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      url: `https://merge-json-files.com/blog/${slug}`,
-      type: "article",
-      publishedTime: new Date(post.date).toISOString(),
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-  };
-}
-
 export default async function BlogPost({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  // Await the params before destructuring
-  const { slug } = await params;
-
+  const { slug } = params;
   let post: PostData;
   try {
     post = await getPostData(slug);
@@ -151,182 +107,197 @@ export default async function BlogPost({
     notFound();
   }
 
+  const postUrl = `https://merge-json-files.com/blog/${slug}`;
+
   return (
     <>
       <Header first="Merge" second="JSON" third="Files" href="/" />
 
-      <div className="container mx-auto px-4 py-8 lg:py-12 flex flex-col lg:flex-row">
-        <main className="w-full md:max-w-5xl mx-auto bg-slate-50 px-4 md:px-12 py-5 md:py-8 rounded-lg shadow-sm">
-          <div className="mb-10">
-            <Link href="/blog">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="gap-1.5 -ml-2 bg-gray-100 hover:bg-gray-200 cursor-pointer"
-              >
-                <ChevronLeft className="h-4 w-4" />
-                All Articles
-              </Button>
-            </Link>
-          </div>
+      <main className="max-w-5xl mx-auto px-4 py-16">
+        <div className="mb-8">
+          <Link href="/blog">
+            <Button
+              variant="ghost"
+              className="text-gray-600 hover:text-gray-900 -ml-3 group text-lg"
+            >
+              <ChevronLeft className="h-6 w-6 mr-2 transition-transform group-hover:-translate-x-1" />
+              All Articles
+            </Button>
+          </Link>
+        </div>
 
-          <article className="space-y-8">
-            <header className="space-y-4">
-              <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500">
-                <div className="flex items-center gap-1.5">
-                  <Calendar className="h-4 w-4" />
-                  <time dateTime={post.date}>
-                    {new Date(post.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </time>
+        <article className="space-y-12">
+          <header className="space-y-8">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+              <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg">
+                <Calendar className="h-5 w-5" />
+                <time dateTime={post.date}>
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+              </div>
+              <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg">
+                <Clock className="h-5 w-5" />
+                <span>{post.readTime} read</span>
+              </div>
+              {(post.tags?.length ?? 0) > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {(post.tags ?? []).map((tag) => (
+                    <span
+                      key={tag}
+                      className="flex items-center gap-1 rounded-lg bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700"
+                    >
+                      <Tag className="h-4 w-4" />
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-                <span>•</span>
-                <div className="flex items-center gap-1.5">
-                  <Clock className="h-4 w-4" />
-                  <span>{post.readTime}</span>
-                </div>
-                {(post.tags?.length ?? 0) > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {(post.tags ?? []).map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-gray-200 px-2.5 py-1 text-xs font-medium text-gray-600"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+              )}
+            </div>
+
+            <h1 className="text-5xl font-bold text-gray-900 leading-tight tracking-tight">
+              {post.title}
+            </h1>
+
+            <div className="flex items-center gap-4 pt-8">
+              <Avatar className="h-16 w-16 border-2 border-white shadow-xl">
+                {post.authorImage ? (
+                  <AvatarImage src={post.authorImage} alt={post.authorName} />
+                ) : (
+                  <AvatarFallback className="bg-blue-100 text-blue-700 text-2xl">
+                    {post.authorName[0]}
+                  </AvatarFallback>
                 )}
+              </Avatar>
+              <div>
+                <p className="font-semibold text-gray-900 text-xl">
+                  {post.authorName}
+                </p>
+                <p className="text-gray-500 mt-1">Senior Technical Writer</p>
               </div>
-              <h1 className="text-3xl text-gray-900 md:text-4xl font-bold tracking-tight">
-                {post.title}
-              </h1>
-              <div className="flex items-center gap-4 pt-4">
-                <Avatar className="h-10 w-10">
-                  {post.authorImage ? (
-                    <AvatarImage src={post.authorImage} alt={post.authorName} />
-                  ) : (
-                    <AvatarFallback>{post.authorName[0]}</AvatarFallback>
-                  )}
-                </Avatar>
-                <div>
-                  <p className="font-medium">{post.authorName}</p>
-                  <p className="text-sm text-gray-500">Full-Stack Developer</p>
-                </div>
-              </div>
-            </header>
+            </div>
+          </header>
 
-            {post.thumbnail && (
-              <div className="relative aspect-video overflow-hidden rounded-lg bg-gray-200">
-                <Image
-                  src={post.thumbnail}
-                  alt={post.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            )}
+          {post.thumbnail && (
+            <div className="relative aspect-[2/1] w-full overflow-hidden rounded-2xl bg-gray-100 shadow-xl">
+              <Image
+                src={post.thumbnail}
+                alt={post.title}
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/30 to-transparent" />
+            </div>
+          )}
 
-            <div className="prose prose-lg text-gray-800  max-w-none my-6">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeRaw]}
-                components={{
-                  h2: ({ ...props }) => {
-                    const text = props.children?.toString() || "";
-                    return (
-                      <h2
-                        id={slugify(text)}
-                        className="text-2xl md:text-3xl font-semibold mt-8 mb-4 scroll-mt-24"
-                        {...props}
-                      />
-                    );
-                  },
-                  h3: ({ ...props }) => {
-                    const text = props.children?.toString() || "";
-                    return (
-                      <h3
-                        id={slugify(text)}
-                        className="text-xl md:text-2xl font-semibold mt-6 mb-3 scroll-mt-24"
-                        {...props}
-                      />
-                    );
-                  },
-                  p: ({ ...props }) => (
-                    <p className="text-base leading-relaxed mb-4" {...props} />
-                  ),
-                  a: ({ ...props }) => (
-                    <a
-                      className="text-blue-600 hover:text-blue-500 underline underline-offset-4"
-                      {...props}
-                    />
-                  ),
-                  blockquote: ({ ...props }) => (
-                    <blockquote
-                      className="mt-4 border-l-4 border-gray-300 pl-4 italic text-gray-600"
-                      {...props}
-                    />
-                  ),
-                  ul: ({ ...props }) => (
-                    <ul
-                      className="my-4 ml-6 list-disc [&>li]:mt-2"
-                      {...props}
-                    />
-                  ),
-                  ol: ({ ...props }) => (
-                    <ol
-                      className="my-4 ml-6 list-decimal [&>li]:mt-2"
-                      {...props}
-                    />
-                  ),
-                  code: EnhancedCodeBlock,
-                  table: ({ ...props }) => (
-                    <div className="my-4 w-full overflow-x-auto">
-                      <table className="w-full" {...props} />
-                    </div>
-                  ),
-                  th: ({ ...props }) => (
-                    <th
-                      className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right"
-                      {...props}
-                    />
-                  ),
-                  td: ({ ...props }) => (
-                    <td
-                      className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
-                      {...props}
-                    />
-                  ),
-                  img: ({ src, alt }: { src?: string; alt?: string }) =>
-                    src ? (
-                      <figure className="my-4 flex flex-col items-center">
+          <div className="prose prose-lg max-w-none text-gray-700 text-left">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                h2: ({ ...props }) => (
+                  <h2
+                    className="text-4xl font-bold text-gray-900 mt-16 mb-8 pt-8 border-t border-gray-100"
+                    {...props}
+                  />
+                ),
+                h3: ({ ...props }) => (
+                  <h3
+                    className="text-2xl font-semibold text-gray-900 mt-12 mb-6"
+                    {...props}
+                  />
+                ),
+                p: ({ ...props }) => (
+                  <p
+                    className="text-xl leading-relaxed text-gray-700 mb-8"
+                    {...props}
+                  />
+                ),
+                a: ({ ...props }) => (
+                  <a
+                    className="text-blue-600 hover:text-blue-500 font-medium underline underline-offset-4 decoration-2 transition-colors"
+                    {...props}
+                  />
+                ),
+                blockquote: ({ ...props }) => (
+                  <blockquote
+                    className="border-l-4 border-blue-500 bg-blue-50 pl-8 py-6 my-8 italic text-gray-700 rounded-r-xl"
+                    {...props}
+                  />
+                ),
+                ul: ({ ...props }) => (
+                  <ul
+                    className="list-disc space-y-4 pl-8 my-8 text-xl"
+                    {...props}
+                  />
+                ),
+                ol: ({ ...props }) => (
+                  <ol
+                    className="list-decimal space-y-4 pl-8 my-8 text-xl"
+                    {...props}
+                  />
+                ),
+                code: EnhancedCodeBlock,
+                table: ({ ...props }) => (
+                  <div className="my-8 overflow-x-auto rounded-xl border shadow-sm">
+                    <table className="w-full border-collapse" {...props} />
+                  </div>
+                ),
+                th: ({ ...props }) => (
+                  <th
+                    className="bg-gray-50 px-6 py-4 text-left font-semibold text-gray-900 border-b text-lg"
+                    {...props}
+                  />
+                ),
+                td: ({ ...props }) => (
+                  <td
+                    className="px-6 py-4 text-left border-b text-gray-700"
+                    {...props}
+                  />
+                ),
+                img: ({ src, alt }) =>
+                  src && (
+                    <figure className="my-12">
+                      <div className="relative overflow-hidden rounded-2xl bg-gray-100 aspect-video shadow-lg">
                         <Image
                           src={src}
                           alt={alt || "Post image"}
-                          width={600}
-                          height={400}
-                          className="rounded-lg border bg-gray-200"
+                          fill
+                          className="object-cover"
                         />
-                        {alt && (
-                          <figcaption className="mt-2 text-center text-sm text-gray-500">
-                            {alt}
-                          </figcaption>
-                        )}
-                      </figure>
-                    ) : null,
-                }}
-              >
-                {post.content}
-              </ReactMarkdown>
-            </div>
-          </article>
-        </main>
+                      </div>
+                      {alt && (
+                        <figcaption className="mt-4 text-sm text-gray-500 italic">
+                          {alt}
+                        </figcaption>
+                      )}
+                    </figure>
+                  ),
+              }}
+            >
+              {post.content}
+            </ReactMarkdown>
+          </div>
 
-        <TableOfContents content={post.content} />
-      </div>
+          <ShareFooter title={post.title} url={postUrl} />
+
+          <div className="mt-12">
+            <Link href="/blog">
+              <Button
+                variant="ghost"
+                className="text-gray-600 hover:text-gray-900 group text-lg pl-0"
+              >
+                <ChevronLeft className="h-6 w-6 mr-2 transition-transform group-hover:-translate-x-1" />
+                Back to All Articles
+              </Button>
+            </Link>
+          </div>
+        </article>
+      </main>
 
       <Footer name="Merge JSON Files" />
     </>
