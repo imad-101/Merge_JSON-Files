@@ -20,6 +20,7 @@ export interface PostData extends PostMeta {
   content: string;
 }
 
+// Get sorted post metadata
 export function getSortedPostsData(): PostMeta[] {
   const fileNames = fs.readdirSync(postsDirectory);
 
@@ -47,6 +48,7 @@ export function getSortedPostsData(): PostMeta[] {
   );
 }
 
+// Get single post data by ID
 export function getPostData(id: string): PostData {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   try {
@@ -65,7 +67,11 @@ export function getPostData(id: string): PostData {
       thumbnail: matterResult.data.thumbnail || "",
       tags: matterResult.data.tags || [],
     };
-  } catch {
-    throw new Error(`Post ${id} not found`);
+  } catch (error) {
+    throw new Error(
+      `Post with ID "${id}" not found. ${
+        error instanceof Error ? error.message : ""
+      }`
+    );
   }
 }

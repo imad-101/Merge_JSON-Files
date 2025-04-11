@@ -13,11 +13,19 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ChevronLeft, Calendar, Clock, Tag } from "lucide-react";
 import { ShareFooter } from "./ShareFooter";
+// ✅ Define shared PageProps type
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
 
-export async function generateMetadata(context: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const { slug } = context.params;
+// ✅ generateMetadata using correct type
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params; // Await the params since it's now a Promise
+
   let post: PostData;
   try {
     post = await getPostData(slug);
@@ -57,6 +65,7 @@ export async function generateMetadata(context: {
   };
 }
 
+// ✅ EnhancedCodeBlock stays the same
 const EnhancedCodeBlock = ({
   inline,
   children,
@@ -94,12 +103,10 @@ const EnhancedCodeBlock = ({
   );
 };
 
-export default async function BlogPost({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { slug } = params;
+// ✅ Page component with correct props type
+export default async function BlogPost({ params }: PageProps) {
+  const { slug } = await params;
+
   let post: PostData;
   try {
     post = await getPostData(slug);
@@ -176,7 +183,7 @@ export default async function BlogPost({
                 <p className="font-semibold text-gray-900 text-xl">
                   {post.authorName}
                 </p>
-                <p className="text-gray-500 mt-1">Senior Technical Writer</p>
+                <p className="text-gray-500 mt-1">Full Stack Developer</p>
               </div>
             </div>
           </header>
