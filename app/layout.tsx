@@ -12,6 +12,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
+        <meta name="yandex-verification" content="84dca52e46053335" />
       </head>
 
       <body className={` antialiasedmin-h-screen flex flex-col `}>
