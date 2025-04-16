@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import JsonToJsonlConverter from "./Main";
 import JsonToJsonlBlog from "./JsonToJsonlBlog";
