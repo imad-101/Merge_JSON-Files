@@ -1,5 +1,5 @@
 import React from "react";
-import YamlToJsonConverter from "./main";
+import JsonFlattener from "./main";
 import YamlToJsonBlog from "./YamlToJsonBlog";
 import ToolsGrid from "@/components/ToolsGrid";
 import FaqSection from "@/components/Faq";
@@ -112,7 +112,7 @@ const Page = () => {
         {/* Main Converter Section */}
         <div className="mb-20 border rounded-lg">
           <div className="sm:p-8 border-b">
-            <YamlToJsonConverter />
+            <JsonFlattener />
           </div>
           {/* Next Steps Section */}
           <div className="p-8 bg-gray-50">
