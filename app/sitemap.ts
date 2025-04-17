@@ -29,5 +29,13 @@ export default async function sitemap() {
       url: "https://merge-json-files.com/json-to-jsonl",
       lastModified: new Date(),
     },
+    {
+      url: "https://merge-json-files.com/jsonl-to-json",
+      lastModified: new Date(),
+    },
+    {
+      url: "https://merge-json-files.com/yaml-to-json",
+      lastModified: new Date(),
+    },
   ];
 }
