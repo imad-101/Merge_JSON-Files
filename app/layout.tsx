@@ -13,6 +13,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
         <meta name="yandex-verification" content="84dca52e46053335" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
+          crossOrigin="anonymous"
+        ></script>
       </head>
 
       <body className={` antialiasedmin-h-screen flex flex-col `}>
