@@ -55,120 +55,129 @@ export default function BlogPage() {
   const allPosts = getSortedPostsData();
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header first="Merge" second="JSON" third="Files" href="/" />
+    <>
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
+      <div className="min-h-screen flex flex-col">
+        <Header first="Merge" second="JSON" third="Files" href="/" />
 
-      {/* Shadcn UI Breadcrumb */}
-      <div className="mt-6 max-w-4xl mx-auto hidden sm:block text-xl">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Blog</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
+        {/* Shadcn UI Breadcrumb */}
+        <div className="mt-6 max-w-4xl mx-auto hidden sm:block text-xl">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Blog</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
 
-      <main className="flex-1">
-        <section className="w-full py-12 md:py-10">
-          <div className="container px-4 md:px-6">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-                Articles and Helpful Guides
-              </h1>
-              <p className="mt-4 text-xl text-gray-600">
-                Discover articles and helpful guides about JSON tools and JSON
-                Files in general
-              </p>
+        <main className="flex-1">
+          <section className="w-full py-12 md:py-10">
+            <div className="container px-4 md:px-6">
+              <div className="max-w-3xl mx-auto text-center">
+                <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+                  Articles and Helpful Guides
+                </h1>
+                <p className="mt-4 text-xl text-gray-600">
+                  Discover articles and helpful guides about JSON tools and JSON
+                  Files in general
+                </p>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className="w-full py-4">
-          <div className="container px-4 md:px-6" />
-        </section>
-        <section className="w-full pb-24">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-              {allPosts.map((post) => (
-                <Card
-                  key={post.id}
-                  className="group hover:shadow-lg transition-shadow duration-300 border border-gray-100 overflow-hidden"
-                >
-                  {post.thumbnail ? (
-                    <div className="relative h-48 overflow-hidden">
-                      <Image
-                        src={post.thumbnail}
-                        alt={post.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                    </div>
-                  ) : (
-                    <ImagePlaceholder />
-                  )}
-
-                  <CardHeader className="pt-5">
-                    <CardTitle className="text-xl font-semibold">
-                      <Link
-                        href={`/blog/${post.id}`}
-                        className="hover:text-blue-600"
-                      >
-                        {post.title}
-                      </Link>
-                    </CardTitle>
-                  </CardHeader>
-
-                  <CardContent>
-                    <p className="text-gray-600 line-clamp-3 mb-6">
-                      {post.description}
-                    </p>
-
-                    <div className="flex items-center gap-4 border-t pt-4">
-                      {post.authorImage ? (
+          <section className="w-full py-4">
+            <div className="container px-4 md:px-6" />
+          </section>
+          <section className="w-full pb-24">
+            <div className="container px-4 md:px-6">
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+                {allPosts.map((post) => (
+                  <Card
+                    key={post.id}
+                    className="group hover:shadow-lg transition-shadow duration-300 border border-gray-100 overflow-hidden"
+                  >
+                    {post.thumbnail ? (
+                      <div className="relative h-48 overflow-hidden">
                         <Image
-                          src={post.authorImage}
-                          alt={post.authorName}
-                          width={40}
-                          height={40}
-                          className="rounded-full"
+                          src={post.thumbnail}
+                          alt={post.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
-                      ) : (
-                        <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
-                          <UserIcon className="text-gray-500" />
-                        </div>
-                      )}
-                      <div className="flex-1">
-                        <h4 className="font-medium text-gray-900">
-                          {post.authorName}
-                        </h4>
-                        <div className="flex items-center gap-2 text-sm text-gray-500">
-                          <time>
-                            {new Date(post.date).toLocaleDateString("en-US", {
-                              month: "short",
-                              day: "numeric",
-                              year: "numeric",
-                            })}
-                          </time>
-                          <span>•</span>
-                          <span>{post.readTime}</span>
+                      </div>
+                    ) : (
+                      <ImagePlaceholder />
+                    )}
+
+                    <CardHeader className="pt-5">
+                      <CardTitle className="text-xl font-semibold">
+                        <Link
+                          href={`/blog/${post.id}`}
+                          className="hover:text-blue-600"
+                        >
+                          {post.title}
+                        </Link>
+                      </CardTitle>
+                    </CardHeader>
+
+                    <CardContent>
+                      <p className="text-gray-600 line-clamp-3 mb-6">
+                        {post.description}
+                      </p>
+
+                      <div className="flex items-center gap-4 border-t pt-4">
+                        {post.authorImage ? (
+                          <Image
+                            src={post.authorImage}
+                            alt={post.authorName}
+                            width={40}
+                            height={40}
+                            className="rounded-full"
+                          />
+                        ) : (
+                          <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                            <UserIcon className="text-gray-500" />
+                          </div>
+                        )}
+                        <div className="flex-1">
+                          <h4 className="font-medium text-gray-900">
+                            {post.authorName}
+                          </h4>
+                          <div className="flex items-center gap-2 text-sm text-gray-500">
+                            <time>
+                              {new Date(post.date).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              })}
+                            </time>
+                            <span>•</span>
+                            <span>{post.readTime}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
+        </main>
 
-      <Footer name="Merge JSON Files" />
-    </div>
+        <Footer name="Merge JSON Files" />
+      </div>
+    </>
   );
 }

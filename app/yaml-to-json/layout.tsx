@@ -58,10 +58,19 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <Header first="YAML" second="to" third="JSON" href="/yaml-to-json" />
-      <main className="flex-grow">{children}</main>
-      <Toaster />
-      <Footer name="YAML to JSON Converter" />
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
+      <body>
+        <Header first="YAML" second="to" third="JSON" href="/yaml-to-json" />
+        <main className="flex-grow">{children}</main>
+        <Toaster />
+        <Footer name="YAML to JSON Converter" />
+      </body>
     </>
   );
 }

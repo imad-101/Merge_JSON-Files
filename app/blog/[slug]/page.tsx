@@ -118,6 +118,13 @@ export default async function BlogPost({ params }: PageProps) {
 
   return (
     <>
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <Header first="Merge" second="JSON" third="Files" href="/" />
 
       <main className="max-w-5xl mx-auto px-4 py-16">

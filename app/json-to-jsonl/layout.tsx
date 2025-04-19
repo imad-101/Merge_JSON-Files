@@ -58,10 +58,19 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <Header first="JSON" second="to" third="JSONL" href="/json-to-jsonl" />
-      <main className="flex-grow">{children}</main>
-      <Toaster />
-      <Footer name="JSON to JSONL Converter" />
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
+      <body>
+        <Header first="JSON" second="to" third="JSONL" href="/json-to-jsonl" />
+        <main className="flex-grow">{children}</main>
+        <Toaster />
+        <Footer name="JSON to JSONL Converter" />
+      </body>
     </>
   );
 }

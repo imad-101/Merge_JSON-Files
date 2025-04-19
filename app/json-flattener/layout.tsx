@@ -58,15 +58,24 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <Header
-        first="Flatten"
-        second="JSON"
-        third="Online"
-        href="/json-flattener"
-      />
-      <main className="flex-grow">{children}</main>
-      <Toaster />
-      <Footer name="Flatten JSON" />
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
+      <body>
+        <Header
+          first="Flatten"
+          second="JSON"
+          third="Online"
+          href="/json-flattener"
+        />
+        <main className="flex-grow">{children}</main>
+        <Toaster />
+        <Footer name="Flatten JSON" />
+      </body>
     </>
   );
 }
