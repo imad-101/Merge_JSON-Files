@@ -58,10 +58,24 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <Header first="Merge" second="JSON" third="Files" href="/" />
-      <main className="flex-grow">{children}</main>
-      <Toaster />
-      <Footer name="Merge JSON Files" />
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
+      <body>
+        <Header
+          first="JSON"
+          second="Merger"
+          third="Online"
+          href="/json-file-merger"
+        />
+        <main className="flex-grow">{children}</main>
+        <Toaster />
+        <Footer name="JSON Merger" />
+      </body>
     </>
   );
 }
