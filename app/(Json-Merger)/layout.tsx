@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "Merge JSON Files Online - Free JSON Merger Tool",
+  title: "Merge JSON Files Instantly | Free Online JSON Merger Tool",
   description:
-    "Merge JSON files online with our Free tool. Upload and merge JSON files instantly while preserving structure. Fast, secure, and no signup needed.",
+    "Easily merge JSON files online with our fast, free, and secure JSON Merger. Combine multiple JSON files into one — no signup, no hassle!",
   keywords:
-    "merge JSON files, merge JSON files online , merge JSON files free , combine JSON files , combine JSON files online , JSON merger tool, how to merge json files",
+    "merge JSON files, combine JSON files online, free JSON merger, online JSON combiner, merge JSON tool, JSON file merger, join JSON files",
   metadataBase: new URL("https://merge-json-files.com"),
   alternates: {
     canonical: "https://merge-json-files.com/",
@@ -26,9 +25,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Merge JSON Files Online - Professional JSON Merger",
+    title: "Merge JSON Files Instantly | Free & Secure JSON Merger",
     description:
-      "Merge JSON files online with our professional tool. Upload and merge JSON files instantly while preserving structure. Fast, secure, and no signup needed.",
+      "Combine JSON files with our free online tool. Merge multiple JSON files into one structured file quickly and securely — no signup required.",
     url: "https://merge-json-files.com",
     siteName: "Merge JSON Files Online",
     type: "website",
@@ -38,15 +37,15 @@ export const metadata: Metadata = {
         url: "/merge.png",
         width: 1200,
         height: 630,
-        alt: "Professional JSON File Merger Tool",
+        alt: "Free JSON Merger Tool",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Merge JSON Files Online - Professional JSON Merger",
+    title: "Merge JSON Files Instantly | Free & Secure JSON Merger",
     description:
-      "Merge JSON files online with our professional tool. Upload and merge JSON files instantly while preserving structure. Fast, secure, and no signup needed.",
+      "Combine JSON files online with one click. Fast, reliable, and free JSON merger with no login required.",
     site: "https://merge-json-files.com",
     creator: "@imaduddin_101",
     images: ["/merge.png"],
@@ -58,30 +57,38 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <Header
-        first="JSON"
-        second="Merger"
-        third="Online"
-        href="/json-file-merger"
-      />
+      {/* Schema.org JSON-LD */}
       <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
-        crossOrigin="anonymous"
-      ></script>
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Merge JSON Files Online",
+            url: "https://merge-json-files.com",
+            description:
+              "Easily merge multiple JSON files into one with our free, fast, and secure JSON Merger tool. No login required.",
+            publisher: {
+              "@type": "Organization",
+              name: "Merge JSON Files",
+              url: "https://merge-json-files.com",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://merge-json-files.com/merge.png",
+              },
+            },
+            potentialAction: {
+              "@type": "SearchAction",
+              target:
+                "https://merge-json-files.com/?query={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          }),
+        }}
+      />
 
-      <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-6334971938249130"
-        data-ad-slot="8500156139"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       <main className="flex-grow">{children}</main>
       <Toaster />
-      <Footer name="JSON Merger" />
     </>
   );
 }

@@ -1,6 +1,17 @@
 "use client";
-import React, { useState, useCallback } from "react";
-import { Upload, Trash2, Copy, Loader } from "lucide-react";
+import type React from "react";
+import { useState, useCallback } from "react";
+import AdUnit from "@/components/AdUnit";
+import {
+  Upload,
+  Trash2,
+  Copy,
+  Loader,
+  FileJson,
+  CheckCircle,
+  AlertCircle,
+  Download,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -12,6 +23,7 @@ import {
 } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import Dropzone from "react-dropzone";
+
 import {
   Select,
   SelectContent,
@@ -22,6 +34,12 @@ import {
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type MergeOptions = {
   arrayStrategy: "concat" | "overwrite" | "merge" | "mergeByKey";
@@ -58,6 +76,7 @@ const JsonMerger: React.FC = () => {
       toast({
         title: "Files Added",
         description: `Successfully added ${acceptedFiles.length} file(s).`,
+        variant: "default",
       });
     },
     [toast]
@@ -311,6 +330,7 @@ const JsonMerger: React.FC = () => {
             toast({
               title: "Merge Successful",
               description: `Merged ${files.length} files successfully.`,
+              variant: "default",
             });
             worker.terminate();
             break;
@@ -391,6 +411,7 @@ const JsonMerger: React.FC = () => {
     toast({
       title: "Download Started",
       description: "Merged JSON is being downloaded.",
+      variant: "default",
     });
   };
 
@@ -410,6 +431,7 @@ const JsonMerger: React.FC = () => {
       toast({
         title: "Copied to Clipboard",
         description: "Merged JSON copied successfully.",
+        variant: "default",
       });
     } catch {
       toast({
@@ -421,122 +443,166 @@ const JsonMerger: React.FC = () => {
   };
 
   const renderOptions = () => (
-    <div className="mt-4 space-y-4 p-4 bg-gray-800 rounded-sm">
+    <div className="mt-6 space-y-4 p-6 bg-slate-50 rounded-lg border border-slate-200">
       <div className="flex items-center justify-between">
-        <Label className="text-gray-300">Merge Options (Optional)</Label>
+        <Label className="text-slate-800 font-medium">
+          Advanced Merge Options
+        </Label>
         <Switch
           checked={showOptions}
           onCheckedChange={setShowOptions}
-          className="data-[state=checked]:bg-green-500"
+          className="data-[state=checked]:bg-green-600"
         />
       </div>
 
       {showOptions && (
-        <div className="space-y-3">
+        <div className="space-y-4 pt-4 border-t border-slate-200">
           <div className="space-y-2">
-            <Label className="text-gray-300">Array Handling</Label>
-            <Select
-              value={options.arrayStrategy}
-              onValueChange={(
-                v: "concat" | "overwrite" | "merge" | "mergeByKey"
-              ) => setOptions((prev) => ({ ...prev, arrayStrategy: v }))}
-            >
-              <SelectTrigger className="bg-gray-700 border-gray-600 text-gray-200">
-                <SelectValue placeholder="Array Strategy" />
-              </SelectTrigger>
-              <SelectContent className="bg-gray-800 text-gray-200">
-                <SelectItem value="concat">Concatenate</SelectItem>
-                <SelectItem value="overwrite">Overwrite</SelectItem>
-                <SelectItem value="merge">Merge Unique</SelectItem>
-                <SelectItem value="mergeByKey">Merge by Key</SelectItem>
-              </SelectContent>
-            </Select>
+            <Label className="text-slate-700">Array Handling</Label>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div>
+                    <Select
+                      value={options.arrayStrategy}
+                      onValueChange={(
+                        v: "concat" | "overwrite" | "merge" | "mergeByKey"
+                      ) =>
+                        setOptions((prev) => ({ ...prev, arrayStrategy: v }))
+                      }
+                    >
+                      <SelectTrigger className="bg-white border-slate-200 text-slate-800">
+                        <SelectValue placeholder="Array Strategy" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white text-slate-800">
+                        <SelectItem value="concat">Concatenate</SelectItem>
+                        <SelectItem value="overwrite">Overwrite</SelectItem>
+                        <SelectItem value="merge">Merge Unique</SelectItem>
+                        <SelectItem value="mergeByKey">Merge by Key</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="text-xs max-w-xs">
+                    Choose how to handle arrays when merging. Concatenate joins
+                    arrays, Overwrite replaces them, Merge Unique combines
+                    unique values, and Merge by Key combines objects with
+                    matching keys.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
 
           {options.arrayStrategy === "mergeByKey" && (
             <div className="space-y-2">
-              <Label className="text-gray-300">Merge Key</Label>
+              <Label className="text-slate-700">Merge Key</Label>
               <Input
                 value={options.mergeKey}
                 onChange={(e) =>
                   setOptions((prev) => ({ ...prev, mergeKey: e.target.value }))
                 }
                 placeholder="e.g., id"
-                className="bg-gray-700 border-gray-600 text-gray-200"
+                className="bg-white border-slate-200 text-slate-800"
               />
             </div>
           )}
 
           <div className="space-y-2">
-            <Label className="text-gray-300">Conflict Resolution</Label>
-            <Select
-              value={options.conflictResolution}
-              onValueChange={(v: "merge" | "overwrite") =>
-                setOptions((prev) => ({ ...prev, conflictResolution: v }))
-              }
-            >
-              <SelectTrigger className="bg-gray-700 border-gray-600 text-gray-200">
-                <SelectValue placeholder="Conflict Strategy" />
-              </SelectTrigger>
-              <SelectContent className="bg-gray-800 text-gray-200">
-                <SelectItem value="merge">Merge Values</SelectItem>
-                <SelectItem value="overwrite">Overwrite Existing</SelectItem>
-              </SelectContent>
-            </Select>
+            <Label className="text-slate-700">Conflict Resolution</Label>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div>
+                    <Select
+                      value={options.conflictResolution}
+                      onValueChange={(v: "merge" | "overwrite") =>
+                        setOptions((prev) => ({
+                          ...prev,
+                          conflictResolution: v,
+                        }))
+                      }
+                    >
+                      <SelectTrigger className="bg-white border-slate-200 text-slate-800">
+                        <SelectValue placeholder="Conflict Strategy" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white text-slate-800">
+                        <SelectItem value="merge">Merge Values</SelectItem>
+                        <SelectItem value="overwrite">
+                          Overwrite Existing
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="text-xs max-w-xs">
+                    Choose how to handle conflicts when the same key exists in
+                    multiple files. Merge attempts to combine values, while
+                    Overwrite replaces with the latest value.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
 
-          <div className="space-y-2">
-            <Label className="text-gray-300">Number Handling</Label>
-            <Select
-              value={options.numericHandling}
-              onValueChange={(v: "sum" | "keep") =>
-                setOptions((prev) => ({ ...prev, numericHandling: v }))
-              }
-            >
-              <SelectTrigger className="bg-gray-700 border-gray-600 text-gray-200">
-                <SelectValue placeholder="Number Strategy" />
-              </SelectTrigger>
-              <SelectContent className="bg-gray-800 text-gray-200">
-                <SelectItem value="sum">Sum Values</SelectItem>
-                <SelectItem value="keep">Keep Latest</SelectItem>
-              </SelectContent>
-            </Select>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label className="text-slate-700">Number Handling</Label>
+              <Select
+                value={options.numericHandling}
+                onValueChange={(v: "sum" | "keep") =>
+                  setOptions((prev) => ({ ...prev, numericHandling: v }))
+                }
+              >
+                <SelectTrigger className="bg-white border-slate-200 text-slate-800">
+                  <SelectValue placeholder="Number Strategy" />
+                </SelectTrigger>
+                <SelectContent className="bg-white text-slate-800">
+                  <SelectItem value="sum">Sum Values</SelectItem>
+                  <SelectItem value="keep">Keep Latest</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-slate-700">String Handling</Label>
+              <Select
+                value={options.stringHandling}
+                onValueChange={(v: "keep" | "concatenate") =>
+                  setOptions((prev) => ({ ...prev, stringHandling: v }))
+                }
+              >
+                <SelectTrigger className="bg-white border-slate-200 text-slate-800">
+                  <SelectValue placeholder="String Strategy" />
+                </SelectTrigger>
+                <SelectContent className="bg-white text-slate-800">
+                  <SelectItem value="keep">Keep Latest</SelectItem>
+                  <SelectItem value="concatenate">Concatenate</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
-          <div className="space-y-2">
-            <Label className="text-gray-300">String Handling</Label>
-            <Select
-              value={options.stringHandling}
-              onValueChange={(v: "keep" | "concatenate") =>
-                setOptions((prev) => ({ ...prev, stringHandling: v }))
-              }
-            >
-              <SelectTrigger className="bg-gray-700 border-gray-600 text-gray-200">
-                <SelectValue placeholder="String Strategy" />
-              </SelectTrigger>
-              <SelectContent className="bg-gray-800 text-gray-200">
-                <SelectItem value="keep">Keep Latest</SelectItem>
-                <SelectItem value="concatenate">Concatenate</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="space-y-2 space-x-2">
-            <Label className="text-gray-300">
-              Allow merging different root types
-            </Label>
+          <div className="flex items-center space-x-2 pt-2">
             <Switch
               checked={options.allowMixedRoots}
               onCheckedChange={(checked) =>
                 setOptions((prev) => ({ ...prev, allowMixedRoots: checked }))
               }
-              className="data-[state=checked]:bg-green-500"
+              className="data-[state=checked]:bg-green-600"
             />
-            <p className="text-sm text-gray-400">
-              When enabled, each file's content will be placed under a unique
-              key (e.g., "file1", "file2") in an object, allowing different root
-              types to be merged.
-            </p>
+            <div>
+              <Label className="text-slate-700">
+                Allow merging different root types
+              </Label>
+              <p className="text-sm text-slate-500 mt-1">
+                When enabled, each file's content will be placed under a unique
+                key (e.g., "file1", "file2") in an object, allowing different
+                root types to be merged.
+              </p>
+            </div>
           </div>
         </div>
       )}
@@ -545,15 +611,24 @@ const JsonMerger: React.FC = () => {
 
   return (
     <div
-      className="container mx-auto sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-7xl rounded-lg relative"
+      className="container mx-auto sm:p-6 max-w-full rounded-lg relative"
       id="merge"
     >
-      <Card className=" sm:mb-2 bg-gray-950 text-white">
-        <CardHeader>
-          <CardTitle>JSON File Merger</CardTitle>
-          <CardDescription className="text-gray-100">
-            Advanced JSON merging with large file support
-          </CardDescription>
+      <Card className="sm:mb-2 bg-white border-0 shadow-none">
+        <CardHeader className="pb-2">
+          <div className="flex items-center mb-2">
+            <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+              <FileJson className="w-5 h-5 text-green-600" />
+            </div>
+            <div>
+              <CardTitle className="text-2xl font-bold text-slate-900">
+                JSON File Merger
+              </CardTitle>
+              <CardDescription className="text-slate-600">
+                Advanced JSON merging with large file support
+              </CardDescription>
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           <Dropzone
@@ -563,48 +638,80 @@ const JsonMerger: React.FC = () => {
             {({ getRootProps, getInputProps, isDragActive }) => (
               <div
                 {...getRootProps()}
-                className="relative flex flex-col items-center justify-center border-2 border-dashed border-gray-400 rounded-lg p-6 cursor-pointer bg-gray-950 hover:border-gray-100 transition"
+                className={`relative flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-10 cursor-pointer transition-all duration-200 ${
+                  isDragActive
+                    ? "border-green-400 bg-green-50"
+                    : "border-slate-300 bg-slate-50 hover:border-green-300 hover:bg-slate-100"
+                }`}
               >
                 <input {...getInputProps()} />
                 {isDragActive && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gray-900 text-white text-lg font-semibold rounded-lg">
-                    Drop files here
+                  <div className="absolute inset-0 flex items-center justify-center bg-green-50 bg-opacity-90 text-green-700 text-lg font-semibold rounded-lg">
+                    Drop JSON files here
                   </div>
                 )}
-                <Upload className="h-8 w-8 mb-2 text-gray-100" />
-                <p className="text-sm text-gray-100">
-                  Drag & drop files or click to upload
+                <Upload className="h-12 w-12 mb-4 text-green-500" />
+                <p className="text-slate-700 font-medium mb-1">
+                  Drag & drop JSON files or click to upload
+                </p>
+                <p className="text-sm text-slate-500">
+                  Supports multiple files and large JSON structures
                 </p>
               </div>
             )}
           </Dropzone>
 
           {files.length > 0 && (
-            <div className="mt-4 space-y-2">
-              {files.map((file, index) => (
-                <div
-                  key={index}
-                  className="flex justify-between items-center bg-gray-800 p-2 rounded-md"
+            <div className="mt-6 space-y-2">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-medium text-slate-800">
+                  Selected Files ({files.length})
+                </h3>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={resetFiles}
+                  className="text-slate-600 border-slate-200 hover:bg-slate-50"
                 >
-                  <span className="text-sm text-gray-200 truncate max-w-[70%]">
-                    {file.name}
-                  </span>
-                  <Trash2
-                    className="h-5 w-5 text-red-500 cursor-pointer"
-                    onClick={() => removeFile(index)}
-                  />
-                </div>
-              ))}
+                  Clear All
+                </Button>
+              </div>
+              <div className="max-h-48 overflow-y-auto pr-2 space-y-2">
+                {files.map((file, index) => (
+                  <div
+                    key={index}
+                    className="flex justify-between items-center bg-slate-50 p-3 rounded-lg border border-slate-200 group hover:border-green-200 transition-colors"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <FileJson className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <span className="text-sm text-slate-700 truncate max-w-[70%]">
+                        {file.name}
+                      </span>
+                      <span className="text-xs text-slate-500">
+                        {(file.size / 1024).toFixed(1)} KB
+                      </span>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => removeFile(index)}
+                      className="h-8 w-8 text-slate-400 hover:text-red-500 hover:bg-red-50"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 
           {renderOptions()}
 
-          <div className="flex gap-4 mt-4">
+          <div className="flex gap-4 mt-6">
             <Button
               onClick={mergeFiles}
               disabled={files.length === 0 || isMerging}
-              className="w-full bg-gray-300 text-gray-900 hover:bg-gray-100 disabled:opacity-50"
+              className="w-full bg-green-600 hover:bg-green-700 text-white shadow-md disabled:opacity-50 h-12 text-base"
             >
               {isMerging ? (
                 <>
@@ -618,74 +725,115 @@ const JsonMerger: React.FC = () => {
             <Button
               onClick={downloadMergedFile}
               disabled={!mergedContent}
-              className="w-full bg-gray-300 text-gray-900 hover:bg-gray-100"
+              className="w-full bg-slate-800 hover:bg-slate-900 text-white shadow-md h-12 text-base disabled:opacity-50"
             >
-              Download
+              Download Result
             </Button>
+          </div>
+          <div className="w-full flex justify-center mt-5">
+            <div className="hidden md:block">
+              <AdUnit type="leaderboard" />
+            </div>
+            <div className="md:hidden mx-auto">
+              <AdUnit type="rectangle" />
+            </div>
           </div>
 
           {mergedContent && (
-            <div className="mt-4 bg-gray-800 p-4 rounded-md">
-              <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-semibold text-gray-200">
-                  Merged Result{" "}
-                  {mergedContent.length > MAX_SAFE_SIZE &&
-                    "(Large file - rendering optimized)"}
+            <div className="mt-8 bg-slate-50 rounded-lg border border-slate-200 overflow-hidden">
+              <div className="flex justify-between items-center p-4 border-b border-slate-200 bg-white">
+                <h3 className="text-lg font-semibold text-slate-800 flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+                  Merged Result
+                  {mergedContent.length > MAX_SAFE_SIZE && (
+                    <span className="ml-2 text-sm font-normal text-slate-500">
+                      (Large file - rendering optimized)
+                    </span>
+                  )}
                 </h3>
                 <div className="flex gap-2">
-                  <Button
-                    onClick={resetFiles}
-                    variant="outline"
-                    className="text-gray-700"
-                    size="sm"
-                  >
-                    Reset
-                  </Button>
-                  {mergedContent.length > MAX_SAFE_SIZE ? (
-                    <p className="text-sm text-gray-400">
-                      Content is too large to be copied. Please download
-                      instead.
-                    </p>
-                  ) : (
-                    <Copy
-                      className="h-7 w-7 text-gray-300 cursor-pointer hover:text-gray-100"
+                  {mergedContent.length <= MAX_SAFE_SIZE ? (
+                    <Button
                       onClick={copyToClipboard}
-                    />
+                      variant="outline"
+                      size="sm"
+                      className="text-slate-700 border-slate-200 hover:bg-slate-50 flex items-center"
+                    >
+                      <Copy className="h-4 w-4 mr-1" />
+                      Copy
+                    </Button>
+                  ) : (
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="text-slate-400 border-slate-200 cursor-not-allowed"
+                            disabled
+                          >
+                            <Copy className="h-4 w-4 mr-1" />
+                            Copy
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="text-xs max-w-xs">
+                            Content is too large to be copied. Please download
+                            instead.
+                          </p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   )}
+                  <Button
+                    onClick={downloadMergedFile}
+                    variant="outline"
+                    size="sm"
+                    className="text-slate-700 border-slate-200 hover:bg-slate-50"
+                  >
+                    <Download className="h-4 w-4 mr-1" />
+                    Download
+                  </Button>
                 </div>
               </div>
-              <pre className="text-sm text-gray-300 whitespace-pre-wrap break-words max-h-96 overflow-auto">
-                {mergedContent.length > MAX_SAFE_SIZE
-                  ? "Content too large to display safely. You can download merged file"
-                  : mergedContent}
-              </pre>
+              <div className="p-4">
+                <pre className="text-sm text-slate-700 whitespace-pre-wrap break-words max-h-96 overflow-auto p-4 bg-white rounded-lg border border-slate-200">
+                  {mergedContent.length > MAX_SAFE_SIZE
+                    ? "Content too large to display safely. You can download the merged file using the button above."
+                    : mergedContent}
+                </pre>
+              </div>
             </div>
           )}
 
           {showConfirmDialog && (
-            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-              <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h3 className="text-lg font-semibold text-gray-200 mb-4">
-                  Root Type Mismatch
-                </h3>
-                <p className="text-gray-300 mb-4">
+            <div className="fixed inset-0 flex items-center justify-center bg-slate-900 bg-opacity-50 z-50">
+              <div className="bg-white p-6 rounded-lg  max-w-md w-full">
+                <div className="flex items-center text-amber-500 mb-4">
+                  <AlertCircle className="h-6 w-6 mr-2" />
+                  <h3 className="text-lg font-semibold text-slate-900">
+                    Root Type Mismatch
+                  </h3>
+                </div>
+                <p className="text-slate-700 mb-6">
                   The uploaded JSON files have different root types (e.g., some
                   are arrays, some are objects). Do you want to merge them
-                  anyway? Each file’s content will be placed under a unique key
+                  anyway? Each file's content will be placed under a unique key
                   (e.g., "file1", "file2") in an object.
                 </p>
-                <div className="flex justify-end gap-2">
-                  <Button
-                    onClick={confirmMergeAnyway}
-                    className="bg-green-500 text-white hover:bg-green-600"
-                  >
-                    Merge Anyway
-                  </Button>
+                <div className="flex justify-end gap-3">
                   <Button
                     onClick={cancelMerge}
-                    className="bg-red-500 text-white hover:bg-red-600"
+                    variant="outline"
+                    className="border-slate-200 text-slate-700 hover:bg-slate-50"
                   >
                     Cancel
+                  </Button>
+                  <Button
+                    onClick={confirmMergeAnyway}
+                    className="bg-green-600 text-white hover:bg-green-700"
+                  >
+                    Merge Anyway
                   </Button>
                 </div>
               </div>

@@ -1,57 +1,165 @@
+import type React from "react";
 import Link from "next/link";
+import {
+  FileJson,
+  Split,
+  ArrowDownUp,
+  FileSearch,
+  FileCode,
+  FileCog,
+  FileText,
+  ArrowRight,
+  Layers,
+} from "lucide-react";
+import AdUnit from "./AdUnit";
 
-const allTools = [
+interface Tool {
+  title: string;
+  description: string;
+  icon: React.ElementType;
+  href: string;
+  isNew?: boolean;
+  isPopular?: boolean;
+}
+
+const tools: Tool[] = [
   {
-    name: "JSON Merger",
-    description: "Merge multiple JSON files into one",
-
+    title: "JSON Merger",
+    description: "Combine multiple JSON files into a single structured output",
+    icon: Layers,
     href: "/",
+    isPopular: true,
   },
-
   {
-    name: "JSON File Splitter",
-    description: "Split any JSON file into multiple files",
-
+    title: "JSON to JSONL",
+    description: "Convert JSON arrays to JSON Lines format",
+    icon: ArrowDownUp,
+    href: "/json-to-jsonl",
+  },
+  {
+    title: "JSON Splitter",
+    description: "Split large JSON files into smaller chunks",
+    icon: Split,
     href: "/json-file-splitter",
   },
   {
-    name: "JSON Flattener",
-    description: "Flatten Deeply Nested JSON Files",
-
-    href: "/json-flattener",
+    title: "JSON Validator",
+    description: "Validate and format your JSON data",
+    icon: FileSearch,
+    href: "/json-validator",
+    isNew: true,
   },
   {
-    name: "JSON to JSONL Converter",
-    description: "Convert JSON files to JSONL format",
-
-    href: "/json-to-jsonl",
+    title: "JSON to CSV",
+    description: "Convert JSON data to CSV format",
+    icon: FileText,
+    href: "/json-to-csv",
+  },
+  {
+    title: "JSON to XML",
+    description: "Transform JSON data to XML format",
+    icon: FileCode,
+    href: "/json-to-xml",
+  },
+  {
+    title: "JSON Schema Generator",
+    description: "Generate JSON schema from your data",
+    icon: FileCog,
+    href: "/json-schema-generator",
+  },
+  {
+    title: "JSON Beautifier",
+    description: "Format and beautify your JSON data",
+    icon: FileJson,
+    href: "/json-beautifier",
+    isPopular: true,
   },
 ];
 
-export default function ToolsGrid() {
+const ToolsGrid = () => {
   return (
-    <div id="tools">
-      <p className="text-center text-3xl text-gray-800 rounded-md py-3 px-5 font-semibold my-11">
-        Browse More JSON related tools
-      </p>
-      <div className="max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-6 sm:px-3 justify-center mx-auto gap-7 mb-10">
-        {allTools.map((tool, index) => (
-          <Link href={tool.href} key={index} target="blank">
-            <div className="bg-gray-100/80 rounded-md p-6 transition-all hover:shadow-md">
-              <div className="flex items-center mb-4">
-                <h3 className="text-xl font-light text-gray-700">
-                  {tool.name}
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {tools.slice(0, 4).map((tool, index) => (
+          <Link key={index} href={tool.href} className="group">
+            <div className="h-full p-5 bg-gradient-to-b from-white to-slate-50 border border-slate-200 rounded-lg hover:border-green-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px] flex flex-col">
+              <div className="flex items-center mb-3">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-green-100 text-green-600 mr-3 group-hover:bg-green-200 transition-colors shadow-sm">
+                  <tool.icon className="w-5 h-5" />
+                </div>
+                <h3 className="font-medium text-slate-800 group-hover:text-green-600 transition-colors flex items-center">
+                  {tool.title}
+                  {tool.isNew && (
+                    <span className="ml-2 px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full shadow-sm">
+                      New
+                    </span>
+                  )}
+                  {tool.isPopular && !tool.isNew && (
+                    <span className="ml-2 px-2 py-0.5 bg-amber-100 text-amber-700 text-xs rounded-full shadow-sm">
+                      Popular
+                    </span>
+                  )}
                 </h3>
               </div>
-              <p className="text-gray-600 mb-4">{tool.description}</p>
+              <p className="text-sm text-slate-600 mb-4 flex-grow">
+                {tool.description}
+              </p>
+              <div className="flex items-center text-sm text-green-600 font-medium mt-auto">
+                <span>Use Tool</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
 
-              <button className="text-sm text-black hover:text-gray-900 transition-colors underline focus:outline-none">
-                Use {tool.name}
-              </button>
+      {/* Ad in the middle of tools grid - high engagement */}
+      <div className="w-full flex justify-center my-6">
+        {/* ADSENSE_IN_TOOLS_GRID */}
+        <div className="hidden md:block">
+          <AdUnit type="leaderboard" />
+        </div>
+        <div className="md:hidden mx-auto">
+          <AdUnit type="rectangle" />
+        </div>
+        {/* END_ADSENSE_IN_TOOLS_GRID */}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {tools.slice(4).map((tool, index) => (
+          <Link key={index} href={tool.href} className="group">
+            <div className="h-full p-5 bg-gradient-to-b from-white to-slate-50 border border-slate-200 rounded-lg hover:border-green-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px] flex flex-col">
+              <div className="flex items-center mb-3">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-green-100 text-green-600 mr-3 group-hover:bg-green-200 transition-colors shadow-sm">
+                  <tool.icon className="w-5 h-5" />
+                </div>
+                <h3 className="font-medium text-slate-800 group-hover:text-green-600 transition-colors flex items-center">
+                  {tool.title}
+                  {tool.isNew && (
+                    <span className="ml-2 px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full shadow-sm">
+                      New
+                    </span>
+                  )}
+                  {tool.isPopular && !tool.isNew && (
+                    <span className="ml-2 px-2 py-0.5 bg-amber-100 text-amber-700 text-xs rounded-full shadow-sm">
+                      Popular
+                    </span>
+                  )}
+                </h3>
+              </div>
+              <p className="text-sm text-slate-600 mb-4 flex-grow">
+                {tool.description}
+              </p>
+              <div className="flex items-center text-sm text-green-600 font-medium mt-auto">
+                <span>Use Tool</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
+              </div>
             </div>
           </Link>
         ))}
       </div>
     </div>
   );
-}
+};
+
+export default ToolsGrid;

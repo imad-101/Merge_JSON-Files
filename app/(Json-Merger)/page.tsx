@@ -2,7 +2,8 @@ import JsonMerger from "./Main";
 import MergerBlog from "./MergeBlog";
 import ToolsGrid from "@/components/ToolsGrid";
 import FaqSection from "@/components/Faq";
-import HowItWorks from "@/components/HowItWorks";
+import AdUnit from "@/components/AdUnit";
+import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
@@ -13,7 +14,12 @@ import {
   CheckCircle,
   SquareStack,
   LinkIcon,
+  ArrowRight,
+  Sparkles,
+  Shield,
+  Zap,
 } from "lucide-react";
+import Footer from "@/components/Footer";
 
 const howItWorks = [
   {
@@ -79,65 +85,90 @@ const faqs = [
 const Page = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            JSON Merger Online
+      <Header first="JSON" second="Merger" third="Online" href="/" />
+
+      <div className="w-full flex justify-center">
+        <div className="hidden md:flex gap-4">
+          <AdUnit type="leaderboard" />
+          <AdUnit type="leaderboard" />
+        </div>
+        <div className="md:hidden mx-auto">
+          <AdUnit type="rectangle" />
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
+            <Sparkles className="h-4 w-4 mr-2" />
+            Powerful JSON Tools
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            JSON Merger <span className="text-emerald-600">Online</span>
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Combine multiple JSON files into a single structured output
+          <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto mb-8">
+            Combine multiple JSON files into a single structured output with our
+            advanced merging tool
           </p>
-          <div className="mt-6 flex justify-center gap-3">
-            <span className="px-4 py-2 bg-blue-100 text-gray-700 rounded-md text-sm hidden sm:block">
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            <span className="px-4 py-2 bg-white shadow-md border border-slate-200 text-slate-700 rounded-full text-sm font-medium flex items-center hover:border-emerald-200 transition-colors">
+              <Shield className="h-4 w-4 mr-2 text-green-500" />
               No installation required
             </span>
-            <span className="px-4 py-2 bg-blue-100 text-gray-700 rounded-md text-sm hidden sm:block">
+            <span className="px-4 py-2 bg-white shadow-md border border-slate-200 text-slate-700 rounded-full text-sm font-medium flex items-center hover:border-emerald-200 transition-colors">
+              <Zap className="h-4 w-4 mr-2 text-amber-500" />
               Completely Free
             </span>
-            <span className="px-4 py-2 bg-blue-100 text-gray-700 rounded-md text-sm hidden sm:block">
+            <span className="px-4 py-2 bg-white shadow-md border border-slate-200 text-slate-700 rounded-full text-sm font-medium flex items-center hover:border-emerald-200 transition-colors">
+              <CheckCircle className="h-4 w-4 mr-2 text-emerald-500" />
               No signup needed
             </span>
           </div>
         </div>
 
-        {/* Main Tool Section */}
-        <div className="mb-20 border rounded-lg">
-          <div className="sm:p-8 border-b ">
+        <div className="mb-16 rounded-xl overflow-hidden border-2 border-emerald-500 bg-white">
+          <div className="sm:p-8 border-b border-slate-200">
             <JsonMerger />
           </div>
 
-          {/* Post-Merge CTAs */}
-          <div className="p-8 bg-gray-50">
-            <h3 className="text-lg font-medium text-gray-700 mb-6">
+          <div className="p-8 bg-gradient-to-b from-slate-50 to-white">
+            <h3 className="text-lg font-semibold text-slate-800 mb-6">
               Next Steps
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Link href="/json-to-jsonl">
-                <div className="p-4 bg-white border rounded-md hover:border-gray-400">
+              <Link href="/json-to-jsonl" className="group">
+                <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
                   <div className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-gray-600 mr-3" />
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mr-4 group-hover:bg-emerald-200 transition-colors">
+                      <CheckCircle className="w-5 h-5" />
+                    </div>
                     <div>
-                      <p className="font-medium text-gray-800">
+                      <p className="font-medium text-slate-800 group-hover:text-emerald-600 transition-colors">
                         Convert To JSONL
                       </p>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-slate-600">
                         Convert your JSON to JSONL format
                       </p>
                     </div>
+                    <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
                   </div>
                 </div>
               </Link>
-              <Link href="/json-file-splitter">
-                <div className="p-4 bg-white border rounded-md hover:border-gray-400">
+              <Link href="/json-file-splitter" className="group">
+                <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
                   <div className="flex items-center">
-                    <SquareStack className="w-5 h-5 text-gray-600 mr-3" />
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mr-4 group-hover:bg-emerald-200 transition-colors">
+                      <SquareStack className="w-5 h-5" />
+                    </div>
                     <div>
-                      <p className="font-medium text-gray-800">Split JSON</p>
-                      <p className="text-sm text-gray-500">
+                      <p className="font-medium text-slate-800 group-hover:text-emerald-600 transition-colors">
+                        Split JSON
+                      </p>
+                      <p className="text-sm text-slate-600">
                         Split your JSON files into chunks
                       </p>
                     </div>
+                    <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
                   </div>
                 </div>
               </Link>
@@ -145,97 +176,206 @@ const Page = () => {
           </div>
         </div>
 
-        {/* How It Works */}
-        <div className="mb-20">
-          <h2 className="text-2xl font-semibold text-center text-gray-800 mb-12">
-            How It Works
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 relative">
-            <div className="hidden md:block absolute top-8 left-[25%] right-[25%] h-px bg-gray-200"></div>
-            {howItWorks.map((step, index) => (
-              <div key={index} className="relative">
-                <div className="flex items-center justify-center mb-4 md:mb-0">
-                  <div className="z-10">
-                    <HowItWorks
-                      {...step}
-                      className="transform transition-all duration-300 hover:scale-105"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
+        <div className="w-full flex justify-center mb-16">
+          <div className="hidden md:flex gap-4">
+            <AdUnit type="leaderboard" />
+            <AdUnit type="leaderboard" />
+          </div>
+          <div className="md:hidden mx-auto">
+            <AdUnit type="rectangle" />
           </div>
         </div>
 
-        {/* FAQ Section */}
-        <div className="mb-20 border rounded-md">
-          <div className="p-8 border-b">
-            <h2 className="text-xl font-semibold text-center  px-5 py-4  text-gray-800">
-              Frequently Asked Questions
-            </h2>
+        <div className="mb-16">
+          <div className="mb-16 p-8 bg-white rounded-xl border border-slate-200">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
+                <Zap className="h-4 w-4 mr-2" />
+                Simple Process
+              </div>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">
+                How It Works
+              </h2>
+              <p className="text-slate-700 max-w-2xl mx-auto">
+                Our JSON merger tool is designed to be intuitive and efficient,
+                allowing you to combine files in just a few steps
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative md:pb-12">
+              {howItWorks.map((step, index) => (
+                <div key={index} className="relative group">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="z-10 mb-6">
+                      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white border-2 border-emerald-200 text-emerald-600 shadow-md group-hover:scale-110 group-hover:border-emerald-400 group-hover:text-emerald-700 transition-all duration-300">
+                        <step.icon className="h-7 w-7" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-slate-800 mb-2 group-hover:text-emerald-600 transition-colors">
+                      {step.title}
+                    </h3>
+                    <p className="text-slate-600 text-sm">{step.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="w-full flex justify-center mb-8">
+            <div className="hidden md:flex gap-4">
+              <AdUnit type="leaderboard" />
+              <AdUnit type="leaderboard" />
+            </div>
+            <div className="md:hidden mx-auto">
+              <AdUnit type="rectangle" />
+            </div>
+          </div>
+
+          <div className="mb-16 p-8 md:px-16 bg-white rounded-xl border border-slate-200">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
+                <Sparkles className="h-4 w-4 mr-2" />
+                Why Choose Us
+              </div>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">
+                Key Features
+              </h2>
+              <p className="text-slate-700 max-w-2xl mx-auto">
+                Our JSON merger tool offers powerful capabilities to handle all
+                your data needs
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-8 border border-slate-200 rounded-xl bg-gradient-to-b from-white to-slate-50 hover:shadow-xl transition-all duration-300 hover:border-emerald-200 group">
+                <div className="w-14 h-14 bg-emerald-100 rounded-xl mb-6 flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
+                  <Settings className="w-7 h-7 text-emerald-600" />
+                </div>
+                <h3 className="font-semibold text-xl text-slate-800 mb-3 group-hover:text-emerald-600 transition-colors">
+                  Smart Merging
+                </h3>
+                <p className="text-slate-600">
+                  Intelligent conflict resolution that preserves data integrity
+                  and structure while combining multiple files
+                </p>
+              </div>
+              <div className="p-8 border border-slate-200 rounded-xl bg-gradient-to-b from-white to-slate-50 hover:shadow-xl transition-all duration-300 hover:border-emerald-200 group">
+                <div className="w-14 h-14 bg-emerald-100 rounded-xl mb-6 flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
+                  <Download className="w-7 h-7 text-emerald-600" />
+                </div>
+                <h3 className="font-semibold text-xl text-slate-800 mb-3 group-hover:text-emerald-600 transition-colors">
+                  Instant Processing
+                </h3>
+                <p className="text-slate-600">
+                  Lightning-fast browser-based processing that handles even
+                  large JSON files with ease and efficiency
+                </p>
+              </div>
+              <div className="p-8 border border-slate-200 rounded-xl bg-gradient-to-b from-white to-slate-50 hover:shadow-xl transition-all duration-300 hover:border-emerald-200 group">
+                <div className="w-14 h-14 bg-emerald-100 rounded-xl mb-6 flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
+                  <LinkIcon className="w-7 h-7 text-emerald-600" />
+                </div>
+                <h3 className="font-semibold text-xl text-slate-800 mb-3 group-hover:text-emerald-600 transition-colors">
+                  Full Integration
+                </h3>
+                <p className="text-slate-600">
+                  Seamlessly works with our other JSON tools to create a
+                  complete workflow for all your data manipulation needs
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full flex justify-center mb-16">
+          <div className="hidden md:flex gap-4">
+            <AdUnit type="leaderboard" />
+            <AdUnit type="leaderboard" />
+          </div>
+          <div className="md:hidden mx-auto">
+            <AdUnit type="rectangle" />
+          </div>
+        </div>
+
+        <div className="mb-16 rounded-xl overflow-hidden border border-emerald-500 bg-white">
+          <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
+                <Zap className="h-4 w-4 mr-2" />
+                Common Questions
+              </div>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-slate-700 max-w-2xl mx-auto">
+                Find answers to common questions about our JSON merger tool
+              </p>
+            </div>
           </div>
           <div className="p-8">
             <FaqSection faqs={faqs} />
           </div>
         </div>
 
-        {/* Features Section */}
-        <div className="mb-20">
-          <h2 className="text-2xl font-semibold text-center text-gray-800 mb-12">
-            Key Features
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-6 border rounded-md bg-white">
-              <div className="w-10 h-10 bg-gray-100 rounded-md mb-4 flex items-center justify-center">
-                <Settings className="w-5 h-5 text-gray-600" />
-              </div>
-              <h3 className="font-medium text-gray-800 mb-2">Smart Merging</h3>
-              <p className="text-gray-600 text-sm">
-                Automatic conflict resolution
-              </p>
-            </div>
-            <div className="p-6 border rounded-md bg-white">
-              <div className="w-10 h-10 bg-gray-100 rounded-md mb-4 flex items-center justify-center">
-                <Download className="w-5 h-5 text-gray-600" />
-              </div>
-              <h3 className="font-medium text-gray-800 mb-2">
-                Instant Processing
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Fast browser-based results
-              </p>
-            </div>
-            <div className="p-6 border rounded-md bg-white">
-              <div className="w-10 h-10 bg-gray-100 rounded-md mb-4 flex items-center justify-center">
-                <LinkIcon className="w-5 h-5 text-gray-600" />
-              </div>
-              <h3 className="font-medium text-gray-800 mb-2">
-                Full Integration
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Works with other JSON tools
-              </p>
-            </div>
+        <div className="w-full flex justify-center mb-10">
+          <div className="hidden md:flex gap-4">
+            <AdUnit type="leaderboard" />
+            <AdUnit type="leaderboard" />
+          </div>
+          <div className="md:hidden mx-auto">
+            <AdUnit type="rectangle" />
           </div>
         </div>
 
-        {/* Blog Section */}
-        <div className="mb-20 border rounded-md p-8 bg-white">
+        <div className="mb-16 rounded-xl overflow-hidden border border-slate-200 bg-white">
+          <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
+                <Sparkles className="h-4 w-4 mr-2" />
+                Expert Knowledge
+              </div>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">
+                JSON Merger Guide
+              </h2>
+              <p className="text-slate-700 max-w-2xl mx-auto">
+                Learn everything you need to know about merging JSON files
+                effectively
+              </p>
+            </div>
+          </div>
+
           <MergerBlog />
-          <div className="mt-8 text-center">
-            <Button variant="outline" className="border-gray-300">
-              <Link href="/blog/json-best-practices" className="text-gray-700">
+          <div className="mt-8 text-center p-8 border-t border-slate-200 bg-gradient-to-b from-white to-slate-50">
+            <Button className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all">
+              <Link href="/blog" className="flex items-center">
                 Read JSON Guides
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>
         </div>
 
-        {/* Tools Grid */}
-        <div className="border rounded-md p-8 bg-white">
-          <ToolsGrid />
+        <div className="rounded-xl overflow-hidden border border-slate-200 bg-white mb-16">
+          <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
+                <Sparkles className="h-4 w-4 mr-2" />
+                More Tools
+              </div>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">
+                Explore Our JSON Toolkit
+              </h2>
+              <p className="text-slate-700 max-w-2xl mx-auto">
+                Discover our complete suite of JSON tools to enhance your
+                workflow
+              </p>
+            </div>
+          </div>
+          <div className="p-8">
+            <ToolsGrid />
+          </div>
         </div>
       </div>
+
+      <Footer name="JSON Merger" />
     </div>
   );
 };
