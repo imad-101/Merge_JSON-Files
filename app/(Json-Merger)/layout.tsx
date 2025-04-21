@@ -58,24 +58,30 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
-          crossOrigin="anonymous"
-        ></script>
-      </head>
-      <body>
-        <Header
-          first="JSON"
-          second="Merger"
-          third="Online"
-          href="/json-file-merger"
-        />
-        <main className="flex-grow">{children}</main>
-        <Toaster />
-        <Footer name="JSON Merger" />
-      </body>
+      <Header
+        first="JSON"
+        second="Merger"
+        third="Online"
+        href="/json-file-merger"
+      />
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
+        crossOrigin="anonymous"
+      ></script>
+
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-6334971938249130"
+        data-ad-slot="8500156139"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <main className="flex-grow">{children}</main>
+      <Toaster />
+      <Footer name="JSON Merger" />
     </>
   );
 }
