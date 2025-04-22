@@ -87,13 +87,9 @@ const Page = () => {
     <div className="min-h-screen bg-gray-50">
       <Header first="JSON" second="Merger" third="Online" href="/" />
 
-      <div className="w-full flex justify-center">
-        <div className="hidden md:flex gap-4">
-          <AdUnit type="responsive" />
-        </div>
-      </div>
+      <AdUnit type="responsive" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
             <Sparkles className="h-4 w-4 mr-2" />
@@ -106,7 +102,7 @@ const Page = () => {
             Combine multiple JSON files into a single structured output with our
             advanced merging tool
           </p>
-          <div className=" flex-wrap justify-center gap-3 mb-8 hidden md:flex">
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
             <span className="px-4 py-2 bg-white shadow-md border border-slate-200 text-slate-700 rounded-full text-sm font-medium flex items-center hover:border-emerald-200 transition-colors">
               <Shield className="h-4 w-4 mr-2 text-green-500" />
               No installation required
@@ -172,11 +168,7 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="w-full flex justify-center mb-16">
-          <div className="hidden md:flex gap-4">
-            <AdUnit type="in-article-1" />
-          </div>
-        </div>
+        <AdUnit type="in-article-1" />
 
         <div className="mb-16">
           <div className="mb-16 p-8 bg-white rounded-xl border border-slate-200">
@@ -212,11 +204,7 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="w-full flex justify-center mb-8">
-            <div className="hidden md:flex gap-4">
-              <AdUnit type="in-feed-1" />
-            </div>
-          </div>
+          <AdUnit type="in-feed-1" />
 
           <div className="mb-16 p-8 md:px-16 bg-white rounded-xl border border-slate-200">
             <div className="text-center mb-12">
@@ -273,11 +261,7 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="w-full flex justify-center mb-8">
-          <div className="hidden md:flex gap-4">
-            <AdUnit type="in-feed-2" />
-          </div>
-        </div>
+        <AdUnit type="in-feed-2" />
 
         <div className="mb-16 rounded-xl overflow-hidden border border-emerald-500 bg-white">
           <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
@@ -298,11 +282,9 @@ const Page = () => {
             <FaqSection faqs={faqs} />
           </div>
         </div>
-        <div className="w-full flex justify-center mb-8">
-          <div className="hidden md:flex gap-4">
-            <AdUnit type="in-article-2" />
-          </div>
-        </div>
+
+        <AdUnit type="in-article-2" />
+
         <div className="mb-16 rounded-xl overflow-hidden border border-slate-200 bg-white">
           <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
             <div className="text-center">
