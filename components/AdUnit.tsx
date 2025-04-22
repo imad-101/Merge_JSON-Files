@@ -141,7 +141,7 @@ export default function AdUnit({ type = "responsive" }: AdUnitProps) {
 
   // Add responsive wrapper for fixed-size ads
   const getContainerClass = () => {
-    let baseClass = "ad-container w-full my-4 ";
+    const baseClass = "ad-container w-full my-4 ";
 
     if (type === "fixed-desktop") {
       return baseClass + "hidden md:flex justify-center"; // Hide on mobile, center on desktop

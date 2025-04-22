@@ -97,16 +97,6 @@ const MergerBlog = () => {
           </p>
         </section>
 
-        {/* <div className="w-full flex justify-center">
-          <div className="hidden md:flex gap-4">
-            <AdUnit type="leaderboard" />
-            <AdUnit type="leaderboard" />
-          </div>
-          <div className="md:hidden mx-auto">
-            <AdUnit type="rectangle" />
-          </div>
-        </div> */}
-
         {/* Why Merge JSON Files Section */}
         <section id="why-merge" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">Why Merge JSON Files?</h2>
@@ -142,15 +132,6 @@ const MergerBlog = () => {
           </p>
         </section>
 
-        {/* <div className="w-full flex justify-center">
-          <div className="hidden md:flex gap-4">
-            <AdUnit type="leaderboard" />
-            <AdUnit type="leaderboard" />
-          </div>
-          <div className="md:hidden mx-auto">
-            <AdUnit type="rectangle" />
-          </div>
-        </div> */}
         {/* Benefits Section */}
         <section id="benefits" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">
@@ -191,7 +172,6 @@ const MergerBlog = () => {
           </p>
         </section>
 
-        <AdUnit type="display-1" />
         <section id="step-by-step" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">
             Step-by-Step: Merging Multiple JSON Files
@@ -247,15 +227,6 @@ const MergerBlog = () => {
           </ol>
         </section>
 
-        {/* <div className="w-full flex justify-center">
-          <div className="hidden md:flex gap-4">
-            <AdUnit type="leaderboard" />
-            <AdUnit type="leaderboard" />
-          </div>
-          <div className="md:hidden mx-auto">
-            <AdUnit type="rectangle" />
-          </div>
-        </div> */}
         {/* Best Practices Section */}
         <section id="best-practices" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">
@@ -289,15 +260,6 @@ const MergerBlog = () => {
           </ul>
         </section>
 
-        {/* <div className="w-full flex justify-center">
-          <div className="hidden md:flex gap-4">
-            <AdUnit type="leaderboard" />
-            <AdUnit type="leaderboard" />
-          </div>
-          <div className="md:hidden mx-auto">
-            <AdUnit type="rectangle" />
-          </div>
-        </div> */}
         {/* Advanced Techniques Section */}
         <section id="advanced-techniques" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">
@@ -324,15 +286,6 @@ const MergerBlog = () => {
           </p>
         </section>
 
-        {/* <div className="w-full flex justify-center">
-          <div className="hidden md:flex gap-4">
-            <AdUnit type="leaderboard" />
-            <AdUnit type="leaderboard" />
-          </div>
-          <div className="md:hidden mx-auto">
-            <AdUnit type="rectangle" />
-          </div>
-        </div> */}
         {/* Integration Section */}
         <section id="integration" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">
@@ -362,15 +315,8 @@ const MergerBlog = () => {
           </ul>
         </section>
 
-        {/* <div className="w-full flex justify-center">
-          <div className="hidden md:flex gap-4">
-            <AdUnit type="leaderboard" />
-            <AdUnit type="leaderboard" />
-          </div>
-          <div className="md:hidden mx-auto">
-            <AdUnit type="rectangle" />
-          </div>
-        </div> */}
+        <AdUnit type="display-1" />
+
         {/* FAQs Section */}
         <section id="faqs" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">FAQs</h2>
@@ -416,15 +362,6 @@ const MergerBlog = () => {
           </dl>
         </section>
 
-        {/* <div className="w-full flex justify-center">
-          <div className="hidden md:flex gap-4">
-            <AdUnit type="leaderboard" />
-            <AdUnit type="leaderboard" />
-          </div>
-          <div className="md:hidden mx-auto">
-            <AdUnit type="rectangle" />
-          </div>
-        </div> */}
         {/* Conclusion Section */}
         <section id="conclusion" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">Conclusion</h2>
