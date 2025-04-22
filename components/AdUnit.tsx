@@ -22,143 +22,104 @@ interface AdUnitProps {
 }
 
 export default function AdUnit({ type = "responsive" }: AdUnitProps) {
-  const adRef = useRef<HTMLElement>(null);
+  const adContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Only run on client-side
-    if (typeof window !== "undefined") {
-      try {
-        // Initialize adsbygoogle if not already initialized
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      } catch (error) {
-        console.error("Error initializing AdSense:", error);
-      }
-    }
-  }, []);
+    if (typeof window === "undefined" || !adContainerRef.current) return;
 
-  const getAdConfig = () => {
-    const baseConfig = {
-      className: "adsbygoogle",
-      ref: adRef,
-    };
+    // Create required elements
+    const script = document.createElement("script");
+    script.async = true;
+    script.src =
+      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130";
+    script.crossOrigin = "anonymous";
 
+    const ins = document.createElement("ins");
+    ins.className = "adsbygoogle";
+    ins.style.display = "block";
+
+    // Set ad-specific attributes based on type
     switch (type) {
       case "in-feed-1":
-        return {
-          ...baseConfig,
-          style: { display: "block" },
-          "data-ad-format": "fluid",
-          "data-ad-layout-key": "-ek-w-3b-bz+yi",
-          "data-ad-client": "ca-pub-6334971938249130",
-          "data-ad-slot": "6217909042",
-        };
+        ins.setAttribute("data-ad-format", "fluid");
+        ins.setAttribute("data-ad-layout-key", "-ek-w-3b-bz+yi");
+        ins.setAttribute("data-ad-client", "ca-pub-6334971938249130");
+        ins.setAttribute("data-ad-slot", "6217909042");
+        break;
       case "in-feed-2":
-        return {
-          ...baseConfig,
-          style: { display: "block" },
-          "data-ad-format": "fluid",
-          "data-ad-layout-key": "-ek-w-3b-bz+yi",
-          "data-ad-client": "ca-pub-6334971938249130",
-          "data-ad-slot": "3459883765",
-        };
+        ins.setAttribute("data-ad-format", "fluid");
+        ins.setAttribute("data-ad-layout-key", "-ek-w-3b-bz+yi");
+        ins.setAttribute("data-ad-client", "ca-pub-6334971938249130");
+        ins.setAttribute("data-ad-slot", "3459883765");
+        break;
       case "in-article-1":
-        return {
-          ...baseConfig,
-          style: { display: "block" },
-          "data-ad-layout": "in-article",
-          "data-ad-format": "fluid",
-          "data-ad-client": "ca-pub-6334971938249130",
-          "data-ad-slot": "8193319788",
-        };
+        ins.setAttribute("data-ad-layout", "in-article");
+        ins.setAttribute("data-ad-format", "fluid");
+        ins.setAttribute("data-ad-client", "ca-pub-6334971938249130");
+        ins.setAttribute("data-ad-slot", "8193319788");
+        break;
       case "in-article-2":
-        return {
-          ...baseConfig,
-          style: { display: "block" },
-          "data-ad-layout": "in-article",
-          "data-ad-format": "fluid",
-          "data-ad-client": "ca-pub-6334971938249130",
-          "data-ad-slot": "2972782696",
-        };
+        ins.setAttribute("data-ad-layout", "in-article");
+        ins.setAttribute("data-ad-format", "fluid");
+        ins.setAttribute("data-ad-client", "ca-pub-6334971938249130");
+        ins.setAttribute("data-ad-slot", "2972782696");
+        break;
       case "in-article-3":
-        return {
-          ...baseConfig,
-          style: { display: "block" },
-          "data-ad-layout": "in-article",
-          "data-ad-format": "fluid",
-          "data-ad-client": "ca-pub-6334971938249130",
-          "data-ad-slot": "9729762739",
-        };
+        ins.setAttribute("data-ad-layout", "in-article");
+        ins.setAttribute("data-ad-format", "fluid");
+        ins.setAttribute("data-ad-client", "ca-pub-6334971938249130");
+        ins.setAttribute("data-ad-slot", "9729762739");
+        break;
       case "display-1":
-        return {
-          ...baseConfig,
-          style: { display: "block" },
-          "data-ad-client": "ca-pub-6334971938249130",
-          "data-ad-slot": "1819483121",
-          "data-ad-format": "auto",
-          "data-full-width-responsive": "true",
-        };
+        ins.setAttribute("data-ad-client", "ca-pub-6334971938249130");
+        ins.setAttribute("data-ad-slot", "1819483121");
+        ins.setAttribute("data-ad-format", "auto");
+        ins.setAttribute("data-full-width-responsive", "true");
+        break;
       case "responsive-2":
-        return {
-          ...baseConfig,
-          style: { display: "block" },
-          "data-ad-client": "ca-pub-6334971938249130",
-          "data-ad-slot": "6974547394",
-          "data-ad-format": "auto",
-          "data-full-width-responsive": "true",
-        };
+        ins.setAttribute("data-ad-client", "ca-pub-6334971938249130");
+        ins.setAttribute("data-ad-slot", "6974547394");
+        ins.setAttribute("data-ad-format", "auto");
+        ins.setAttribute("data-full-width-responsive", "true");
+        break;
       case "responsive":
       default:
-        return {
-          ...baseConfig,
-          style: { display: "block" },
-          "data-ad-client": "ca-pub-6334971938249130",
-          "data-ad-slot": "7151700858",
-          "data-ad-format": "auto",
-          "data-full-width-responsive": "true",
-        };
+        ins.setAttribute("data-ad-client", "ca-pub-6334971938249130");
+        ins.setAttribute("data-ad-slot", "7151700858");
+        ins.setAttribute("data-ad-format", "auto");
+        ins.setAttribute("data-full-width-responsive", "true");
+        break;
     }
-  };
 
-  // Using dangerouslySetInnerHTML for script and ins elements to bypass TypeScript issues
-  const scriptTag = `
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
-      crossorigin="anonymous">
-    </script>
-  `;
+    // Clear container before adding elements
+    if (adContainerRef.current) {
+      adContainerRef.current.innerHTML = "";
+      adContainerRef.current.appendChild(script);
+      adContainerRef.current.appendChild(ins);
 
-  // Create the ins element HTML based on the selected type
-  const createInsTag = () => {
-    const config = getAdConfig();
-    let attributes = "";
-
-    // Build attributes string
-    for (const [key, value] of Object.entries(config)) {
-      if (key === "ref") continue; // Skip ref
-      if (key === "style") {
-        const styleString = Object.entries(value as Record<string, string>)
-          .map(([styleKey, styleVal]) => `${styleKey}:${styleVal}`)
-          .join(";");
-        attributes += ` style="${styleString}"`;
-      } else if (key === "className") {
-        attributes += ` class="${value}"`;
-      } else {
-        attributes += ` ${key}="${value}"`;
+      // Initialize the ad
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (error) {
+        console.error("AdSense error:", error);
       }
     }
 
-    return `<ins ${attributes}></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>`;
-  };
+    // Cleanup function
+    return () => {
+      if (adContainerRef.current) {
+        adContainerRef.current.innerHTML = "";
+      }
+    };
+  }, [type]);
 
   return (
     <div className="ad-container w-full my-4">
-      {/* Using dangerouslySetInnerHTML to bypass TypeScript issues with custom elements */}
-      <div dangerouslySetInnerHTML={{ __html: scriptTag + createInsTag() }} />
+      {/* Container for dynamically inserted ad code */}
+      <div ref={adContainerRef}></div>
 
-      {/* Display the ad type label */}
-      <div className="text-xs text-gray-400 text-center mt-1">Ad: {type}</div>
+      {/* Display ad type label */}
     </div>
   );
 }

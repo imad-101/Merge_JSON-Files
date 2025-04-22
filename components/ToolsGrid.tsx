@@ -1,4 +1,5 @@
 import type React from "react";
+import AdUnit from "./AdUnit";
 import Link from "next/link";
 import {
   FileJson,
@@ -113,16 +114,8 @@ const ToolsGrid = () => {
         ))}
       </div>
 
-      {/* Ad in the middle of tools grid - high engagement */}
       <div className="w-full flex justify-center my-6">
-        {/* ADSENSE_IN_TOOLS_GRID */}
-        {/* <div className="hidden md:block">
-          <AdUnit type="leaderboard" />
-        </div>
-        <div className="md:hidden mx-auto">
-          <AdUnit type="rectangle" />
-        </div> */}
-        {/* END_ADSENSE_IN_TOOLS_GRID */}
+        <AdUnit type="display-1" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

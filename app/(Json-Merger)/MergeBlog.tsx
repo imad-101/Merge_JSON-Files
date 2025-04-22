@@ -1,5 +1,5 @@
 import React from "react";
-
+import AdUnit from "@/components/AdUnit";
 const MergerBlog = () => {
   return (
     <article className="bg-white text-gray-700 py-10 p-4 rounded-md">
@@ -38,6 +38,7 @@ const MergerBlog = () => {
               </a>
             </li>
             <li>
+              <AdUnit type="display-1" />
               <a href="#step-by-step" className="hover:underline">
                 Step-by-Step: Merging Multiple JSON Files
               </a>
