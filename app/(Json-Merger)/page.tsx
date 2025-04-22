@@ -89,11 +89,11 @@ const Page = () => {
 
       <div className="w-full flex justify-center">
         <div className="hidden md:flex gap-4">
-          <AdUnit type="responsive-header" />
+          <AdUnit type="responsive" />
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 hidden md:block">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
             <Sparkles className="h-4 w-4 mr-2" />
@@ -106,7 +106,7 @@ const Page = () => {
             Combine multiple JSON files into a single structured output with our
             advanced merging tool
           </p>
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
+          <div className=" flex-wrap justify-center gap-3 mb-8 hidden md:flex">
             <span className="px-4 py-2 bg-white shadow-md border border-slate-200 text-slate-700 rounded-full text-sm font-medium flex items-center hover:border-emerald-200 transition-colors">
               <Shield className="h-4 w-4 mr-2 text-green-500" />
               No installation required
@@ -214,7 +214,7 @@ const Page = () => {
 
           <div className="w-full flex justify-center mb-8">
             <div className="hidden md:flex gap-4">
-              <AdUnit type="in-feed" />
+              <AdUnit type="in-feed-1" />
             </div>
           </div>
 
@@ -275,7 +275,7 @@ const Page = () => {
 
         <div className="w-full flex justify-center mb-8">
           <div className="hidden md:flex gap-4">
-            <AdUnit type="in-feed" />
+            <AdUnit type="in-feed-2" />
           </div>
         </div>
 
