@@ -731,7 +731,14 @@ const JsonMerger: React.FC = () => {
             </Button>
           </div>
 
-          <AdUnit type="responsive-2" />
+          <div className="w-full flex justify-center ">
+            <div className="hidden md:block">
+              <AdUnit type="fixed-desktop" />
+            </div>
+            <div className="md:hidden mx-auto">
+              <AdUnit type="fixed-mobile" />
+            </div>
+          </div>
 
           {mergedContent && (
             <div className="mt-8 bg-slate-50 rounded-lg border border-slate-200 overflow-hidden">
