@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import AdUnit from "@/components/AdUnit";
+
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import {
   Breadcrumb,
@@ -87,7 +87,6 @@ export default function BlogPage() {
             <div className="container px-4 md:px-6">
               <div className="max-w-3xl mx-auto text-center">
                 <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-                  <AdUnit type="responsive" />
                   Articles and Helpful Guides
                 </h1>
                 <p className="mt-4 text-xl text-gray-600">

@@ -2,7 +2,7 @@ import JsonMerger from "./Main";
 import MergerBlog from "./MergeBlog";
 import ToolsGrid from "@/components/ToolsGrid";
 import FaqSection from "@/components/Faq";
-import AdUnit from "@/components/AdUnit";
+
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -87,9 +87,7 @@ const Page = () => {
     <div className="min-h-screen bg-gray-50">
       <Header first="JSON" second="Merger" third="Online" href="/" />
 
-      <div className="flex justify-center">
-        <AdUnit type="responsive" />
-      </div>
+      <div className="flex justify-center"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-12 md:mb-16">
@@ -169,8 +167,6 @@ const Page = () => {
             </div>
           </div>
         </div>
-
-        <AdUnit type="in-article-1" />
 
         <div className="mb-16">
           <div className="mb-16 p-8 bg-white rounded-xl border border-slate-200">
@@ -280,8 +276,6 @@ const Page = () => {
             <FaqSection faqs={faqs} />
           </div>
         </div>
-
-        <AdUnit type="in-article-2" />
 
         <div className="mb-16 rounded-xl overflow-hidden border border-slate-200 bg-white">
           <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">

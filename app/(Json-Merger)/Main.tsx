@@ -1,7 +1,7 @@
 "use client";
 import type React from "react";
 import { useState, useCallback } from "react";
-import AdUnit from "@/components/AdUnit";
+
 import {
   Upload,
   Trash2,
@@ -729,15 +729,6 @@ const JsonMerger: React.FC = () => {
             >
               Download Result
             </Button>
-          </div>
-
-          <div className="w-full flex justify-center ">
-            <div className="hidden md:block">
-              <AdUnit type="fixed-desktop" />
-            </div>
-            <div className="md:hidden mx-auto">
-              <AdUnit type="fixed-mobile" />
-            </div>
           </div>
 
           {mergedContent && (

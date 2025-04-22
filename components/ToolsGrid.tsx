@@ -1,5 +1,5 @@
 import type React from "react";
-import AdUnit from "./AdUnit";
+
 import Link from "next/link";
 import {
   FileJson,
@@ -12,7 +12,6 @@ import {
   ArrowRight,
   Layers,
 } from "lucide-react";
-// import AdUnit from "./AdUnit";
 
 interface Tool {
   title: string;
@@ -112,10 +111,6 @@ const ToolsGrid = () => {
             </div>
           </Link>
         ))}
-      </div>
-
-      <div className="w-full flex justify-center my-6">
-        <AdUnit type="display-1" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

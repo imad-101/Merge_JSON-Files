@@ -1,8 +1,6 @@
-import AdUnit from "@/components/AdUnit";
 const AboutUs = () => {
   return (
     <div className="container p-8 border my-7 w-[22rem] sm:w-2/3 mx-auto rounded-xl">
-      <AdUnit type="responsive" />
       <h1 className="text-3xl font-bold mb-6">About merge-json-files.com</h1>
 
       <section className="mb-8">

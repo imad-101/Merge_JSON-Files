@@ -1,5 +1,5 @@
 import React from "react";
-import AdUnit from "@/components/AdUnit";
+
 const MergerBlog = () => {
   return (
     <article className="bg-white text-gray-700 py-10 p-4 rounded-md">
@@ -17,7 +17,6 @@ const MergerBlog = () => {
             <strong>combine JSON files</strong> efficiently.
           </p>
         </header>
-
         {/* Table of Contents */}
         <nav className="mb-12 border-b border-gray-200 pb-4">
           <h2 className="text-2xl font-bold">Table of Contents</h2>
@@ -69,7 +68,6 @@ const MergerBlog = () => {
             </li>
           </ul>
         </nav>
-
         {/* Introduction Section */}
         <section id="introduction" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">
@@ -96,7 +94,6 @@ const MergerBlog = () => {
             performance.
           </p>
         </section>
-
         {/* Why Merge JSON Files Section */}
         <section id="why-merge" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">Why Merge JSON Files?</h2>
@@ -131,7 +128,6 @@ const MergerBlog = () => {
             relying on error-prone manual edits.
           </p>
         </section>
-
         {/* Benefits Section */}
         <section id="benefits" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">
@@ -171,7 +167,6 @@ const MergerBlog = () => {
             and ready for downstream applications.
           </p>
         </section>
-
         <section id="step-by-step" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">
             Step-by-Step: Merging Multiple JSON Files
@@ -226,7 +221,6 @@ const MergerBlog = () => {
             </li>
           </ol>
         </section>
-
         {/* Best Practices Section */}
         <section id="best-practices" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">
@@ -259,7 +253,6 @@ const MergerBlog = () => {
             </li>
           </ul>
         </section>
-
         {/* Advanced Techniques Section */}
         <section id="advanced-techniques" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">
@@ -285,7 +278,6 @@ const MergerBlog = () => {
             specific data sources at runtime.
           </p>
         </section>
-
         {/* Integration Section */}
         <section id="integration" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">
@@ -314,9 +306,6 @@ const MergerBlog = () => {
             </li>
           </ul>
         </section>
-
-        <AdUnit type="display-1" />
-
         {/* FAQs Section */}
         <section id="faqs" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">FAQs</h2>
@@ -361,7 +350,6 @@ const MergerBlog = () => {
             </dd>
           </dl>
         </section>
-
         {/* Conclusion Section */}
         <section id="conclusion" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">Conclusion</h2>
