@@ -1,6 +1,8 @@
+import AdUnit from "@/components/AdUnit";
 const PrivacyPolicy = () => {
   return (
     <div className="container p-8 border my-7 w-[22rem] sm:w-2/3 mx-auto rounded-xl">
+      <AdUnit type="responsive" />
       <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
 
       <div className="text-gray-700 mb-8">

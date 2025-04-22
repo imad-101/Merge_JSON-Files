@@ -1,5 +1,5 @@
 "use client";
-
+import AdUnit from "@/components/AdUnit";
 import React, { useState } from "react";
 
 const ContactUs = () => {
@@ -133,7 +133,7 @@ const ContactUs = () => {
                       placeholder="Your message..."
                     ></textarea>
                   </div>
-
+                  <AdUnit type="responsive"></AdUnit>
                   <div className="text-center">
                     <button
                       type="submit"

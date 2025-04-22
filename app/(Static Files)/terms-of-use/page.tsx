@@ -1,6 +1,8 @@
+import AdUnit from "@/components/AdUnit";
 const TermsOfUse = () => {
   return (
     <div className="container p-8 border my-7 w-[22rem] sm:w-2/3 mx-auto rounded-xl">
+      <AdUnit type="responsive"></AdUnit>
       <h1 className="text-3xl font-bold mb-4">
         Terms of Use - Merge JSON Files
       </h1>
