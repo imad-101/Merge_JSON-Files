@@ -89,15 +89,11 @@ const Page = () => {
 
       <div className="w-full flex justify-center">
         <div className="hidden md:flex gap-4">
-          <AdUnit type="leaderboard" />
-          <AdUnit type="leaderboard" />
-        </div>
-        <div className="md:hidden mx-auto">
-          <AdUnit type="rectangle" />
+          <AdUnit type="responsive-header" />
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 hidden md:block">
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
             <Sparkles className="h-4 w-4 mr-2" />
@@ -178,11 +174,7 @@ const Page = () => {
 
         <div className="w-full flex justify-center mb-16">
           <div className="hidden md:flex gap-4">
-            <AdUnit type="leaderboard" />
-            <AdUnit type="leaderboard" />
-          </div>
-          <div className="md:hidden mx-auto">
-            <AdUnit type="rectangle" />
+            <AdUnit type="in-article-1" />
           </div>
         </div>
 
@@ -222,11 +214,7 @@ const Page = () => {
 
           <div className="w-full flex justify-center mb-8">
             <div className="hidden md:flex gap-4">
-              <AdUnit type="leaderboard" />
-              <AdUnit type="leaderboard" />
-            </div>
-            <div className="md:hidden mx-auto">
-              <AdUnit type="rectangle" />
+              <AdUnit type="in-feed" />
             </div>
           </div>
 
@@ -285,13 +273,9 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="w-full flex justify-center mb-16">
+        <div className="w-full flex justify-center mb-8">
           <div className="hidden md:flex gap-4">
-            <AdUnit type="leaderboard" />
-            <AdUnit type="leaderboard" />
-          </div>
-          <div className="md:hidden mx-auto">
-            <AdUnit type="rectangle" />
+            <AdUnit type="in-feed" />
           </div>
         </div>
 
@@ -314,17 +298,11 @@ const Page = () => {
             <FaqSection faqs={faqs} />
           </div>
         </div>
-
-        <div className="w-full flex justify-center mb-10">
+        <div className="w-full flex justify-center mb-8">
           <div className="hidden md:flex gap-4">
-            <AdUnit type="leaderboard" />
-            <AdUnit type="leaderboard" />
-          </div>
-          <div className="md:hidden mx-auto">
-            <AdUnit type="rectangle" />
+            <AdUnit type="in-article-2" />
           </div>
         </div>
-
         <div className="mb-16 rounded-xl overflow-hidden border border-slate-200 bg-white">
           <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
             <div className="text-center">

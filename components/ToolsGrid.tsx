@@ -11,7 +11,7 @@ import {
   ArrowRight,
   Layers,
 } from "lucide-react";
-import AdUnit from "./AdUnit";
+// import AdUnit from "./AdUnit";
 
 interface Tool {
   title: string;
@@ -116,12 +116,12 @@ const ToolsGrid = () => {
       {/* Ad in the middle of tools grid - high engagement */}
       <div className="w-full flex justify-center my-6">
         {/* ADSENSE_IN_TOOLS_GRID */}
-        <div className="hidden md:block">
+        {/* <div className="hidden md:block">
           <AdUnit type="leaderboard" />
         </div>
         <div className="md:hidden mx-auto">
           <AdUnit type="rectangle" />
-        </div>
+        </div> */}
         {/* END_ADSENSE_IN_TOOLS_GRID */}
       </div>
 
