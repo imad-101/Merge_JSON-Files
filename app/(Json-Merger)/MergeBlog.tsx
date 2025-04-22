@@ -38,7 +38,6 @@ const MergerBlog = () => {
               </a>
             </li>
             <li>
-              <AdUnit type="display-1" />
               <a href="#step-by-step" className="hover:underline">
                 Step-by-Step: Merging Multiple JSON Files
               </a>
@@ -192,16 +191,7 @@ const MergerBlog = () => {
           </p>
         </section>
 
-        {/* <div className="w-full flex justify-center">
-          <div className="hidden md:flex gap-4">
-            <AdUnit type="leaderboard" />
-            <AdUnit type="leaderboard" />
-          </div>
-          <div className="md:hidden mx-auto">
-            <AdUnit type="rectangle" />
-          </div>
-        </div> */}
-        {/* Step-by-Step Guide Section */}
+        <AdUnit type="display-1" />
         <section id="step-by-step" className="mb-12">
           <h2 className="text-3xl font-bold mb-4">
             Step-by-Step: Merging Multiple JSON Files
