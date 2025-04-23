@@ -707,7 +707,7 @@ const JsonMerger: React.FC = () => {
 
           {renderOptions()}
 
-          <div className="flex gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Button
               onClick={mergeFiles}
               disabled={files.length === 0 || isMerging}

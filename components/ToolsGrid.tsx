@@ -42,38 +42,38 @@ const tools: Tool[] = [
     icon: Split,
     href: "/json-file-splitter",
   },
-  {
-    title: "JSON Validator",
-    description: "Validate and format your JSON data",
-    icon: FileSearch,
-    href: "/json-validator",
-    isNew: true,
-  },
-  {
-    title: "JSON to CSV",
-    description: "Convert JSON data to CSV format",
-    icon: FileText,
-    href: "/json-to-csv",
-  },
-  {
-    title: "JSON to XML",
-    description: "Transform JSON data to XML format",
-    icon: FileCode,
-    href: "/json-to-xml",
-  },
-  {
-    title: "JSON Schema Generator",
-    description: "Generate JSON schema from your data",
-    icon: FileCog,
-    href: "/json-schema-generator",
-  },
-  {
-    title: "JSON Beautifier",
-    description: "Format and beautify your JSON data",
-    icon: FileJson,
-    href: "/json-beautifier",
-    isPopular: true,
-  },
+  // {
+  //   title: "JSON Validator",
+  //   description: "Validate and format your JSON data",
+  //   icon: FileSearch,
+  //   href: "/json-validator",
+  //   isNew: true,
+  // },
+  // {
+  //   title: "JSON to CSV",
+  //   description: "Convert JSON data to CSV format",
+  //   icon: FileText,
+  //   href: "/json-to-csv",
+  // },
+  // {
+  //   title: "JSON to XML",
+  //   description: "Transform JSON data to XML format",
+  //   icon: FileCode,
+  //   href: "/json-to-xml",
+  // },
+  // {
+  //   title: "JSON Schema Generator",
+  //   description: "Generate JSON schema from your data",
+  //   icon: FileCog,
+  //   href: "/json-schema-generator",
+  // },
+  // {
+  //   title: "JSON Beautifier",
+  //   description: "Format and beautify your JSON data",
+  //   icon: FileJson,
+  //   href: "/json-beautifier",
+  //   isPopular: true,
+  // },
 ];
 
 const ToolsGrid = () => {
