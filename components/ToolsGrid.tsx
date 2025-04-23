@@ -1,17 +1,7 @@
 import type React from "react";
 
 import Link from "next/link";
-import {
-  FileJson,
-  Split,
-  ArrowDownUp,
-  FileSearch,
-  FileCode,
-  FileCog,
-  FileText,
-  ArrowRight,
-  Layers,
-} from "lucide-react";
+import { Split, ArrowDownUp, ArrowRight, Layers } from "lucide-react";
 
 interface Tool {
   title: string;
