@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "Convert JSON to JSONL Online - Free JSONL Converter Tool",
+  title:
+    "Convert JSON to JSONL Instantly | Free Online JSON to JSONL Converter",
   description:
-    "Convert JSON to JSONL (JSON Lines) quickly and easily with our free online converter tool. Transform nested JSON files into JSONL format with no installation required.",
+    "Convert standard JSON to JSONL format online in one click. Fast, free, and secure JSON to JSONL converter — no signup or install required!",
   keywords:
-    "convert JSON to JSONL, JSONL converter, JSON to JSONL online, JSON Lines, free JSONL converter, convert JSON file to JSONL",
-  metadataBase: new URL("https://merge-json-files.com/json-to-jsonl"),
+    "convert JSON to JSONL, JSON to JSONL online, JSONL converter, free JSON to JSONL, JSON lines format, JSON to JSONL tool, JSON formatter",
+  metadataBase: new URL("https://merge-json-files.com"),
   alternates: {
     canonical: "https://merge-json-files.com/json-to-jsonl",
   },
@@ -26,11 +26,11 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Convert JSON to JSONL Online - Professional JSONL Converter",
+    title: "Convert JSON to JSONL Instantly | Free & Secure Converter",
     description:
-      "Effortlessly convert JSON files to JSONL format using our professional online converter. Quick, secure, and free to use.",
+      "Easily convert JSON to JSONL format online. Use our secure and free JSON to JSONL converter — perfect for machine learning and data processing.",
     url: "https://merge-json-files.com/json-to-jsonl",
-    siteName: "Convert JSON to JSONL Online",
+    siteName: "Merge JSON Files Online",
     type: "website",
     locale: "en_US",
     images: [
@@ -38,15 +38,15 @@ export const metadata: Metadata = {
         url: "/jsonl.png",
         width: 1200,
         height: 630,
-        alt: "Professional JSON to JSONL Converter Tool",
+        alt: "Free JSON to JSONL Converter Tool",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Convert JSON to JSONL Online - Professional JSONL Converter",
+    title: "Convert JSON to JSONL Instantly | Free & Secure Converter",
     description:
-      "Transform your JSON files into JSONL format seamlessly with our online converter. Fast, secure, and free to use.",
+      "Convert standard JSON to line-delimited JSONL format online. A fast, secure, and free converter — no login required.",
     site: "https://merge-json-files.com/json-to-jsonl",
     creator: "@imaduddin_101",
     images: ["/jsonl.png"],
@@ -58,19 +58,37 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
-          crossOrigin="anonymous"
-        ></script>
-      </head>
-      <body>
-        <Header first="JSON" second="to" third="JSONL" href="/json-to-jsonl" />
-        <main className="flex-grow">{children}</main>
-        <Toaster />
-        <Footer name="JSON to JSONL Converter" />
-      </body>
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "JSON to JSONL Converter",
+            url: "https://merge-json-files.com/json-to-jsonl",
+            description:
+              "Convert JSON to JSONL (JSON Lines) format quickly and easily. Use our free online converter — no signups, no software needed.",
+            publisher: {
+              "@type": "Organization",
+              name: "Merge JSON Files",
+              url: "https://merge-json-files.com",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://merge-json-files.com/jsonl.png",
+              },
+            },
+            potentialAction: {
+              "@type": "SearchAction",
+              target:
+                "https://merge-json-files.com/json-to-jsonl?query={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          }),
+        }}
+      />
+      <main className="flex-grow">{children}</main>
+      <Toaster />
     </>
   );
 }

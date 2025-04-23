@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "JSON Flattener Online - Free JSON Flattener Tool",
+  title: "Flatten JSON Files Instantly | Free Online JSON Flattener Tool",
   description:
-    "Flatten nested JSON structures online with our free tool. Upload your JSON file and instantly convert nested objects into a flat key-value format. Fast, secure, and no signup needed.",
+    "Easily flatten nested JSON structures into a single-level format using our fast, free, and secure online JSON Flattener. No login needed!",
   keywords:
-    "flatten JSON, flatten JSON online, flatten JSON tool, flatten JSON file, free JSON flattener, , JSON flattener , nested JSON tool , nested JSON flattener, JSON converter",
-  metadataBase: new URL("https://merge-json-files.com/json-to-jsonl"),
+    "flatten JSON, JSON flattener, flatten nested JSON, convert JSON to flat structure, online JSON flattener, free JSON tool, JSON parser",
+  metadataBase: new URL("https://merge-json-files.com"),
   alternates: {
     canonical: "https://merge-json-files.com/json-flattener",
   },
@@ -26,11 +25,11 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Flatten JSON Online - Professional JSON Flattener Tool",
+    title: "Flatten JSON Files Instantly | Free & Secure JSON Flattener",
     description:
-      "Flatten nested JSON structures into a flat key-value format instantly with our professional JSON flattener. Fast, secure, and free to use.",
+      "Convert complex, nested JSON into a flat format online. Try our JSON Flattener tool — simple, free, and secure with no signup required.",
     url: "https://merge-json-files.com/json-flattener",
-    siteName: "Flatten JSON Online",
+    siteName: "Merge JSON Files Online",
     type: "website",
     locale: "en_US",
     images: [
@@ -38,15 +37,15 @@ export const metadata: Metadata = {
         url: "/flatten.png",
         width: 1200,
         height: 630,
-        alt: "Professional JSON Flattener Tool",
+        alt: "Free JSON Flattener Tool",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Flatten JSON Online - Professional JSON Flattener Tool",
+    title: "Flatten JSON Files Instantly | Free & Secure JSON Flattener",
     description:
-      "Flatten nested JSON structures into a flat key-value format instantly with our professional JSON flattener. Fast, secure, and free to use.",
+      "Flatten nested JSON structures online instantly. A fast, free, and secure JSON Flattener tool — no login or installation required.",
     site: "https://merge-json-files.com/json-flattener",
     creator: "@imaduddin_101",
     images: ["/flatten.png"],
@@ -58,24 +57,37 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
-          crossOrigin="anonymous"
-        ></script>
-      </head>
-      <body>
-        <Header
-          first="Flatten"
-          second="JSON"
-          third="Online"
-          href="/json-flattener"
-        />
-        <main className="flex-grow">{children}</main>
-        <Toaster />
-        <Footer name="Flatten JSON" />
-      </body>
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "JSON Flattener",
+            url: "https://merge-json-files.com/json-flattener",
+            description:
+              "Flatten nested JSON into a flat key-value structure using our online JSON Flattener. Fast, free, and easy to use with no signup.",
+            publisher: {
+              "@type": "Organization",
+              name: "Merge JSON Files",
+              url: "https://merge-json-files.com",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://merge-json-files.com/flatten.png",
+              },
+            },
+            potentialAction: {
+              "@type": "SearchAction",
+              target:
+                "https://merge-json-files.com/json-flattener?query={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          }),
+        }}
+      />
+      <main className="flex-grow">{children}</main>
+      <Toaster />
     </>
   );
 }

@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "Convert YAML to JSON Online - Free YAML Converter Tool",
+  title: "Convert YAML to JSON Instantly | Free Online YAML to JSON Converter",
   description:
-    "Convert YAML to JSON quickly and easily with our free online converter tool. Transform YAML files into structured JSON format without any software installation.",
+    "Easily convert YAML to JSON format online with our free, secure, and instant YAML to JSON converter. No signup, no hassle!",
   keywords:
-    "convert YAML to JSON, YAML to JSON converter, YAML to JSON online, YAML converter, free YAML to JSON tool, YAML to JSON conversion, data conversion tool",
-  metadataBase: new URL("https://merge-json-files.com/yaml-to-json"),
+    "YAML to JSON, convert YAML to JSON online, YAML to JSON converter, free YAML tool, YAML parser, online YAML formatter, JSON output",
+  metadataBase: new URL("https://merge-json-files.com"),
   alternates: {
     canonical: "https://merge-json-files.com/yaml-to-json",
   },
@@ -26,30 +25,30 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Convert YAML to JSON Online - Professional YAML Converter",
+    title: "Convert YAML to JSON Instantly | Free & Secure Converter",
     description:
-      "Effortlessly convert YAML files to JSON format using our professional online converter. Fast, secure, and free to use.",
+      "Convert YAML data to JSON format online in one click. Use our secure and free YAML to JSON converter — fast, reliable, and no login required.",
     url: "https://merge-json-files.com/yaml-to-json",
-    siteName: "Convert YAML to JSON Online",
+    siteName: "Merge JSON Files Online",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "/json.png",
+        url: "/yaml-to-json.png",
         width: 1200,
         height: 630,
-        alt: "Professional YAML to JSON Converter Tool",
+        alt: "Free YAML to JSON Converter Tool",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Convert YAML to JSON Online - Professional YAML Converter",
+    title: "Convert YAML to JSON Instantly | Free & Secure Converter",
     description:
-      "Transform your YAML files into JSON format seamlessly with our online converter. Fast, secure, and free to use.",
+      "Quickly convert YAML files to JSON format with our free and easy online YAML to JSON converter. No account or download required.",
     site: "https://merge-json-files.com/yaml-to-json",
     creator: "@imaduddin_101",
-    images: ["/json.png"],
+    images: ["/yaml-to-json.png"],
   },
 };
 
@@ -58,19 +57,37 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
-          crossOrigin="anonymous"
-        ></script>
-      </head>
-      <body>
-        <Header first="YAML" second="to" third="JSON" href="/yaml-to-json" />
-        <main className="flex-grow">{children}</main>
-        <Toaster />
-        <Footer name="YAML to JSON Converter" />
-      </body>
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "YAML to JSON Converter",
+            url: "https://merge-json-files.com/yaml-to-json",
+            description:
+              "Convert YAML to JSON online in seconds. Our free YAML to JSON converter is fast, secure, and easy to use — no signups or installations needed.",
+            publisher: {
+              "@type": "Organization",
+              name: "Merge JSON Files",
+              url: "https://merge-json-files.com",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://merge-json-files.com/yaml-to-json.png",
+              },
+            },
+            potentialAction: {
+              "@type": "SearchAction",
+              target:
+                "https://merge-json-files.com/yaml-to-json?query={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          }),
+        }}
+      />
+      <main className="flex-grow">{children}</main>
+      <Toaster />
     </>
   );
 }
