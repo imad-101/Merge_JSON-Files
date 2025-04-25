@@ -130,7 +130,25 @@ const Page = () => {
               Next Steps
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Link href="/json-merger" className="group">
+              <Link href="/json-to-jsonl" className="group">
+                <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
+                  <div className="flex items-center">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mr-4 group-hover:bg-emerald-200 transition-colors">
+                      <CheckCircle className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-slate-800 group-hover:text-emerald-600 transition-colors">
+                        Convert To JSONL
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        Convert your JSON to JSONL format
+                      </p>
+                    </div>
+                    <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
+                  </div>
+                </div>
+              </Link>
+              <Link href="/" className="group">
                 <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
                   <div className="flex items-center">
                     <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mr-4 group-hover:bg-emerald-200 transition-colors">
@@ -141,7 +159,25 @@ const Page = () => {
                         Merge JSON
                       </p>
                       <p className="text-sm text-slate-600">
-                        Combine multiple JSON files
+                        Merge multiple JSON files inot a single file
+                      </p>
+                    </div>
+                    <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
+                  </div>
+                </div>
+              </Link>
+              <Link href="/yaml-to-json" className="group">
+                <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
+                  <div className="flex items-center">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mr-4 group-hover:bg-emerald-200 transition-colors">
+                      <CheckCircle className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-slate-800 group-hover:text-emerald-600 transition-colors">
+                        Convert YAML to JSON
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        Convert YAML file to JSON format
                       </p>
                     </div>
                     <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
@@ -159,7 +195,25 @@ const Page = () => {
                         Flatten JSON
                       </p>
                       <p className="text-sm text-slate-600">
-                        Simplify nested JSON structures
+                        Flatten your nested JSON files
+                      </p>
+                    </div>
+                    <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
+                  </div>
+                </div>
+              </Link>
+              <Link href="/jsonl-to-json" className="group">
+                <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
+                  <div className="flex items-center">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mr-4 group-hover:bg-emerald-200 transition-colors">
+                      <CheckCircle className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-slate-800 group-hover:text-emerald-600 transition-colors">
+                        Convert JSONL to JSON format
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        Convert from JSONL to JSON format
                       </p>
                     </div>
                     <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />

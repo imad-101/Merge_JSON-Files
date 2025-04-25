@@ -158,7 +158,7 @@ export default async function BlogPost({ params }: PageProps) {
                 <span>{post.readTime} read</span>
               </div>
               {(post.tags?.length ?? 0) > 0 && (
-                <div className="flex flex-wrap gap-2">
+                <div className=" flex-wrap gap-2 hidden md:flex">
                   {(post.tags ?? []).map((tag) => (
                     <span
                       key={tag}
