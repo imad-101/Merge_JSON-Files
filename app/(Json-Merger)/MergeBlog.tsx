@@ -6,9 +6,9 @@ const MergerBlog = () => {
       <div className="max-w-5xl mx-auto">
         {/* Header Section */}
         <header className="mb-12 text-center">
-          <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight">
+          <h2 className="text-4xl sm:text-5xl font-extrabold leading-tight">
             Merging JSON Files Online: A Comprehensive Guide
-          </h1>
+          </h2>
           <p className="mt-6 text-lg sm:text-xl">
             Master the art of <strong>JSON merging</strong> and{" "}
             <strong>data integration</strong> with our powerful{" "}

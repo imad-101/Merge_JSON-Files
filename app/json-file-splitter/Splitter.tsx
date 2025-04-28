@@ -1,9 +1,16 @@
 "use client";
 import { useState, useCallback, useEffect, useRef } from "react";
-import { useDropzone, FileWithPath } from "react-dropzone";
+import { useDropzone, type FileWithPath } from "react-dropzone";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { UploadCloud, Loader2, Info, Trash2, ChevronRight } from "lucide-react";
+import {
+  UploadCloud,
+  Loader2,
+  Info,
+  Trash2,
+  ChevronRight,
+  FileJson,
+} from "lucide-react";
 import {
   Card,
   CardHeader,
@@ -270,14 +277,14 @@ export default function JSONSplitter() {
     chunk: Chunk;
     index: number;
   }) => (
-    <Card className="bg-gray-800 mb-4">
-      <CardHeader>
-        <CardTitle className="text-gray-200 flex flex-col sm:flex-row justify-between items-start gap-2">
+    <Card className="bg-white mb-4 border border-slate-200">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-slate-800 flex flex-col sm:flex-row justify-between items-start gap-2">
           <div className="flex items-center gap-2">
-            <span className="bg-gray-400 px-3 py-1 rounded-full text-sm">
+            <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
               Chunk {index + 1}
             </span>
-            <span className="text-gray-400 text-sm">
+            <span className="text-slate-600 text-sm">
               {typeof chunk === "object" &&
                 (Array.isArray(chunk)
                   ? `${chunk.length} items`
@@ -291,7 +298,8 @@ export default function JSONSplitter() {
                 navigator.clipboard.writeText(JSON.stringify(chunk, null, 2));
                 toast({ title: `Copied chunk ${index + 1} to clipboard` });
               }}
-              className="bg-gray-700 hover:bg-gray-600"
+              variant="outline"
+              className="border-slate-300 text-slate-700 hover:bg-slate-100"
             >
               Copy
             </Button>
@@ -309,7 +317,7 @@ export default function JSONSplitter() {
                 URL.revokeObjectURL(url);
                 toast({ title: `Downloaded chunk ${index + 1}` });
               }}
-              className="bg-gray-400 hover:bg-gray-400"
+              className="bg-green-600 hover:bg-green-700 text-white"
             >
               Download
             </Button>
@@ -317,7 +325,7 @@ export default function JSONSplitter() {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <pre className="bg-gray-900 p-4 rounded-lg overflow-x-auto text-gray-200 text-sm max-h-[200px]">
+        <pre className="bg-slate-50 p-4 rounded-lg overflow-x-auto text-slate-800 text-sm max-h-[200px] border border-slate-200">
           {JSON.stringify(chunk, null, 2).slice(0, 1000)}
           {JSON.stringify(chunk, null, 2).length > 1000 && "..."}
         </pre>
@@ -327,22 +335,28 @@ export default function JSONSplitter() {
 
   return (
     <div className="container mx-auto sm:p-6 max-w-7xl" id="split">
-      <Card className="bg-gray-950 border-gray-800">
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold text-gray-100 flex items-center gap-3">
-            <UploadCloud className="text-gray-400 hidden sm:block" />
-            JSON Splitter Online
-            <span className="text-sm font-normal text-gray-400 ml-2 hidden sm:block">
-              Step {currentStep} of 3
-            </span>
-          </CardTitle>
-          <CardDescription className="text-gray-300">
-            Easily split large JSON files with intuitive controls and real-time
-            preview
-          </CardDescription>
+      <Card className="bg-white shadow-none border-none">
+        <CardHeader className="pb-2  ">
+          <div className="flex items-center mb-2">
+            <div className="w-10 h-10 rounded-full bg-green-200 flex items-center justify-center mr-3">
+              <FileJson className="w-5 h-5 text-green-700" />
+            </div>
+            <div>
+              <CardTitle className="text-2xl font-bold text-slate-900 flex items-center gap-3">
+                JSON Splitter
+                <span className="text-sm font-normal text-slate-600 ml-2 hidden sm:block">
+                  Step {currentStep} of 3
+                </span>
+              </CardTitle>
+              <CardDescription className="text-slate-700">
+                Easily split large JSON files with intuitive controls and
+                real-time preview
+              </CardDescription>
+            </div>
+          </div>
         </CardHeader>
 
-        <CardContent>
+        <CardContent className="pt-6">
           <div className="grid grid-cols-1 gap-6">
             {/* Controls */}
             <div className="space-y-6">
@@ -350,25 +364,23 @@ export default function JSONSplitter() {
               {currentStep === 1 && (
                 <div
                   {...getRootProps()}
-                  className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-colors ${
+                  className={`relative flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-10 cursor-pointer transition-all duration-200 ${
                     isDragActive
-                      ? "border-gray-400 bg-gray-400/20"
-                      : "border-gray-600 hover:border-gray-400"
+                      ? "border-green-500 bg-green-50"
+                      : "border-slate-400 bg-slate-50 hover:border-green-400 hover:bg-slate-100"
                   }`}
                 >
                   <input {...getInputProps()} />
-                  <UploadCloud
-                    className={`mx-auto mb-4 ${
-                      isDragActive ? "text-gray-400" : "text-gray-500"
-                    }`}
-                    size={40}
-                  />
-                  <p className="text-gray-400 text-lg">
-                    {isDragActive
-                      ? "Drop your JSON file"
-                      : "Drag & drop or click to upload"}
+                  {isDragActive && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-green-50 bg-opacity-90 text-green-700 text-lg font-semibold rounded-lg">
+                      Drop JSON file here
+                    </div>
+                  )}
+                  <UploadCloud className="h-12 w-12 mb-4 text-green-600" />
+                  <p className="text-slate-800 font-medium mb-1">
+                    Drag & drop JSON file or click to upload
                   </p>
-                  <p className="text-sm text-gray-500 mt-2">
+                  <p className="text-sm text-slate-600">
                     Supports files up to 500MB
                   </p>
                 </div>
@@ -377,28 +389,28 @@ export default function JSONSplitter() {
               {/* Step 2: Configuration */}
               {currentStep >= 2 && (
                 <div className="space-y-6">
-                  <div className="bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-slate-100 p-4 rounded-lg border border-slate-200">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="bg-gray-400 w-8 h-8 rounded-full flex items-center justify-center">
+                      <div className="bg-green-600 w-8 h-8 rounded-full flex items-center justify-center text-white font-medium">
                         2
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-200">
+                      <h3 className="text-lg font-semibold text-slate-800">
                         Split Configuration
                       </h3>
                     </div>
 
                     <div className="space-y-4">
                       <div>
-                        <Label className="text-gray-300 mb-2 block flex items-center gap-2">
+                        <Label className="text-slate-700 mb-2 block flex items-center gap-2">
                           Split Method
-                          <Info className="text-gray-400" size={16} />
+                          <Info className="text-slate-500" size={16} />
                         </Label>
                         <select
                           value={splitMethod}
                           onChange={(e) =>
                             setSplitMethod(e.target.value as SplitMethod)
                           }
-                          className="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-gray-300 focus:ring-2 focus:ring-gray-400"
+                          className="w-full bg-white border border-slate-300 rounded-lg p-3 text-slate-800 focus:ring-2 focus:ring-green-400 focus:border-green-400"
                         >
                           <option value="item">Items Per Chunk</option>
                           <option value="chunkCount">Number of Chunks</option>
@@ -409,7 +421,7 @@ export default function JSONSplitter() {
                       {splitMethod === "size" ? (
                         <div className="space-y-4">
                           <div>
-                            <Label className="text-gray-300 mb-2 block">
+                            <Label className="text-slate-700 mb-2 block">
                               Maximum Chunk Size
                             </Label>
                             <div className="flex gap-3">
@@ -421,7 +433,7 @@ export default function JSONSplitter() {
                                     Math.max(0.1, Number(e.target.value))
                                   )
                                 }
-                                className="bg-gray-800 border-gray-700 text-gray-300"
+                                className="bg-white border-slate-300 text-slate-800 focus:border-green-400 focus:ring-green-400"
                                 step="0.1"
                                 min="0.1"
                               />
@@ -432,7 +444,7 @@ export default function JSONSplitter() {
                                     e.target.value as "B" | "KB" | "MB"
                                   )
                                 }
-                                className="bg-gray-800 border-gray-700 text-gray-300 rounded-lg px-4"
+                                className="bg-white border-slate-300 text-slate-800 rounded-lg px-4 focus:ring-2 focus:ring-green-400 focus:border-green-400"
                               >
                                 <option value="B">Bytes</option>
                                 <option value="KB">KB</option>
@@ -443,7 +455,7 @@ export default function JSONSplitter() {
                         </div>
                       ) : (
                         <div>
-                          <Label className="text-gray-300 mb-2 block">
+                          <Label className="text-slate-700 mb-2 block">
                             {splitMethod === "item"
                               ? "Items Per Chunk"
                               : "Number of Chunks"}
@@ -454,7 +466,7 @@ export default function JSONSplitter() {
                             onChange={(e) =>
                               setChunkSize(Math.max(1, Number(e.target.value)))
                             }
-                            className="bg-gray-800 border-gray-700 text-gray-300"
+                            className="bg-white border-slate-300 text-slate-800 focus:border-green-400 focus:ring-green-400"
                             min="1"
                             step="1"
                           />
@@ -462,20 +474,20 @@ export default function JSONSplitter() {
                       )}
 
                       <div>
-                        <Label className="text-gray-300 mb-2 block flex items-center gap-2">
+                        <Label className="text-slate-700 mb-2 block flex items-center gap-2">
                           Target Path (Optional)
                           <span
                             className="cursor-help"
                             title="Use dot notation to specify nested data (e.g., 'data.results[0].items')"
                           >
-                            <Info className="text-gray-400" size={16} />
+                            <Info className="text-slate-500" size={16} />
                           </span>
                         </Label>
                         <Input
                           value={targetPath}
                           onChange={(e) => setTargetPath(e.target.value)}
                           placeholder="e.g., data.results[0].items"
-                          className="bg-gray-800 border-gray-700 text-gray-300"
+                          className="bg-white border-slate-300 text-slate-800 focus:border-green-400 focus:ring-green-400"
                         />
                       </div>
                     </div>
@@ -485,7 +497,7 @@ export default function JSONSplitter() {
                     <Button
                       onClick={splitJson}
                       disabled={isProcessing}
-                      className="flex-1 bg-gray-200 hover:bg-gray-300 text-black gap-2"
+                      className="flex-1 bg-green-600 hover:bg-green-700 text-white gap-2 h-12 text-base font-medium"
                     >
                       {isProcessing ? (
                         <>
@@ -502,7 +514,7 @@ export default function JSONSplitter() {
                     <Button
                       onClick={resetState}
                       variant="outline"
-                      className="text-gray-700 border-gray-700 bg-gray-200 hover:bg-gray-300"
+                      className="text-slate-700 border-slate-300 hover:bg-slate-100 h-12 text-base font-medium"
                     >
                       <Trash2 className="mr-2" size={16} />
                       Reset All
@@ -514,17 +526,17 @@ export default function JSONSplitter() {
 
             {/* Preview/Results */}
             <div
-              className={`bg-gray-800 rounded-xl p-4 ${
+              className={`bg-white rounded-lg border border-slate-200 p-4 ${
                 currentStep >= 2 ? "h-[600px]" : ""
               } relative`}
             >
               {currentStep === 1 && (
                 <div className="flex flex-col items-center justify-center text-center p-4">
-                  <Info className="text-gray-500 mb-2" size={24} />
-                  <h3 className="text-gray-400 text-base mb-1">
+                  <Info className="text-slate-400 mb-2" size={24} />
+                  <h3 className="text-slate-700 text-base mb-1">
                     No file selected
                   </h3>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-slate-500 text-sm">
                     Upload a JSON file to get started
                   </p>
                 </div>
@@ -533,20 +545,20 @@ export default function JSONSplitter() {
               {currentStep === 2 && (
                 <div className="h-full flex flex-col">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="bg-gray-400 w-8 h-8 rounded-full flex items-center justify-center">
+                    <div className="bg-green-600 w-8 h-8 rounded-full flex items-center justify-center text-white font-medium">
                       3
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-200">
+                    <h3 className="text-lg font-semibold text-slate-800">
                       Preview
                     </h3>
                   </div>
-                  <div className="bg-gray-900 p-4 rounded-lg flex-1 overflow-auto">
-                    <pre className="text-gray-300 text-sm">
+                  <div className="bg-slate-50 p-4 rounded-lg flex-1 overflow-auto border border-slate-200">
+                    <pre className="text-slate-800 text-sm">
                       {jsonInput.slice(0, 1000)}
                       {jsonInput.length > 1000 && "..."}
                     </pre>
                     {jsonInput.length > 1000 && (
-                      <p className="text-gray-500 text-sm mt-2">
+                      <p className="text-slate-500 text-sm mt-2">
                         Showing first 1000 characters -{" "}
                         {Math.round(jsonInput.length / 1024)}KB total
                       </p>
@@ -559,14 +571,14 @@ export default function JSONSplitter() {
                 <div className="h-full flex flex-col">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="bg-gray-400 w-8 h-8 rounded-full flex items-center justify-center">
+                      <div className="bg-green-600 w-8 h-8 rounded-full flex items-center justify-center text-white font-medium">
                         3
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-200">
+                      <h3 className="text-lg font-semibold text-slate-800">
                         Split Results
                       </h3>
                     </div>
-                    <span className="text-gray-400 text-sm">
+                    <span className="text-slate-600 text-sm font-medium">
                       {chunks.length} chunks generated
                     </span>
                   </div>
@@ -577,10 +589,10 @@ export default function JSONSplitter() {
                       itemContent={(index, chunk) => (
                         <ChunkComponent chunk={chunk} index={index} />
                       )}
-                      className="flex-1 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-800"
+                      className="flex-1"
                     />
                   ) : (
-                    <div className="h-full flex items-center justify-center text-gray-400">
+                    <div className="h-full flex items-center justify-center text-slate-500">
                       No chunks generated - check your split parameters
                     </div>
                   )}
@@ -591,12 +603,14 @@ export default function JSONSplitter() {
 
           {/* Progress Bar */}
           {isProcessing && (
-            <div className="mt-6 bg-gray-800 p-4 rounded-lg">
+            <div className="mt-6 bg-slate-100 p-4 rounded-lg border border-slate-200">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-gray-300">Processing {fileName}</span>
-                <span className="text-gray-400">{Math.round(progress)}%</span>
+                <span className="text-slate-700">Processing {fileName}</span>
+                <span className="text-slate-600 font-medium">
+                  {Math.round(progress)}%
+                </span>
               </div>
-              <Progress value={progress} className="h-2 bg-gray-700" />
+              <Progress value={progress} className="h-2 bg-slate-200" />
             </div>
           )}
         </CardContent>

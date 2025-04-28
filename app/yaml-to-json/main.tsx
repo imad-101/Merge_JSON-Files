@@ -1,8 +1,17 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import type React from "react";
+import { useState, useCallback } from "react";
 import Dropzone from "react-dropzone";
-import { Upload, Trash2, Copy, Loader, Download } from "lucide-react";
+import {
+  Upload,
+  Trash2,
+  Copy,
+  Loader,
+  FileJson,
+  CheckCircle,
+  Download,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,6 +22,12 @@ import {
 } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Label } from "@/components/ui/label";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import * as yaml from "js-yaml"; // Import the yaml library
 
 const MAX_SAFE_SIZE = 1e6; // 1 million characters
@@ -45,6 +60,7 @@ const YamlToJsonConverter: React.FC = () => {
       toast({
         title: "File Added",
         description: `Successfully added ${acceptedFiles[0].name}.`,
+        variant: "default",
       });
     },
     [toast]
@@ -59,17 +75,6 @@ const YamlToJsonConverter: React.FC = () => {
     }
     setFile(null);
     setOutputContent("");
-  };
-
-  const resetInputs = () => {
-    setFile(null);
-    setPastedInput("");
-    setOutputContent("");
-    setProgress(0);
-    toast({
-      title: "Reset Complete",
-      description: "All fields have been reset to their default values.",
-    });
   };
 
   // Read file content in chunks to support large files.
@@ -164,6 +169,7 @@ const YamlToJsonConverter: React.FC = () => {
       toast({
         title: "Conversion Successful",
         description: "YAML has been converted to JSON successfully.",
+        variant: "default",
       });
     } catch (error) {
       setOutputContent("");
@@ -191,6 +197,7 @@ const YamlToJsonConverter: React.FC = () => {
     toast({
       title: "Download Started",
       description: "Your JSON file is being downloaded.",
+      variant: "default",
     });
   };
 
@@ -211,6 +218,7 @@ const YamlToJsonConverter: React.FC = () => {
       toast({
         title: "Copied to Clipboard",
         description: "JSON copied successfully.",
+        variant: "default",
       });
     } catch {
       toast({
@@ -223,15 +231,24 @@ const YamlToJsonConverter: React.FC = () => {
 
   return (
     <div
-      className="container mx-auto sm:p-6 max-w-[25rem] sm:max-w-xl md:max-w-7xl rounded-lg relative"
+      className="container mx-auto sm:p-6 max-w-full rounded-lg relative"
       id="yaml-to-json"
     >
-      <Card className="sm:mb-2 bg-gray-950 text-white">
-        <CardHeader>
-          <CardTitle>YAML to JSON Converter</CardTitle>
-          <CardDescription className="text-gray-100">
-            Convert your YAML files to JSON format quickly and efficiently.
-          </CardDescription>
+      <Card className="sm:mb-2 bg-white border-0 shadow-none">
+        <CardHeader className="pb-2 border-b border-slate-200">
+          <div className="flex items-center mb-2">
+            <div className="w-10 h-10 rounded-full bg-green-200 flex items-center justify-center mr-3">
+              <FileJson className="w-5 h-5 text-green-700" />
+            </div>
+            <div>
+              <CardTitle className="text-2xl font-bold text-slate-900">
+                YAML to JSON Converter
+              </CardTitle>
+              <CardDescription className="text-slate-700">
+                Convert your YAML files to JSON format quickly and efficiently.
+              </CardDescription>
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           {/* Dropzone for file upload */}
@@ -242,53 +259,83 @@ const YamlToJsonConverter: React.FC = () => {
             {({ getRootProps, getInputProps, isDragActive }) => (
               <div
                 {...getRootProps()}
-                className="relative flex flex-col items-center justify-center border-2 border-dashed border-gray-400 rounded-lg p-6 cursor-pointer bg-gray-950 hover:border-gray-100 transition"
+                className={`relative flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-10 cursor-pointer transition-all duration-200 ${
+                  isDragActive
+                    ? "border-green-500 bg-green-50"
+                    : "border-slate-400 bg-slate-50 hover:border-green-400 hover:bg-slate-100"
+                }`}
               >
                 <input {...getInputProps()} />
                 {isDragActive && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gray-900 text-white text-lg font-semibold rounded-lg">
-                    Drop file here
+                  <div className="absolute inset-0 flex items-center justify-center bg-green-50 bg-opacity-90 text-green-700 text-lg font-semibold rounded-lg">
+                    Drop YAML file here
                   </div>
                 )}
-                <Upload className="h-8 w-8 mb-2 text-gray-100" />
-                <p className="text-sm text-gray-100">
-                  Drag & drop file or click to upload
+                <Upload className="h-12 w-12 mb-4 text-green-600" />
+                <p className="text-slate-800 font-medium mb-1">
+                  Drag & drop YAML file or click to upload
+                </p>
+                <p className="text-sm text-slate-600">
+                  Supports large YAML structures
                 </p>
               </div>
             )}
           </Dropzone>
 
           {file && (
-            <div className="mt-4 space-y-2">
-              <div className="flex justify-between items-center bg-gray-800 p-2 rounded-md">
-                <span className="text-sm text-gray-200 truncate max-w-[70%]">
-                  {file.name}
-                </span>
-                <Trash2
-                  className="h-5 w-5 text-red-500 cursor-pointer"
+            <div className="mt-6 space-y-2">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-medium text-slate-800">Selected File</h3>
+                <Button
+                  variant="outline"
+                  size="sm"
                   onClick={removeFile}
-                />
+                  className="text-slate-700 border-slate-300 hover:bg-slate-100"
+                >
+                  Clear
+                </Button>
+              </div>
+              <div className="flex justify-between items-center bg-slate-100 p-3 rounded-lg border border-slate-300 group hover:border-green-300 hover:bg-slate-50 transition-colors">
+                <div className="flex items-center space-x-3">
+                  <FileJson className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <span className="text-sm font-medium text-slate-800 truncate max-w-[70%]">
+                    {file.name}
+                  </span>
+                  <span className="text-xs text-slate-600">
+                    {(file.size / 1024).toFixed(1)} KB
+                  </span>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={removeFile}
+                  className="h-8 w-8 text-slate-500 hover:text-red-600 hover:bg-red-50"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
               </div>
             </div>
           )}
 
           {/* Pasted YAML input */}
           <div className="mt-6">
-            <Label className="text-gray-300">Or Paste YAML Here</Label>
+            <Label className="text-slate-700 font-medium">
+              Or Paste YAML Here
+            </Label>
             <textarea
               value={pastedInput}
               onChange={handlePastedInputChange}
               placeholder="Paste your YAML text here..."
               rows={6}
-              className="w-full rounded-md border-gray-300 bg-gray-800 text-gray-200 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="w-full mt-2 rounded-lg border border-slate-300 bg-white text-slate-800 p-3 shadow-sm focus:border-green-400 focus:ring-green-400 focus:ring-2 focus:outline-none"
             />
           </div>
 
-          <div className="flex gap-4 mt-4">
+          <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Button
               onClick={processInput}
               disabled={(!file && !pastedInput.trim()) || isProcessing}
-              className="w-full bg-gray-300 text-gray-900 hover:bg-gray-100 disabled:opacity-50"
+              className="w-full bg-green-600 hover:bg-green-700 text-white shadow-md disabled:opacity-50 disabled:cursor-not-allowed h-12 text-base font-medium"
             >
               {isProcessing ? (
                 <>
@@ -302,46 +349,77 @@ const YamlToJsonConverter: React.FC = () => {
             <Button
               onClick={downloadOutputFile}
               disabled={!outputContent}
-              className="w-full bg-gray-300 text-gray-900 hover:bg-gray-100"
+              className="w-full bg-slate-800 hover:bg-slate-900 text-white shadow-md h-12 text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <Download className="mr-2 h-4 w-4" /> Download
+              <Download className="h-5 w-5 mr-2" />
+              Download Result
             </Button>
           </div>
 
           {outputContent && (
-            <div className="mt-4 bg-gray-800 p-4 rounded-md">
-              <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-semibold text-gray-200">
-                  JSON Output{" "}
-                  {outputContent.length > MAX_SAFE_SIZE &&
-                    "(Large file - output optimized)"}
+            <div className="mt-8 bg-slate-100 rounded-lg border border-slate-300 overflow-hidden">
+              <div className="flex justify-between items-center p-4 border-b border-slate-300 bg-white">
+                <h3 className="text-lg font-semibold text-slate-800 flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                  JSON Output
+                  {outputContent.length > MAX_SAFE_SIZE && (
+                    <span className="ml-2 text-sm font-normal text-slate-600">
+                      (Large file - rendering optimized)
+                    </span>
+                  )}
                 </h3>
                 <div className="flex gap-2">
-                  <Button
-                    onClick={resetInputs}
-                    variant="outline"
-                    className="text-gray-700"
-                    size="sm"
-                  >
-                    Reset
-                  </Button>
-                  {outputContent.length > MAX_SAFE_SIZE ? (
-                    <p className="text-sm text-gray-400">
-                      Output is too large to copy. Please download.
-                    </p>
-                  ) : (
-                    <Copy
-                      className="h-7 w-7 text-gray-300 cursor-pointer hover:text-gray-100"
+                  {outputContent.length <= MAX_SAFE_SIZE ? (
+                    <Button
                       onClick={copyToClipboard}
-                    />
+                      variant="outline"
+                      size="sm"
+                      className="text-slate-800 border-slate-300 hover:bg-slate-100 flex items-center"
+                    >
+                      <Copy className="h-4 w-4 mr-1" />
+                      Copy
+                    </Button>
+                  ) : (
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="text-slate-400 border-slate-300 cursor-not-allowed"
+                            disabled
+                          >
+                            <Copy className="h-4 w-4 mr-1" />
+                            Copy
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-slate-800 text-white">
+                          <p className="text-xs max-w-xs">
+                            Content is too large to be copied. Please download
+                            instead.
+                          </p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   )}
+                  <Button
+                    onClick={downloadOutputFile}
+                    variant="outline"
+                    size="sm"
+                    className="text-slate-800 border-slate-300 hover:bg-slate-100"
+                  >
+                    <Download className="h-4 w-4 mr-1" />
+                    Download
+                  </Button>
                 </div>
               </div>
-              <pre className="text-sm text-gray-300 whitespace-pre-wrap break-words max-h-96 overflow-auto">
-                {outputContent.length > MAX_SAFE_SIZE
-                  ? "Output is too large to display. Please download the file."
-                  : outputContent}
-              </pre>
+              <div className="p-4">
+                <pre className="text-sm text-slate-800 whitespace-pre-wrap break-words max-h-96 overflow-auto p-4 bg-white rounded-lg border border-slate-300">
+                  {outputContent.length > MAX_SAFE_SIZE
+                    ? "Content too large to display safely. You can download the file using the button above."
+                    : outputContent}
+                </pre>
+              </div>
             </div>
           )}
         </CardContent>

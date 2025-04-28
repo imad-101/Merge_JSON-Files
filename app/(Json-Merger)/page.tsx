@@ -96,7 +96,8 @@ const Page = () => {
             Powerful JSON Tools
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            JSON Merger <span className="text-emerald-600">Online</span>
+            Merge<span className="text-emerald-600">JSON</span> Files | Combine{" "}
+            <span className="text-emerald-600">JSON</span> Files Online
           </h1>
           <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto mb-8">
             Combine multiple JSON files into a single structured output with our
