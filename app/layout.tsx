@@ -1,7 +1,10 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react";
+
+import Script from "next/script";
 
 import "./globals.css";
+import Providers from "./providers";
+import { GA_MEASUREMENT_ID } from "@/lib/ga";
 
 export default function RootLayout({
   children,
@@ -18,12 +21,36 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
           crossOrigin="anonymous"
         ></script>
+
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+            />
+            <Script
+              id="gtag-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${GA_MEASUREMENT_ID}', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
 
-      <body className={` antialiasedmin-h-screen flex flex-col `}>
-        <main>{children}</main>
+      <body className="antialiased min-h-screen flex flex-col">
+        <Providers>
+          <main>{children}</main>
+        </Providers>
         <SpeedInsights />
-        <Analytics />
       </body>
     </html>
   );
