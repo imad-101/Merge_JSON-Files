@@ -7,11 +7,12 @@ declare global {
     gtag: (...args: any[]) => void;
   }
 }
-
 export const pageview = (url: string) => {
-  window.gtag("config", GA_MEASUREMENT_ID, {
-    page_path: url,
-  });
+  if (typeof window.gtag === "function") {
+    window.gtag("config", GA_MEASUREMENT_ID, {
+      page_path: url,
+    });
+  }
 };
 
 export const event = ({
@@ -21,5 +22,7 @@ export const event = ({
   action: string;
   params: Record<string, any>;
 }) => {
-  window.gtag("event", action, params);
+  if (typeof window.gtag === "function") {
+    window.gtag("event", action, params);
+  }
 };
