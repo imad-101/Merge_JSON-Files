@@ -96,8 +96,8 @@ const Page = () => {
             Powerful JSON Tools
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            Merge<span className="text-emerald-600">JSON</span> Files | Combine{" "}
-            <span className="text-emerald-600">JSON</span> Files Online
+            Merge <span className="text-emerald-600"> & </span> Combine
+            <span className="text-emerald-600"> JSON </span> Files Online
           </h1>
           <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto mb-8">
             Combine multiple JSON files into a single structured output with our
@@ -129,24 +129,6 @@ const Page = () => {
               Next Steps
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Link href="/json-to-jsonl" className="group">
-                <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
-                  <div className="flex items-center">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mr-4 group-hover:bg-emerald-200 transition-colors">
-                      <CheckCircle className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-slate-800 group-hover:text-emerald-600 transition-colors">
-                        Convert To JSONL
-                      </p>
-                      <p className="text-sm text-slate-600">
-                        Convert your JSON to JSONL format
-                      </p>
-                    </div>
-                    <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
-                  </div>
-                </div>
-              </Link>
               <Link href="/json-file-splitter" className="group">
                 <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
                   <div className="flex items-center">
@@ -165,24 +147,7 @@ const Page = () => {
                   </div>
                 </div>
               </Link>
-              <Link href="/yaml-to-json" className="group">
-                <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
-                  <div className="flex items-center">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mr-4 group-hover:bg-emerald-200 transition-colors">
-                      <SquareStack className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-slate-800 group-hover:text-emerald-600 transition-colors">
-                        Convert YAML to JSON
-                      </p>
-                      <p className="text-sm text-slate-600">
-                        Convert YAML file to JSON format
-                      </p>
-                    </div>
-                    <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
-                  </div>
-                </div>
-              </Link>
+
               <Link href="/json-flattener" className="group">
                 <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
                   <div className="flex items-center">
@@ -195,24 +160,6 @@ const Page = () => {
                       </p>
                       <p className="text-sm text-slate-600">
                         Flatten your nested JSON files
-                      </p>
-                    </div>
-                    <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
-                  </div>
-                </div>
-              </Link>
-              <Link href="/jsonl-to-json" className="group">
-                <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
-                  <div className="flex items-center">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mr-4 group-hover:bg-emerald-200 transition-colors">
-                      <SquareStack className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-slate-800 group-hover:text-emerald-600 transition-colors">
-                        Convert JSONL to JSON format
-                      </p>
-                      <p className="text-sm text-slate-600">
-                        Convert from JSONL to JSON format
                       </p>
                     </div>
                     <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
@@ -340,12 +287,8 @@ const Page = () => {
                 Expert Knowledge
               </div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                JSON Merger Guide
+                Full Guide To Merging JSON Files Online
               </h2>
-              <p className="text-slate-700 max-w-2xl mx-auto">
-                Learn everything you need to know about merging JSON files
-                effectively
-              </p>
             </div>
           </div>
 
@@ -353,7 +296,7 @@ const Page = () => {
           <div className="mt-8 text-center p-8 border-t border-slate-200 bg-gradient-to-b from-white to-slate-50">
             <Button className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all">
               <Link href="/blog" className="flex items-center">
-                Read JSON Guides
+                Read JSON Guide and Articles
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

@@ -27,43 +27,29 @@ const tools: Tool[] = [
     href: "/json-to-jsonl",
   },
   {
+    title: "JSONL to JSON",
+    description: "Convert JSON Lines format to arrays  ",
+    icon: ArrowDownUp,
+    href: "/jsonl-to-json",
+  },
+  {
     title: "JSON Splitter",
     description: "Split large JSON files into smaller chunks",
     icon: Split,
     href: "/json-file-splitter",
   },
-  // {
-  //   title: "JSON Validator",
-  //   description: "Validate and format your JSON data",
-  //   icon: FileSearch,
-  //   href: "/json-validator",
-  //   isNew: true,
-  // },
-  // {
-  //   title: "JSON to CSV",
-  //   description: "Convert JSON data to CSV format",
-  //   icon: FileText,
-  //   href: "/json-to-csv",
-  // },
-  // {
-  //   title: "JSON to XML",
-  //   description: "Transform JSON data to XML format",
-  //   icon: FileCode,
-  //   href: "/json-to-xml",
-  // },
-  // {
-  //   title: "JSON Schema Generator",
-  //   description: "Generate JSON schema from your data",
-  //   icon: FileCog,
-  //   href: "/json-schema-generator",
-  // },
-  // {
-  //   title: "JSON Beautifier",
-  //   description: "Format and beautify your JSON data",
-  //   icon: FileJson,
-  //   href: "/json-beautifier",
-  //   isPopular: true,
-  // },
+  {
+    title: "JSON Flattener",
+    description: "Flatten deeply nested JSON files",
+    icon: Split,
+    href: "/json-flattener",
+  },
+  {
+    title: "YAML to JSON ",
+    description: "Convert YAML files into JSON",
+    icon: ArrowDownUp,
+    href: "/json-flattener",
+  },
 ];
 
 const ToolsGrid = () => {

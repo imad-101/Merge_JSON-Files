@@ -6,9 +6,6 @@ const JsonToJsonlBlog = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <header className="mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center">
-            Convert JSON to JSONL Online: The Ultimate Guide to JSON Lines
-          </h2>
           <p className="mt-6 text-lg sm:text-xl text-center">
             Discover how to effortlessly <strong>convert JSON to JSONL</strong>{" "}
             using our online converter and learn why JSON Lines is the preferred
@@ -386,20 +383,6 @@ const JsonToJsonlBlog = () => {
         </section>
 
         {/* Final Call-to-Action */}
-        <section className="mt-12 text-center">
-          <h3 className="text-3xl font-bold mb-4">Get Started Today!</h3>
-          <p className="mb-6 text-lg">
-            Experience the efficiency of JSON Lines for yourself. Try our
-            powerful online converter now, and streamline your data processing
-            with ease.
-          </p>
-          <a
-            href="#json-to-jsonl"
-            className="inline-block bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-950 transition duration-300"
-          >
-            Start Converting
-          </a>
-        </section>
       </div>
     </div>
   );
