@@ -91,7 +91,7 @@ const faqs = [
 const Page = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header first="JSONL" second="to" third="JSON" href="/" />
+      <Header first="JSONL" second="to" third="JSON" href="/jsonl-to-json" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-12 md:mb-16">
@@ -100,7 +100,8 @@ const Page = () => {
             Powerful JSON Tools
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            JSONL to JSON <span className="text-emerald-600">Converter</span>
+            Convert <span className="text-emerald-600">JSON TO JSONL</span>{" "}
+            Online
           </h1>
           <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto mb-8">
             Seamlessly convert your JSONL files to structured JSON format for
@@ -290,11 +291,13 @@ const Page = () => {
                 Expert Knowledge
               </div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                JSONL to JSON Guide
+                Online JSONL to JSON Conversion Guide
               </h2>
-              <p className="text-slate-700 max-w-2xl mx-auto">
-                Learn everything you need to know about converting JSONL to JSON
-                format effectively
+
+              <p className="mt-6 text-lg sm:text-xl text-center">
+                Learn how to seamlessly <strong>convert JSONL to JSON</strong>{" "}
+                with our online converter and discover why structured JSON is
+                essential for APIs, databases, and web applications.
               </p>
             </div>
           </div>
@@ -302,11 +305,8 @@ const Page = () => {
           <JsonlToJsonBlog />
           <div className="mt-8 text-center p-8 border-t border-slate-200 bg-gradient-to-b from-white to-slate-50">
             <Button className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all">
-              <Link
-                href="/blog/jsonl-to-json-best-practices"
-                className="flex items-center"
-              >
-                Read JSONL to JSON Guides
+              <Link href="/blog" className="flex items-center">
+                Read JSON Articles and Guides
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

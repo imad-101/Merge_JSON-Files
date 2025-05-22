@@ -84,7 +84,12 @@ const faqs = [
 const Page = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header first="JSON" second="Flattener" third="Online" href="/" />
+      <Header
+        first="JSON"
+        second="Flattener"
+        third="Online"
+        href="/json-flattener"
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Section */}
@@ -94,7 +99,7 @@ const Page = () => {
             Powerful JSON Tools
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            JSON Flattener <span className="text-emerald-600">Online</span>
+            JSON <span className="text-emerald-600">Flattener</span> Online
           </h1>
           <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto mb-8">
             Convert nested JSON files into a flat structure for easier
@@ -327,11 +332,12 @@ const Page = () => {
                 Expert Knowledge
               </div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                JSON Flattener Guide
+                Flattening JSON files online : A Comprehensive Guide
               </h2>
-              <p className="text-slate-700 max-w-2xl mx-auto">
-                Learn everything you need to know about flattening JSON files
-                effectively
+              <p className="mt-7 text-md sm:text-lg text-center">
+                Discover how to <strong>flatten JSON</strong> effortlessly using
+                our powerful <strong>Online JSON flattener</strong> tool and
+                explore best practices for handling nested data.
               </p>
             </div>
           </div>

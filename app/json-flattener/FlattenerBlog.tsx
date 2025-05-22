@@ -4,19 +4,6 @@ const FlattenerBlog = () => {
   return (
     <div className="bg-white text-gray-700 py-10 p-2 rounded-md">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <header className="mb-10">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-center">
-            Flattening JSON Online: The Ultimate Guide to Simplifying Nested
-            Data
-          </h2>
-          <p className="mt-7 text-md sm:text-lg text-center">
-            Discover how to <strong>flatten JSON</strong> effortlessly using our
-            powerful <strong>Online JSON flattener</strong> tool and explore
-            best practices for handling nested data.
-          </p>
-        </header>
-
         {/* Table of Contents */}
         <section className="mb-10">
           <h3 className="text-2xl font-bold border-b-2 border-gray-300 pb-2">
@@ -334,22 +321,6 @@ const FlattenerBlog = () => {
             processing for yourself.
           </p>
           <p className="mb-4">Happy flattening and coding!</p>
-        </section>
-
-        {/* Final Call-to-Action */}
-        <section className="mt-12 text-center">
-          <h3 className="text-2xl font-bold mb-4">Get Started Today!</h3>
-          <p className="mb-6">
-            Ready to <strong>flatten JSON online</strong> and simplify your
-            nested data? Try our powerful flattener tool now and experience the
-            efficiency.
-          </p>
-          <a
-            href="#flatten"
-            className="inline-block bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-950 transition duration-300"
-          >
-            Start Flattening
-          </a>
         </section>
       </div>
     </div>

@@ -48,13 +48,13 @@ const tools: Tool[] = [
     title: "YAML to JSON ",
     description: "Convert YAML files into JSON",
     icon: ArrowDownUp,
-    href: "/json-flattener",
+    href: "/yaml-to-json",
   },
 ];
 
 const ToolsGrid = () => {
   return (
-    <div>
+    <div id="tools">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {tools.slice(0, 4).map((tool, index) => (
           <Link key={index} href={tool.href} className="group">

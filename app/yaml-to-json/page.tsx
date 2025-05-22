@@ -91,7 +91,7 @@ const faqs = [
 const Page = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header first="YAML" second="to" third="JSON" href="/" />
+      <Header first="YAML" second="to" third="JSON" href="/yaml-to-json" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-12 md:mb-16">
@@ -100,7 +100,8 @@ const Page = () => {
             Powerful JSON Tools
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            YAML to JSON <span className="text-emerald-600">Converter</span>
+            Convert <span className="text-emerald-600">YAML TO JSON</span>{" "}
+            Online
           </h1>
           <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto mb-8">
             Seamlessly convert your YAML files to structured JSON format for
@@ -290,11 +291,14 @@ const Page = () => {
                 Expert Knowledge
               </div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                YAML to JSON Guide
+                Convert YAML to JSON Online: The Ultimate Guide to Structured
+                JSON
               </h2>
-              <p className="text-slate-700 max-w-2xl mx-auto">
-                Learn everything you need to know about converting YAML to JSON
-                format effectively
+              <p className="mt-6 text-lg sm:text-xl text-center">
+                Discover how to effortlessly{" "}
+                <strong>convert YAML to JSON</strong> using our online converter
+                and learn why structured JSON is critical for APIs, databases,
+                and modern applications.
               </p>
             </div>
           </div>
@@ -302,10 +306,7 @@ const Page = () => {
           <YamlToJsonBlog />
           <div className="mt-8 text-center p-8 border-t border-slate-200 bg-gradient-to-b from-white to-slate-50">
             <Button className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all">
-              <Link
-                href="/blog/yaml-to-json-best-practices"
-                className="flex items-center"
-              >
+              <Link href="/blog" className="flex items-center">
                 Read YAML to JSON Guides
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>

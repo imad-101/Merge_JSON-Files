@@ -5,17 +5,6 @@ const SplitterBlog = () => {
     <div className="bg-white text-gray-700 py-10 rounded-md ">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
-        <header className="mb-10">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-center">
-            How to Split JSON Files: A Comprehensive Guide
-          </h2>
-          <p className="mt-7 text-md sm:text-lg  text-center">
-            Discover how to <strong>split JSON files</strong> efficiently with
-            our advanced <strong>online JSON splitter</strong> tool, and learn
-            expert tips on <strong>how to split JSON files</strong> for your
-            data management needs.
-          </p>
-        </header>
 
         {/* Table of Contents */}
         <section className="mb-10">
@@ -380,22 +369,6 @@ const SplitterBlog = () => {
           <p className="mb-4">
             Happy splitting and may your data always be well-organized!
           </p>
-        </section>
-
-        {/* Final Call-to-Action */}
-        <section className="mt-12 text-center">
-          <h3 className="text-2xl font-bold mb-4">Get Started Today!</h3>
-          <p className="mb-6">
-            Ready to <strong>split JSON files online</strong> and streamline
-            your data workflow? Try our powerful tool now and experience the
-            benefits firsthand.
-          </p>
-          <a
-            href="#split"
-            className="inline-block bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-950 transition duration-300"
-          >
-            Start Splitting
-          </a>
         </section>
       </div>
     </div>

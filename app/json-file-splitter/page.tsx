@@ -98,7 +98,7 @@ const Page = () => {
             Powerful JSON Tools
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            JSON Splitter <span className="text-emerald-600">Online</span>
+            JSON <span className="text-emerald-600">Splitter</span> Online
           </h1>
           <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto mb-8">
             Split large JSON files into organized, manageable chunks with our
@@ -342,11 +342,14 @@ const Page = () => {
                 Expert Knowledge
               </div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                JSON Splitter Guide
+                How to Split JSON files - A Comprehensive Guide
               </h2>
-              <p className="text-slate-700 max-w-2xl mx-auto">
-                Learn everything you need to know about splitting JSON files
-                effectively
+              <p className="mt-7 text-md sm:text-lg  text-center">
+                Discover how to <strong>split JSON files</strong> efficiently
+                with our advanced <strong>online JSON splitter</strong> tool,
+                and learn expert tips on{" "}
+                <strong>how to split JSON files</strong> for your data
+                management needs.
               </p>
             </div>
           </div>

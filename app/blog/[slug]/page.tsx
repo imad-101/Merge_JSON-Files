@@ -1,4 +1,4 @@
-// app/blog/slug/page.tsx
+// app/blog/[slug]/page.tsx
 import type React from "react";
 import { getPostData, type PostData } from "@/lib/posts";
 import { notFound } from "next/navigation";
@@ -26,10 +26,11 @@ interface PageProps {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   try {
     const post = await getPostData(slug);
     return {
+      metadataBase: new URL("https://merge-json-files.com"),
       title: `${post.title} | Merge JSON Files`,
       description: post.description,
       openGraph: {
@@ -99,7 +100,7 @@ const EnhancedCodeBlock = ({
 };
 
 export default async function BlogPost({ params }: PageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   let post: PostData;
   try {
     post = await getPostData(slug);
