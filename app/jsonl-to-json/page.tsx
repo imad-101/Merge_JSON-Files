@@ -100,7 +100,7 @@ const Page = () => {
             Powerful JSON Tools
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            Convert <span className="text-emerald-600">JSON TO JSONL</span>{" "}
+            Convert <span className="text-emerald-600">JSONL TO JSON</span>{" "}
             Online
           </h1>
           <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto mb-8">
@@ -133,7 +133,7 @@ const Page = () => {
               Next Steps
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Link href="/json-flattener" className="group">
+              <Link href="/json-to-jsonl" className="group">
                 <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
                   <div className="flex items-center">
                     <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mr-4 group-hover:bg-emerald-200 transition-colors">
@@ -141,10 +141,10 @@ const Page = () => {
                     </div>
                     <div>
                       <p className="font-medium text-slate-800 group-hover:text-emerald-600 transition-colors">
-                        Flatten JSON
+                        JSON to JSONL
                       </p>
                       <p className="text-sm text-slate-600">
-                        Flatten deeply nested JSON files
+                        Convert JSON back to JSONL format
                       </p>
                     </div>
                     <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
