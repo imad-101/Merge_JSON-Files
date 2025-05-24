@@ -1,9 +1,8 @@
-// app/blog/[slug]/page.tsx
-import type React from "react";
-import { getPostData, type PostData } from "@/lib/posts";
+import { getPostData } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkUnwrapImages from "remark-unwrap-images";
 import rehypeRaw from "rehype-raw";
 import Link from "next/link";
 import Image from "next/image";
@@ -17,18 +16,14 @@ import { ShareFooter } from "./ShareFooter";
 import Script from "next/script";
 import ProgressBar from "./ProgressBar";
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   try {
-    const post = await getPostData(slug);
+    const { slug } = await params;
+    const post = getPostData(slug);
     return {
       metadataBase: new URL("https://merge-json-files.com"),
       title: `${post.title} | Merge JSON Files`,
@@ -58,7 +53,11 @@ export async function generateMetadata({
       },
     };
   } catch {
-    return { title: "Not Found", description: "This page does not exist" };
+    return {
+      title: "Not Found",
+      description: "This page does not exist",
+      metadataBase: new URL("https://merge-json-files.com"),
+    };
   }
 }
 
@@ -69,19 +68,15 @@ const EnhancedCodeBlock = ({
 }: {
   inline?: boolean;
   children?: React.ReactNode;
-}) => {
-  if (inline) {
-    return (
-      <code
-        className="bg-blue-50 text-blue-800 px-2 py-1 rounded-md font-mono text-sm border border-blue-100"
-        {...props}
-      >
-        {children}
-      </code>
-    );
-  }
-  return (
-    <div className="my-8 overflow-x-auto rounded-xl bg-gray-900 text-gray-100 shadow-2xl">
+}) => (
+  <div
+    className={
+      !inline
+        ? "my-8 overflow-x-auto rounded-xl bg-gray-900 text-gray-100 shadow-2xl"
+        : ""
+    }
+  >
+    {!inline && (
       <div className="flex items-center justify-between bg-gray-800 px-4 py-3">
         <div className="flex items-center gap-2">
           <span className="h-3 w-3 rounded-full bg-red-500" />
@@ -90,24 +85,34 @@ const EnhancedCodeBlock = ({
         </div>
         <span className="text-sm font-mono text-gray-400">Code Snippet</span>
       </div>
-      <pre className="p-4">
-        <code className="font-mono text-sm leading-relaxed" {...props}>
-          {children}
-        </code>
-      </pre>
-    </div>
-  );
+    )}
+    <pre className={!inline ? "p-4" : ""}>
+      <code
+        className={`font-mono text-sm ${
+          inline
+            ? "bg-blue-50 text-blue-800 px-2 py-1 rounded-md border border-blue-100"
+            : "leading-relaxed"
+        }`}
+        {...props}
+      >
+        {children}
+      </code>
+    </pre>
+  </div>
+);
+
+type Props = {
+  params: Promise<{ slug: string }>;
 };
 
-export default async function BlogPost({ params }: PageProps) {
-  const { slug } = await params;
-  let post: PostData;
+export default async function Page({ params }: Props) {
+  let post;
   try {
-    post = await getPostData(slug);
+    const { slug } = await params;
+    post = getPostData(slug);
   } catch {
     notFound();
   }
-  const postUrl = `https://merge-json-files.com/blog/${slug}`;
 
   return (
     <>
@@ -150,9 +155,9 @@ export default async function BlogPost({ params }: PageProps) {
                 <Clock className="h-4 w-4" />
                 <span>{post.readTime} read</span>
               </div>
-              {(post.tags?.length ?? 0) > 0 && (
+              {post.tags && post.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
-                  {(post.tags ?? []).map((tag) => (
+                  {post.tags.map((tag) => (
                     <span
                       key={tag}
                       className="flex items-center gap-1 rounded-full bg-white border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900 transition-colors"
@@ -205,7 +210,7 @@ export default async function BlogPost({ params }: PageProps) {
 
           <div className="prose prose-lg max-w-none text-gray-700 text-left font-serif">
             <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
+              remarkPlugins={[remarkGfm, remarkUnwrapImages]}
               rehypePlugins={[rehypeRaw]}
               components={{
                 h2: (props) => (
@@ -293,7 +298,10 @@ export default async function BlogPost({ params }: PageProps) {
             </ReactMarkdown>
           </div>
 
-          <ShareFooter title={post.title} url={postUrl} />
+          <ShareFooter
+            title={post.title}
+            url={`https://merge-json-files.com/blog/${(await params).slug}`}
+          />
 
           <div className="mt-12 border-t border-gray-100 pt-8">
             <Link href="/blog">

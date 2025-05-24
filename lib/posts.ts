@@ -10,9 +10,9 @@ export interface PostMeta {
   date: string;
   description: string;
   authorName: string;
-  authorImage: string;
+  authorImage?: string;
   readTime: string;
-  thumbnail: string;
+  thumbnail?: string;
   tags?: string[];
 }
 
@@ -20,58 +20,51 @@ export interface PostData extends PostMeta {
   content: string;
 }
 
-// Get sorted post metadata
 export function getSortedPostsData(): PostMeta[] {
   const fileNames = fs.readdirSync(postsDirectory);
 
-  const allPostsData = fileNames.map((fileName) => {
-    const id = fileName.replace(/\.md$/, "");
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const matterResult = matter(fileContents);
+  return fileNames
+    .map((fileName) => {
+      const id = fileName.replace(/\.md$/, "");
+      const fullPath = path.join(postsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, "utf8");
+      const { data } = matter(fileContents);
 
-    return {
-      id,
-      title: matterResult.data.title || "Untitled Post",
-      date: matterResult.data.date || new Date().toISOString(),
-      description: matterResult.data.description || "",
-      authorName: matterResult.data.authorName || "Anonymous Author",
-      authorImage: matterResult.data.authorImage || "",
-      readTime: matterResult.data.readTime || "2 min read",
-      thumbnail: matterResult.data.thumbnail || "",
-      tags: matterResult.data.tags || [],
-    };
-  });
-
-  return allPostsData.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+      return {
+        id,
+        title: data.title || "Untitled Post",
+        date: data.date || new Date().toISOString(),
+        description: data.description || "",
+        authorName: data.authorName || "Anonymous Author",
+        authorImage: data.authorImage,
+        readTime: data.readTime || "2 min read",
+        thumbnail: data.thumbnail,
+        tags: data.tags || [],
+      };
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
-// Get single post data by ID
 export function getPostData(id: string): PostData {
   const fullPath = path.join(postsDirectory, `${id}.md`);
-  try {
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const matterResult = matter(fileContents);
 
-    return {
-      id,
-      content: matterResult.content,
-      title: matterResult.data.title || "Untitled Post",
-      date: matterResult.data.date || new Date().toISOString(),
-      description: matterResult.data.description || "",
-      authorName: matterResult.data.authorName || "Anonymous Author",
-      authorImage: matterResult.data.authorImage || "",
-      readTime: matterResult.data.readTime || "2 min read",
-      thumbnail: matterResult.data.thumbnail || "",
-      tags: matterResult.data.tags || [],
-    };
-  } catch (error) {
-    throw new Error(
-      `Post with ID "${id}" not found. ${
-        error instanceof Error ? error.message : ""
-      }`
-    );
+  if (!fs.existsSync(fullPath)) {
+    throw new Error(`Post not found: ${id}`);
   }
+
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { content, data } = matter(fileContents);
+
+  return {
+    id,
+    content,
+    title: data.title || "Untitled Post",
+    date: data.date || new Date().toISOString(),
+    description: data.description || "",
+    authorName: data.authorName || "Anonymous Author",
+    authorImage: data.authorImage,
+    readTime: data.readTime || "2 min read",
+    thumbnail: data.thumbnail,
+    tags: data.tags || [],
+  };
 }
