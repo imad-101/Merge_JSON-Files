@@ -20,6 +20,7 @@ import {
   Zap,
 } from "lucide-react";
 import Footer from "@/components/Footer";
+import AdUnit from "@/components/AdUnit";
 
 const howItWorks = [
   {
@@ -118,7 +119,7 @@ const Page = () => {
             </span>
           </div>
         </div>
-
+        <AdUnit name="responsive1" />
         <div className="mb-16 rounded-xl overflow-hidden border-2 border-emerald-500 bg-white">
           <div className="sm:p-8 border-b border-slate-200">
             <JsonMerger />
