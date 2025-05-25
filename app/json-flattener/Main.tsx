@@ -2,6 +2,7 @@
 
 import type React from "react";
 import { useState, useCallback } from "react";
+import AdUnit from "@/components/AdUnit";
 import Dropzone from "react-dropzone";
 import {
   Upload,
@@ -47,13 +48,6 @@ const defaultOptions: FlattenOptions = {
   maxDepth: -1,
 };
 
-/**
- * A recursive function to flatten nested JSON.
- *
- * - Uses the user-defined delimiter for joining keys.
- * - Optionally flattens arrays based on the advanced options.
- * - Stops recursing once the maxDepth is reached (if maxDepth !== -1).
- */
 const flattenJSON = (
   data: any,
   options: FlattenOptions,
@@ -519,7 +513,7 @@ const JsonFlattener: React.FC = () => {
               Download Result
             </Button>
           </div>
-
+          <AdUnit name="responsive2" />
           {flattenedContent && (
             <div className="mt-8 bg-slate-100 rounded-lg border border-slate-300 overflow-hidden">
               <div className="flex justify-between items-center p-4 border-b border-slate-300 bg-white">

@@ -4,6 +4,7 @@ import ToolsGrid from "@/components/ToolsGrid";
 import FaqSection from "@/components/Faq";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
+import AdUnit from "@/components/AdUnit";
 import Link from "next/link";
 import {
   Upload,
@@ -123,6 +124,8 @@ const Page = () => {
             </span>
           </div>
         </div>
+
+        <AdUnit name="responsive1" />
 
         <div className="mb-16 rounded-xl overflow-hidden border-2 border-emerald-500 bg-white">
           <div className="sm:p-8 border-b border-slate-200">
@@ -263,6 +266,8 @@ const Page = () => {
           </div>
         </div>
 
+        <AdUnit name="article1" />
+
         <div className="mb-16 rounded-xl overflow-hidden border border-emerald-500 bg-white">
           <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
             <div className="text-center">
@@ -307,6 +312,8 @@ const Page = () => {
             </Button>
           </div>
         </div>
+
+        <AdUnit name="article2" />
 
         <div className="rounded-xl overflow-hidden border border-slate-200 bg-white mb-16">
           <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">

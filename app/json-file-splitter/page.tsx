@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import AdUnit from "@/components/AdUnit";
 import {
   FilePlus,
   Settings,
@@ -119,6 +120,8 @@ const Page = () => {
             </span>
           </div>
         </div>
+
+        <AdUnit name="responsive1" />
 
         {/* Main Tool Section */}
         <div className="mb-16 rounded-xl overflow-hidden border-2 border-emerald-500 bg-white">
@@ -258,6 +261,7 @@ const Page = () => {
             </div>
           </div>
         </div>
+        <AdUnit name="article1" />
 
         {/* FAQ Section */}
         <div className="mb-16 rounded-xl overflow-hidden border border-emerald-500 bg-white">
@@ -312,6 +316,8 @@ const Page = () => {
             </Button>
           </div>
         </div>
+
+        <AdUnit name="article2" />
 
         {/* Tools Grid */}
         <div className="rounded-xl overflow-hidden border border-slate-200 bg-white mb-16">

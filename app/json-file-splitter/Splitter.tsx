@@ -3,6 +3,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { useDropzone, type FileWithPath } from "react-dropzone";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import AdUnit from "@/components/AdUnit";
 import {
   UploadCloud,
   Loader2,
@@ -523,6 +524,8 @@ export default function JSONSplitter() {
                 </div>
               )}
             </div>
+
+            <AdUnit name="responsive2" />
 
             {/* Preview/Results */}
             <div
