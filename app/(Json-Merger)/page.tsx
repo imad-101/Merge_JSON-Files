@@ -20,7 +20,7 @@ import {
   Zap,
 } from "lucide-react";
 import Footer from "@/components/Footer";
-import AdUnit from "@/components/AdUnit";
+// import AdUnit from "@/components/AdUnit";
 
 const howItWorks = [
   {
@@ -119,7 +119,7 @@ const Page = () => {
             </span>
           </div>
         </div>
-        <AdUnit name="responsive1" />
+        {/* <AdUnit name="responsive1" /> */}
         <div className="mb-16 rounded-xl overflow-hidden border-2 border-emerald-500 bg-white">
           <div className="sm:p-8 border-b border-slate-200">
             <JsonMerger />
@@ -259,7 +259,7 @@ const Page = () => {
             </div>
           </div>
         </div>
-        <AdUnit name="article2" />
+        {/* <AdUnit name="article2" /> */}
         <div className="mb-16 rounded-xl overflow-hidden border border-emerald-500 bg-white">
           <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
             <div className="text-center">
@@ -303,7 +303,7 @@ const Page = () => {
             </Button>
           </div>
         </div>
-        <AdUnit name="article1" />
+        {/* <AdUnit name="article1" /> */}
         <div className="rounded-xl overflow-hidden border border-slate-200 bg-white mb-16">
           <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
             <div className="text-center">
