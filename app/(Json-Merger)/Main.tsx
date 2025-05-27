@@ -739,7 +739,7 @@ const JsonMerger: React.FC = () => {
             </Button>
           </div>
 
-          <AdUnit name="responsive2" />
+          <AdUnit name="responsive1" />
 
           {mergedContent && (
             <div className="mt-8 bg-slate-100 rounded-lg border border-slate-300 overflow-hidden">

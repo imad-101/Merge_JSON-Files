@@ -525,7 +525,7 @@ export default function JSONSplitter() {
               )}
             </div>
 
-            <AdUnit name="responsive2" />
+            <AdUnit name="responsive1" />
 
             {/* Preview/Results */}
             <div
