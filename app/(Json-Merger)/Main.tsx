@@ -40,7 +40,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import AdUnit from "@/components/AdUnit";
+// import AdUnit from "@/components/AdUnit";
 
 type MergeOptions = {
   arrayStrategy: "concat" | "overwrite" | "merge" | "mergeByKey";
@@ -739,7 +739,7 @@ const JsonMerger: React.FC = () => {
             </Button>
           </div>
 
-          <AdUnit name="responsive1" />
+          {/* <AdUnit name="responsive1" /> */}
 
           {mergedContent && (
             <div className="mt-8 bg-slate-100 rounded-lg border border-slate-300 overflow-hidden">

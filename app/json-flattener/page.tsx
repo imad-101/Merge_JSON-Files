@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
 import Link from "next/link";
-// import AdUnit from "@/components/AdUnit";
+import AdUnit from "@/components/AdUnit";
 import {
   Upload,
   FilePlus,
@@ -122,7 +122,7 @@ const Page = () => {
           </div>
         </div>
 
-        {/* <AdUnit name="responsive1" /> */}
+        <AdUnit name="responsive1" />
 
         {/* Main Tool Section */}
         <div className="mb-16 rounded-xl overflow-hidden border-2 border-emerald-500 bg-white">
@@ -212,7 +212,7 @@ const Page = () => {
               ))}
             </div>
           </div>
-
+          <AdUnit name="article1" />
           {/* Key Features */}
           <div className="mb-16 p-8 md:px-16 bg-white rounded-xl border border-slate-200">
             <div className="text-center mb-12">
@@ -268,7 +268,7 @@ const Page = () => {
             </div>
           </div>
         </div>
-        {/* <AdUnit name="article1" /> */}
+
         {/* FAQ Section */}
         <div className="mb-16 rounded-xl overflow-hidden border border-emerald-500 bg-white">
           <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
