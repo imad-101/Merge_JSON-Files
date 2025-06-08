@@ -212,7 +212,7 @@ const Page = () => {
               ))}
             </div>
           </div>
-          <AdUnit name="article1" />
+          {/* <AdUnit name="article1" /> */}
           {/* Key Features */}
           <div className="mb-16 p-8 md:px-16 bg-white rounded-xl border border-slate-200">
             <div className="text-center mb-12">
