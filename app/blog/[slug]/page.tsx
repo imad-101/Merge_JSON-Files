@@ -15,7 +15,7 @@ import { ChevronLeft, Calendar, Clock } from "lucide-react";
 import { ShareFooter } from "./ShareFooter";
 import Script from "next/script";
 import ProgressBar from "./ProgressBar";
-import AdUnit from "@/components/AdUnit";
+// import AdUnit from "@/components/AdUnit";
 
 export async function generateMetadata({
   params,
@@ -297,7 +297,7 @@ export default async function Page({ params }: Props) {
                   <>
                     <hr className="my-12 border-gray-200" />
                     <div className="my-12">
-                      <AdUnit name="article1" />
+                      {/* <AdUnit name="article1" /> */}
                     </div>
                   </>
                 ),
@@ -305,7 +305,7 @@ export default async function Page({ params }: Props) {
                   if (props.className === "ad-placeholder-2") {
                     return (
                       <div className="my-12">
-                        <AdUnit name="article2" />
+                        {/* <AdUnit name="article2" /> */}
                       </div>
                     );
                   }
@@ -317,18 +317,14 @@ export default async function Page({ params }: Props) {
             </ReactMarkdown>
           </div>
 
-          <div className="my-12">
-            <AdUnit name="responsive1" />
-          </div>
+          <div className="my-12">{/* <AdUnit name="responsive1" /> */}</div>
 
           <ShareFooter
             title={post.title}
             url={`https://merge-json-files.com/blog/${(await params).slug}`}
           />
 
-          <div className="my-12">
-            <AdUnit name="responsive2" />
-          </div>
+          <div className="my-12">{/* <AdUnit name="responsive2" /> */}</div>
 
           <div className="mt-12 border-t border-gray-100 pt-8">
             <Link href="/blog">
