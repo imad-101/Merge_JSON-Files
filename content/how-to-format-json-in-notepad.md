@@ -263,17 +263,9 @@ Different parts of the JSON — like keys, values, and punctuation — will appe
 
 But if your JSON file opens and everything is black and white, here's how to fix it:
 
-Click:
+Click: **Language → J → JSON**
 
-```
-Language → J → JSON
-```
-
-Or, if that's not available, choose:
-
-```
-Language → Javascript
-```
+Or, if that's not available, choose: **Language → Javascripts**
 
 ## Common Problems While Formatting JSON (And How to Fix Them)
 
