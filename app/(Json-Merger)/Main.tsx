@@ -1,6 +1,6 @@
 "use client";
 import type React from "react";
-import AdUnit from "@/components/AdUnit";
+// import AdUnit from "@/components/AdUnit";
 import { useState, useCallback } from "react";
 
 import {
@@ -740,7 +740,7 @@ const JsonMerger: React.FC = () => {
             </Button>
           </div>
 
-          <AdUnit name="fixedHorizontal" />
+          {/* <AdUnit name="fixedHorizontal" /> */}
 
           {mergedContent && (
             <div className="mt-8 bg-slate-100 rounded-lg border border-slate-300 overflow-hidden">

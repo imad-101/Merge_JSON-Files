@@ -196,7 +196,7 @@ export default async function Page({ params }: Props) {
           </header>
 
           {post.thumbnail && (
-            <div className="relative aspect-[2/1] w-full overflow-hidden rounded-xl bg-gray-100 shadow-lg">
+            <div className="relative aspect-[2/1.3] w-full overflow-hidden rounded-xl bg-gray-100 shadow-lg">
               <Image
                 src={post.thumbnail}
                 alt={post.title}
