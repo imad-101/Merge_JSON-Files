@@ -128,17 +128,6 @@ export default async function Page({ params }: Props) {
         strategy="afterInteractive"
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6334971938249130"
         crossOrigin="anonymous"
-        onLoad={() => {
-          // Enable auto ads
-          try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-6334971938249130",
-              enable_page_level_ads: true,
-            });
-          } catch (e) {
-            console.error("AdSense auto ads error:", e);
-          }
-        }}
       />
 
       <Header first="Merge" second="JSON" third="Files" href="/" />
