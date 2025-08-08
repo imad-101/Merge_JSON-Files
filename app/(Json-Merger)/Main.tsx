@@ -1,6 +1,5 @@
 "use client";
 import type React from "react";
-// import AdUnit from "@/components/AdUnit";
 import { useState, useCallback } from "react";
 
 import {
@@ -41,7 +40,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-// import AdUnit from "@/components/AdUnit";
 
 type MergeOptions = {
   arrayStrategy: "concat" | "overwrite" | "merge" | "mergeByKey";
@@ -739,8 +737,6 @@ const JsonMerger: React.FC = () => {
               Download Result
             </Button>
           </div>
-
-          {/* <AdUnit name="fixedHorizontal" /> */}
 
           {mergedContent && (
             <div className="mt-8 bg-slate-100 rounded-lg border border-slate-300 overflow-hidden">

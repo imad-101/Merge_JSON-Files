@@ -308,8 +308,6 @@ const Page = () => {
           </div>
         </div>
 
-        {/* <AdUnit name="article2" /> */}
-
         <div className="rounded-xl overflow-hidden border border-slate-200 bg-white mb-16">
           <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
             <div className="text-center">

@@ -3,7 +3,6 @@
 import type React from "react";
 import { useState, useCallback } from "react";
 import Dropzone from "react-dropzone";
-// import AdUnit from "@/components/AdUnit";
 import {
   Upload,
   Trash2,
@@ -368,7 +367,6 @@ const JsonToJsonlConverter: React.FC = () => {
             </Button>
           </div>
 
-          {/* <AdUnit name="responsive1" /> */}
           {outputContent && (
             <div className="mt-8 bg-slate-100 rounded-lg border border-slate-300 overflow-hidden">
               <div className="flex justify-between items-center p-4 border-b border-slate-300 bg-white">

@@ -4,7 +4,6 @@ import ToolsGrid from "@/components/ToolsGrid";
 import FaqSection from "@/components/Faq";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
-import AdUnit from "@/components/AdUnit";
 import Link from "next/link";
 import {
   Upload,
@@ -124,8 +123,6 @@ const Page = () => {
           </div>
         </div>
 
-        <AdUnit name="responsive1" />
-
         <div className="mb-16 rounded-xl overflow-hidden border-2 border-emerald-500 bg-white">
           <div className="sm:p-8 border-b border-slate-200">
             <YamlToJsonConverter />
@@ -209,7 +206,6 @@ const Page = () => {
               ))}
             </div>
           </div>
-          {/* <AdUnit name="article1" /> */}
           <div className="mb-16 p-8 md:px-16 bg-white rounded-xl border border-slate-200">
             <div className="text-center mb-12">
               <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
@@ -317,7 +313,6 @@ const Page = () => {
           </div>
         </div>
 
-        {/* <AdUnit name="article2" /> */}
         <div className="rounded-xl overflow-hidden border border-slate-200 bg-white mb-16">
           <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
             <div className="text-center">

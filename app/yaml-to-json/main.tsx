@@ -2,7 +2,6 @@
 
 import type React from "react";
 import { useState, useCallback } from "react";
-// import AdUnit from "@/components/AdUnit";
 import Dropzone from "react-dropzone";
 import {
   Upload,
@@ -356,8 +355,6 @@ const YamlToJsonConverter: React.FC = () => {
               Download Result
             </Button>
           </div>
-
-          {/* <AdUnit name="responsive1" /> */}
 
           {outputContent && (
             <div className="mt-8 bg-slate-100 rounded-lg border border-slate-300 overflow-hidden">
