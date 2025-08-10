@@ -247,8 +247,8 @@ const JsonToJsonlConverter: React.FC = () => {
       <Card className="sm:mb-2 bg-white border-0 shadow-none">
         <CardHeader className="pb-2 border-b border-slate-200">
           <div className="flex items-center mb-2">
-            <div className="w-10 h-10 rounded-full bg-green-200 flex items-center justify-center mr-3">
-              <FileJson className="w-5 h-5 text-green-700" />
+            <div className="w-10 h-10 rounded-full bg-[#edf6f9] flex items-center justify-center mr-3">
+              <FileJson className="w-5 h-5 text-[#4a90a4]" />
             </div>
             <div>
               <CardTitle className="text-2xl font-bold text-slate-900">
@@ -272,13 +272,13 @@ const JsonToJsonlConverter: React.FC = () => {
                 {...getRootProps()}
                 className={`relative flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-10 cursor-pointer transition-all duration-200 ${
                   isDragActive
-                    ? "border-green-500 bg-green-50"
-                    : "border-slate-400 bg-slate-50 hover:border-green-400 hover:bg-slate-100"
+                    ? "border-[#4a90a4] bg-[#edf6f9]/30"
+                    : "border-slate-400 bg-[#edf6f9]/10 hover:border-[#4a90a4] hover:bg-[#edf6f9]/20"
                 }`}
               >
                 <input {...getInputProps()} />
                 {isDragActive && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-green-50 bg-opacity-90 text-green-700 text-lg font-semibold rounded-lg">
+                  <div className="absolute inset-0 flex items-center justify-center bg-[#edf6f9] bg-opacity-90 text-[#4a90a4] text-lg font-semibold rounded-lg">
                     Drop JSON file here
                   </div>
                 )}
@@ -306,9 +306,9 @@ const JsonToJsonlConverter: React.FC = () => {
                   Clear
                 </Button>
               </div>
-              <div className="flex justify-between items-center bg-slate-100 p-3 rounded-lg border border-slate-300 group hover:border-green-300 hover:bg-slate-50 transition-colors">
+              <div className="flex justify-between items-center bg-[#edf6f9]/20 p-3 rounded-lg border border-[#edf6f9] group hover:border-[#4a90a4] hover:bg-[#edf6f9]/30 transition-colors">
                 <div className="flex items-center space-x-3">
-                  <FileJson className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <FileJson className="h-5 w-5 text-[#4a90a4] flex-shrink-0" />
                   <span className="text-sm font-medium text-slate-800 truncate max-w-[70%]">
                     {file.name}
                   </span>
@@ -338,7 +338,7 @@ const JsonToJsonlConverter: React.FC = () => {
               onChange={handlePastedInputChange}
               placeholder="Paste your JSON text here..."
               rows={6}
-              className="w-full mt-2 rounded-lg border border-slate-300 bg-white text-slate-800 p-3 shadow-sm focus:border-green-400 focus:ring-green-400 focus:ring-2 focus:outline-none"
+              className="w-full mt-2 rounded-lg border border-[#edf6f9] bg-white text-slate-800 p-3 shadow-sm focus:border-[#4a90a4] focus:ring-[#4a90a4] focus:ring-2 focus:outline-none"
             />
           </div>
 
@@ -346,7 +346,7 @@ const JsonToJsonlConverter: React.FC = () => {
             <Button
               onClick={processInput}
               disabled={(!file && !pastedInput.trim()) || isProcessing}
-              className="w-full bg-green-600 hover:bg-green-700 text-white shadow-md disabled:opacity-50 disabled:cursor-not-allowed h-12 text-base font-medium"
+              className="w-full bg-[#4a90a4] hover:bg-[#4a90a4]/90 text-white shadow-md disabled:opacity-50 disabled:cursor-not-allowed h-12 text-base font-medium"
             >
               {isProcessing ? (
                 <>
@@ -368,10 +368,10 @@ const JsonToJsonlConverter: React.FC = () => {
           </div>
 
           {outputContent && (
-            <div className="mt-8 bg-slate-100 rounded-lg border border-slate-300 overflow-hidden">
-              <div className="flex justify-between items-center p-4 border-b border-slate-300 bg-white">
+            <div className="mt-8 bg-[#edf6f9]/10 rounded-lg border border-[#edf6f9] overflow-hidden">
+              <div className="flex justify-between items-center p-4 border-b border-[#edf6f9] bg-white">
                 <h3 className="text-lg font-semibold text-slate-800 flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                  <CheckCircle className="h-5 w-5 text-[#4a90a4] mr-2" />
                   JSONL Output
                   {outputContent.length > MAX_SAFE_SIZE && (
                     <span className="ml-2 text-sm font-normal text-slate-600">
@@ -425,7 +425,7 @@ const JsonToJsonlConverter: React.FC = () => {
                 </div>
               </div>
               <div className="p-4">
-                <pre className="text-sm text-slate-800 whitespace-pre-wrap break-words max-h-96 overflow-auto p-4 bg-white rounded-lg border border-slate-300">
+                <pre className="text-sm text-slate-800 whitespace-pre-wrap break-words max-h-96 overflow-auto p-4 bg-white rounded-lg border border-[#edf6f9]">
                   {outputContent.length > MAX_SAFE_SIZE
                     ? "Content too large to display safely. You can download the file using the button above."
                     : outputContent}

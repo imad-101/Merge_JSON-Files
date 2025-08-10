@@ -95,7 +95,7 @@ const Page = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-12 md:mb-16">
-          <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
+          <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-[#e76f51]/10 text-[#e76f51] text-sm font-medium shadow-sm">
             <Sparkles className="h-4 w-4 mr-2" />
             Powerful JSON Tools
           </div>
@@ -108,64 +108,64 @@ const Page = () => {
             enhanced compatibility and data processing
           </p>
           <div className="flex flex-wrap justify-center gap-3 mb-8">
-            <span className="px-4 py-2 bg-white shadow-md border border-slate-200 text-slate-700 rounded-full text-sm font-medium flex items-center hover:border-emerald-200 transition-colors">
-              <Shield className="h-4 w-4 mr-2 text-green-500" />
+            <span className="px-4 py-2 bg-white shadow-md border border-slate-200 text-slate-700 rounded-full text-sm font-medium flex items-center hover:border-[#edf6f9] transition-colors">
+              <Shield className="h-4 w-4 mr-2 text-[#4a90a4]" />
               No installation required
             </span>
-            <span className="px-4 py-2 bg-white shadow-md border border-slate-200 text-slate-700 rounded-full text-sm font-medium flex items-center hover:border-emerald-200 transition-colors">
-              <Zap className="h-4 w-4 mr-2 text-amber-500" />
+            <span className="px-4 py-2 bg-white shadow-md border border-slate-200 text-slate-700 rounded-full text-sm font-medium flex items-center hover:border-[#edf6f9] transition-colors">
+              <Zap className="h-4 w-4 mr-2 text-[#4a90a4]" />
               Completely Free
             </span>
-            <span className="px-4 py-2 bg-white shadow-md border border-slate-200 text-slate-700 rounded-full text-sm font-medium flex items-center hover:border-emerald-200 transition-colors">
-              <CheckCircle className="h-4 w-4 mr-2 text-emerald-500" />
+            <span className="px-4 py-2 bg-white shadow-md border border-slate-200 text-slate-700 rounded-full text-sm font-medium flex items-center hover:border-[#edf6f9] transition-colors">
+              <CheckCircle className="h-4 w-4 mr-2 text-[#4a90a4]" />
               No signup needed
             </span>
           </div>
         </div>
 
-        <div className="mb-16 rounded-xl overflow-hidden border-2 border-emerald-500 bg-white">
+        <div className="mb-16 rounded-xl overflow-hidden border-2 border-[#edf6f9] bg-white">
           <div className="sm:p-8 border-b border-slate-200">
             <JsonlToJsonConverter />
           </div>
 
-          <div className="p-8 bg-gradient-to-b from-slate-50 to-white">
+          <div className="p-8 bg-gradient-to-b from-[#0ea5e9]/5 to-white">
             <h3 className="text-lg font-semibold text-slate-800 mb-6">
               Next Steps
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Link href="/json-to-jsonl" className="group">
-                <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
+                <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-[#0ea5e9] hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
                   <div className="flex items-center">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mr-4 group-hover:bg-emerald-200 transition-colors">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#0ea5e9]/10 text-[#0ea5e9] mr-4 group-hover:bg-[#0ea5e9]/20 transition-colors">
                       <CheckCircle className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="font-medium text-slate-800 group-hover:text-emerald-600 transition-colors">
+                      <p className="font-medium text-slate-800 group-hover:text-[#0ea5e9] transition-colors">
                         JSON to JSONL
                       </p>
                       <p className="text-sm text-slate-600">
                         Convert JSON back to JSONL format
                       </p>
                     </div>
-                    <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-[#0ea5e9] group-hover:translate-x-1 transition-all" />
                   </div>
                 </div>
               </Link>
               <Link href="/json-file-splitter" className="group">
-                <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-emerald-300 hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
+                <div className="p-5 bg-white border border-slate-200 rounded-lg hover:border-[#0ea5e9] hover:shadow-lg transition-all duration-200 group-hover:translate-y-[-2px]">
                   <div className="flex items-center">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mr-4 group-hover:bg-emerald-200 transition-colors">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#0ea5e9]/10 text-[#0ea5e9] mr-4 group-hover:bg-[#0ea5e9]/20 transition-colors">
                       <SquareStack className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="font-medium text-slate-800 group-hover:text-emerald-600 transition-colors">
+                      <p className="font-medium text-slate-800 group-hover:text-[#0ea5e9] transition-colors">
                         Split JSON
                       </p>
                       <p className="text-sm text-slate-600">
                         Split your JSON files into chunks
                       </p>
                     </div>
-                    <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 ml-auto text-slate-400 group-hover:text-[#0ea5e9] group-hover:translate-x-1 transition-all" />
                   </div>
                 </div>
               </Link>
@@ -174,9 +174,9 @@ const Page = () => {
         </div>
 
         <div className="mb-16">
-          <div className="mb-16 p-8 bg-white rounded-xl border border-slate-200">
+          <div className="mb-16 p-8 bg-gradient-to-b from-[#dee2ff] to-white rounded-xl border border-slate-200">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-[#dee2ff] text-[#4338ca] text-sm font-medium shadow-sm">
                 <Zap className="h-4 w-4 mr-2" />
                 Simple Process
               </div>
@@ -193,11 +193,11 @@ const Page = () => {
                 <div key={index} className="relative group">
                   <div className="flex flex-col items-center text-center">
                     <div className="z-10 mb-6">
-                      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white border-2 border-emerald-200 text-emerald-600 shadow-md group-hover:scale-110 group-hover:border-emerald-400 group-hover:text-emerald-700 transition-all duration-300">
+                      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white border-2 border-[#dee2ff] text-[#4338ca] shadow-md group-hover:scale-110 group-hover:border-[#4338ca] group-hover:text-[#4338ca] transition-all duration-300">
                         <step.icon className="h-7 w-7" />
                       </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-slate-800 mb-2 group-hover:text-emerald-600 transition-colors">
+                    <h3 className="text-xl font-semibold text-slate-800 mb-2 group-hover:text-[#4338ca] transition-colors">
                       {step.title}
                     </h3>
                     <p className="text-slate-600 text-sm">{step.description}</p>
@@ -207,9 +207,9 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="mb-16 p-8 md:px-16 bg-white rounded-xl border border-slate-200">
+          <div className="mb-16 p-8 md:px-16 bg-gradient-to-b from-[#e7ecef] to-white rounded-xl border border-slate-200">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-[#e7ecef] text-[#475569] text-sm font-medium shadow-sm">
                 <Sparkles className="h-4 w-4 mr-2" />
                 Why Choose Us
               </div>
@@ -222,11 +222,11 @@ const Page = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-8 border border-slate-200 rounded-xl bg-gradient-to-b from-white to-slate-50 hover:shadow-xl transition-all duration-300 hover:border-emerald-200 group">
-                <div className="w-14 h-14 bg-emerald-100 rounded-xl mb-6 flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
-                  <Settings className="w-7 h-7 text-emerald-600" />
+              <div className="p-8 border border-slate-200 rounded-xl bg-gradient-to-b from-white to-slate-50 hover:shadow-xl transition-all duration-300 hover:border-[#e7ecef] group">
+                <div className="w-14 h-14 bg-[#e7ecef] rounded-xl mb-6 flex items-center justify-center group-hover:bg-[#e7ecef]/80 transition-colors">
+                  <Settings className="w-7 h-7 text-[#475569]" />
                 </div>
-                <h3 className="font-semibold text-xl text-slate-800 mb-3 group-hover:text-emerald-600 transition-colors">
+                <h3 className="font-semibold text-xl text-slate-800 mb-3 group-hover:text-[#475569] transition-colors">
                   Smart Conversion
                 </h3>
                 <p className="text-slate-600">
@@ -234,11 +234,11 @@ const Page = () => {
                   structure while converting to JSON format
                 </p>
               </div>
-              <div className="p-8 border border-slate-200 rounded-xl bg-gradient-to-b from-white to-slate-50 hover:shadow-xl transition-all duration-300 hover:border-emerald-200 group">
-                <div className="w-14 h-14 bg-emerald-100 rounded-xl mb-6 flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
-                  <Download className="w-7 h-7 text-emerald-600" />
+              <div className="p-8 border border-slate-200 rounded-xl bg-gradient-to-b from-white to-slate-50 hover:shadow-xl transition-all duration-300 hover:border-[#e7ecef] group">
+                <div className="w-14 h-14 bg-[#e7ecef] rounded-xl mb-6 flex items-center justify-center group-hover:bg-[#e7ecef]/80 transition-colors">
+                  <Download className="w-7 h-7 text-[#475569]" />
                 </div>
-                <h3 className="font-semibold text-xl text-slate-800 mb-3 group-hover:text-emerald-600 transition-colors">
+                <h3 className="font-semibold text-xl text-slate-800 mb-3 group-hover:text-[#475569] transition-colors">
                   Instant Processing
                 </h3>
                 <p className="text-slate-600">
@@ -246,11 +246,11 @@ const Page = () => {
                   large JSONL files with ease and efficiency
                 </p>
               </div>
-              <div className="p-8 border border-slate-200 rounded-xl bg-gradient-to-b from-white to-slate-50 hover:shadow-xl transition-all duration-300 hover:border-emerald-200 group">
-                <div className="w-14 h-14 bg-emerald-100 rounded-xl mb-6 flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
-                  <LinkIcon className="w-7 h-7 text-emerald-600" />
+              <div className="p-8 border border-slate-200 rounded-xl bg-gradient-to-b from-white to-slate-50 hover:shadow-xl transition-all duration-300 hover:border-[#e7ecef] group">
+                <div className="w-14 h-14 bg-[#e7ecef] rounded-xl mb-6 flex items-center justify-center group-hover:bg-[#e7ecef]/80 transition-colors">
+                  <LinkIcon className="w-7 h-7 text-[#475569]" />
                 </div>
-                <h3 className="font-semibold text-xl text-slate-800 mb-3 group-hover:text-emerald-600 transition-colors">
+                <h3 className="font-semibold text-xl text-slate-800 mb-3 group-hover:text-[#475569] transition-colors">
                   Full Integration
                 </h3>
                 <p className="text-slate-600">
@@ -262,10 +262,10 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="mb-16 rounded-xl overflow-hidden border border-emerald-500 bg-white">
-          <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
+        <div className="mb-16 rounded-xl overflow-hidden border border-[#c084fc] bg-white">
+          <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-[#c084fc]/5 to-white">
             <div className="text-center">
-              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-[#c084fc]/10 text-[#c084fc] text-sm font-medium shadow-sm">
                 <Zap className="h-4 w-4 mr-2" />
                 Common Questions
               </div>
@@ -283,10 +283,10 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="mb-16 rounded-xl overflow-hidden border border-slate-200 bg-white">
-          <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
+        <div className="mb-16 rounded-xl overflow-hidden border border-[#f59e0b] bg-white">
+          <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-[#f59e0b]/5 to-white">
             <div className="text-center">
-              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-[#f59e0b]/10 text-[#f59e0b] text-sm font-medium shadow-sm">
                 <Sparkles className="h-4 w-4 mr-2" />
                 Expert Knowledge
               </div>
@@ -304,7 +304,7 @@ const Page = () => {
 
           <JsonlToJsonBlog />
           <div className="mt-8 text-center p-8 border-t border-slate-200 bg-gradient-to-b from-white to-slate-50">
-            <Button className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all">
+            <Button className="bg-[#f59e0b] hover:bg-[#f59e0b]/90 text-white shadow-lg hover:shadow-xl transition-all">
               <Link href="/blog" className="flex items-center">
                 Read JSON Articles and Guides
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -313,10 +313,10 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="rounded-xl overflow-hidden border border-slate-200 bg-white mb-16">
-          <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
+        <div className="rounded-xl overflow-hidden border border-[#10b981] bg-white mb-16">
+          <div className="p-8 border-b border-slate-200 bg-gradient-to-r from-[#10b981]/5 to-white">
             <div className="text-center">
-              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium shadow-sm">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-[#10b981]/10 text-[#10b981] text-sm font-medium shadow-sm">
                 <Sparkles className="h-4 w-4 mr-2" />
                 More Tools
               </div>

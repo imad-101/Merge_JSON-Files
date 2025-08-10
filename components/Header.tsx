@@ -18,15 +18,15 @@ interface HeaderProps {
 
 const Header = ({ first, second, third, href }: HeaderProps) => {
   return (
-    <header className="bg-gradient-to-r from-slate-50 to-slate-100 border-b border-slate-200">
+    <header className=" border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href={href} className="flex items-center space-x-1 group">
-            <span className="text-slate-900 font-bold text-xl md:text-2xl transition-colors group-hover:text-green-600">
+            <span className="text-slate-900 font-bold text-xl md:text-2xl transition-colors group-hover:text-[#e76f51]">
               {first}
             </span>
-            <span className="text-green-600 font-medium text-xl md:text-2xl transition-colors group-hover:text-slate-900">
+            <span className="text-[#e76f51] font-medium text-xl md:text-2xl transition-colors group-hover:text-slate-900">
               {second}
             </span>
             <span className="text-slate-500 font-normal text-xl md:text-2xl">
@@ -56,8 +56,8 @@ const Header = ({ first, second, third, href }: HeaderProps) => {
             </Link>
             <Link href={"/contact"}>
               <Button
-                variant="outline"
-                className="border-slate-200 bg-white hover:bg-slate-50 text-slate-800 hover:text-green-600 shadow-sm"
+              
+                className="border-slate-200 bg-[#e76f51]  text-white shadow-sm"
               >
                 Contact
               </Button>

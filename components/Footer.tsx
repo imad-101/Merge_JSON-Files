@@ -6,7 +6,7 @@ interface FooterProps {
 
 const Footer = ({ name }: FooterProps) => {
   return (
-    <footer className="bg-gray-50 border-t border-gray-300">
+    <footer className=" border-t border-gray-300">
       <div className="max-w-5xl mx-auto px-4 py-10 flex gap-4 flex-col sm:flex-row items-center justify-between">
         <p className="text-gray-700 text-sm">
           © {new Date().getFullYear()} {name}. All rights reserved.

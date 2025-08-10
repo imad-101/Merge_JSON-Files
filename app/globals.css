@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Concert+One&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,4 +8,15 @@
   :root {
     --radius: 0.5rem;
   }
+  
+  body {
+    background-color: #fffcf2;
+    font-family: 'Amaranth', 'Concert One', cursive;
+    font-weight: 400;
+  }
+}
+.concert-one-regular {
+  font-family: "Concert One", sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
