@@ -443,7 +443,7 @@ const JsonMerger: React.FC = () => {
   };
 
   const renderOptions = () => (
-    <div className="mt-6 space-y-4 p-6 bg-slate-100 rounded-lg border border-slate-300">
+    <div className="mt-6 space-y-4 p-6 bg-[#edf6f9]/15 rounded-lg border border-[#edf6f9]">
       <div className="flex items-center justify-between">
         <Label className="text-slate-900 font-semibold">
           Advanced Merge Options
@@ -451,12 +451,12 @@ const JsonMerger: React.FC = () => {
         <Switch
           checked={showOptions}
           onCheckedChange={setShowOptions}
-          className="data-[state=checked]:bg-green-600"
+          className="data-[state=checked]:bg-[#4a90a4]"
         />
       </div>
 
       {showOptions && (
-        <div className="space-y-4 pt-4 border-t border-slate-300">
+        <div className="space-y-4 pt-4 border-t border-[#edf6f9]">
           <div className="space-y-2">
             <Label className="text-slate-800 font-medium">Array Handling</Label>
             <TooltipProvider>
@@ -471,10 +471,10 @@ const JsonMerger: React.FC = () => {
                         setOptions((prev) => ({ ...prev, arrayStrategy: v }))
                       }
                     >
-                      <SelectTrigger className="bg-white border-slate-300 text-slate-800 focus:ring-2 focus:ring-green-400 focus:border-green-400">
+                      <SelectTrigger className="bg-white border-[#edf6f9] text-slate-800 focus:ring-2 focus:ring-[#4a90a4] focus:border-[#4a90a4]">
                         <SelectValue placeholder="Array Strategy" />
                       </SelectTrigger>
-                      <SelectContent className="bg-white text-slate-800 border-slate-300">
+                      <SelectContent className="bg-white text-slate-800 border-[#edf6f9]">
                         <SelectItem value="concat">Concatenate</SelectItem>
                         <SelectItem value="overwrite">Overwrite</SelectItem>
                         <SelectItem value="merge">Merge Unique</SelectItem>
@@ -504,7 +504,7 @@ const JsonMerger: React.FC = () => {
                   setOptions((prev) => ({ ...prev, mergeKey: e.target.value }))
                 }
                 placeholder="e.g., id"
-                className="bg-white border-slate-300 text-slate-800 focus:ring-2 focus:ring-green-400 focus:border-green-400"
+                className="bg-white border-[#edf6f9] text-slate-800 focus:ring-2 focus:ring-[#4a90a4] focus:border-[#4a90a4]"
               />
             </div>
           )}
@@ -526,10 +526,10 @@ const JsonMerger: React.FC = () => {
                         }))
                       }
                     >
-                      <SelectTrigger className="bg-white border-slate-300 text-slate-800 focus:ring-2 focus:ring-green-400 focus:border-green-400">
+                      <SelectTrigger className="bg-white border-[#edf6f9] text-slate-800 focus:ring-2 focus:ring-[#4a90a4] focus:border-[#4a90a4]">
                         <SelectValue placeholder="Conflict Strategy" />
                       </SelectTrigger>
-                      <SelectContent className="bg-white text-slate-800 border-slate-300">
+                      <SelectContent className="bg-white text-slate-800 border-[#edf6f9]">
                         <SelectItem value="merge">Merge Values</SelectItem>
                         <SelectItem value="overwrite">
                           Overwrite Existing
@@ -560,10 +560,10 @@ const JsonMerger: React.FC = () => {
                   setOptions((prev) => ({ ...prev, numericHandling: v }))
                 }
               >
-                <SelectTrigger className="bg-white border-slate-300 text-slate-800 focus:ring-2 focus:ring-green-400 focus:border-green-400">
+                <SelectTrigger className="bg-white border-[#edf6f9] text-slate-800 focus:ring-2 focus:ring-[#4a90a4] focus:border-[#4a90a4]">
                   <SelectValue placeholder="Number Strategy" />
                 </SelectTrigger>
-                <SelectContent className="bg-white text-slate-800 border-slate-300">
+                <SelectContent className="bg-white text-slate-800 border-[#edf6f9]">
                   <SelectItem value="sum">Sum Values</SelectItem>
                   <SelectItem value="keep">Keep Latest</SelectItem>
                 </SelectContent>
@@ -580,10 +580,10 @@ const JsonMerger: React.FC = () => {
                   setOptions((prev) => ({ ...prev, stringHandling: v }))
                 }
               >
-                <SelectTrigger className="bg-white border-slate-300 text-slate-800 focus:ring-2 focus:ring-green-400 focus:border-green-400">
+                <SelectTrigger className="bg-white border-[#edf6f9] text-slate-800 focus:ring-2 focus:ring-[#4a90a4] focus:border-[#4a90a4]">
                   <SelectValue placeholder="String Strategy" />
                 </SelectTrigger>
-                <SelectContent className="bg-white text-slate-800 border-slate-300">
+                <SelectContent className="bg-white text-slate-800 border-[#edf6f9]">
                   <SelectItem value="keep">Keep Latest</SelectItem>
                   <SelectItem value="concatenate">Concatenate</SelectItem>
                 </SelectContent>
@@ -597,7 +597,7 @@ const JsonMerger: React.FC = () => {
               onCheckedChange={(checked) =>
                 setOptions((prev) => ({ ...prev, allowMixedRoots: checked }))
               }
-              className="data-[state=checked]:bg-green-600"
+              className="data-[state=checked]:bg-[#4a90a4]"
             />
             <div>
               <Label className="text-slate-800 font-medium">
@@ -623,8 +623,8 @@ const JsonMerger: React.FC = () => {
       <Card className="sm:mb-2 bg-white border-0 shadow-none">
         <CardHeader className="pb-2 border-b border-slate-200">
           <div className="flex items-center mb-2">
-            <div className="w-10 h-10 rounded-full bg-green-200 flex items-center justify-center mr-3">
-              <FileJson className="w-5 h-5 text-green-700" />
+            <div className="w-10 h-10 rounded-full bg-[#edf6f9] flex items-center justify-center mr-3">
+              <FileJson className="w-5 h-5 text-[#4a90a4]" />
             </div>
             <div>
               <CardTitle className="text-2xl font-bold text-slate-900">
@@ -646,17 +646,17 @@ const JsonMerger: React.FC = () => {
                 {...getRootProps()}
                 className={`relative flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-10 cursor-pointer transition-all duration-200 ${
                   isDragActive
-                    ? "border-green-500 bg-green-50"
-                    : "border-slate-400 bg-slate-50 hover:border-green-400 hover:bg-slate-100"
+                    ? "border-[#4a90a4] bg-[#edf6f9]/30"
+                    : "border-slate-400 bg-[#edf6f9]/10 hover:border-[#4a90a4] hover:bg-[#edf6f9]/20"
                 }`}
               >
                 <input {...getInputProps()} />
                 {isDragActive && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-green-50 bg-opacity-90 text-green-700 text-lg font-semibold rounded-lg">
+                  <div className="absolute inset-0 flex items-center justify-center bg-[#edf6f9]/50 bg-opacity-90 text-[#4a90a4] text-lg font-semibold rounded-lg">
                     Drop JSON files here
                   </div>
                 )}
-                <Upload className="h-12 w-12 mb-4 text-green-600" />
+                <Upload className="h-12 w-12 mb-4 text-[#4a90a4]" />
                 <p className="text-slate-800 font-medium mb-1">
                   Drag & drop JSON files or click to upload
                 </p>
@@ -686,10 +686,10 @@ const JsonMerger: React.FC = () => {
                 {files.map((file, index) => (
                   <div
                     key={index}
-                    className="flex justify-between items-center bg-slate-100 p-3 rounded-lg border border-slate-300 group hover:border-green-300 hover:bg-slate-50 transition-colors"
+                    className="flex justify-between items-center bg-[#edf6f9]/20 p-3 rounded-lg border border-[#edf6f9] group hover:border-[#4a90a4] hover:bg-[#edf6f9]/30 transition-colors"
                   >
                     <div className="flex items-center space-x-3">
-                      <FileJson className="h-5 w-5 text-green-600 flex-shrink-0" />
+                      <FileJson className="h-5 w-5 text-[#4a90a4] flex-shrink-0" />
                       <span className="text-sm font-medium text-slate-800 truncate max-w-[70%]">
                         {file.name}
                       </span>
@@ -717,7 +717,7 @@ const JsonMerger: React.FC = () => {
             <Button
               onClick={mergeFiles}
               disabled={files.length === 0 || isMerging}
-              className="w-full bg-green-600 hover:bg-green-700 text-white shadow-md disabled:opacity-50 disabled:cursor-not-allowed h-12 text-base font-medium"
+              className="w-full bg-[#4a90a4] hover:bg-[#3d7a8c] text-white shadow-md disabled:opacity-50 disabled:cursor-not-allowed h-12 text-base font-medium"
             >
               {isMerging ? (
                 <>
@@ -739,10 +739,10 @@ const JsonMerger: React.FC = () => {
           </div>
 
           {mergedContent && (
-            <div className="mt-8 bg-slate-100 rounded-lg border border-slate-300 overflow-hidden">
-              <div className="flex justify-between items-center p-4 border-b border-slate-300 bg-white">
+            <div className="mt-8 bg-[#edf6f9]/15 rounded-lg border border-[#edf6f9] overflow-hidden">
+              <div className="flex justify-between items-center p-4 border-b border-[#edf6f9] bg-white">
                 <h3 className="text-lg font-semibold text-slate-800 flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                  <CheckCircle className="h-5 w-5 text-[#4a90a4] mr-2" />
                   Merged Result
                   {mergedContent.length > MAX_SAFE_SIZE && (
                     <span className="ml-2 text-sm font-normal text-slate-600">
@@ -756,7 +756,7 @@ const JsonMerger: React.FC = () => {
                       onClick={copyToClipboard}
                       variant="outline"
                       size="sm"
-                      className="text-slate-800 border-slate-300 hover:bg-slate-100 flex items-center"
+                      className="text-slate-800 border-[#edf6f9] hover:bg-[#edf6f9]/20 flex items-center"
                     >
                       <Copy className="h-4 w-4 mr-1" />
                       Copy
@@ -768,7 +768,7 @@ const JsonMerger: React.FC = () => {
                           <Button
                             variant="outline"
                             size="sm"
-                            className="text-slate-400 border-slate-300 cursor-not-allowed"
+                            className="text-slate-400 border-[#edf6f9] cursor-not-allowed"
                             disabled
                           >
                             <Copy className="h-4 w-4 mr-1" />
@@ -788,7 +788,7 @@ const JsonMerger: React.FC = () => {
                     onClick={downloadMergedFile}
                     variant="outline"
                     size="sm"
-                    className="text-slate-800 border-slate-300 hover:bg-slate-100"
+                    className="text-slate-800 border-[#edf6f9] hover:bg-[#edf6f9]/20"
                   >
                     <Download className="h-4 w-4 mr-1" />
                     Download
@@ -796,7 +796,7 @@ const JsonMerger: React.FC = () => {
                 </div>
               </div>
               <div className="p-4">
-                <pre className="text-sm text-slate-800 whitespace-pre-wrap break-words max-h-96 overflow-auto p-4 bg-white rounded-lg border border-slate-300">
+                <pre className="text-sm text-slate-800 whitespace-pre-wrap break-words max-h-96 overflow-auto p-4 bg-white rounded-lg border border-[#edf6f9]">
                   {mergedContent.length > MAX_SAFE_SIZE
                     ? "Content too large to display safely. You can download the merged file using the button above."
                     : mergedContent}
@@ -824,13 +824,13 @@ const JsonMerger: React.FC = () => {
                   <Button
                     onClick={cancelMerge}
                     variant="outline"
-                    className="border-slate-300 text-slate-800 hover:bg-slate-100"
+                    className="border-[#edf6f9] text-slate-800 hover:bg-[#edf6f9]/20"
                   >
                     Cancel
                   </Button>
                   <Button
                     onClick={confirmMergeAnyway}
-                    className="bg-green-600 text-white hover:bg-green-700"
+                    className="bg-[#4a90a4] text-white hover:bg-[#3d7a8c]"
                   >
                     Merge Anyway
                   </Button>
