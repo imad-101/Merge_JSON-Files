@@ -37,6 +37,7 @@ const tools: Tool[] = [
     description: "Split large JSON files into smaller chunks",
     icon: Split,
     href: "/json-file-splitter",
+    isPopular: true,
   },
   {
     title: "JSON Flattener",
@@ -49,6 +50,12 @@ const tools: Tool[] = [
     description: "Convert YAML files into JSON",
     icon: ArrowDownUp,
     href: "/yaml-to-json",
+  },
+  {
+    title: "HTML Merger",
+    description: "Merge multiple HTML files into a single file",
+    icon: ArrowDownUp,
+    href: "/html-file-merger",
   },
 ];
 
